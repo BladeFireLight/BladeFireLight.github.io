@@ -4,10 +4,10 @@
 
 
   <generator uri="http://jekyllrb.com" version="3.1.2">Jekyll</generator>
-  <link href="http://localhost:4000/atom.xml" rel="self" type="application/atom+xml" />
-  <link href="http://localhost:4000/" rel="alternate" type="text/html" />
-  <updated>2016-03-14T14:51:17-05:00</updated>
-  <id>http://localhost:4000/</id>
+  <link href="https://blog.bladefirelight.com/atom.xml" rel="self" type="application/atom+xml" />
+  <link href="https://blog.bladefirelight.com/" rel="alternate" type="text/html" />
+  <updated>2016-03-14T15:03:20-05:00</updated>
+  <id>https://blog.bladefirelight.com/</id>
 
   <title>PowerShell Journey</title>
 
@@ -15,7 +15,7 @@
     <subtitle>Documenting my personal journey in powershell</subtitle>
   
 
-  <icon>http://localhost:4000/apple-touch-icon-precomposed.png</icon>
+  <icon>https://blog.bladefirelight.com/apple-touch-icon-precomposed.png</icon>
 
 
   
@@ -26,7 +26,7 @@
     
       <email>BladeFireLight@outlook.com</email>
     
-    <uri>http://localhost:4000/</uri>
+    <uri>https://blog.bladefirelight.com/</uri>
   </author>
 
 
@@ -34,15 +34,15 @@
   
     <entry>
   <title>Syntax Highlighting Post</title>
-  <link href="http://localhost:4000/nuggets/code-highlighting-post/" rel="alternate" type="text/html" title="Syntax Highlighting Post" />
+  <link href="https://blog.bladefirelight.com/nuggets/code-highlighting-post/" rel="alternate" type="text/html" title="Syntax Highlighting Post" />
   <published>2013-08-16T00:00:00-05:00</published>
 
   
     <updated>2016-02-01T00:00:00-06:00</updated>
   
 
-  <id>http://localhost:4000/nuggets/code-highlighting-post</id>
-  <content type="html" xml:base="http://localhost:4000/nuggets/code-highlighting-post/">
+  <id>https://blog.bladefirelight.com/nuggets/code-highlighting-post</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/nuggets/code-highlighting-post/">
     
     &lt;nav class=&quot;js-toc toc&quot;&gt;
   &lt;h4 class=&quot;toc__title&quot;&gt;Contents&lt;/h4&gt;
@@ -218,7 +218,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
     
 
-&lt;p&gt;&lt;a href=&quot;http://localhost:4000/nuggets/code-highlighting-post/&quot; rel=&quot;nofollow&quot;&gt;Syntax Highlighting Post&lt;/a&gt; was originally published by &lt;a href=&quot;http://localhost:4000/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;http://localhost:4000&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/nuggets/code-highlighting-post/&quot; rel=&quot;nofollow&quot;&gt;Syntax Highlighting Post&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
 
 
   </content>
@@ -231,7 +231,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
     
       <email>BladeFireLight@outlook.com</email>
     
-    <uri>http://localhost:4000/</uri>
+    <uri>https://blog.bladefirelight.com/</uri>
   </author>
 
 
@@ -256,15 +256,15 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
   
     <entry>
   <title>Sample Link Post</title>
-  <link href="http://localhost:4000/projects/sample-link-post/" rel="alternate" type="text/html" title="Sample Link Post" />
+  <link href="https://blog.bladefirelight.com/projects/sample-link-post/" rel="alternate" type="text/html" title="Sample Link Post" />
   <published>2013-08-12T00:00:00-05:00</published>
 
   
     <updated>2013-08-12T00:00:00-05:00</updated>
   
 
-  <id>http://localhost:4000/projects/sample-link-post</id>
-  <content type="html" xml:base="http://localhost:4000/projects/sample-link-post/">
+  <id>https://blog.bladefirelight.com/projects/sample-link-post</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/projects/sample-link-post/">
     
     &lt;p&gt;This theme supports &lt;strong&gt;link posts&lt;/strong&gt;, made famous by John Gruber. To use, just add &lt;code class=&quot;highlighter-rouge&quot;&gt;link: http://url-you-want-linked&lt;/code&gt; to the post’s YAML front matter and you’re done.&lt;/p&gt;
 
@@ -276,7 +276,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
     
 
-&lt;p&gt;&lt;a href=&quot;http://localhost:4000/projects/sample-link-post/&quot; rel=&quot;nofollow&quot;&gt;Sample Link Post&lt;/a&gt; was originally published by &lt;a href=&quot;http://localhost:4000/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;http://localhost:4000&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/projects/sample-link-post/&quot; rel=&quot;nofollow&quot;&gt;Sample Link Post&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
 
 
   </content>
@@ -289,7 +289,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
     
       <email>BladeFireLight@outlook.com</email>
     
-    <uri>http://localhost:4000/</uri>
+    <uri>https://blog.bladefirelight.com/</uri>
   </author>
 
 
@@ -312,15 +312,15 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
   
     <entry>
   <title>Sample Link Post</title>
-  <link href="http://localhost:4000/nuggets/sample-link-post/" rel="alternate" type="text/html" title="Sample Link Post" />
+  <link href="https://blog.bladefirelight.com/nuggets/sample-link-post/" rel="alternate" type="text/html" title="Sample Link Post" />
   <published>2013-08-12T00:00:00-05:00</published>
 
   
     <updated>2013-08-12T00:00:00-05:00</updated>
   
 
-  <id>http://localhost:4000/nuggets/sample-link-post</id>
-  <content type="html" xml:base="http://localhost:4000/nuggets/sample-link-post/">
+  <id>https://blog.bladefirelight.com/nuggets/sample-link-post</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/nuggets/sample-link-post/">
     
     &lt;p&gt;This theme supports &lt;strong&gt;link posts&lt;/strong&gt;, made famous by John Gruber. To use, just add &lt;code class=&quot;highlighter-rouge&quot;&gt;link: http://url-you-want-linked&lt;/code&gt; to the post’s YAML front matter and you’re done.&lt;/p&gt;
 
@@ -332,7 +332,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
     
 
-&lt;p&gt;&lt;a href=&quot;http://localhost:4000/nuggets/sample-link-post/&quot; rel=&quot;nofollow&quot;&gt;Sample Link Post&lt;/a&gt; was originally published by &lt;a href=&quot;http://localhost:4000/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;http://localhost:4000&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/nuggets/sample-link-post/&quot; rel=&quot;nofollow&quot;&gt;Sample Link Post&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
 
 
   </content>
@@ -345,7 +345,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
     
       <email>BladeFireLight@outlook.com</email>
     
-    <uri>http://localhost:4000/</uri>
+    <uri>https://blog.bladefirelight.com/</uri>
   </author>
 
 
@@ -368,18 +368,18 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
   
     <entry>
   <title>Sample Link Post</title>
-  <link href="http://localhost:4000/posts/sample-link-post/" rel="alternate" type="text/html" title="Sample Link Post" />
+  <link href="https://blog.bladefirelight.com/posts/sample-link-post/" rel="alternate" type="text/html" title="Sample Link Post" />
   <published>2013-08-12T00:00:00-05:00</published>
 
   
     <updated>2013-08-12T00:00:00-05:00</updated>
   
 
-  <id>http://localhost:4000/posts/sample-link-post</id>
-  <content type="html" xml:base="http://localhost:4000/posts/sample-link-post/">
+  <id>https://blog.bladefirelight.com/posts/sample-link-post</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/posts/sample-link-post/">
     
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/sample-image-1.jpg&quot; alt=&quot;Sample Link Post&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-1.jpg&quot; alt=&quot;Sample Link Post&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
 
 
     &lt;nav class=&quot;js-toc toc&quot;&gt;
@@ -397,7 +397,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
     
 
-&lt;p&gt;&lt;a href=&quot;http://localhost:4000/posts/sample-link-post/&quot; rel=&quot;nofollow&quot;&gt;Sample Link Post&lt;/a&gt; was originally published by &lt;a href=&quot;http://localhost:4000/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;http://localhost:4000&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/posts/sample-link-post/&quot; rel=&quot;nofollow&quot;&gt;Sample Link Post&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
 
 
   </content>
@@ -410,7 +410,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
     
       <email>BladeFireLight@outlook.com</email>
     
-    <uri>http://localhost:4000/</uri>
+    <uri>https://blog.bladefirelight.com/</uri>
   </author>
 
 
@@ -433,18 +433,18 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
   
     <entry>
   <title>Post with Large Feature Image and Text</title>
-  <link href="http://localhost:4000/projects/proj2/readability-feature-post/" rel="alternate" type="text/html" title="Post with Large Feature Image and Text" />
+  <link href="https://blog.bladefirelight.com/projects/proj2/readability-feature-post/" rel="alternate" type="text/html" title="Post with Large Feature Image and Text" />
   <published>2013-05-23T00:00:00-05:00</published>
 
   
     <updated>2013-05-23T00:00:00-05:00</updated>
   
 
-  <id>http://localhost:4000/projects/proj2/readability-feature-post</id>
-  <content type="html" xml:base="http://localhost:4000/projects/proj2/readability-feature-post/">
+  <id>https://blog.bladefirelight.com/projects/proj2/readability-feature-post</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/projects/proj2/readability-feature-post/">
     
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/sample-image-1.jpg&quot; alt=&quot;Post with Large Feature Image and Text&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-1.jpg&quot; alt=&quot;Post with Large Feature Image and Text&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
 
 
     &lt;p&gt;This is a sample post with a large feature image&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; up top and tons of text. Odio ad blue bottle vinyl, 90’s narwhal commodo bitters pour-over nostrud. Ugh est hashtag in, fingerstache adipisicing laboris esse Pinterest shabby chic Portland. Shoreditch bicycle rights anim, flexitarian laboris put a bird on it vinyl cupidatat narwhal. Hashtag artisan skateboard, flannel Bushwick nesciunt salvia aute fixie do plaid post-ironic dolor McSweeney’s. Cliche pour-over chambray nulla four loko skateboard sapiente hashtag.&lt;/p&gt;
@@ -498,7 +498,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
     
 
-&lt;p&gt;&lt;a href=&quot;http://localhost:4000/projects/proj2/readability-feature-post/&quot; rel=&quot;nofollow&quot;&gt;Post with Large Feature Image and Text&lt;/a&gt; was originally published by &lt;a href=&quot;http://localhost:4000/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;http://localhost:4000&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/projects/proj2/readability-feature-post/&quot; rel=&quot;nofollow&quot;&gt;Post with Large Feature Image and Text&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
 
 
   </content>
@@ -511,7 +511,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
     
       <email>BladeFireLight@outlook.com</email>
     
-    <uri>http://localhost:4000/</uri>
+    <uri>https://blog.bladefirelight.com/</uri>
   </author>
 
 
@@ -536,18 +536,18 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
   
     <entry>
   <title>Post with Large Feature Image and Text</title>
-  <link href="http://localhost:4000/nuggets/readability-feature-post/" rel="alternate" type="text/html" title="Post with Large Feature Image and Text" />
+  <link href="https://blog.bladefirelight.com/nuggets/readability-feature-post/" rel="alternate" type="text/html" title="Post with Large Feature Image and Text" />
   <published>2013-05-23T00:00:00-05:00</published>
 
   
     <updated>2013-05-23T00:00:00-05:00</updated>
   
 
-  <id>http://localhost:4000/nuggets/readability-feature-post</id>
-  <content type="html" xml:base="http://localhost:4000/nuggets/readability-feature-post/">
+  <id>https://blog.bladefirelight.com/nuggets/readability-feature-post</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/nuggets/readability-feature-post/">
     
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/sample-image-1.jpg&quot; alt=&quot;Post with Large Feature Image and Text&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-1.jpg&quot; alt=&quot;Post with Large Feature Image and Text&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
 
 
     &lt;p&gt;This is a sample post with a large feature image&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; up top and tons of text. Odio ad blue bottle vinyl, 90’s narwhal commodo bitters pour-over nostrud. Ugh est hashtag in, fingerstache adipisicing laboris esse Pinterest shabby chic Portland. Shoreditch bicycle rights anim, flexitarian laboris put a bird on it vinyl cupidatat narwhal. Hashtag artisan skateboard, flannel Bushwick nesciunt salvia aute fixie do plaid post-ironic dolor McSweeney’s. Cliche pour-over chambray nulla four loko skateboard sapiente hashtag.&lt;/p&gt;
@@ -601,7 +601,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
     
 
-&lt;p&gt;&lt;a href=&quot;http://localhost:4000/nuggets/readability-feature-post/&quot; rel=&quot;nofollow&quot;&gt;Post with Large Feature Image and Text&lt;/a&gt; was originally published by &lt;a href=&quot;http://localhost:4000/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;http://localhost:4000&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/nuggets/readability-feature-post/&quot; rel=&quot;nofollow&quot;&gt;Post with Large Feature Image and Text&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
 
 
   </content>
@@ -614,7 +614,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
     
       <email>BladeFireLight@outlook.com</email>
     
-    <uri>http://localhost:4000/</uri>
+    <uri>https://blog.bladefirelight.com/</uri>
   </author>
 
 
@@ -639,18 +639,18 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
   
     <entry>
   <title>Post with Large Feature Image and Text</title>
-  <link href="http://localhost:4000/posts/readability-feature-post/" rel="alternate" type="text/html" title="Post with Large Feature Image and Text" />
+  <link href="https://blog.bladefirelight.com/posts/readability-feature-post/" rel="alternate" type="text/html" title="Post with Large Feature Image and Text" />
   <published>2013-05-23T00:00:00-05:00</published>
 
   
     <updated>2013-05-23T00:00:00-05:00</updated>
   
 
-  <id>http://localhost:4000/posts/readability-feature-post</id>
-  <content type="html" xml:base="http://localhost:4000/posts/readability-feature-post/">
+  <id>https://blog.bladefirelight.com/posts/readability-feature-post</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/posts/readability-feature-post/">
     
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/sample-image-1.jpg&quot; alt=&quot;Post with Large Feature Image and Text&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-1.jpg&quot; alt=&quot;Post with Large Feature Image and Text&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
 
 
     &lt;nav class=&quot;js-toc toc&quot;&gt;
@@ -717,7 +717,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
     
 
-&lt;p&gt;&lt;a href=&quot;http://localhost:4000/posts/readability-feature-post/&quot; rel=&quot;nofollow&quot;&gt;Post with Large Feature Image and Text&lt;/a&gt; was originally published by &lt;a href=&quot;http://localhost:4000/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;http://localhost:4000&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/posts/readability-feature-post/&quot; rel=&quot;nofollow&quot;&gt;Post with Large Feature Image and Text&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
 
 
   </content>
@@ -730,7 +730,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
     
       <email>BladeFireLight@outlook.com</email>
     
-    <uri>http://localhost:4000/</uri>
+    <uri>https://blog.bladefirelight.com/</uri>
   </author>
 
 
@@ -755,15 +755,15 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
   
     <entry>
   <title>A Post with Images</title>
-  <link href="http://localhost:4000/projects/proj2/sample-post-images/" rel="alternate" type="text/html" title="A Post with Images" />
+  <link href="https://blog.bladefirelight.com/projects/proj2/sample-post-images/" rel="alternate" type="text/html" title="A Post with Images" />
   <published>2013-05-22T00:00:00-05:00</published>
 
   
     <updated>2013-05-22T00:00:00-05:00</updated>
   
 
-  <id>http://localhost:4000/projects/proj2/sample-post-images</id>
-  <content type="html" xml:base="http://localhost:4000/projects/proj2/sample-post-images/">
+  <id>https://blog.bladefirelight.com/projects/proj2/sample-post-images</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/projects/proj2/sample-post-images/">
     
     &lt;p&gt;Here are some examples of what a post with images might look like. If you want to display two or three images next to each other responsively use &lt;code class=&quot;highlighter-rouge&quot;&gt;figure&lt;/code&gt; with the appropriate &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;. Each instance of &lt;code class=&quot;highlighter-rouge&quot;&gt;figure&lt;/code&gt; is auto-numbered and displayed in the caption.&lt;/p&gt;
 
@@ -818,7 +818,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
     
 
-&lt;p&gt;&lt;a href=&quot;http://localhost:4000/projects/proj2/sample-post-images/&quot; rel=&quot;nofollow&quot;&gt;A Post with Images&lt;/a&gt; was originally published by &lt;a href=&quot;http://localhost:4000/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;http://localhost:4000&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/projects/proj2/sample-post-images/&quot; rel=&quot;nofollow&quot;&gt;A Post with Images&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
 
 
   </content>
@@ -831,7 +831,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
     
       <email>BladeFireLight@outlook.com</email>
     
-    <uri>http://localhost:4000/</uri>
+    <uri>https://blog.bladefirelight.com/</uri>
   </author>
 
 
@@ -856,15 +856,15 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
   
     <entry>
   <title>A Post with Images</title>
-  <link href="http://localhost:4000/nuggets/sample-post-images/" rel="alternate" type="text/html" title="A Post with Images" />
+  <link href="https://blog.bladefirelight.com/nuggets/sample-post-images/" rel="alternate" type="text/html" title="A Post with Images" />
   <published>2013-05-22T00:00:00-05:00</published>
 
   
     <updated>2013-05-22T00:00:00-05:00</updated>
   
 
-  <id>http://localhost:4000/nuggets/sample-post-images</id>
-  <content type="html" xml:base="http://localhost:4000/nuggets/sample-post-images/">
+  <id>https://blog.bladefirelight.com/nuggets/sample-post-images</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/nuggets/sample-post-images/">
     
     &lt;p&gt;Here are some examples of what a post with images might look like. If you want to display two or three images next to each other responsively use &lt;code class=&quot;highlighter-rouge&quot;&gt;figure&lt;/code&gt; with the appropriate &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;. Each instance of &lt;code class=&quot;highlighter-rouge&quot;&gt;figure&lt;/code&gt; is auto-numbered and displayed in the caption.&lt;/p&gt;
 
@@ -919,7 +919,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
     
 
-&lt;p&gt;&lt;a href=&quot;http://localhost:4000/nuggets/sample-post-images/&quot; rel=&quot;nofollow&quot;&gt;A Post with Images&lt;/a&gt; was originally published by &lt;a href=&quot;http://localhost:4000/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;http://localhost:4000&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/nuggets/sample-post-images/&quot; rel=&quot;nofollow&quot;&gt;A Post with Images&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
 
 
   </content>
@@ -932,7 +932,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
     
       <email>BladeFireLight@outlook.com</email>
     
-    <uri>http://localhost:4000/</uri>
+    <uri>https://blog.bladefirelight.com/</uri>
   </author>
 
 
@@ -957,18 +957,18 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
   
     <entry>
   <title>A Post with Images</title>
-  <link href="http://localhost:4000/posts/sample-post-images/" rel="alternate" type="text/html" title="A Post with Images" />
+  <link href="https://blog.bladefirelight.com/posts/sample-post-images/" rel="alternate" type="text/html" title="A Post with Images" />
   <published>2013-05-22T00:00:00-05:00</published>
 
   
     <updated>2013-05-22T00:00:00-05:00</updated>
   
 
-  <id>http://localhost:4000/posts/sample-post-images</id>
-  <content type="html" xml:base="http://localhost:4000/posts/sample-post-images/">
+  <id>https://blog.bladefirelight.com/posts/sample-post-images</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/posts/sample-post-images/">
     
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/sample-image-1.jpg&quot; alt=&quot;A Post with Images&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-1.jpg&quot; alt=&quot;A Post with Images&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
 
 
     &lt;nav class=&quot;js-toc toc&quot;&gt;
@@ -1037,7 +1037,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
     
 
-&lt;p&gt;&lt;a href=&quot;http://localhost:4000/posts/sample-post-images/&quot; rel=&quot;nofollow&quot;&gt;A Post with Images&lt;/a&gt; was originally published by &lt;a href=&quot;http://localhost:4000/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;http://localhost:4000&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/posts/sample-post-images/&quot; rel=&quot;nofollow&quot;&gt;A Post with Images&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
 
 
   </content>
@@ -1050,7 +1050,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
     
       <email>BladeFireLight@outlook.com</email>
     
-    <uri>http://localhost:4000/</uri>
+    <uri>https://blog.bladefirelight.com/</uri>
   </author>
 
 
@@ -1075,15 +1075,15 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
   
     <entry>
   <title>Testing Readability with a Bunch of Text</title>
-  <link href="http://localhost:4000/projects/proj1/readability-post/" rel="alternate" type="text/html" title="Testing Readability with a Bunch of Text" />
+  <link href="https://blog.bladefirelight.com/projects/proj1/readability-post/" rel="alternate" type="text/html" title="Testing Readability with a Bunch of Text" />
   <published>2012-05-22T00:00:00-05:00</published>
 
   
     <updated>2012-05-22T00:00:00-05:00</updated>
   
 
-  <id>http://localhost:4000/projects/proj1/readability-post</id>
-  <content type="html" xml:base="http://localhost:4000/projects/proj1/readability-post/">
+  <id>https://blog.bladefirelight.com/projects/proj1/readability-post</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/projects/proj1/readability-post/">
     
     &lt;p&gt;Portland in shoreditch Vice, labore typewriter pariatur hoodie fap sartorial Austin. Pinterest literally occupy Schlitz forage. Odio ad blue bottle vinyl, 90’s narwhal commodo bitters pour-over nostrud. Ugh est hashtag in, fingerstache adipisicing laboris esse Pinterest shabby chic Portland. Shoreditch bicycle rights anim, flexitarian laboris put a bird on it vinyl cupidatat narwhal. Hashtag artisan skateboard, flannel Bushwick nesciunt salvia aute fixie do plaid post-ironic dolor McSweeney’s. Cliche pour-over chambray nulla four loko skateboard sapiente hashtag.&lt;/p&gt;
 
@@ -1128,7 +1128,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
     
 
-&lt;p&gt;&lt;a href=&quot;http://localhost:4000/projects/proj1/readability-post/&quot; rel=&quot;nofollow&quot;&gt;Testing Readability with a Bunch of Text&lt;/a&gt; was originally published by &lt;a href=&quot;http://localhost:4000/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;http://localhost:4000&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/projects/proj1/readability-post/&quot; rel=&quot;nofollow&quot;&gt;Testing Readability with a Bunch of Text&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
 
 
   </content>
@@ -1141,7 +1141,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
     
       <email>BladeFireLight@outlook.com</email>
     
-    <uri>http://localhost:4000/</uri>
+    <uri>https://blog.bladefirelight.com/</uri>
   </author>
 
 
@@ -1166,15 +1166,15 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
   
     <entry>
   <title>Testing Readability with a Bunch of Text</title>
-  <link href="http://localhost:4000/nuggets/readability-post/" rel="alternate" type="text/html" title="Testing Readability with a Bunch of Text" />
+  <link href="https://blog.bladefirelight.com/nuggets/readability-post/" rel="alternate" type="text/html" title="Testing Readability with a Bunch of Text" />
   <published>2012-05-22T00:00:00-05:00</published>
 
   
     <updated>2012-05-22T00:00:00-05:00</updated>
   
 
-  <id>http://localhost:4000/nuggets/readability-post</id>
-  <content type="html" xml:base="http://localhost:4000/nuggets/readability-post/">
+  <id>https://blog.bladefirelight.com/nuggets/readability-post</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/nuggets/readability-post/">
     
     &lt;p&gt;Portland in shoreditch Vice, labore typewriter pariatur hoodie fap sartorial Austin. Pinterest literally occupy Schlitz forage. Odio ad blue bottle vinyl, 90’s narwhal commodo bitters pour-over nostrud. Ugh est hashtag in, fingerstache adipisicing laboris esse Pinterest shabby chic Portland. Shoreditch bicycle rights anim, flexitarian laboris put a bird on it vinyl cupidatat narwhal. Hashtag artisan skateboard, flannel Bushwick nesciunt salvia aute fixie do plaid post-ironic dolor McSweeney’s. Cliche pour-over chambray nulla four loko skateboard sapiente hashtag.&lt;/p&gt;
 
@@ -1219,7 +1219,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
     
 
-&lt;p&gt;&lt;a href=&quot;http://localhost:4000/nuggets/readability-post/&quot; rel=&quot;nofollow&quot;&gt;Testing Readability with a Bunch of Text&lt;/a&gt; was originally published by &lt;a href=&quot;http://localhost:4000/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;http://localhost:4000&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/nuggets/readability-post/&quot; rel=&quot;nofollow&quot;&gt;Testing Readability with a Bunch of Text&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
 
 
   </content>
@@ -1232,7 +1232,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
     
       <email>BladeFireLight@outlook.com</email>
     
-    <uri>http://localhost:4000/</uri>
+    <uri>https://blog.bladefirelight.com/</uri>
   </author>
 
 
@@ -1257,18 +1257,18 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
   
     <entry>
   <title>Testing Readability with a Bunch of Text</title>
-  <link href="http://localhost:4000/posts/readability-post/" rel="alternate" type="text/html" title="Testing Readability with a Bunch of Text" />
+  <link href="https://blog.bladefirelight.com/posts/readability-post/" rel="alternate" type="text/html" title="Testing Readability with a Bunch of Text" />
   <published>2012-05-22T00:00:00-05:00</published>
 
   
     <updated>2012-05-22T00:00:00-05:00</updated>
   
 
-  <id>http://localhost:4000/posts/readability-post</id>
-  <content type="html" xml:base="http://localhost:4000/posts/readability-post/">
+  <id>https://blog.bladefirelight.com/posts/readability-post</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/posts/readability-post/">
     
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/sample-image-1.jpg&quot; alt=&quot;Testing Readability with a Bunch of Text&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-1.jpg&quot; alt=&quot;Testing Readability with a Bunch of Text&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
 
 
     &lt;nav class=&quot;js-toc toc&quot;&gt;
@@ -1327,7 +1327,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
     
 
-&lt;p&gt;&lt;a href=&quot;http://localhost:4000/posts/readability-post/&quot; rel=&quot;nofollow&quot;&gt;Testing Readability with a Bunch of Text&lt;/a&gt; was originally published by &lt;a href=&quot;http://localhost:4000/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;http://localhost:4000&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/posts/readability-post/&quot; rel=&quot;nofollow&quot;&gt;Testing Readability with a Bunch of Text&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
 
 
   </content>
@@ -1340,7 +1340,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
     
       <email>BladeFireLight@outlook.com</email>
     
-    <uri>http://localhost:4000/</uri>
+    <uri>https://blog.bladefirelight.com/</uri>
   </author>
 
 
@@ -1365,18 +1365,18 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
   
     <entry>
   <title>Sample Post</title>
-  <link href="http://localhost:4000/projects/proj1/sample-post/" rel="alternate" type="text/html" title="Sample Post" />
+  <link href="https://blog.bladefirelight.com/projects/proj1/sample-post/" rel="alternate" type="text/html" title="Sample Post" />
   <published>2011-03-11T00:00:00-06:00</published>
 
   
     <updated>2013-05-31T00:00:00-05:00</updated>
   
 
-  <id>http://localhost:4000/projects/proj1/sample-post</id>
-  <content type="html" xml:base="http://localhost:4000/projects/proj1/sample-post/">
+  <id>https://blog.bladefirelight.com/projects/proj1/sample-post</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/projects/proj1/sample-post/">
     
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/sample-image-5.jpg&quot; alt=&quot;Sample Post&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-5.jpg&quot; alt=&quot;Sample Post&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
 
 
     &lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
@@ -1439,7 +1439,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
 &lt;p&gt;Lorem ipsum dolor sit amet, test link adipiscing elit. &lt;strong&gt;This is strong&lt;/strong&gt;. Nullam dignissim convallis est. Quisque aliquam.&lt;/p&gt;
 
-&lt;p class=&quot;image-pull-right&quot;&gt;&lt;img src=&quot;http://localhost:4000/images/3953273590_704e3899d5_m.jpg&quot; alt=&quot;Smithsonian Image&quot; /&gt;&lt;/p&gt;
+&lt;p class=&quot;image-pull-right&quot;&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/3953273590_704e3899d5_m.jpg&quot; alt=&quot;Smithsonian Image&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;This is emphasized&lt;/em&gt;. Donec faucibus. Nunc iaculis suscipit dui. 53 = 125. Water is H2O. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. The New York Times (That’s a citation). Underline.Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.&lt;/p&gt;
 
@@ -1543,7 +1543,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
     
 
-&lt;p&gt;&lt;a href=&quot;http://localhost:4000/projects/proj1/sample-post/&quot; rel=&quot;nofollow&quot;&gt;Sample Post&lt;/a&gt; was originally published by &lt;a href=&quot;http://localhost:4000/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;http://localhost:4000&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/projects/proj1/sample-post/&quot; rel=&quot;nofollow&quot;&gt;Sample Post&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
 
 
   </content>
@@ -1556,7 +1556,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
     
       <email>BladeFireLight@outlook.com</email>
     
-    <uri>http://localhost:4000/</uri>
+    <uri>https://blog.bladefirelight.com/</uri>
   </author>
 
 
@@ -1577,18 +1577,18 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
   
     <entry>
   <title>Sample Post</title>
-  <link href="http://localhost:4000/nuggets/sample-post/" rel="alternate" type="text/html" title="Sample Post" />
+  <link href="https://blog.bladefirelight.com/nuggets/sample-post/" rel="alternate" type="text/html" title="Sample Post" />
   <published>2011-03-10T00:00:00-06:00</published>
 
   
     <updated>2013-05-31T00:00:00-05:00</updated>
   
 
-  <id>http://localhost:4000/nuggets/sample-post</id>
-  <content type="html" xml:base="http://localhost:4000/nuggets/sample-post/">
+  <id>https://blog.bladefirelight.com/nuggets/sample-post</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/nuggets/sample-post/">
     
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/sample-image-5.jpg&quot; alt=&quot;Sample Post&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-5.jpg&quot; alt=&quot;Sample Post&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
 
 
     &lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
@@ -1651,7 +1651,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
 &lt;p&gt;Lorem ipsum dolor sit amet, test link adipiscing elit. &lt;strong&gt;This is strong&lt;/strong&gt;. Nullam dignissim convallis est. Quisque aliquam.&lt;/p&gt;
 
-&lt;p class=&quot;image-pull-right&quot;&gt;&lt;img src=&quot;http://localhost:4000/images/3953273590_704e3899d5_m.jpg&quot; alt=&quot;Smithsonian Image&quot; /&gt;&lt;/p&gt;
+&lt;p class=&quot;image-pull-right&quot;&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/3953273590_704e3899d5_m.jpg&quot; alt=&quot;Smithsonian Image&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;This is emphasized&lt;/em&gt;. Donec faucibus. Nunc iaculis suscipit dui. 53 = 125. Water is H2O. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. The New York Times (That’s a citation). Underline.Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.&lt;/p&gt;
 
@@ -1755,7 +1755,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
     
 
-&lt;p&gt;&lt;a href=&quot;http://localhost:4000/nuggets/sample-post/&quot; rel=&quot;nofollow&quot;&gt;Sample Post&lt;/a&gt; was originally published by &lt;a href=&quot;http://localhost:4000/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;http://localhost:4000&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/nuggets/sample-post/&quot; rel=&quot;nofollow&quot;&gt;Sample Post&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
 
 
   </content>
@@ -1768,7 +1768,7 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
     
       <email>BladeFireLight@outlook.com</email>
     
-    <uri>http://localhost:4000/</uri>
+    <uri>https://blog.bladefirelight.com/</uri>
   </author>
 
 
