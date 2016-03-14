@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /cdn-cgi/
+Sitemap: https://blog.bladefirelight.com/sitemap.xml
