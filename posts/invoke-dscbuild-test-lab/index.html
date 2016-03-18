@@ -15,28 +15,28 @@
     
 
     
-      <title>Sample Link Post - PowerShell Journey</title>
+      <title>Invoke-DscBuild | Test-Lab - PowerShell Journey</title>
     
 
     
-      <meta name="description" content="Example and code for using link posts." />
+      <meta name="description" content="Posts in This series" />
     
 
     <!-- Sharing Meta -->
 
-  <meta name="twitter:title" property="og:title" content="Sample Link Post">
+  <meta name="twitter:title" property="og:title" content="Invoke-DscBuild | Test-Lab">
 
-<meta name="twitter:url" property="og:url" content="https://blog.bladefirelight.com/projects/sample-link-post/">
+<meta name="twitter:url" property="og:url" content="https://blog.bladefirelight.com/posts/invoke-dscbuild-test-lab/">
 
-  <meta name="twitter:description" property="og:description" content="Example and code for using link posts.">
+  <meta name="twitter:description" property="og:description" content="Posts in This series">
 
 
   <meta name="twitter:site" content="@BladeFireLight">
   <meta name="twitter:creator" content="@BladeFireLight">
 
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:image" content="https://blog.bladefirelight.com/images/site-logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" property="og:image" content="https://blog.bladefirelight.com/images/sample-image-1.jpg">
 
 <meta property="og:locale" content="en_US">
 
@@ -44,9 +44,11 @@
 
 <meta property="og:site_name" content="PowerShell Journey">
 
+  <meta property="og:image" content="https://blog.bladefirelight.com/images/sample-image-1.jpg">
 
 
-    <link rel="canonical" href="https://blog.bladefirelight.com/projects/sample-link-post/">
+
+    <link rel="canonical" href="https://blog.bladefirelight.com/posts/invoke-dscbuild-test-lab/">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://blog.bladefirelight.com/sitemap.xml">
 
     <link href="http://feeds.feedburner.com/MadeMistakes" type="application/atom+xml" rel="alternate" title="PowerShell Journey &#8211; Everything">
@@ -4280,11 +4282,11 @@ Licensed MIT
             
         
           
+            
+            <li><a href="https://blog.bladefirelight.com/projects/" class="masthead__menu-item is--hidden">Projects</a></li>
+            
         
           
-            
-            <li><a href="https://blog.bladefirelight.com/posts/" class="masthead__menu-item is--hidden">Blog Posts</a></li>
-            
         
         <li><a href="#0" class="overlay__menu-trigger masthead__menu-item" aria-label="Navigation Menu" title="Navigation Menu">•&nbsp;•&nbsp;•</a></li>
       </ul>
@@ -4330,14 +4332,26 @@ Licensed MIT
 
   <article itemscope itemtype="http://schema.org/CreativeWork">
 
-    <meta itemprop="description" content="Example and code for using link posts.">
+    <meta itemprop="description" content="Posts in This series
+
+">
 
     <header class="container post__header">
-      <h1 class="post__title" itemprop="headline">Sample Link Post
+      <h1 class="post__title" itemprop="headline">Invoke-DscBuild | Test-Lab
 </h1>
-      <meta itemprop="datePublished" content="August 12, 2013">
+      <meta itemprop="datePublished" content="May 03, 2015">
       
       <div class="page__hero">
+  
+    <picture>
+    <source srcset="https://blog.bladefirelight.com/images/sample-image-1-1600x370.jpg" media="(min-width: 1600px)">
+    <source srcset="https://blog.bladefirelight.com/images/sample-image-1-1024x237.jpg" media="(min-width: 1024px)">
+    <source srcset="https://blog.bladefirelight.com/images/sample-image-1-768x177.jpg" media="(min-width: 768px)">
+    <source srcset="https://blog.bladefirelight.com/images/sample-image-1-600x139.jpg" media="(min-width: 600px)">
+    <source srcset="https://blog.bladefirelight.com/images/sample-image-1-320x74.jpg">
+    <img src="https://blog.bladefirelight.com/images/sample-image-1-320x74.jpg" class="page__hero-image" itemprop="image" alt="Invoke-DscBuild \| Test-Lab" >
+  </picture>
+
   
   
 </div>
@@ -4353,8 +4367,8 @@ Licensed MIT
     </a> <span class="breadcrumb__sep">×</span>
   </span>
   <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-    <a href="https://blog.bladefirelight.com/projects/" class="breadcrumb__item" itemprop="url">
-      <span itemprop="title">PowerShell Projects</span>
+    <a href="https://blog.bladefirelight.com/posts/" class="breadcrumb__item" itemprop="url">
+      <span itemprop="title">Blog Posts</span>
     </a>
   </span>
 </nav><!-- /.breadcrumbs -->
@@ -4368,13 +4382,274 @@ Licensed MIT
       <div class="post__inner-wrapper">
 
         <section class="post__body" itemprop="text">
-		 <p>This theme supports <strong>link posts</strong>, made famous by John Gruber. To use, just add <code class="highlighter-rouge">link: http://url-you-want-linked</code> to the post’s YAML front matter and you’re done.</p>
+		 <h3 id="posts-in-this-series">Posts in This series</h3>
 
-<blockquote>
-  <p>And this is how a quote looks.</p>
-</blockquote>
+<ol>
+  <li><a href="/posts/test-homelab-inputobject-the-plan/">Test-HomeLab -InputObject “The Plan”</a></li>
+  <li><a href="/posts/Get-Posh-Git-Test-Lab/">Get-Posh-Git | Test-Lab</a></li>
+  <li><a href="/posts/get-dscframework-test-lab/">Get-DSCFramework | Test-Lab</a></li>
+  <li>Invoke-DscBuild | Test-Lab (This Post)</li>
+  <li><a href="/posts/test-lab-update-github/">Test-Lab | Update-GitHub</a></li>
+</ol>
 
-<p>Some <a href="http://www.mademistakes.com">link</a> can also be shown.</p>
+<p>In the last post we forked a copy of the Powershell.org DSC tools and cloned a copy locally</p>
+
+<p>Today I’m going to get the example configuration working.</p>
+
+<p>Now looking at the README.md under examples seems straightforward, but I know for a fact that it’s missing a few steps.</p>
+
+<p>This folder contains some very basic examples of what a DSC configurationData folder structure, script, and call to Invoke-DscBuild might look like.  If you want to execute SampleBuild.ps1, there are a few dependencies you need to set up ahead of time:</p>
+
+<ol>
+  <li>You must install all of the DSC tooling modules from this repository into your PSModulePath (typically into C:\Program Files\WindowsPowerShell\Modules)</li>
+  <li>You must also copy the Tooling\Examples\SampleConfiguration folder to the PSModulePath.</li>
+  <li>You must copy <a href="https://github.com/pester/Pester">Pester</a> (version 3.0.0 or later) and <a href="https://github.com/dlwyatt/ProtectedData">ProtectedData</a> (version 2.1 or later) into the PSModulePath.</li>
+  <li>You should create a DSC_Resources folder in the same directory as SampleBuild.ps1 and DSC_Configuration.  Copy the following modules into that DSC_Resources folder:</li>
+  <li><a href="https://github.com/PowerShellOrg/StackExchangeResources">StackExchangeResources</a></li>
+  <li><a href="https://github.com/PowerShellOrg/cWebAdministration">cWebAdministration</a></li>
+  <li><a href="https://github.com/PowerShellOrg/cSmbShare">cSmbShare</a></li>
+</ol>
+
+<p>Once these dependencies are set up, you can execute SampleBuild.ps1.  It will run tests against the 3 modules in your DSC_Resources folder, compile your configuration into MOF documents, produce zip files for the resource modules, generate checksums for everything and copy them into C:\Program Files\WindowsPowerShell\DscService\</p>
+
+<p>Looks like we are going to need a few more DSC resources. I’m going to go and fork/clone them just like before. (don’t forget to update the URL’s to match your own fork. )</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1"># Download required files via Git</span>
+<span class="c1">#Next line not needed if you were following along with my last blog</span>
+git clone https://github.com/BladeFireLight/DSC.git c:<span class="se">\G</span>itHub<span class="se">\P</span>shOrgDSC --branch development
+git clone https://github.com/BladeFireLight/StackExchangeResources.git c:<span class="se">\G</span>itHub<span class="se">\S</span>tackExchangeResources
+git clone https://github.com/BladeFireLight/cWebAdministration.git c:<span class="se">\G</span>itHub<span class="se">\c</span>WebAdministration
+git clone https://github.com/BladeFireLight/cSmbShare.git c:<span class="se">\G</span>itHub<span class="se">\c</span>SmbShare 
+git clone https://github.com/BladeFireLight/Pester c:<span class="se">\G</span>itHub<span class="se">\P</span>ester
+git clone https://github.com/BladeFireLight/ProtectedData.git c:<span class="se">\G</span>itHub<span class="se">\P</span>rotectedData
+</code></pre>
+</div>
+
+<p>Now I’m going to create some folder structure and place all the files where they need to go</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">#Create Folders</span>
+mkdir c:<span class="se">\D</span><span class="nb">SC
+</span>mkdir C:<span class="se">\D</span><span class="nb">SC</span><span class="se">\B</span>uldOutput
+mkdir C:<span class="se">\D</span><span class="nb">SC</span><span class="se">\D</span>SC_Configuration
+mkdir C:<span class="se">\D</span><span class="nb">SC</span><span class="se">\D</span>SC_Resources
+mkdir C:<span class="se">\D</span><span class="nb">SC</span><span class="se">\D</span>SC_Script
+mkdir C:<span class="se">\D</span><span class="nb">SC</span><span class="se">\D</span>SC_Tooling
+ 
+<span class="c1">#Copy Files</span>
+<span class="nb">copy </span>C:<span class="se">\g</span>ithub<span class="se">\P</span>shOrgDSC<span class="se">\T</span>ooling<span class="se">\*</span> C:<span class="se">\D</span><span class="nb">SC</span><span class="se">\D</span>SC_Tooling<span class="se">\ </span>-Exclude <span class="s1">'examples'</span>, <span class="s1">'readme.md'</span> -Recurse
+<span class="nb">copy </span>C:<span class="se">\g</span>ithub<span class="se">\P</span>shOrgDSC<span class="se">\T</span>ooling<span class="se">\*</span> <span class="s1">'C:\Program Files\WindowsPowerShell\Modules'</span> -Exclude <span class="s1">'examples'</span>, <span class="s1">'readme.md'</span> -Recurse
+<span class="nb">copy </span>C:<span class="se">\g</span>ithub<span class="se">\*</span> <span class="s1">'C:\Program Files\WindowsPowerShell\Modules'</span> -Include <span class="s1">'Pester'</span>,<span class="s1">'ProtectedData'</span> -Recurse
+<span class="nb">copy </span>C:<span class="se">\g</span>ithub<span class="se">\*</span> C:<span class="se">\D</span><span class="nb">SC</span><span class="se">\D</span>SC_Tooling<span class="se">\ </span>-Include <span class="s1">'Pester'</span>,<span class="s1">'ProtectedData'</span> -Recurse
+<span class="nb">copy </span>C:<span class="se">\g</span>ithub<span class="se">\P</span>shOrgDSC<span class="se">\T</span>ooling<span class="se">\E</span>xamples<span class="se">\S</span>ampleBuild.ps1 c:<span class="se">\d</span><span class="nb">sc</span><span class="se">\S</span>ampleBuild.ps1
+<span class="nb">copy </span>c:<span class="se">\g</span>ithub<span class="se">\*</span> C:<span class="se">\D</span><span class="nb">SC</span><span class="se">\D</span>SC_Resources -Include <span class="s1">'cSmbShare'</span>, <span class="s1">'cWebAdministration'</span>, <span class="s1">'StackExchangeResources'</span> -Recurse
+<span class="nb">copy </span>c:<span class="se">\g</span>ithub<span class="se">\*</span> <span class="s1">'C:\Program Files\WindowsPowerShell\Modules'</span> -Include <span class="s1">'cSmbShare'</span>, <span class="s1">'cWebAdministration'</span>, <span class="s1">'StackExchangeResources'</span> -Recurse
+<span class="nb">copy </span>C:<span class="se">\g</span>ithub<span class="se">\P</span>shOrgDSC<span class="se">\T</span>ooling<span class="se">\E</span>xamples<span class="se">\D</span>SC_Configuration<span class="se">\*</span> C:<span class="se">\D</span><span class="nb">SC</span><span class="se">\D</span>SC_Configuration -Recurse
+<span class="nb">copy </span>C:<span class="se">\g</span>ithub<span class="se">\P</span>shOrgDSC<span class="se">\T</span>ooling<span class="se">\E</span>xamples<span class="se">\*</span> C:<span class="se">\D</span><span class="nb">SC</span><span class="se">\D</span>SC_Script -Include <span class="s1">'SampleConfiguration'</span> -Recurse
+ 
+<span class="c1">#delete unneeded folders. </span>
+<span class="nb">dir</span> -Path c:<span class="se">\d</span><span class="nb">sc</span> -Include <span class="s1">'.git'</span> -Recurse | <span class="nb">del</span> -Recurse -Force <span class="c1">#-Confirm:$false</span>
+<span class="nb">dir</span> -Path <span class="s1">'C:\Program Files\WindowsPowerShell\Modules'</span> -Include <span class="s1">'.git'</span> -Recurse | <span class="nb">del</span> -Recurse -Force
+</code></pre>
+</div>
+
+<p>Then result should give us a folder structure like this</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>C:\DSC
+├───BuldOutput
+├───DSC_Configuration
+│   ├───AllNodes
+│   ├───Services
+│   └───SiteData
+├───DSC_Resources
+│   ├───cSmbShare
+│   │   └───DscResources
+│   │       └───PSHOrg_cSmbShare
+│   ├───cWebAdministration
+│   │   ├───DSCResources
+│   │   │   ├───PSHOrg_cAppPool
+│   │   │   └───PSHOrg_cWebsite
+│   │   └───Examples
+│   └───StackExchangeResources
+│       ├───DSCResources
+│       │   ├───StackExchange_CertificateStore
+│       │   ├───StackExchange_FirewallRule
+│       │   ├───StackExchange_NetworkAdapter
+│       │   ├───StackExchange_Pagefile
+│       │   │   ├───StackExchange_en-US
+│       │   │   └───StackExchange_nl-NL
+│       │   ├───StackExchange_PowerPlan
+│       │   │   └───StackExchange_en-US
+│       │   ├───StackExchange_ScheduledTask
+│       │   ├───StackExchange_SetExecutionPolicy
+│       │   │   └───StackExchange_en-US
+│       │   └───StackExchange_Timezone
+│       └───test
+│           ├───integration
+│           │   └───StackExchange_PageFile
+│           │       └───pester
+│           └───unit
+│               └───StackExchange_Pagefile
+│                   └───pester
+├───DSC_Script
+│   └───SampleConfiguration
+└───DSC_Tooling
+    ├───cDscDiagnostics
+    ├───cDscResourceDesigner
+    ├───dscbuild
+    ├───DscConfiguration
+    ├───DscDevelopment
+    ├───DscOperations
+    ├───Pester
+    │   ├───bin
+    │   ├───en-US
+    │   ├───Examples
+    │   │   ├───Calculator
+    │   │   └───Validator
+    │   ├───Functions
+    │   │   └───Assertions
+    │   ├───Snippets
+    │   └───vendor
+    │       └───tools
+    │           ├───OneGet
+    │           │   └───Etc
+    │           └───PowerShellGet
+    │               └───en-US
+    └───ProtectedData
+        └───en-US
+
+C:\PROGRAM FILES\WINDOWSPOWERSHELL\MODULES
+├───cDscDiagnostics
+├───cDscResourceDesigner
+├───cSmbShare
+│   └───DscResources
+│       └───PSHOrg_cSmbShare
+├───cWebAdministration
+│   ├───DSCResources
+│   │   ├───PSHOrg_cAppPool
+│   │   └───PSHOrg_cWebsite
+│   └───Examples
+├───dscbuild
+├───DscConfiguration
+├───DscDevelopment
+├───DscOperations
+├───Pester
+│   ├───bin
+│   ├───en-US
+│   ├───Examples
+│   │   ├───Calculator
+│   │   └───Validator
+│   ├───Functions
+│   │   └───Assertions
+│   ├───Snippets
+│   └───vendor
+│       └───tools
+│           ├───OneGet
+│           │   └───Etc
+│           └───PowerShellGet
+│               └───en-US
+├───ProtectedData
+│   └───en-US
+└───StackExchangeResources
+    ├───DSCResources
+    │   ├───StackExchange_CertificateStore
+    │   ├───StackExchange_FirewallRule
+    │   ├───StackExchange_NetworkAdapter
+    │   ├───StackExchange_Pagefile
+    │   │   ├───StackExchange_en-US
+    │   │   └───StackExchange_nl-NL
+    │   ├───StackExchange_PowerPlan
+    │   │   └───StackExchange_en-US
+    │   ├───StackExchange_ScheduledTask
+    │   ├───StackExchange_SetExecutionPolicy
+    │   │   └───StackExchange_en-US
+    │   └───StackExchange_Timezone
+    └───test
+        ├───integration
+        │   └───StackExchange_PageFile
+        │       └───pester
+        └───unit
+            └───StackExchange_Pagefile
+                └───pester
+</code></pre>
+</div>
+
+<p>now lets fix C:\DSC\SampleBuild.ps1</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">end</span>
+<span class="o">{</span>
+    Import-Module Pester -ErrorAction Stop
+    Import-Module dscbuild -ErrorAction Stop
+    Import-Module dscconfiguration -ErrorAction Stop
+ 
+    <span class="nv">$params</span> <span class="o">=</span> @<span class="o">{</span>
+        WorkingDirectory <span class="o">=</span> <span class="o">(</span>Get-TempDirectory<span class="o">)</span>.FullName
+        SourceResourceDirectory <span class="o">=</span> <span class="s2">"</span><span class="nv">$PSScriptRoot</span><span class="se">\D</span><span class="s2">SC_Resources"</span>
+        SourceToolDirectory <span class="o">=</span> <span class="s2">"</span><span class="nv">$PSScriptRoot</span><span class="se">\D</span><span class="s2">SC_Tooling"</span>
+        DestinationRootDirectory <span class="o">=</span> <span class="s2">"</span><span class="nv">$PSScriptRoot</span><span class="se">\B</span><span class="s2">uldOutput"</span>
+        DestinationToolDirectory <span class="o">=</span> <span class="nv">$env</span>:TEMP
+        ConfigurationData <span class="o">=</span> Get-DscConfigurationData -Path <span class="s2">"</span><span class="nv">$PSScriptRoot</span><span class="se">\D</span><span class="s2">SC_Configuration"</span> -Force -verbose
+        ModulePath <span class="o">=</span> <span class="s2">"</span><span class="nv">$PSScriptRoot</span><span class="se">\D</span><span class="s2">SC_Script"</span>  , <span class="s2">"</span><span class="nv">$PSScriptRoot</span><span class="se">\D</span><span class="s2">SC_Tooling"</span>
+        ConfigurationModuleName <span class="o">=</span> <span class="s1">'SampleConfiguration'</span>
+        ConfigurationName <span class="o">=</span> <span class="s1">'SampleConfiguration'</span>
+        Configuration <span class="o">=</span> <span class="nv">$true</span>
+        Resource <span class="o">=</span> <span class="nv">$true</span>
+    <span class="o">}</span>
+ 
+    Invoke-DscBuild @params -verbose
+<span class="o">}</span>
+ 
+<span class="k">begin</span>
+<span class="o">{</span>
+    <span class="k">function </span>Get-TempDirectory
+    <span class="o">{</span>
+        <span class="o">[</span><span class="na">CmdletBinding</span><span class="o">()]</span>
+        <span class="o">[</span>OutputType<span class="o">([</span>System.IO.DirectoryInfo]<span class="o">)]</span>
+        <span class="k">param</span> <span class="o">(</span> <span class="o">)</span>
+ 
+        <span class="k">do</span>
+        <span class="o">{</span>
+            <span class="nv">$tempDir</span> <span class="o">=</span> <span class="nb">Join-Path</span> -Path <span class="o">([</span>System.IO.Path]::GetTempPath<span class="o">())</span> -ChildPath <span class="o">([</span>System.IO.Path]::GetRandomFileName<span class="o">())</span>
+        <span class="o">}</span>
+        <span class="k">until</span> <span class="o">(</span>-not <span class="o">(</span><span class="nb">Test-Path</span> -Path <span class="nv">$tempDir</span> -PathType Container<span class="o">))</span>
+ 
+        <span class="k">return </span><span class="nb">New-Item</span> -Path <span class="nv">$tempDir</span> -ItemType Directory -ErrorAction Stop
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>So what is different?</p>
+
+<ul>
+  <li>DestinationRootDirectory = “$PSScriptRoot\BuldOutput”
+    <ul>
+      <li>Changed to point to a relative output. this is a test, so there is no need to place it into the common location for a pull server, although in production you may want to. I prefer to copy the files after a build, as it’s usually built on a machine other then the pull server</li>
+    </ul>
+  </li>
+  <li>ConfigurationData = Get-DscConfigurationData -Path “$PSScriptRoot\DSC_Configuration” -Force -verbose
+  *added verbose so I can see how its progresses and help with troubleshooting</li>
+  <li>ModulePath = “$PSScriptRoot\DSC_Script”  , “$PSScriptRoot\DSC_Tooling”
+    <ul>
+      <li>This is the big one. ModulePath and SourceResourceDirectory are going to be the only path’s in $psmodulepath when the configuration module (the module referenced by ConfigurationModuleName ) is loaded and when the configuration in ConfigurationName  is executed. This feature was added to resolve a problem when your modules used to build .mof files may be newer then the ones used to configure the machine running them. Something I ran into and Dave Wyatt was kind enough to solve</li>
+    </ul>
+  </li>
+  <li>Invoke-DscBuild @params -verbose
+  *Added -verbose. I’m a bit of a verbose junky.</li>
+</ul>
+
+<p>With the updates to SampleBuild.ps1 we are ready to build our first sample set of .mof files</p>
+
+<p>I do this in a clean environment so I’m opening PowerShell as an administrator and running C:\DSC\SampleBuild.ps1. After a long bit of scrolling if it works the last few lines should look like this.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>VERBOSE: Moving 718aec80-e8fe-41b5-ac31-fbcd5d0186b1.mof to C:\DSC\BuldOutput\Configuration
+VERBOSE: Moving b4519959-9724-40d5-ab62-5c4f82bbcd80.mof to C:\DSC\BuldOutput\Configuration
+VERBOSE: Moving fc107c0b-1fc8-45fb-9991-a0a1f0fd6c21.mof to C:\DSC\BuldOutput\Configuration
+</code></pre>
+</div>
+
+<p>Congratulations you have your first set of .mof files working with the PowerShell.org DSC tools.</p>
+
+<p>Next up. Creating a pull request to update the readme.md and SampleBuild.ps1</p>
 
         </section>
 
@@ -4389,11 +4664,7 @@ Filed under: <span class="post__taxonomy-wrapper" itemprop="keywords">
 
   
   
-     <a href="https://blog.bladefirelight.com/tag/link-post/" class="post__taxonomy-item" rel="tag">link post</a>, 
-
-  
-  
-     and <a href="https://blog.bladefirelight.com/tag/sample-post/" class="post__taxonomy-item" rel="tag">sample post</a>
+     and <a href="https://blog.bladefirelight.com/tag/testlab/" class="post__taxonomy-item" rel="tag">TestLab</a>
 
 </span>
 
@@ -4402,12 +4673,12 @@ Filed under: <span class="post__taxonomy-wrapper" itemprop="keywords">
 
         <div class="post__social">
   
-    <button onclick="load_disqus()" id="js-comment-btn" class="btn"><svg class="icon"><use xlink:href="#icon-comments"></use></svg> <span class="disqus-comment-count comments-link" data-disqus-url="https://blog.bladefirelight.com/projects/sample-link-post/">Leave a Comment</span></button>
+    <button onclick="load_disqus()" id="js-comment-btn" class="btn"><svg class="icon"><use xlink:href="#icon-comments"></use></svg> <span class="disqus-comment-count comments-link" data-disqus-url="https://blog.bladefirelight.com/posts/invoke-dscbuild-test-lab/">Leave a Comment</span></button>
   
 
   
-    <a class="btn btn--twitter" href="https://twitter.com/share?url=https://blog.bladefirelight.com/projects/sample-link-post/&via=BladeFireLight&text=Sample+Link+Post%0A" target="_blank" title="Share on Twitter"><svg class="icon"><use xlink:href="#icon-twitter"></use></svg> Tweet</a>
-    <a class="btn btn--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.bladefirelight.com/projects/sample-link-post/" target="_blank" title="Share on Facebook"><svg class="icon"><use xlink:href="#icon-facebook"></use></svg> Share</a>
+    <a class="btn btn--twitter" href="https://twitter.com/share?url=https://blog.bladefirelight.com/posts/invoke-dscbuild-test-lab/&via=BladeFireLight&text=Invoke-DscBuild+%7C+Test-Lab%0A" target="_blank" title="Share on Twitter"><svg class="icon"><use xlink:href="#icon-twitter"></use></svg> Tweet</a>
+    <a class="btn btn--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.bladefirelight.com/posts/invoke-dscbuild-test-lab/" target="_blank" title="Share on Facebook"><svg class="icon"><use xlink:href="#icon-facebook"></use></svg> Share</a>
   
 </div>
 
@@ -4419,8 +4690,8 @@ Filed under: <span class="post__taxonomy-wrapper" itemprop="keywords">
     <div id="disqus_loader">
       <script async>
         var disqus_shortname = "blogbladefirelightcom";
-        var disqus_title = "Sample Link Post";
-        var disqus_url = "https://blog.bladefirelight.com/projects/sample-link-post/";
+        var disqus_title = "Invoke-DscBuild \| Test-Lab";
+        var disqus_url = "https://blog.bladefirelight.com/posts/invoke-dscbuild-test-lab/";
 
         function load_disqus(){
           document.getElementById("js-comment-btn").classList.add("btn--disabled");
@@ -4445,7 +4716,7 @@ Filed under: <span class="post__taxonomy-wrapper" itemprop="keywords">
     </h5>
     <p class="author__bio">Husband, Father IT Pro. PowerShell enthusiest</p>
   </div>
-  <a href="https://blog.bladefirelight.com/about/" class="author__avatar"><img src="/images/bio-photo.jpg" alt="David Jones avatar"></a>
+  <a href="https://blog.bladefirelight.com/about/" class="author__avatar"><img src="/images/avatar1.jpg" alt="David Jones avatar"></a>
 </div>
 
         </footer>
@@ -4479,10 +4750,12 @@ Filed under: <span class="post__taxonomy-wrapper" itemprop="keywords">
   <div class="tiles">
     
       <article class="tile__item" itemscope itemtype="http://schema.org/CreativeWork">
-        <meta itemprop="text" content="Example and code for using link posts.">
-        <a href="https://blog.bladefirelight.com/posts/sample-link-post/">
-          <img src="https://blog.bladefirelight.com/images/sample-image-1.jpg" itemprop="image" alt="Sample Link Post">
-          <h3 class="tile__title" itemprop="headline">Sample Link Post
+        <meta itemprop="text" content="Posts in This series
+
+">
+        <a href="https://blog.bladefirelight.com/posts/test-lab-update-github/">
+          <img src="https://blog.bladefirelight.com/images/sample-image-1.jpg" itemprop="image" alt="Test-Lab \| Update-GitHub">
+          <h3 class="tile__title" itemprop="headline">Test-Lab | Update-GitHub
 </h3>
         </a>
         
@@ -4493,30 +4766,32 @@ Filed under: <span class="post__taxonomy-wrapper" itemprop="keywords">
       </article>
     
       <article class="tile__item" itemscope itemtype="http://schema.org/CreativeWork">
-        <meta itemprop="text" content="Example and code for using link posts.">
-        <a href="https://blog.bladefirelight.com/nuggets/sample-link-post/">
-          <img src="https://blog.bladefirelight.com/images/default-teaser.png" itemprop="image" alt="Sample Link Post">
-          <h3 class="tile__title" itemprop="headline">Sample Link Post
+        <meta itemprop="text" content="Posts in This series
+
+">
+        <a href="https://blog.bladefirelight.com/posts/get-dscframework-test-lab/">
+          <img src="https://blog.bladefirelight.com/images/sample-image-1.jpg" itemprop="image" alt="Get-DSCFramework \| Test-Lab">
+          <h3 class="tile__title" itemprop="headline">Get-DSCFramework | Test-Lab
 </h3>
         </a>
         
           
           
-          <a href="https://blog.bladefirelight.com/nuggets/" class="tile__category">PowerShell Nuggets</a>
+          <a href="https://blog.bladefirelight.com/posts/" class="tile__category">Blog Posts</a>
         
       </article>
     
       <article class="tile__item" itemscope itemtype="http://schema.org/CreativeWork">
-        <meta itemprop="text" content="Demo post displaying the various ways of highlighting code in Markdown.">
-        <a href="https://blog.bladefirelight.com/nuggets/code-highlighting-post/">
-          <img src="https://blog.bladefirelight.com/images/default-teaser.png" itemprop="image" alt="Syntax Highlighting Post">
-          <h3 class="tile__title" itemprop="headline">Syntax Highlighting Post
+        <meta itemprop="text" content="My initial test lab starting to take shape.">
+        <a href="https://blog.bladefirelight.com/posts/Get-Posh-Git-Test-Lab/">
+          <img src="https://blog.bladefirelight.com/images/sample-image-1.jpg" itemprop="image" alt="Get-Posh-Git \| Test-Lab">
+          <h3 class="tile__title" itemprop="headline">Get-Posh-Git | Test-Lab
 </h3>
         </a>
         
           
           
-          <a href="https://blog.bladefirelight.com/nuggets/" class="tile__category">PowerShell Nuggets</a>
+          <a href="https://blog.bladefirelight.com/posts/" class="tile__category">Blog Posts</a>
         
       </article>
     
@@ -4579,8 +4854,8 @@ Filed under: <span class="post__taxonomy-wrapper" itemprop="keywords">
 
     <!-- QR code -->
     <div id="qr" class="hidden">
-      <img src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=https://blog.bladefirelight.com/projects/sample-link-post/&choe=UTF-8" alt="Scan QR code with a smartphone">
-      <p><small>https://blog.bladefirelight.com/projects/sample-link-post/</small></p>
+      <img src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=https://blog.bladefirelight.com/posts/invoke-dscbuild-test-lab/&choe=UTF-8" alt="Scan QR code with a smartphone">
+      <p><small>https://blog.bladefirelight.com/posts/invoke-dscbuild-test-lab/</small></p>
     </div>
 
   </body>

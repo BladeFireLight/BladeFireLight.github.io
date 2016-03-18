@@ -15,20 +15,20 @@
     
 
     
-      <title>Sample Post - PowerShell Journey</title>
+      <title>Windows Image Tools | Overview - PowerShell Journey</title>
     
 
     
-      <meta name="description" content="Just about everything you’ll need to style in the theme: headings, paragraphs, blockquotes, tables, code blocks, and more." />
+      <meta name="description" content="One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…)." />
     
 
     <!-- Sharing Meta -->
 
-  <meta name="twitter:title" property="og:title" content="Sample Post">
+  <meta name="twitter:title" property="og:title" content="Windows Image Tools | Overview">
 
-<meta name="twitter:url" property="og:url" content="https://blog.bladefirelight.com/nuggets/sample-post/">
+<meta name="twitter:url" property="og:url" content="https://blog.bladefirelight.com/projects/windowsimagetools/windows-image-tools-overview/">
 
-  <meta name="twitter:description" property="og:description" content="Just about everything you’ll need to style in the theme: headings, paragraphs, blockquotes, tables, code blocks, and more.">
+  <meta name="twitter:description" property="og:description" content="One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).">
 
 
   <meta name="twitter:site" content="@BladeFireLight">
@@ -36,7 +36,7 @@
 
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" property="og:image" content="https://blog.bladefirelight.com/images/sample-image-5.jpg">
+  <meta name="twitter:image" property="og:image" content="https://blog.bladefirelight.com/images/sample-image-1.jpg">
 
 <meta property="og:locale" content="en_US">
 
@@ -44,9 +44,11 @@
 
 <meta property="og:site_name" content="PowerShell Journey">
 
+  <meta property="og:image" content="https://blog.bladefirelight.com/images/sample-image-1.jpg">
 
 
-    <link rel="canonical" href="https://blog.bladefirelight.com/nuggets/sample-post/">
+
+    <link rel="canonical" href="https://blog.bladefirelight.com/projects/windowsimagetools/windows-image-tools-overview/">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://blog.bladefirelight.com/sitemap.xml">
 
     <link href="http://feeds.feedburner.com/MadeMistakes" type="application/atom+xml" rel="alternate" title="PowerShell Journey &#8211; Everything">
@@ -4265,7 +4267,7 @@ Licensed MIT
     <nav id="nav-primary" class="masthead__menu-wrapper">
       <ul class="masthead__menu">
         
-          <li><a href="https://blog.bladefirelight.com/" class="masthead__menu-item">← Home</a></li>
+          <li><a href="https://blog.bladefirelight.com/projects/" class="masthead__menu-item">← PowerShell Projects</a></li>
         
         
         
@@ -4275,11 +4277,11 @@ Licensed MIT
             
         
           
+            
+            <li><a href="https://blog.bladefirelight.com/nuggets/" class="masthead__menu-item is--hidden">Nuggets</a></li>
+            
         
           
-            
-            <li><a href="https://blog.bladefirelight.com/projects/" class="masthead__menu-item is--hidden">Projects</a></li>
-            
         
           
             
@@ -4330,29 +4332,26 @@ Licensed MIT
 
   <article itemscope itemtype="http://schema.org/CreativeWork">
 
-    <meta itemprop="description" content="Just about everything you'll need to style in the theme: headings, paragraphs, blockquotes, tables, code blocks, and more.">
+    <meta itemprop="description" content="One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).">
 
     <header class="container post__header">
-      <h1 class="post__title" itemprop="headline">Sample Post
+      <h1 class="post__title" itemprop="headline">Windows Image Tools | Overview
 </h1>
-      <meta itemprop="datePublished" content="March 10, 2011">
-      <meta itemprop="dateModified" content="May 31, 2013">
+      <meta itemprop="datePublished" content="March 16, 2016">
+      
       <div class="page__hero">
   
     <picture>
-    <source srcset="https://blog.bladefirelight.com/images/sample-image-5-1600x421.jpg" media="(min-width: 1600px)">
-    <source srcset="https://blog.bladefirelight.com/images/sample-image-5-1024x269.jpg" media="(min-width: 1024px)">
-    <source srcset="https://blog.bladefirelight.com/images/sample-image-5-768x202.jpg" media="(min-width: 768px)">
-    <source srcset="https://blog.bladefirelight.com/images/sample-image-5-600x158.jpg" media="(min-width: 600px)">
-    <source srcset="https://blog.bladefirelight.com/images/sample-image-5-320x84.jpg">
-    <img src="https://blog.bladefirelight.com/images/sample-image-5-320x84.jpg" class="page__hero-image" itemprop="image" alt="Sample Post" >
+    <source srcset="https://blog.bladefirelight.com/images/sample-image-1-1600x370.jpg" media="(min-width: 1600px)">
+    <source srcset="https://blog.bladefirelight.com/images/sample-image-1-1024x237.jpg" media="(min-width: 1024px)">
+    <source srcset="https://blog.bladefirelight.com/images/sample-image-1-768x177.jpg" media="(min-width: 768px)">
+    <source srcset="https://blog.bladefirelight.com/images/sample-image-1-600x139.jpg" media="(min-width: 600px)">
+    <source srcset="https://blog.bladefirelight.com/images/sample-image-1-320x74.jpg">
+    <img src="https://blog.bladefirelight.com/images/sample-image-1-320x74.jpg" class="page__hero-image" itemprop="image" alt="Windows Image Tools \| Overview" >
   </picture>
 
   
-  <div class="page__hero-credit">
-  <a href="http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/" itemprop="citation">WeGraphics</a>
-</div>
-
+  
 </div>
 
       
@@ -4366,8 +4365,8 @@ Licensed MIT
     </a> <span class="breadcrumb__sep">×</span>
   </span>
   <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-    <a href="https://blog.bladefirelight.com/nuggets/" class="breadcrumb__item" itemprop="url">
-      <span itemprop="title">PowerShell Nuggets</span>
+    <a href="https://blog.bladefirelight.com/projects/" class="breadcrumb__item" itemprop="url">
+      <span itemprop="title">PowerShell Projects</span>
     </a>
   </span>
 </nav><!-- /.breadcrumbs -->
@@ -4381,167 +4380,132 @@ Licensed MIT
       <div class="post__inner-wrapper">
 
         <section class="post__body" itemprop="text">
-		 <section id="table-of-contents" class="toc">
-  <header>
-    <h3>Overview</h3>
-  </header>
-<div id="drawer">
-<ul id="markdown-toc">
-  <li><a href="#html-elements" id="markdown-toc-html-elements">HTML Elements</a></li>
-  <li><a href="#heading-1" id="markdown-toc-heading-1">Heading 1</a>    <ul>
-      <li><a href="#heading-2" id="markdown-toc-heading-2">Heading 2</a>        <ul>
-          <li><a href="#heading-3" id="markdown-toc-heading-3">Heading 3</a>            <ul>
-              <li><a href="#heading-4" id="markdown-toc-heading-4">Heading 4</a>                <ul>
-                  <li><a href="#heading-5" id="markdown-toc-heading-5">Heading 5</a>                    <ul>
-                      <li><a href="#heading-6" id="markdown-toc-heading-6">Heading 6</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li><a href="#body-text" id="markdown-toc-body-text">Body text</a></li>
-          <li><a href="#blockquotes" id="markdown-toc-blockquotes">Blockquotes</a></li>
-        </ul>
-      </li>
-      <li><a href="#list-types" id="markdown-toc-list-types">List Types</a>        <ul>
-          <li><a href="#ordered-lists" id="markdown-toc-ordered-lists">Ordered Lists</a></li>
-          <li><a href="#unordered-lists" id="markdown-toc-unordered-lists">Unordered Lists</a></li>
-        </ul>
-      </li>
-      <li><a href="#tables" id="markdown-toc-tables">Tables</a></li>
-      <li><a href="#code-snippets" id="markdown-toc-code-snippets">Code Snippets</a></li>
-      <li><a href="#buttons" id="markdown-toc-buttons">Buttons</a></li>
-      <li><a href="#notices" id="markdown-toc-notices">Notices</a></li>
+		 <nav class="js-toc toc">
+  <h4 class="toc__title">Contents</h4>
+<ul class="toc__menu" id="markdown-toc">
+  <li><a href="#the-problem" id="markdown-toc-the-problem">The problem</a></li>
+  <li><a href="#what-to-do-about-it" id="markdown-toc-what-to-do-about-it">What to do about it</a>    <ul>
+      <li><a href="#why-a-module-why-not-a-script" id="markdown-toc-why-a-module-why-not-a-script">Why a Module, why not a script?</a></li>
+    </ul>
+  </li>
+  <li><a href="#functions-included-in-windowsimagetools" id="markdown-toc-functions-included-in-windowsimagetools">Functions included in WindowsImageTools</a>    <ul>
+      <li><a href="#create-vhdx" id="markdown-toc-create-vhdx">Create VHDX</a></li>
+      <li><a href="#work-with-vhdx" id="markdown-toc-work-with-vhdx">Work with VHDX</a></li>
+      <li><a href="#update-vhdx" id="markdown-toc-update-vhdx">Update VHDX</a></li>
     </ul>
   </li>
 </ul>
 
-  </div>
-</section>
-<!-- /#table-of-contents -->
+</nav>
 
-<h2 id="html-elements">HTML Elements</h2>
+<h2 id="the-problem">The problem</h2>
 
-<p>Below is just about everything you’ll need to style in the theme. Check the source code to see the many embedded elements within paragraphs.</p>
+<p>One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).</p>
 
-<h1 id="heading-1">Heading 1</h1>
+<h2 id="what-to-do-about-it">What to do about it</h2>
 
-<h2 id="heading-2">Heading 2</h2>
+<p>I have spend some time putting together a number of scripts to automate this, but after the release of windows 10 and it’s built in access to the galaxy I decided to look at updating and packaging my script into something portable and share it.</p>
 
-<h3 id="heading-3">Heading 3</h3>
+<h3 id="why-a-module-why-not-a-script">Why a Module, why not a script?</h3>
 
-<h4 id="heading-4">Heading 4</h4>
+<p>Well scripts are great for automating a process, but not the best when you want to customize for your own process. Say you use a script on the <a href="https://www.powershellgallery.com/">PowerShell Gallery</a> and have customized it to fit your environment and business process. Then their is a bug fix posted to the gallery. You get the fun of adapting the changes into your modified code. This is time consuming, and the reason so many thing in production remain outdated and buggy. But if your using a customized controller script<sup id="fnref:ControlerSsript"><a href="#fn:ControlerSsript" class="footnote">1</a></sup> that relies on a module function, being able to use the newer release from the PowerShell Gallery is less painful.</p>
 
-<h5 id="heading-5">Heading 5</h5>
+<p>For that reason I have chosen to use a module and include a function that creates an example controller script.</p>
 
-<h6 id="heading-6">Heading 6</h6>
+<h2 id="functions-included-in-windowsimagetools">Functions included in WindowsImageTools</h2>
 
-<h3 id="body-text">Body text</h3>
+<p>Functions cover three different areas, Creating VHDX, Manipulating them, and Updates.</p>
 
-<p>Lorem ipsum dolor sit amet, test link adipiscing elit. <strong>This is strong</strong>. Nullam dignissim convallis est. Quisque aliquam.</p>
-
-<p class="image-pull-right"><img src="https://blog.bladefirelight.com/images/3953273590_704e3899d5_m.jpg" alt="Smithsonian Image" /></p>
-
-<p><em>This is emphasized</em>. Donec faucibus. Nunc iaculis suscipit dui. 53 = 125. Water is H2O. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. The New York Times (That’s a citation). Underline.Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.</p>
-
-<p>HTML and CSS are our tools. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus.</p>
-
-<h3 id="blockquotes">Blockquotes</h3>
-
-<blockquote>
-  <p>Lorem ipsum dolor sit amet, test link adipiscing elit. Nullam dignissim convallis est. Quisque aliquam.</p>
-</blockquote>
-
-<h2 id="list-types">List Types</h2>
-
-<h3 id="ordered-lists">Ordered Lists</h3>
-
-<ol>
-  <li>Item one
-    <ol>
-      <li>sub item one</li>
-      <li>sub item two</li>
-      <li>sub item three</li>
-    </ol>
-  </li>
-  <li>Item two</li>
-</ol>
-
-<h3 id="unordered-lists">Unordered Lists</h3>
-
+<h3 id="create-vhdx">Create VHDX</h3>
 <ul>
-  <li>Item one</li>
-  <li>Item two</li>
-  <li>Item three</li>
+  <li>Initialize-VHDPartition
+    <ul>
+      <li>Create a VHD(x) with the partitions structure appropriate for the target generation of a VM</li>
+    </ul>
+  </li>
+  <li>Set-VHDPartition
+    <ul>
+      <li>Populate the VHD(x) partitions with the content of an ISO or WIM</li>
+    </ul>
+  </li>
+  <li>Convert-Wim2VHD
+    <ul>
+      <li>Wrapper combining Initialize-VHDPartition and Set-VHDPartition in a single function</li>
+    </ul>
+  </li>
+  <li>New-UnattendXml
+    <ul>
+      <li>Create an Unattent.xml to silently setup windows</li>
+    </ul>
+  </li>
 </ul>
 
-<h2 id="tables">Tables</h2>
+<h3 id="work-with-vhdx">Work with VHDX</h3>
+<ul>
+  <li>Get-VhdPartitionStyle
+    <ul>
+      <li>Returns GPT<sup id="fnref:GPT"><a href="#fn:GPT" class="footnote">2</a></sup> or MBR<sup id="fnref:MBR"><a href="#fn:MBR" class="footnote">3</a></sup></li>
+    </ul>
+  </li>
+  <li>Mount-VhdAndRunBlock
+    <ul>
+      <li>Mounts a VHD(x) sets the letter of the first mount point to $driveLeter and invokes a script block. useful for manipulating  files inside a VHD</li>
+    </ul>
+  </li>
+  <li>Invoke-CreateVmRunAndWait
+    <ul>
+      <li>Created a VM attached the VHD to it and waits for it to stop. Used for running boot time scripts that shut down when finished.</li>
+    </ul>
+  </li>
+</ul>
 
-<table rules="groups">
-  <thead>
-    <tr>
-      <th style="text-align: left">Header1</th>
-      <th style="text-align: center">Header2</th>
-      <th style="text-align: right">Header3</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">cell1</td>
-      <td style="text-align: center">cell2</td>
-      <td style="text-align: right">cell3</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">cell4</td>
-      <td style="text-align: center">cell5</td>
-      <td style="text-align: right">cell6</td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <td style="text-align: left">cell1</td>
-      <td style="text-align: center">cell2</td>
-      <td style="text-align: right">cell3</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">cell4</td>
-      <td style="text-align: center">cell5</td>
-      <td style="text-align: right">cell6</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td style="text-align: left">Foot1</td>
-      <td style="text-align: center">Foot2</td>
-      <td style="text-align: right">Foot3</td>
-    </tr>
-  </tfoot>
-</table>
+<h3 id="update-vhdx">Update VHDX</h3>
+<ul>
+  <li>New-WindowsImageToolsExample
+    <ul>
+      <li>Creates an example folder structure and example controller scripts</li>
+    </ul>
+  </li>
+  <li>Get-UpdateConfig
+    <ul>
+      <li>Gets the update configuration stored in the update folders. Contains VM Switch, and IP addresses needed to access the internet when running udpates.</li>
+    </ul>
+  </li>
+  <li>Set-UpdateConfig
+    <ul>
+      <li>Change settings in the update configuration</li>
+    </ul>
+  </li>
+  <li>Add-UpdateImage
+    <ul>
+      <li>Uses Convert-Wim2VHD and New-UnattendXml to prep a VHDX for updating</li>
+    </ul>
+  </li>
+  <li>Update-WindowsImageWMF
+    <ul>
+      <li>Update VHDX to WMF 4 or WMF 5</li>
+    </ul>
+  </li>
+  <li>Invoke-WindowsImageUpdate
+    <ul>
+      <li>For one VHDX or all VHD’s in update folder, run windows update and output WIM and optional VHDX</li>
+    </ul>
+  </li>
+</ul>
 
-<h2 id="code-snippets">Code Snippets</h2>
-
-<figure class="highlight"><pre><code class="language-css" data-lang="css"><span class="nf">#container</span> <span class="p">{</span>
-  <span class="nl">float</span><span class="p">:</span> <span class="nb">left</span><span class="p">;</span>
-  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span> <span class="m">-240px</span> <span class="m">0</span> <span class="m">0</span><span class="p">;</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
-<span class="p">}</span></code></pre></figure>
-
-<h2 id="buttons">Buttons</h2>
-
-<p>Make any link standout more when applying the <code class="highlighter-rouge">.btn</code> class.</p>
-
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-success"</span><span class="nt">&gt;</span>Success Button<span class="nt">&lt;/a&gt;</span></code></pre></figure>
-
-<div><a href="#" class="btn">Primary Button</a></div>
-<div><a href="#" class="btn btn-success">Success Button</a></div>
-<div><a href="#" class="btn btn-warning">Warning Button</a></div>
-<div><a href="#" class="btn btn-danger">Danger Button</a></div>
-<div><a href="#" class="btn btn-info">Info Button</a></div>
-
-<h2 id="notices">Notices</h2>
-
-<p class="notice"><strong>Watch out!</strong> You can also add notices by appending <code class="highlighter-rouge"><span class="p">{</span><span class="err">:</span><span class="w"> </span><span class="err">.notice</span><span class="p">}</span></code> to a paragraph.</p>
+<div class="footnotes">
+  <ol>
+    <li id="fn:ControlerSsript">
+      <p>A script that is specific to a business process <a href="#fnref:ControlerSsript" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:GPT">
+      <p>GUID Partition Table. Used for Generation 2 and UEFI. will contain MSR, UEFI and Primary partition, may include options Recovery Tools and Recovery Image partitions <a href="#fnref:GPT" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:MBR">
+      <p>Master Boot Record. Used for Generation 1 and Lagacy BIOS. Will use one Primary partition <a href="#fnref:MBR" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
         </section>
 
@@ -4556,7 +4520,19 @@ Filed under: <span class="post__taxonomy-wrapper" itemprop="keywords">
 
   
   
-     and <a href="https://blog.bladefirelight.com/tag/nugget/" class="post__taxonomy-item" rel="tag">nugget</a>
+     <a href="https://blog.bladefirelight.com/tag/module/" class="post__taxonomy-item" rel="tag">Module</a>, 
+
+  
+  
+     <a href="https://blog.bladefirelight.com/tag/vhdx/" class="post__taxonomy-item" rel="tag">VHDX</a>, 
+
+  
+  
+     <a href="https://blog.bladefirelight.com/tag/windowsupdate/" class="post__taxonomy-item" rel="tag">WindowsUpdate</a>, 
+
+  
+  
+     and <a href="https://blog.bladefirelight.com/tag/windowsupdatetools/" class="post__taxonomy-item" rel="tag">WindowsUpdateTools</a>
 
 </span>
 
@@ -4565,12 +4541,12 @@ Filed under: <span class="post__taxonomy-wrapper" itemprop="keywords">
 
         <div class="post__social">
   
-    <button onclick="load_disqus()" id="js-comment-btn" class="btn"><svg class="icon"><use xlink:href="#icon-comments"></use></svg> <span class="disqus-comment-count comments-link" data-disqus-url="https://blog.bladefirelight.com/nuggets/sample-post/">Leave a Comment</span></button>
+    <button onclick="load_disqus()" id="js-comment-btn" class="btn"><svg class="icon"><use xlink:href="#icon-comments"></use></svg> <span class="disqus-comment-count comments-link" data-disqus-url="https://blog.bladefirelight.com/projects/windowsimagetools/windows-image-tools-overview/">Leave a Comment</span></button>
   
 
   
-    <a class="btn btn--twitter" href="https://twitter.com/share?url=https://blog.bladefirelight.com/nuggets/sample-post/&via=BladeFireLight&text=Sample+Post%0A" target="_blank" title="Share on Twitter"><svg class="icon"><use xlink:href="#icon-twitter"></use></svg> Tweet</a>
-    <a class="btn btn--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.bladefirelight.com/nuggets/sample-post/" target="_blank" title="Share on Facebook"><svg class="icon"><use xlink:href="#icon-facebook"></use></svg> Share</a>
+    <a class="btn btn--twitter" href="https://twitter.com/share?url=https://blog.bladefirelight.com/projects/windowsimagetools/windows-image-tools-overview/&via=BladeFireLight&text=Windows+Image+Tools+%7C+Overview%0A" target="_blank" title="Share on Twitter"><svg class="icon"><use xlink:href="#icon-twitter"></use></svg> Tweet</a>
+    <a class="btn btn--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.bladefirelight.com/projects/windowsimagetools/windows-image-tools-overview/" target="_blank" title="Share on Facebook"><svg class="icon"><use xlink:href="#icon-facebook"></use></svg> Share</a>
   
 </div>
 
@@ -4582,8 +4558,8 @@ Filed under: <span class="post__taxonomy-wrapper" itemprop="keywords">
     <div id="disqus_loader">
       <script async>
         var disqus_shortname = "blogbladefirelightcom";
-        var disqus_title = "Sample Post";
-        var disqus_url = "https://blog.bladefirelight.com/nuggets/sample-post/";
+        var disqus_title = "Windows Image Tools \| Overview";
+        var disqus_url = "https://blog.bladefirelight.com/projects/windowsimagetools/windows-image-tools-overview/";
 
         function load_disqus(){
           document.getElementById("js-comment-btn").classList.add("btn--disabled");
@@ -4608,7 +4584,7 @@ Filed under: <span class="post__taxonomy-wrapper" itemprop="keywords">
     </h5>
     <p class="author__bio">Husband, Father IT Pro. PowerShell enthusiest</p>
   </div>
-  <a href="https://blog.bladefirelight.com/about/" class="author__avatar"><img src="/images/bio-photo.jpg" alt="David Jones avatar"></a>
+  <a href="https://blog.bladefirelight.com/about/" class="author__avatar"><img src="/images/avatar1.jpg" alt="David Jones avatar"></a>
 </div>
 
         </footer>
@@ -4692,8 +4668,8 @@ Filed under: <span class="post__taxonomy-wrapper" itemprop="keywords">
 
     <!-- QR code -->
     <div id="qr" class="hidden">
-      <img src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=https://blog.bladefirelight.com/nuggets/sample-post/&choe=UTF-8" alt="Scan QR code with a smartphone">
-      <p><small>https://blog.bladefirelight.com/nuggets/sample-post/</small></p>
+      <img src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=https://blog.bladefirelight.com/projects/windowsimagetools/windows-image-tools-overview/&choe=UTF-8" alt="Scan QR code with a smartphone">
+      <p><small>https://blog.bladefirelight.com/projects/windowsimagetools/windows-image-tools-overview/</small></p>
     </div>
 
   </body>

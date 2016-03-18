@@ -15,20 +15,20 @@
     
 
     
-      <title>Sample Link Post - PowerShell Journey</title>
+      <title>Test-HomeLab -InputObject “The Plan” - PowerShell Journey</title>
     
 
     
-      <meta name="description" content="Example and code for using link posts." />
+      <meta name="description" content="My Plan for a home test lab" />
     
 
     <!-- Sharing Meta -->
 
-  <meta name="twitter:title" property="og:title" content="Sample Link Post">
+  <meta name="twitter:title" property="og:title" content="Test-HomeLab -InputObject “The Plan”">
 
-<meta name="twitter:url" property="og:url" content="https://blog.bladefirelight.com/posts/sample-link-post/">
+<meta name="twitter:url" property="og:url" content="https://blog.bladefirelight.com/posts/test-homelab-inputobject-the-plan/">
 
-  <meta name="twitter:description" property="og:description" content="Example and code for using link posts.">
+  <meta name="twitter:description" property="og:description" content="My Plan for a home test lab">
 
 
   <meta name="twitter:site" content="@BladeFireLight">
@@ -48,7 +48,7 @@
 
 
 
-    <link rel="canonical" href="https://blog.bladefirelight.com/posts/sample-link-post/">
+    <link rel="canonical" href="https://blog.bladefirelight.com/posts/test-homelab-inputobject-the-plan/">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="https://blog.bladefirelight.com/sitemap.xml">
 
     <link href="http://feeds.feedburner.com/MadeMistakes" type="application/atom+xml" rel="alternate" title="PowerShell Journey &#8211; Everything">
@@ -4332,12 +4332,12 @@ Licensed MIT
 
   <article itemscope itemtype="http://schema.org/CreativeWork">
 
-    <meta itemprop="description" content="Example and code for using link posts.">
+    <meta itemprop="description" content="My Plan for a home test lab">
 
     <header class="container post__header">
-      <h1 class="post__title" itemprop="headline">Sample Link Post
+      <h1 class="post__title" itemprop="headline">Test-HomeLab -InputObject “The Plan”
 </h1>
-      <meta itemprop="datePublished" content="August 12, 2013">
+      <meta itemprop="datePublished" content="April 27, 2015">
       
       <div class="page__hero">
   
@@ -4347,7 +4347,7 @@ Licensed MIT
     <source srcset="https://blog.bladefirelight.com/images/sample-image-1-768x177.jpg" media="(min-width: 768px)">
     <source srcset="https://blog.bladefirelight.com/images/sample-image-1-600x139.jpg" media="(min-width: 600px)">
     <source srcset="https://blog.bladefirelight.com/images/sample-image-1-320x74.jpg">
-    <img src="https://blog.bladefirelight.com/images/sample-image-1-320x74.jpg" class="page__hero-image" itemprop="image" alt="Sample Link Post" >
+    <img src="https://blog.bladefirelight.com/images/sample-image-1-320x74.jpg" class="page__hero-image" itemprop="image" alt="Test-HomeLab -InputObject " The Plan >
   </picture>
 
   
@@ -4380,18 +4380,35 @@ Licensed MIT
       <div class="post__inner-wrapper">
 
         <section class="post__body" itemprop="text">
-		 <nav class="js-toc toc">
-  <h4 class="toc__title">Contents</h4>
+		 <h3 id="posts-in-this-series">Posts in This series</h3>
 
-</nav>
+<ol>
+  <li>Test-HomeLab -InputObject “The Plan” (This Post)</li>
+  <li><a href="/posts/Get-Posh-Git-Test-Lab/">Get-Posh-Git | Test-Lab</a></li>
+  <li><a href="/posts/get-dscframework-test-lab/">Get-DSCFramework | Test-Lab</a></li>
+  <li><a href="/posts/invoke-dscbuild-test-lab/">Invoke-DscBuild | Test-Lab</a></li>
+  <li><a href="/posts/test-lab-update-github/">Test-Lab | Update-GitHub</a></li>
+</ol>
 
-<p>This theme supports <strong>link posts</strong>, made famous by John Gruber. To use, just add <code class="highlighter-rouge">link: http://url-you-want-linked</code> to the post’s YAML front matter and you’re done.</p>
+<h2 id="the-plan">The Plan</h2>
 
-<blockquote>
-  <p>And this is how a quote looks.</p>
-</blockquote>
+<p>What I intend to do is to create and in home test lab that I can use to test and develop DSC.  I’m basing my lab from <a href="http://powershell.org/wp/2015/03/25/home-labs-for-the-it-pro/">Greg Altman excellent post</a> over on <a href="http://powershell.org/">PowerShell.org</a></p>
 
-<p>Some <a href="http://www.mademistakes.com">link</a> can also be shown.</p>
+<p>The only exception I to this is that I have 2 machines to use a Hyper-V hosts. Now the second one I plan on installing Nano if/when it got into preview. Baring that I will use Hyper-V server 2012 R2.</p>
+
+<p>Now to keep the lab services into the virtual realm as Greg mentioned, <em>and</em> use two hosts. I have spend the weekend trying to create a vyos VPN tunnel between two isolated networks.</p>
+
+<p>Needless to say not everything go according to plan. the Tunnel reports the link is up, but their is no traffic between network.</p>
+
+<p>I have already wasted most of the weekend on this, so I’m going to move forward for now with with out the VPN.  It’s not like I need it yet.</p>
+
+<p>So, onward.</p>
+
+<p>I’m going to first build a windows 8.1 dev PC by hand, and load the PowerShell.org DSC tooling on it. From there I can build configs for building a as much of the rest of the environment as possible.</p>
+
+<p>I hope to have a Pull Server, DC, PKI CA, up first, then move on to other servers that I can use to build resources for.</p>
+
+<p>I have been running DSC in production for the last year, and I hope I can share may experience via a how to for a test environment and how it relates back to problems in the enterprise.</p>
 
         </section>
 
@@ -4406,11 +4423,7 @@ Filed under: <span class="post__taxonomy-wrapper" itemprop="keywords">
 
   
   
-     <a href="https://blog.bladefirelight.com/tag/link-post/" class="post__taxonomy-item" rel="tag">link post</a>, 
-
-  
-  
-     and <a href="https://blog.bladefirelight.com/tag/sample-post/" class="post__taxonomy-item" rel="tag">sample post</a>
+     and <a href="https://blog.bladefirelight.com/tag/testlab/" class="post__taxonomy-item" rel="tag">TestLab</a>
 
 </span>
 
@@ -4419,12 +4432,12 @@ Filed under: <span class="post__taxonomy-wrapper" itemprop="keywords">
 
         <div class="post__social">
   
-    <button onclick="load_disqus()" id="js-comment-btn" class="btn"><svg class="icon"><use xlink:href="#icon-comments"></use></svg> <span class="disqus-comment-count comments-link" data-disqus-url="https://blog.bladefirelight.com/posts/sample-link-post/">Leave a Comment</span></button>
+    <button onclick="load_disqus()" id="js-comment-btn" class="btn"><svg class="icon"><use xlink:href="#icon-comments"></use></svg> <span class="disqus-comment-count comments-link" data-disqus-url="https://blog.bladefirelight.com/posts/test-homelab-inputobject-the-plan/">Leave a Comment</span></button>
   
 
   
-    <a class="btn btn--twitter" href="https://twitter.com/share?url=https://blog.bladefirelight.com/posts/sample-link-post/&via=BladeFireLight&text=Sample+Link+Post%0A" target="_blank" title="Share on Twitter"><svg class="icon"><use xlink:href="#icon-twitter"></use></svg> Tweet</a>
-    <a class="btn btn--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.bladefirelight.com/posts/sample-link-post/" target="_blank" title="Share on Facebook"><svg class="icon"><use xlink:href="#icon-facebook"></use></svg> Share</a>
+    <a class="btn btn--twitter" href="https://twitter.com/share?url=https://blog.bladefirelight.com/posts/test-homelab-inputobject-the-plan/&via=BladeFireLight&text=Test-HomeLab+-InputObject+%E2%80%9CThe+Plan%E2%80%9D%0A" target="_blank" title="Share on Twitter"><svg class="icon"><use xlink:href="#icon-twitter"></use></svg> Tweet</a>
+    <a class="btn btn--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.bladefirelight.com/posts/test-homelab-inputobject-the-plan/" target="_blank" title="Share on Facebook"><svg class="icon"><use xlink:href="#icon-facebook"></use></svg> Share</a>
   
 </div>
 
@@ -4436,8 +4449,8 @@ Filed under: <span class="post__taxonomy-wrapper" itemprop="keywords">
     <div id="disqus_loader">
       <script async>
         var disqus_shortname = "blogbladefirelightcom";
-        var disqus_title = "Sample Link Post";
-        var disqus_url = "https://blog.bladefirelight.com/posts/sample-link-post/";
+        var disqus_title = "Test-HomeLab -InputObject &quot;The Plan&quot;";
+        var disqus_url = "https://blog.bladefirelight.com/posts/test-homelab-inputobject-the-plan/";
 
         function load_disqus(){
           document.getElementById("js-comment-btn").classList.add("btn--disabled");
@@ -4462,7 +4475,7 @@ Filed under: <span class="post__taxonomy-wrapper" itemprop="keywords">
     </h5>
     <p class="author__bio">Husband, Father IT Pro. PowerShell enthusiest</p>
   </div>
-  <a href="https://blog.bladefirelight.com/about/" class="author__avatar"><img src="/images/bio-photo.jpg" alt="David Jones avatar"></a>
+  <a href="https://blog.bladefirelight.com/about/" class="author__avatar"><img src="/images/avatar1.jpg" alt="David Jones avatar"></a>
 </div>
 
         </footer>
@@ -4496,44 +4509,50 @@ Filed under: <span class="post__taxonomy-wrapper" itemprop="keywords">
   <div class="tiles">
     
       <article class="tile__item" itemscope itemtype="http://schema.org/CreativeWork">
-        <meta itemprop="text" content="Example and code for using link posts.">
-        <a href="https://blog.bladefirelight.com/nuggets/sample-link-post/">
-          <img src="https://blog.bladefirelight.com/images/default-teaser.png" itemprop="image" alt="Sample Link Post">
-          <h3 class="tile__title" itemprop="headline">Sample Link Post
+        <meta itemprop="text" content="Posts in This series
+
+">
+        <a href="https://blog.bladefirelight.com/posts/test-lab-update-github/">
+          <img src="https://blog.bladefirelight.com/images/sample-image-1.jpg" itemprop="image" alt="Test-Lab \| Update-GitHub">
+          <h3 class="tile__title" itemprop="headline">Test-Lab | Update-GitHub
 </h3>
         </a>
         
           
           
-          <a href="https://blog.bladefirelight.com/nuggets/" class="tile__category">PowerShell Nuggets</a>
+          <a href="https://blog.bladefirelight.com/posts/" class="tile__category">Blog Posts</a>
         
       </article>
     
       <article class="tile__item" itemscope itemtype="http://schema.org/CreativeWork">
-        <meta itemprop="text" content="Example and code for using link posts.">
-        <a href="https://blog.bladefirelight.com/projects/sample-link-post/">
-          <img src="https://blog.bladefirelight.com/images/default-teaser.png" itemprop="image" alt="Sample Link Post">
-          <h3 class="tile__title" itemprop="headline">Sample Link Post
+        <meta itemprop="text" content="Posts in This series
+
+">
+        <a href="https://blog.bladefirelight.com/posts/invoke-dscbuild-test-lab/">
+          <img src="https://blog.bladefirelight.com/images/sample-image-1.jpg" itemprop="image" alt="Invoke-DscBuild \| Test-Lab">
+          <h3 class="tile__title" itemprop="headline">Invoke-DscBuild | Test-Lab
 </h3>
         </a>
         
           
           
-          <a href="https://blog.bladefirelight.com/projects/" class="tile__category">PowerShell Projects</a>
+          <a href="https://blog.bladefirelight.com/posts/" class="tile__category">Blog Posts</a>
         
       </article>
     
       <article class="tile__item" itemscope itemtype="http://schema.org/CreativeWork">
-        <meta itemprop="text" content="Demo post displaying the various ways of highlighting code in Markdown.">
-        <a href="https://blog.bladefirelight.com/nuggets/code-highlighting-post/">
-          <img src="https://blog.bladefirelight.com/images/default-teaser.png" itemprop="image" alt="Syntax Highlighting Post">
-          <h3 class="tile__title" itemprop="headline">Syntax Highlighting Post
+        <meta itemprop="text" content="Posts in This series
+
+">
+        <a href="https://blog.bladefirelight.com/posts/get-dscframework-test-lab/">
+          <img src="https://blog.bladefirelight.com/images/sample-image-1.jpg" itemprop="image" alt="Get-DSCFramework \| Test-Lab">
+          <h3 class="tile__title" itemprop="headline">Get-DSCFramework | Test-Lab
 </h3>
         </a>
         
           
           
-          <a href="https://blog.bladefirelight.com/nuggets/" class="tile__category">PowerShell Nuggets</a>
+          <a href="https://blog.bladefirelight.com/posts/" class="tile__category">Blog Posts</a>
         
       </article>
     
@@ -4596,8 +4615,8 @@ Filed under: <span class="post__taxonomy-wrapper" itemprop="keywords">
 
     <!-- QR code -->
     <div id="qr" class="hidden">
-      <img src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=https://blog.bladefirelight.com/posts/sample-link-post/&choe=UTF-8" alt="Scan QR code with a smartphone">
-      <p><small>https://blog.bladefirelight.com/posts/sample-link-post/</small></p>
+      <img src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=https://blog.bladefirelight.com/posts/test-homelab-inputobject-the-plan/&choe=UTF-8" alt="Scan QR code with a smartphone">
+      <p><small>https://blog.bladefirelight.com/posts/test-homelab-inputobject-the-plan/</small></p>
     </div>
 
   </body>

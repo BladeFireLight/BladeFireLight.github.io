@@ -6,7 +6,7 @@
   <generator uri="http://jekyllrb.com" version="3.1.2">Jekyll</generator>
   <link href="https://blog.bladefirelight.com/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://blog.bladefirelight.com/" rel="alternate" type="text/html" />
-  <updated>2016-03-14T15:57:18-05:00</updated>
+  <updated>2016-03-17T19:14:38-05:00</updated>
   <id>https://blog.bladefirelight.com/</id>
 
   <title>PowerShell Journey</title>
@@ -33,250 +33,151 @@
 
   
     <entry>
-  <title>Syntax Highlighting Post</title>
-  <link href="https://blog.bladefirelight.com/nuggets/code-highlighting-post/" rel="alternate" type="text/html" title="Syntax Highlighting Post" />
-  <published>2013-08-16T00:00:00-05:00</published>
+  <title>Windows Image Tools | Overview</title>
+  <link href="https://blog.bladefirelight.com/projects/windowsimagetools/windows-image-tools-overview/" rel="alternate" type="text/html" title="Windows Image Tools \| Overview" />
+  <published>2016-03-16T16:48:59-05:00</published>
 
   
-    <updated>2016-02-01T00:00:00-06:00</updated>
+    <updated>2016-03-16T16:48:59-05:00</updated>
   
 
-  <id>https://blog.bladefirelight.com/nuggets/code-highlighting-post</id>
-  <content type="html" xml:base="https://blog.bladefirelight.com/nuggets/code-highlighting-post/">
+  <id>https://blog.bladefirelight.com/projects/windowsimagetools/windows-image-tools-overview</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/projects/windowsimagetools/windows-image-tools-overview/">
     
+
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-1.jpg&quot; alt=&quot;Windows Image Tools \| Overview&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+
+
     &lt;nav class=&quot;js-toc toc&quot;&gt;
   &lt;h4 class=&quot;toc__title&quot;&gt;Contents&lt;/h4&gt;
 &lt;ul class=&quot;toc__menu&quot; id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#highlighted-code-blocks&quot; id=&quot;markdown-toc-highlighted-code-blocks&quot;&gt;Highlighted Code Blocks&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#standard-code-block&quot; id=&quot;markdown-toc-standard-code-block&quot;&gt;Standard Code Block&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#fenced-code-blocks&quot; id=&quot;markdown-toc-fenced-code-blocks&quot;&gt;Fenced Code Blocks&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#github-gist-embed&quot; id=&quot;markdown-toc-github-gist-embed&quot;&gt;GitHub Gist Embed&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#github-embed&quot; id=&quot;markdown-toc-github-embed&quot;&gt;GitHub Embed&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#the-problem&quot; id=&quot;markdown-toc-the-problem&quot;&gt;The problem&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#what-to-do-about-it&quot; id=&quot;markdown-toc-what-to-do-about-it&quot;&gt;What to do about it&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#why-a-module-why-not-a-script&quot; id=&quot;markdown-toc-why-a-module-why-not-a-script&quot;&gt;Why a Module, why not a script?&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#functions-included-in-windowsimagetools&quot; id=&quot;markdown-toc-functions-included-in-windowsimagetools&quot;&gt;Functions included in WindowsImageTools&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#create-vhdx&quot; id=&quot;markdown-toc-create-vhdx&quot;&gt;Create VHDX&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#work-with-vhdx&quot; id=&quot;markdown-toc-work-with-vhdx&quot;&gt;Work with VHDX&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#update-vhdx&quot; id=&quot;markdown-toc-update-vhdx&quot;&gt;Update VHDX&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;/nav&gt;
 
-&lt;p&gt;Syntax highlighting is a feature that displays source code, in different colors and fonts according to the category of terms. This feature facilitates writing in a structured language such as a programming language or a markup language as both structures and syntax errors are visually distinct. Highlighting does not affect the meaning of the text itself; it is intended only for human readers.&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;h2 id=&quot;the-problem&quot;&gt;The problem&lt;/h2&gt;
 
-&lt;h3 id=&quot;highlighted-code-blocks&quot;&gt;Highlighted Code Blocks&lt;/h3&gt;
+&lt;p&gt;One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).&lt;/p&gt;
 
-&lt;p&gt;To modify styling and highlight colors edit &lt;code class=&quot;highlighter-rouge&quot;&gt;/_sass/syntax.scss&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;what-to-do-about-it&quot;&gt;What to do about it&lt;/h2&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nf&quot;&gt;#container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-240px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;I have spend some time putting together a number of scripts to automate this, but after the release of windows 10 and it’s built in access to the galaxy I decided to look at updating and packaging my script into something portable and share it.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;nav&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pagination&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;role=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;navigation&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    {% if page.previous %}
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ site.url }}{{ page.previous.url }}&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;btn&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ page.previous.title }}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Previous article&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-    {% endif %}
-    {% if page.next %}
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ site.url }}{{ page.next.url }}&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;btn&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ page.next.title }}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Next article&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-    {% endif %}
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/nav&amp;gt;&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- /.pagination --&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;why-a-module-why-not-a-script&quot;&gt;Why a Module, why not a script?&lt;/h3&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Jekyll&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TagIndex&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Page&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@site&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@base&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;index.html&#39;&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;read_yaml&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;_layouts&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;tag_index.html&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;tag&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;tag_title_prefix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;tag_title_prefix&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;Tagged: &#39;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;tag_title_suffix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;tag_title_suffix&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;&amp;amp;#8211;&#39;&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;title&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tag_title_prefix&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;description&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;An archive of posts tagged &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.&quot;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;Well scripts are great for automating a process, but not the best when you want to customize for your own process. Say you use a script on the &lt;a href=&quot;https://www.powershellgallery.com/&quot;&gt;PowerShell Gallery&lt;/a&gt; and have customized it to fit your environment and business process. Then their is a bug fix posted to the gallery. You get the fun of adapting the changes into your modified code. This is time consuming, and the reason so many thing in production remain outdated and buggy. But if your using a customized controller script&lt;sup id=&quot;fnref:ControlerSsript&quot;&gt;&lt;a href=&quot;#fn:ControlerSsript&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; that relies on a module function, being able to use the newer release from the PowerShell Gallery is less painful.&lt;/p&gt;
 
-&lt;h3 id=&quot;standard-code-block&quot;&gt;Standard Code Block&lt;/h3&gt;
+&lt;p&gt;For that reason I have chosen to use a module and include a function that creates an example controller script.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;nav class=&quot;pagination&quot; role=&quot;navigation&quot;&amp;gt;
-    {% if page.previous %}
-        &amp;lt;a href=&quot;{{ site.url }}{{ page.previous.url }}&quot; class=&quot;btn&quot; title=&quot;{{ page.previous.title }}&quot;&amp;gt;Previous article&amp;lt;/a&amp;gt;
-    {% endif %}
-    {% if page.next %}
-        &amp;lt;a href=&quot;{{ site.url }}{{ page.next.url }}&quot; class=&quot;btn&quot; title=&quot;{{ page.next.title }}&quot;&amp;gt;Next article&amp;lt;/a&amp;gt;
-    {% endif %}
-&amp;lt;/nav&amp;gt;&amp;lt;!-- /.pagination --&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;h2 id=&quot;functions-included-in-windowsimagetools&quot;&gt;Functions included in WindowsImageTools&lt;/h2&gt;
 
-&lt;h3 id=&quot;fenced-code-blocks&quot;&gt;Fenced Code Blocks&lt;/h3&gt;
+&lt;p&gt;Functions cover three different areas, Creating VHDX, Manipulating them, and Updates.&lt;/p&gt;
 
-&lt;p&gt;To modify styling and highlight colors edit &lt;code class=&quot;highlighter-rouge&quot;&gt;/_sass/coderay.scss&lt;/code&gt;. Line numbers and a few other things can be modified in &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;. Consult &lt;a href=&quot;http://jekyllrb.com/docs/configuration/&quot;&gt;Jekyll’s documentation&lt;/a&gt; for more information.&lt;/p&gt;
+&lt;h3 id=&quot;create-vhdx&quot;&gt;Create VHDX&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Initialize-VHDPartition
+    &lt;ul&gt;
+      &lt;li&gt;Create a VHD(x) with the partitions structure appropriate for the target generation of a VM&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Set-VHDPartition
+    &lt;ul&gt;
+      &lt;li&gt;Populate the VHD(x) partitions with the content of an ISO or WIM&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Convert-Wim2VHD
+    &lt;ul&gt;
+      &lt;li&gt;Wrapper combining Initialize-VHDPartition and Set-VHDPartition in a single function&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;New-UnattendXml
+    &lt;ul&gt;
+      &lt;li&gt;Create an Unattent.xml to silently setup windows&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nf&quot;&gt;#container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-240px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;h3 id=&quot;work-with-vhdx&quot;&gt;Work with VHDX&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Get-VhdPartitionStyle
+    &lt;ul&gt;
+      &lt;li&gt;Returns GPT&lt;sup id=&quot;fnref:GPT&quot;&gt;&lt;a href=&quot;#fn:GPT&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; or MBR&lt;sup id=&quot;fnref:MBR&quot;&gt;&lt;a href=&quot;#fn:MBR&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Mount-VhdAndRunBlock
+    &lt;ul&gt;
+      &lt;li&gt;Mounts a VHD(x) sets the letter of the first mount point to $driveLeter and invokes a script block. useful for manipulating  files inside a VHD&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Invoke-CreateVmRunAndWait
+    &lt;ul&gt;
+      &lt;li&gt;Created a VM attached the VHD to it and waits for it to stop. Used for running boot time scripts that shut down when finished.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;nav&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;pagination&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;role=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;navigation&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    {% if page.previous %}
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ site.url }}{{ page.previous.url }}&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;btn&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ page.previous.title }}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Previous article&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-    {% endif %}
-    {% if page.next %}
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ site.url }}{{ page.next.url }}&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;btn&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;{{ page.next.title }}&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Next article&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-    {% endif %}
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/nav&amp;gt;&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- /.pagination --&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Jekyll&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TagIndex&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Page&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@site&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@base&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@dir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dir&lt;/span&gt;
-      &lt;span class=&quot;vi&quot;&gt;@name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;index.html&#39;&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;read_yaml&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;_layouts&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;tag_index.html&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;tag&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;tag_title_prefix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;tag_title_prefix&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;Tagged: &#39;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;tag_title_suffix&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;tag_title_suffix&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;&amp;amp;#8211;&#39;&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;title&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tag_title_prefix&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-      &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;description&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;An archive of posts tagged &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.&quot;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;github-gist-embed&quot;&gt;GitHub Gist Embed&lt;/h3&gt;
-
-&lt;p&gt;An example of a Gist embed below.&lt;/p&gt;
-
-&lt;noscript&gt;&lt;pre&gt;function test-function
-{ 
-[CmdletBinding()]
-Param()
-$key = &amp;#39;template&amp;#39;
-$IsoPath = &amp;#39;c:\iso\win2012r2.iso&amp;#39;
-$UnattendPath = &amp;#39;g:\temp\unattent.xml&amp;#39;
-$Configdata = @{Template = @{ IsoEdition = 4} }
-
-$CwiParamaters = @{
-  SourcePath        = $IsoPath
-  VHDPath           = &amp;quot;$OutPath\$key.vhdx&amp;quot;
-  VHDFormat         = &amp;#39;VHDX&amp;#39;
-  VHDPartitionStyle = &amp;#39;GPT&amp;#39;
-  VHDType           = &amp;#39;Dynamic&amp;#39;
-  UnattendPath      = $UnattendPath
-  Edition           = $ConfigData.$key.IsoEdition
-}
-#verbose output by line
-&amp;#39;Hash table verbose&amp;#39;
-&amp;#39;Individual line&amp;#39;
-Write-Verbose &amp;quot;[$($MyInvocation.MyCommand)] [$key] CwiPramaters : SourcePath = $IsoPath&amp;quot; 
-Write-Verbose &amp;quot;[$($MyInvocation.MyCommand)] [$key] CwiPramaters : VHDPath = $OutPath\$key.vhdx&amp;quot; 
-Write-Verbose &amp;quot;[$($MyInvocation.MyCommand)] [$key] CwiPramaters : VHDFormat = VHDX&amp;quot; 
-Write-Verbose &amp;quot;[$($MyInvocation.MyCommand)] [$key] CwiPramaters : VHDPartitionStyle = GPT&amp;quot; 
-Write-Verbose &amp;quot;[$($MyInvocation.MyCommand)] [$key] CwiPramaters : VHDType = Dynamic&amp;quot; 
-Write-Verbose &amp;quot;[$($MyInvocation.MyCommand)] [$key] CwiPramaters : UnattendPath = $UnattendPath&amp;quot; 
-Write-Verbose &amp;quot;[$($MyInvocation.MyCommand)] [$key] CwiPramaters : Edition = $($ConfigData.$key.IsoEdition)&amp;quot;
-&amp;#39;As block of text&amp;#39;
-#verbose as a string
-Write-Verbose &amp;quot;[$($MyInvocation.MyCommand)] [$key] CwiPramaters : &amp;quot; 
-Write-verbose ($CwiParamaters | out-string) 
-}
-
-test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
-&lt;script src=&quot;https://gist.github.com/BladeFireLight/cd96fa74204f5b2813d7.js&quot;&gt; &lt;/script&gt;
-
-&lt;h3 id=&quot;github-embed&quot;&gt;GitHub Embed&lt;/h3&gt;
-&lt;div class=&quot;github-sample-reference&quot;&gt;
-  &lt;div class=&quot;author-info&quot;&gt;
-    &lt;a href=&quot;https://github.com/bwillis/versioncake/blob/989237901cb873f96df12be48cbf1239be496bd7/Appraisals&quot;&gt;This Github Sample&lt;/a&gt; is by &lt;a href=&quot;https://github.com/bwillis&quot;&gt;bwillis&lt;/a&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;meta-info&quot;&gt;
-    Appraisals &lt;a href=&quot;https://github.com/bwillis/versioncake/blob/989237901cb873f96df12be48cbf1239be496bd7/Appraisals&quot;&gt;view&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/bwillis/versioncake/989237901cb873f96df12be48cbf1239be496bd7/Appraisals&quot;&gt;raw&lt;/a&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;appraise&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;rails3.2&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;actionpack&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;     &lt;span class=&quot;s1&quot;&gt;&#39;~&amp;gt; 3.2.0&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;activesupport&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;s1&quot;&gt;&#39;~&amp;gt; 3.2.0&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;railties&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;       &lt;span class=&quot;s1&quot;&gt;&#39;~&amp;gt; 3.2.0&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;update-vhdx&quot;&gt;Update VHDX&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;New-WindowsImageToolsExample
+    &lt;ul&gt;
+      &lt;li&gt;Creates an example folder structure and example controller scripts&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Get-UpdateConfig
+    &lt;ul&gt;
+      &lt;li&gt;Gets the update configuration stored in the update folders. Contains VM Switch, and IP addresses needed to access the internet when running udpates.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Set-UpdateConfig
+    &lt;ul&gt;
+      &lt;li&gt;Change settings in the update configuration&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Add-UpdateImage
+    &lt;ul&gt;
+      &lt;li&gt;Uses Convert-Wim2VHD and New-UnattendXml to prep a VHDX for updating&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Update-WindowsImageWMF
+    &lt;ul&gt;
+      &lt;li&gt;Update VHDX to WMF 4 or WMF 5&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Invoke-WindowsImageUpdate
+    &lt;ul&gt;
+      &lt;li&gt;For one VHDX or all VHD’s in update folder, run windows update and output WIM and optional VHDX&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;div class=&quot;footnotes&quot;&gt;
   &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Syntax_highlighting&quot;&gt;http://en.wikipedia.org/wiki/Syntax_highlighting&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;li id=&quot;fn:ControlerSsript&quot;&gt;
+      &lt;p&gt;A script that is specific to a business process &lt;a href=&quot;#fnref:ControlerSsript&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:GPT&quot;&gt;
+      &lt;p&gt;GUID Partition Table. Used for Generation 2 and UEFI. will contain MSR, UEFI and Primary partition, may include options Recovery Tools and Recovery Image partitions &lt;a href=&quot;#fnref:GPT&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:MBR&quot;&gt;
+      &lt;p&gt;Master Boot Record. Used for Generation 1 and Lagacy BIOS. Will use one Primary partition &lt;a href=&quot;#fnref:MBR&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
 
     
 
-&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/nuggets/code-highlighting-post/&quot; rel=&quot;nofollow&quot;&gt;Syntax Highlighting Post&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
-
-
-  </content>
-
-  
-  <author>
-    
-      <name>David Jones</name>
-    
-    
-      <email>BladeFireLight@outlook.com</email>
-    
-    <uri>https://blog.bladefirelight.com/</uri>
-  </author>
-
-
-
-  
-    <category term="nuggets" />
-  
-
-  
-    <category term="sample post" />
-  
-    <category term="code" />
-  
-    <category term="highlighting" />
-  
-
-  
-    <summary type="text">Demo post displaying the various ways of highlighting code in Markdown.</summary>
-  
-</entry>
-
-  
-    <entry>
-  <title>Sample Link Post</title>
-  <link href="https://blog.bladefirelight.com/projects/sample-link-post/" rel="alternate" type="text/html" title="Sample Link Post" />
-  <published>2013-08-12T00:00:00-05:00</published>
-
-  
-    <updated>2013-08-12T00:00:00-05:00</updated>
-  
-
-  <id>https://blog.bladefirelight.com/projects/sample-link-post</id>
-  <content type="html" xml:base="https://blog.bladefirelight.com/projects/sample-link-post/">
-    
-    &lt;p&gt;This theme supports &lt;strong&gt;link posts&lt;/strong&gt;, made famous by John Gruber. To use, just add &lt;code class=&quot;highlighter-rouge&quot;&gt;link: http://url-you-want-linked&lt;/code&gt; to the post’s YAML front matter and you’re done.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;And this is how a quote looks.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Some &lt;a href=&quot;http://www.mademistakes.com&quot;&gt;link&lt;/a&gt; can also be shown.&lt;/p&gt;
-
-    
-
-&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/projects/sample-link-post/&quot; rel=&quot;nofollow&quot;&gt;Sample Link Post&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/projects/windowsimagetools/windows-image-tools-overview/&quot; rel=&quot;nofollow&quot;&gt;Windows Image Tools \| Overview&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
 
 
   </content>
@@ -299,105 +200,116 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
   
 
   
-    <category term="sample post" />
+    <category term="VHDX" />
   
-    <category term="link post" />
+    <category term="WindowsUpdate" />
   
-
+    <category term="WindowsUpdateTools" />
   
-    <summary type="text">Example and code for using link posts.</summary>
-  
-</entry>
-
-  
-    <entry>
-  <title>Sample Link Post</title>
-  <link href="https://blog.bladefirelight.com/nuggets/sample-link-post/" rel="alternate" type="text/html" title="Sample Link Post" />
-  <published>2013-08-12T00:00:00-05:00</published>
-
-  
-    <updated>2013-08-12T00:00:00-05:00</updated>
-  
-
-  <id>https://blog.bladefirelight.com/nuggets/sample-link-post</id>
-  <content type="html" xml:base="https://blog.bladefirelight.com/nuggets/sample-link-post/">
-    
-    &lt;p&gt;This theme supports &lt;strong&gt;link posts&lt;/strong&gt;, made famous by John Gruber. To use, just add &lt;code class=&quot;highlighter-rouge&quot;&gt;link: http://url-you-want-linked&lt;/code&gt; to the post’s YAML front matter and you’re done.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;And this is how a quote looks.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Some &lt;a href=&quot;http://www.mademistakes.com&quot;&gt;link&lt;/a&gt; can also be shown.&lt;/p&gt;
-
-    
-
-&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/nuggets/sample-link-post/&quot; rel=&quot;nofollow&quot;&gt;Sample Link Post&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
-
-
-  </content>
-
-  
-  <author>
-    
-      <name>David Jones</name>
-    
-    
-      <email>BladeFireLight@outlook.com</email>
-    
-    <uri>https://blog.bladefirelight.com/</uri>
-  </author>
-
-
-
-  
-    <category term="nuggets" />
+    <category term="Module" />
   
 
   
-    <category term="sample post" />
-  
-    <category term="link post" />
-  
-
-  
-    <summary type="text">Example and code for using link posts.</summary>
+    <summary type="text">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).</summary>
   
 </entry>
 
   
     <entry>
-  <title>Sample Link Post</title>
-  <link href="https://blog.bladefirelight.com/posts/sample-link-post/" rel="alternate" type="text/html" title="Sample Link Post" />
-  <published>2013-08-12T00:00:00-05:00</published>
+  <title>Shaving the Yak, Leads Me to Create New Module WindowsImageTools</title>
+  <link href="https://blog.bladefirelight.com/posts/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/" rel="alternate" type="text/html" title="Shaving the Yak, Leads Me to Create New Module WindowsImageTools" />
+  <published>2015-09-29T00:00:00-05:00</published>
 
   
-    <updated>2013-08-12T00:00:00-05:00</updated>
+    <updated>2015-09-29T00:00:00-05:00</updated>
   
 
-  <id>https://blog.bladefirelight.com/posts/sample-link-post</id>
-  <content type="html" xml:base="https://blog.bladefirelight.com/posts/sample-link-post/">
+  <id>https://blog.bladefirelight.com/posts/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/posts/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/">
     
 
-&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-1.jpg&quot; alt=&quot;Sample Link Post&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-1.jpg&quot; alt=&quot;Shaving the Yak, Leads Me to Create New Module WindowsImageTools&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
 
 
     &lt;nav class=&quot;js-toc toc&quot;&gt;
   &lt;h4 class=&quot;toc__title&quot;&gt;Contents&lt;/h4&gt;
+&lt;ul class=&quot;toc__menu&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#my-yak-needs-shaving&quot; id=&quot;markdown-toc-my-yak-needs-shaving&quot;&gt;My Yak needs shaving.&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#windowsimagetools&quot; id=&quot;markdown-toc-windowsimagetools&quot;&gt;WindowsImageTools&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#onward&quot; id=&quot;markdown-toc-onward&quot;&gt;Onward&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;/nav&gt;
 
-&lt;p&gt;This theme supports &lt;strong&gt;link posts&lt;/strong&gt;, made famous by John Gruber. To use, just add &lt;code class=&quot;highlighter-rouge&quot;&gt;link: http://url-you-want-linked&lt;/code&gt; to the post’s YAML front matter and you’re done.&lt;/p&gt;
+&lt;h2 id=&quot;my-yak-needs-shaving&quot;&gt;My Yak needs shaving.&lt;/h2&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;And this is how a quote looks.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;If your not familiar with the term.&lt;/p&gt;
 
-&lt;p&gt;Some &lt;a href=&quot;http://www.mademistakes.com&quot;&gt;link&lt;/a&gt; can also be shown.&lt;/p&gt;
+&lt;p&gt;http://www.hanselman.com/blog/YakShavingDefinedIllGetThatDoneAsSoonAsIShaveThisYak.aspx&lt;/p&gt;
+
+&lt;p&gt;It’s been quite a journey since my last post.&lt;/p&gt;
+
+&lt;p&gt;Windows 10 came out, and Convert-WindowsImage.ps1 was upgraded (braking my scripts I blogged about this summer) and Server 2016 Preview 3 was released.&lt;/p&gt;
+
+&lt;p&gt;Looking at the Nano folder on Preview 3 they are using a WIM and Convert-WindowsImage.ps1to create a VHDX. Good move Microsoft.&lt;/p&gt;
+
+&lt;p&gt;Now for the bad part.&lt;/p&gt;
+
+&lt;p&gt;Convert-WindowImage.ps1 is buggy, and not a module. But Microsoft is working hart to fix this. Not being one to wait. I decided to take the functionality I need and re-work the whole process as a module. (and found some underlying bugs in PowerShell in the process )  The results of my effort is documented below.&lt;/p&gt;
+
+&lt;p&gt;As for Windows 10.&lt;/p&gt;
+
+&lt;p&gt;There are a number of changes to DSC that have broken all my production configuration scripts. And Configurations created on Windows10 or WMF 5 preview have bugs when using depends on, that cause the LCM on 2012R2 to hang.&lt;/p&gt;
+
+&lt;p&gt;For Production this is a show stopper, but I’m already working to separate out the configuration’s based on target OS.&lt;/p&gt;
+
+&lt;h2 id=&quot;windowsimagetools&quot;&gt;WindowsImageTools&lt;/h2&gt;
+
+&lt;p&gt;Microsoft recently moved Convert-WindowsImage over to GitHub and added some nice features, but it’s still a script, not a module. They also nicely added an MIT licence to that repo. So taking advantage of that I started my own project based on that code. I’m calling it WindowsImageTools&lt;/p&gt;
+
+&lt;p&gt;So far there are four exported functions.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Initialize-VHDPartition
+    &lt;ol&gt;
+      &lt;li&gt;Create a VHD with correct partition for BIOS or UEFI with or without Recovery tools/image&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Set-VHDPartition
+    &lt;ol&gt;
+      &lt;li&gt;take an ISO or WIM and populate the VHD. This detects the layout and acts accordingly.&lt;/li&gt;
+      &lt;li&gt;It also can add drivers, enable features, inject unattend.xml and inject additional files or folders&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Convert-Wim2VHD
+    &lt;ol&gt;
+      &lt;li&gt;This is a wrapper functions around the first two&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;New-UnattendXml
+    &lt;ol&gt;
+      &lt;li&gt;Create an Unattend.xml that works with both 32 and 64 bit in a single file&lt;/li&gt;
+      &lt;li&gt;Sets the admin password and autologin count&lt;/li&gt;
+      &lt;li&gt;Creates then deletes a second user (for Windows7)&lt;/li&gt;
+      &lt;li&gt;Sets TimeZone&lt;/li&gt;
+      &lt;li&gt;Starts a PowerShell script to bootstrap the system configuration&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;That last one took quite some work to figure out. It only fully works with Volume media because it does not set the license key.&lt;/p&gt;
+
+&lt;p&gt;I also discovered that 64bit windows will run both the 32bit sections for adding users and running scripts, but not the part for skipping licensing and autologin. This is true from win7 forward. If your not familiar with Unattend.xml those parts are all under the same section in the xml.&lt;/p&gt;
+
+&lt;p&gt;If you want to give it a spin it’s &lt;a href=&quot;https://www.powershellgallery.com/packages/WindowsImageTools/&quot;&gt;available at the PowerShell Gallery&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;onward&quot;&gt;Onward&lt;/h2&gt;
+
+&lt;p&gt;So equipped with these tools i’m now going to reword my auto patching and WIM creation script. and add that into the module.&lt;/p&gt;
 
     
 
-&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/posts/sample-link-post/&quot; rel=&quot;nofollow&quot;&gt;Sample Link Post&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/posts/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/&quot; rel=&quot;nofollow&quot;&gt;Shaving the Yak, Leads Me to Create New Module WindowsImageTools&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
 
 
   </content>
@@ -420,13 +332,825 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
   
 
   
-    <category term="sample post" />
-  
-    <category term="link post" />
+    <category term="Rant" />
   
 
   
-    <summary type="text">Example and code for using link posts.</summary>
+    <summary type="text">  Contents</summary>
+  
+</entry>
+
+  
+    <entry>
+  <title>Test-Lab | Update-GitHub</title>
+  <link href="https://blog.bladefirelight.com/posts/test-lab-update-github/" rel="alternate" type="text/html" title="Test-Lab \| Update-GitHub" />
+  <published>2015-05-06T00:00:00-05:00</published>
+
+  
+    <updated>2015-05-06T00:00:00-05:00</updated>
+  
+
+  <id>https://blog.bladefirelight.com/posts/test-lab-update-github</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/posts/test-lab-update-github/">
+    
+
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-1.jpg&quot; alt=&quot;Test-Lab \| Update-GitHub&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+
+
+    &lt;h3 id=&quot;posts-in-this-series&quot;&gt;Posts in This series&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/test-homelab-inputobject-the-plan/&quot;&gt;Test-HomeLab -InputObject “The Plan”&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/Get-Posh-Git-Test-Lab/&quot;&gt;Get-Posh-Git | Test-Lab&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/get-dscframework-test-lab/&quot;&gt;Get-DSCFramework | Test-Lab&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/invoke-dscbuild-test-lab/&quot;&gt;Invoke-DscBuild | Test-Lab&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Test-Lab | Update-GitHub (This Post)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Last time we were able to get the sample DSC config to build. The problem is we had to modify the sample script and the instructions were not clear on the setup of the files.&lt;/p&gt;
+
+&lt;p&gt;So to day I plan to update the SampleBuild.ps1, SampleConfiguration.psm1 and readme.md with my changes and submit a pull request.&lt;/p&gt;
+
+&lt;p&gt;The first thing I’m going to modify is SampleConfiguration.psm1, now this file worked as is with the previous blog. but some of the things we did were to get arround an issue with this file.&lt;/p&gt;
+
+&lt;p&gt;The line i’m talking about is here&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Import-Module DscConfiguration -ErrorAction Stop
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This imports a module that is already loaded by SampleBuild.ps1 but is also not in the path at this point of Invoke-DscBuild, unless the DscConfiguration module is added to a path in -ModulePath used by Invoke-DscBuild.  Now if your going to run import-module SampleConfiguration crate the ConfigurationData hash table your self and call SampleConfiguration then it makes sense to have that here. I don’t imagine anyone doing that but stranger things have happen, so I’m going to keep that line but wrap it in something to avoid the requirement of placing extra modules in DSC_Tools&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;-not &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Get-Module DscConfiguration&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+ Import-Module DscConfiguration -ErrorAction Stop
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This checks to see if DscConfiguration is already loaded into memory and skips the import is it is.&lt;/p&gt;
+
+&lt;p&gt;Now I don’t need any modules in DSC_Tooling. Unless I have modules used by my scripts that I dont import prior to calling Invoke-DscBuild&lt;/p&gt;
+
+&lt;p&gt;Next up is SampleBuild.ps1, I dont have any changes to make from what I did last time. so i will add that to my git repo in just a bit.&lt;/p&gt;
+
+&lt;p&gt;Now Readme.md in the examples folder needs some serious work.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Example DSC Build
+------
+
+This folder contains some very basic examples of what a DSC configurationData folder structure, script, and call to Invoke-DscBuild might look like.  If you want to execute SampleBuild.ps1, there are a few dependencies you need to set up ahead of time:
+
+- You must install all of the DSC tooling modules (content of \Tools minus the example folder) from this repository into your PSModulePath (typically into C:\Program Files\WindowsPowerShell\Modules\)
+- You must also copy the Tooling\Examples\SampleConfiguration folder to the PSModulePath.
+- You must copy [Pester](https://github.com/pester/Pester) (version 3.0.0 or later) and [ProtectedData](https://github.com/dlwyatt/ProtectedData) (version 2.1 or later) into the PSModulePath.
+- You should create a DSC_Resources folder in the same directory as SampleBuild.ps1 and DSC_Configuration.  Copy the following modules into that DSC_Resources folder:
+  - [StackExchangeResources](https://github.com/PowerShellOrg/StackExchangeResources)
+  - [cWebAdministration](https://github.com/PowerShellOrg/cWebAdministration)
+  - [cSmbShare](https://github.com/PowerShellOrg/cSmbShare)
+
+Create a folder to place all the files into. i.e. c:\DSC, inside that folder create folders named BuildOutput, DSC_Configuration, DSC_Resorces, DSC_Script, DSC_Tooling. 
+
+the folder structure should look like this
+C:\DSC                # copy SampleBuild.ps1 here
++---BuldOutput        # Where the MOF files and ziped modules end up
++---DSC_Configuration # Copy \Tooling\Examples\DSC_Configuration\*  here
++---DSC_Resources     # copy StackExchangeResources, cSmbShare and cWebAdministration here
++---DSC_Script        # copy \Tooling\Examples\SampleConfiguration here
++---DSC_Tooling       # This is for any modules that may be used in a Configuration script, in the case of SampleConfiguration it would be empty.
+
+If you plan on modifying SampleConfiguration.psm1 inside of DSC_Script you will also want to add the content of DSC_Modules to C:\Program Files\WindowsPowerShell\Modules\ but that is not necessary if your just building configurations that are authored on another machine. 
+
+Once these dependencies are set up, you can execute SampleBuild.ps1.  It will run tests against the 3 modules in your DSC_Resources folder, compile your configuration into MOF documents, produce zip files for the resource modules, generate checksums for everything and copy them into BuildOutput
+
+_Note:  The SampleBuild.ps1 file currently just dumps DSC_Tooling modules into the temporary folder, since I wasn&#39;t using that feature.  We&#39;ll build on these examples soon to show off some of the other functionality in the DscBuild and DscConfiguration modules, such as encrypting credentials in source control._
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If you compare with my last post you will notice I removed the line about placing SampleConfguration into C:\Program Files\WindowsPowerShell\Modules. this path is no longer in the psmodulepath when inovke-DscBuild runs, as it used to be. This is due to needing to keep psmodulepath clean so that DSC_Resorces are accessible for configuration building but not necessarily needed.&lt;/p&gt;
+
+&lt;p&gt;I also added a section showing the required folder structure and what each folder is used for, along with what needs to be done if your going to author on the same machine you build on.&lt;/p&gt;
+
+&lt;p&gt;Now that that is done. I’m going to copy the files into C:\GitHub\PshOrgDSC\Tooling\Examples one at a time and add and commit changes.&lt;/p&gt;
+
+&lt;p&gt;copy SampleConfiguration.psm1 first. Notice the prompt change thanks to posh-git, (you will not see the color change)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\GitHub\PshOrgDSC\Tooling\Examples\SampleConfiguration [development +0 ~1 -0]&amp;gt; git add *
+ 
+C:\GitHub\PshOrgDSC\Tooling\Examples\SampleConfiguration [development +0 ~1 -0]&amp;gt; git commit -m &#39;Fixed issue with loading scamplescript moduel not loading if module is already loaded but no longer in path&#39;
+[development a5301a8] Fixed issue with loading scamplescript moduel not loading if module is already loaded but no longer in path
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+ 
+C:\GitHub\PshOrgDSC\Tooling\Examples\SampleConfiguration [development]&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;next up SampleBuild.ps1&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\GitHub\PshOrgDSC\Tooling\Examples [development +0 ~1 -0]&amp;gt; git add *
+ 
+C:\GitHub\PshOrgDSC\Tooling\Examples [development +0 ~1 -0]&amp;gt; git commit -m &#39;updated SampleBuild.ps1 to include missing value to invoke-DSCBuild. and added -verbose&#39;
+[development 5c35462] updated SampleBuild.ps1 to include missing value to invoke-DSCBuild. and added -verbose
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+ 
+C:\GitHub\PshOrgDSC\Tooling\Examples [development]&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;last up readme.md&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\GitHub\PshOrgDSC\Tooling\Examples [development +0 ~1 -0]&amp;gt; git add *
+ 
+C:\GitHub\PshOrgDSC\Tooling\Examples [development +0 ~1 -0]&amp;gt; git commit -m &#39;updated \Tooling\Example\Readme.md to match the current state of development, and included section showing required folder structure&#39;
+[development 3aa570d] updated \Tooling\Example\Readme.md to match the current state of development, and included section showing required folder structure
+ 1 file changed, 14 insertions(+), 2 deletions(-)
+ 
+C:\GitHub\PshOrgDSC\Tooling\Examples [development]&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;finally I push the commits to my fork&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\GitHub\PshOrgDSC\Tooling\Examples [development]&amp;gt; git push
+git : To https://github.com/BladeFireLight/DSC.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now I can subit a pull request.&lt;/p&gt;
+
+&lt;p&gt;I head over to github https://github.com/BladeFireLight/DSC/tree/development&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/compaireandpull.png&quot; alt=&quot;compaireandpull&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Clicking Compare and pull request gives me a diff of each file and it’s changes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/exampleDiff.png&quot; alt=&quot;exampleDiff&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It also tells me there are no issues merging my commits into the upstream Development branch.&lt;/p&gt;
+
+    
+
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/posts/test-lab-update-github/&quot; rel=&quot;nofollow&quot;&gt;Test-Lab \| Update-GitHub&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+
+
+  </content>
+
+  
+  <author>
+    
+      <name>David Jones</name>
+    
+    
+      <email>BladeFireLight@outlook.com</email>
+    
+    <uri>https://blog.bladefirelight.com/</uri>
+  </author>
+
+
+
+  
+    <category term="posts" />
+  
+
+  
+    <category term="TestLab" />
+  
+
+  
+    <summary type="text">Posts in This series</summary>
+  
+</entry>
+
+  
+    <entry>
+  <title>Invoke-DscBuild | Test-Lab</title>
+  <link href="https://blog.bladefirelight.com/posts/invoke-dscbuild-test-lab/" rel="alternate" type="text/html" title="Invoke-DscBuild \| Test-Lab" />
+  <published>2015-05-03T00:00:00-05:00</published>
+
+  
+    <updated>2015-05-03T00:00:00-05:00</updated>
+  
+
+  <id>https://blog.bladefirelight.com/posts/invoke-dscbuild-test-lab</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/posts/invoke-dscbuild-test-lab/">
+    
+
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-1.jpg&quot; alt=&quot;Invoke-DscBuild \| Test-Lab&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+
+
+    &lt;h3 id=&quot;posts-in-this-series&quot;&gt;Posts in This series&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/test-homelab-inputobject-the-plan/&quot;&gt;Test-HomeLab -InputObject “The Plan”&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/Get-Posh-Git-Test-Lab/&quot;&gt;Get-Posh-Git | Test-Lab&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/get-dscframework-test-lab/&quot;&gt;Get-DSCFramework | Test-Lab&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Invoke-DscBuild | Test-Lab (This Post)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/test-lab-update-github/&quot;&gt;Test-Lab | Update-GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;In the last post we forked a copy of the Powershell.org DSC tools and cloned a copy locally&lt;/p&gt;
+
+&lt;p&gt;Today I’m going to get the example configuration working.&lt;/p&gt;
+
+&lt;p&gt;Now looking at the README.md under examples seems straightforward, but I know for a fact that it’s missing a few steps.&lt;/p&gt;
+
+&lt;p&gt;This folder contains some very basic examples of what a DSC configurationData folder structure, script, and call to Invoke-DscBuild might look like.  If you want to execute SampleBuild.ps1, there are a few dependencies you need to set up ahead of time:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;You must install all of the DSC tooling modules from this repository into your PSModulePath (typically into C:\Program Files\WindowsPowerShell\Modules)&lt;/li&gt;
+  &lt;li&gt;You must also copy the Tooling\Examples\SampleConfiguration folder to the PSModulePath.&lt;/li&gt;
+  &lt;li&gt;You must copy &lt;a href=&quot;https://github.com/pester/Pester&quot;&gt;Pester&lt;/a&gt; (version 3.0.0 or later) and &lt;a href=&quot;https://github.com/dlwyatt/ProtectedData&quot;&gt;ProtectedData&lt;/a&gt; (version 2.1 or later) into the PSModulePath.&lt;/li&gt;
+  &lt;li&gt;You should create a DSC_Resources folder in the same directory as SampleBuild.ps1 and DSC_Configuration.  Copy the following modules into that DSC_Resources folder:&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/PowerShellOrg/StackExchangeResources&quot;&gt;StackExchangeResources&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/PowerShellOrg/cWebAdministration&quot;&gt;cWebAdministration&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/PowerShellOrg/cSmbShare&quot;&gt;cSmbShare&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Once these dependencies are set up, you can execute SampleBuild.ps1.  It will run tests against the 3 modules in your DSC_Resources folder, compile your configuration into MOF documents, produce zip files for the resource modules, generate checksums for everything and copy them into C:\Program Files\WindowsPowerShell\DscService\&lt;/p&gt;
+
+&lt;p&gt;Looks like we are going to need a few more DSC resources. I’m going to go and fork/clone them just like before. (don’t forget to update the URL’s to match your own fork. )&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Download required files via Git&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#Next line not needed if you were following along with my last blog&lt;/span&gt;
+git clone https://github.com/BladeFireLight/DSC.git c:&lt;span class=&quot;se&quot;&gt;\G&lt;/span&gt;itHub&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;shOrgDSC --branch development
+git clone https://github.com/BladeFireLight/StackExchangeResources.git c:&lt;span class=&quot;se&quot;&gt;\G&lt;/span&gt;itHub&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;tackExchangeResources
+git clone https://github.com/BladeFireLight/cWebAdministration.git c:&lt;span class=&quot;se&quot;&gt;\G&lt;/span&gt;itHub&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;WebAdministration
+git clone https://github.com/BladeFireLight/cSmbShare.git c:&lt;span class=&quot;se&quot;&gt;\G&lt;/span&gt;itHub&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;SmbShare 
+git clone https://github.com/BladeFireLight/Pester c:&lt;span class=&quot;se&quot;&gt;\G&lt;/span&gt;itHub&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;ester
+git clone https://github.com/BladeFireLight/ProtectedData.git c:&lt;span class=&quot;se&quot;&gt;\G&lt;/span&gt;itHub&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;rotectedData
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now I’m going to create some folder structure and place all the files where they need to go&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;#Create Folders&lt;/span&gt;
+mkdir c:&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;SC
+&lt;/span&gt;mkdir C:&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;SC&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\B&lt;/span&gt;uldOutput
+mkdir C:&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;SC&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;SC_Configuration
+mkdir C:&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;SC&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;SC_Resources
+mkdir C:&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;SC&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;SC_Script
+mkdir C:&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;SC&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;SC_Tooling
+ 
+&lt;span class=&quot;c1&quot;&gt;#Copy Files&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;copy &lt;/span&gt;C:&lt;span class=&quot;se&quot;&gt;\g&lt;/span&gt;ithub&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;shOrgDSC&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;ooling&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt; C:&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;SC&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;SC_Tooling&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;-Exclude &lt;span class=&quot;s1&quot;&gt;&#39;examples&#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&#39;readme.md&#39;&lt;/span&gt; -Recurse
+&lt;span class=&quot;nb&quot;&gt;copy &lt;/span&gt;C:&lt;span class=&quot;se&quot;&gt;\g&lt;/span&gt;ithub&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;shOrgDSC&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;ooling&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;C:\Program Files\WindowsPowerShell\Modules&#39;&lt;/span&gt; -Exclude &lt;span class=&quot;s1&quot;&gt;&#39;examples&#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&#39;readme.md&#39;&lt;/span&gt; -Recurse
+&lt;span class=&quot;nb&quot;&gt;copy &lt;/span&gt;C:&lt;span class=&quot;se&quot;&gt;\g&lt;/span&gt;ithub&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;C:\Program Files\WindowsPowerShell\Modules&#39;&lt;/span&gt; -Include &lt;span class=&quot;s1&quot;&gt;&#39;Pester&#39;&lt;/span&gt;,&lt;span class=&quot;s1&quot;&gt;&#39;ProtectedData&#39;&lt;/span&gt; -Recurse
+&lt;span class=&quot;nb&quot;&gt;copy &lt;/span&gt;C:&lt;span class=&quot;se&quot;&gt;\g&lt;/span&gt;ithub&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt; C:&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;SC&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;SC_Tooling&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;-Include &lt;span class=&quot;s1&quot;&gt;&#39;Pester&#39;&lt;/span&gt;,&lt;span class=&quot;s1&quot;&gt;&#39;ProtectedData&#39;&lt;/span&gt; -Recurse
+&lt;span class=&quot;nb&quot;&gt;copy &lt;/span&gt;C:&lt;span class=&quot;se&quot;&gt;\g&lt;/span&gt;ithub&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;shOrgDSC&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;ooling&lt;span class=&quot;se&quot;&gt;\E&lt;/span&gt;xamples&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;ampleBuild.ps1 c:&lt;span class=&quot;se&quot;&gt;\d&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sc&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;ampleBuild.ps1
+&lt;span class=&quot;nb&quot;&gt;copy &lt;/span&gt;c:&lt;span class=&quot;se&quot;&gt;\g&lt;/span&gt;ithub&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt; C:&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;SC&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;SC_Resources -Include &lt;span class=&quot;s1&quot;&gt;&#39;cSmbShare&#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&#39;cWebAdministration&#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&#39;StackExchangeResources&#39;&lt;/span&gt; -Recurse
+&lt;span class=&quot;nb&quot;&gt;copy &lt;/span&gt;c:&lt;span class=&quot;se&quot;&gt;\g&lt;/span&gt;ithub&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;C:\Program Files\WindowsPowerShell\Modules&#39;&lt;/span&gt; -Include &lt;span class=&quot;s1&quot;&gt;&#39;cSmbShare&#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&#39;cWebAdministration&#39;&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;&#39;StackExchangeResources&#39;&lt;/span&gt; -Recurse
+&lt;span class=&quot;nb&quot;&gt;copy &lt;/span&gt;C:&lt;span class=&quot;se&quot;&gt;\g&lt;/span&gt;ithub&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;shOrgDSC&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;ooling&lt;span class=&quot;se&quot;&gt;\E&lt;/span&gt;xamples&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;SC_Configuration&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt; C:&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;SC&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;SC_Configuration -Recurse
+&lt;span class=&quot;nb&quot;&gt;copy &lt;/span&gt;C:&lt;span class=&quot;se&quot;&gt;\g&lt;/span&gt;ithub&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;shOrgDSC&lt;span class=&quot;se&quot;&gt;\T&lt;/span&gt;ooling&lt;span class=&quot;se&quot;&gt;\E&lt;/span&gt;xamples&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt; C:&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;SC&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;SC_Script -Include &lt;span class=&quot;s1&quot;&gt;&#39;SampleConfiguration&#39;&lt;/span&gt; -Recurse
+ 
+&lt;span class=&quot;c1&quot;&gt;#delete unneeded folders. &lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;dir&lt;/span&gt; -Path c:&lt;span class=&quot;se&quot;&gt;\d&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sc&lt;/span&gt; -Include &lt;span class=&quot;s1&quot;&gt;&#39;.git&#39;&lt;/span&gt; -Recurse | &lt;span class=&quot;nb&quot;&gt;del&lt;/span&gt; -Recurse -Force &lt;span class=&quot;c1&quot;&gt;#-Confirm:$false&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;dir&lt;/span&gt; -Path &lt;span class=&quot;s1&quot;&gt;&#39;C:\Program Files\WindowsPowerShell\Modules&#39;&lt;/span&gt; -Include &lt;span class=&quot;s1&quot;&gt;&#39;.git&#39;&lt;/span&gt; -Recurse | &lt;span class=&quot;nb&quot;&gt;del&lt;/span&gt; -Recurse -Force
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then result should give us a folder structure like this&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\DSC
+├───BuldOutput
+├───DSC_Configuration
+│   ├───AllNodes
+│   ├───Services
+│   └───SiteData
+├───DSC_Resources
+│   ├───cSmbShare
+│   │   └───DscResources
+│   │       └───PSHOrg_cSmbShare
+│   ├───cWebAdministration
+│   │   ├───DSCResources
+│   │   │   ├───PSHOrg_cAppPool
+│   │   │   └───PSHOrg_cWebsite
+│   │   └───Examples
+│   └───StackExchangeResources
+│       ├───DSCResources
+│       │   ├───StackExchange_CertificateStore
+│       │   ├───StackExchange_FirewallRule
+│       │   ├───StackExchange_NetworkAdapter
+│       │   ├───StackExchange_Pagefile
+│       │   │   ├───StackExchange_en-US
+│       │   │   └───StackExchange_nl-NL
+│       │   ├───StackExchange_PowerPlan
+│       │   │   └───StackExchange_en-US
+│       │   ├───StackExchange_ScheduledTask
+│       │   ├───StackExchange_SetExecutionPolicy
+│       │   │   └───StackExchange_en-US
+│       │   └───StackExchange_Timezone
+│       └───test
+│           ├───integration
+│           │   └───StackExchange_PageFile
+│           │       └───pester
+│           └───unit
+│               └───StackExchange_Pagefile
+│                   └───pester
+├───DSC_Script
+│   └───SampleConfiguration
+└───DSC_Tooling
+    ├───cDscDiagnostics
+    ├───cDscResourceDesigner
+    ├───dscbuild
+    ├───DscConfiguration
+    ├───DscDevelopment
+    ├───DscOperations
+    ├───Pester
+    │   ├───bin
+    │   ├───en-US
+    │   ├───Examples
+    │   │   ├───Calculator
+    │   │   └───Validator
+    │   ├───Functions
+    │   │   └───Assertions
+    │   ├───Snippets
+    │   └───vendor
+    │       └───tools
+    │           ├───OneGet
+    │           │   └───Etc
+    │           └───PowerShellGet
+    │               └───en-US
+    └───ProtectedData
+        └───en-US
+
+C:\PROGRAM FILES\WINDOWSPOWERSHELL\MODULES
+├───cDscDiagnostics
+├───cDscResourceDesigner
+├───cSmbShare
+│   └───DscResources
+│       └───PSHOrg_cSmbShare
+├───cWebAdministration
+│   ├───DSCResources
+│   │   ├───PSHOrg_cAppPool
+│   │   └───PSHOrg_cWebsite
+│   └───Examples
+├───dscbuild
+├───DscConfiguration
+├───DscDevelopment
+├───DscOperations
+├───Pester
+│   ├───bin
+│   ├───en-US
+│   ├───Examples
+│   │   ├───Calculator
+│   │   └───Validator
+│   ├───Functions
+│   │   └───Assertions
+│   ├───Snippets
+│   └───vendor
+│       └───tools
+│           ├───OneGet
+│           │   └───Etc
+│           └───PowerShellGet
+│               └───en-US
+├───ProtectedData
+│   └───en-US
+└───StackExchangeResources
+    ├───DSCResources
+    │   ├───StackExchange_CertificateStore
+    │   ├───StackExchange_FirewallRule
+    │   ├───StackExchange_NetworkAdapter
+    │   ├───StackExchange_Pagefile
+    │   │   ├───StackExchange_en-US
+    │   │   └───StackExchange_nl-NL
+    │   ├───StackExchange_PowerPlan
+    │   │   └───StackExchange_en-US
+    │   ├───StackExchange_ScheduledTask
+    │   ├───StackExchange_SetExecutionPolicy
+    │   │   └───StackExchange_en-US
+    │   └───StackExchange_Timezone
+    └───test
+        ├───integration
+        │   └───StackExchange_PageFile
+        │       └───pester
+        └───unit
+            └───StackExchange_Pagefile
+                └───pester
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;now lets fix C:\DSC\SampleBuild.ps1&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    Import-Module Pester -ErrorAction Stop
+    Import-Module dscbuild -ErrorAction Stop
+    Import-Module dscconfiguration -ErrorAction Stop
+ 
+    &lt;span class=&quot;nv&quot;&gt;$params&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; @&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        WorkingDirectory &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Get-TempDirectory&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.FullName
+        SourceResourceDirectory &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PSScriptRoot&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;SC_Resources&quot;&lt;/span&gt;
+        SourceToolDirectory &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PSScriptRoot&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;SC_Tooling&quot;&lt;/span&gt;
+        DestinationRootDirectory &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PSScriptRoot&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\B&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;uldOutput&quot;&lt;/span&gt;
+        DestinationToolDirectory &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$env&lt;/span&gt;:TEMP
+        ConfigurationData &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Get-DscConfigurationData -Path &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PSScriptRoot&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;SC_Configuration&quot;&lt;/span&gt; -Force -verbose
+        ModulePath &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PSScriptRoot&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;SC_Script&quot;&lt;/span&gt;  , &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PSScriptRoot&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\D&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;SC_Tooling&quot;&lt;/span&gt;
+        ConfigurationModuleName &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;SampleConfiguration&#39;&lt;/span&gt;
+        ConfigurationName &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;SampleConfiguration&#39;&lt;/span&gt;
+        Configuration &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$true&lt;/span&gt;
+        Resource &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$true&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+ 
+    Invoke-DscBuild @params -verbose
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+ 
+&lt;span class=&quot;k&quot;&gt;begin&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;Get-TempDirectory
+    &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CmdletBinding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()]&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;OutputType&lt;span class=&quot;o&quot;&gt;([&lt;/span&gt;System.IO.DirectoryInfo]&lt;span class=&quot;o&quot;&gt;)]&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;param&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+ 
+        &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nv&quot;&gt;$tempDir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Join-Path&lt;/span&gt; -Path &lt;span class=&quot;o&quot;&gt;([&lt;/span&gt;System.IO.Path]::GetTempPath&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt; -ChildPath &lt;span class=&quot;o&quot;&gt;([&lt;/span&gt;System.IO.Path]::GetRandomFileName&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;until&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;-not &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Test-Path&lt;/span&gt; -Path &lt;span class=&quot;nv&quot;&gt;$tempDir&lt;/span&gt; -PathType Container&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+ 
+        &lt;span class=&quot;k&quot;&gt;return &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;New-Item&lt;/span&gt; -Path &lt;span class=&quot;nv&quot;&gt;$tempDir&lt;/span&gt; -ItemType Directory -ErrorAction Stop
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;So what is different?&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;DestinationRootDirectory = “$PSScriptRoot\BuldOutput”
+    &lt;ul&gt;
+      &lt;li&gt;Changed to point to a relative output. this is a test, so there is no need to place it into the common location for a pull server, although in production you may want to. I prefer to copy the files after a build, as it’s usually built on a machine other then the pull server&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;ConfigurationData = Get-DscConfigurationData -Path “$PSScriptRoot\DSC_Configuration” -Force -verbose
+  *added verbose so I can see how its progresses and help with troubleshooting&lt;/li&gt;
+  &lt;li&gt;ModulePath = “$PSScriptRoot\DSC_Script”  , “$PSScriptRoot\DSC_Tooling”
+    &lt;ul&gt;
+      &lt;li&gt;This is the big one. ModulePath and SourceResourceDirectory are going to be the only path’s in $psmodulepath when the configuration module (the module referenced by ConfigurationModuleName ) is loaded and when the configuration in ConfigurationName  is executed. This feature was added to resolve a problem when your modules used to build .mof files may be newer then the ones used to configure the machine running them. Something I ran into and Dave Wyatt was kind enough to solve&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Invoke-DscBuild @params -verbose
+  *Added -verbose. I’m a bit of a verbose junky.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;With the updates to SampleBuild.ps1 we are ready to build our first sample set of .mof files&lt;/p&gt;
+
+&lt;p&gt;I do this in a clean environment so I’m opening PowerShell as an administrator and running C:\DSC\SampleBuild.ps1. After a long bit of scrolling if it works the last few lines should look like this.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;VERBOSE: Moving 718aec80-e8fe-41b5-ac31-fbcd5d0186b1.mof to C:\DSC\BuldOutput\Configuration
+VERBOSE: Moving b4519959-9724-40d5-ab62-5c4f82bbcd80.mof to C:\DSC\BuldOutput\Configuration
+VERBOSE: Moving fc107c0b-1fc8-45fb-9991-a0a1f0fd6c21.mof to C:\DSC\BuldOutput\Configuration
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Congratulations you have your first set of .mof files working with the PowerShell.org DSC tools.&lt;/p&gt;
+
+&lt;p&gt;Next up. Creating a pull request to update the readme.md and SampleBuild.ps1&lt;/p&gt;
+
+    
+
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/posts/invoke-dscbuild-test-lab/&quot; rel=&quot;nofollow&quot;&gt;Invoke-DscBuild \| Test-Lab&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+
+
+  </content>
+
+  
+  <author>
+    
+      <name>David Jones</name>
+    
+    
+      <email>BladeFireLight@outlook.com</email>
+    
+    <uri>https://blog.bladefirelight.com/</uri>
+  </author>
+
+
+
+  
+    <category term="posts" />
+  
+
+  
+    <category term="TestLab" />
+  
+
+  
+    <summary type="text">Posts in This series</summary>
+  
+</entry>
+
+  
+    <entry>
+  <title>Get-DSCFramework | Test-Lab</title>
+  <link href="https://blog.bladefirelight.com/posts/get-dscframework-test-lab/" rel="alternate" type="text/html" title="Get-DSCFramework \| Test-Lab" />
+  <published>2015-05-02T00:00:00-05:00</published>
+
+  
+    <updated>2015-05-02T00:00:00-05:00</updated>
+  
+
+  <id>https://blog.bladefirelight.com/posts/get-dscframework-test-lab</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/posts/get-dscframework-test-lab/">
+    
+
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-1.jpg&quot; alt=&quot;Get-DSCFramework \| Test-Lab&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+
+
+    &lt;h3 id=&quot;posts-in-this-series&quot;&gt;Posts in This series&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/test-homelab-inputobject-the-plan/&quot;&gt;Test-HomeLab -InputObject “The Plan”&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/Get-Posh-Git-Test-Lab/&quot;&gt;Get-Posh-Git | Test-Lab&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Get-DSCFramework | Test-Lab (This Post)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/invoke-dscbuild-test-lab/&quot;&gt;Invoke-DscBuild | Test-Lab&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/test-lab-update-github/&quot;&gt;Test-Lab | Update-GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;In the last post we got the posh-git installed, Now we are going to fork the Powershell.org DSC tools development branch and clone that locally.&lt;/p&gt;
+
+&lt;p&gt;I already have an account with GitHub, You will need one to be able to contribute.&lt;/p&gt;
+
+&lt;p&gt;I had over the the repository and click the fork button&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/fork.png&quot; alt=&quot;fork&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;with that done next is to get a copy of the clone URL.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/cloneurl.png&quot; alt=&quot;cloneurl&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I create a folder to store the repository in&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\&amp;gt; mkdir github
+    Directory: C:\
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+d----          5/1/2015   5:25 PM            github
+
+C:\&amp;gt; cd github
+C:\github&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;now I have everything I need to make a clone.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\github&amp;gt; git clone https://github.com/BladeFireLight/DSC.git PshOrgDSC --branch development
+git : Cloning into &#39;PshOrgDSC&#39;...
+At line:1 char:1
++ git clone https://github.com/BladeFireLight/DSC.git PshOrgDSC --branch developme ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Cloning into &#39;PshOrgDSC&#39;...:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+
+C:\github&amp;gt; cd .\PshOrgDSC
+
+C:\github\PshOrgDSC [development]&amp;gt; dir
+
+    Directory: C:\github\PshOrgDSC
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+d----          5/1/2015   5:38 PM            Tooling
+-a---          5/1/2015   5:38 PM        605 .gitattributes
+-a---          5/1/2015   5:38 PM        366 .gitignore
+-a---          5/1/2015   5:38 PM       1099 LICENSE.txt
+-a---          5/1/2015   5:38 PM       1231 README.md
+-a---          5/1/2015   5:38 PM       7305 README.old.md
+
+C:\github\PshOrgDSC [development]&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I’m not sure why PowerShell thought it was an error but the clone worked.&lt;/p&gt;
+
+&lt;p&gt;Next up will be getting the example config to build.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\github\PshOrgDSC [development]&amp;gt; cd .\Tooling\Examples
+
+C:\github\PshOrgDSC\Tooling\Examples [development]&amp;gt; dir
+
+    Directory: C:\github\PshOrgDSC\Tooling\Examples
+
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+d----          5/1/2015   5:38 PM            DSC_Configuration
+d----          5/1/2015   5:38 PM            SampleConfiguration
+-a---          5/1/2015   5:38 PM       1770 README.md
+-a---          5/1/2015   5:38 PM       1203 SampleBuild.ps1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+    
+
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/posts/get-dscframework-test-lab/&quot; rel=&quot;nofollow&quot;&gt;Get-DSCFramework \| Test-Lab&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+
+
+  </content>
+
+  
+  <author>
+    
+      <name>David Jones</name>
+    
+    
+      <email>BladeFireLight@outlook.com</email>
+    
+    <uri>https://blog.bladefirelight.com/</uri>
+  </author>
+
+
+
+  
+    <category term="posts" />
+  
+
+  
+    <category term="TestLab" />
+  
+
+  
+    <summary type="text">Posts in This series</summary>
+  
+</entry>
+
+  
+    <entry>
+  <title>Get-Posh-Git | Test-Lab</title>
+  <link href="https://blog.bladefirelight.com/posts/Get-Posh-Git-Test-Lab/" rel="alternate" type="text/html" title="Get-Posh-Git \| Test-Lab" />
+  <published>2015-04-30T00:00:00-05:00</published>
+
+  
+    <updated>2015-04-30T00:00:00-05:00</updated>
+  
+
+  <id>https://blog.bladefirelight.com/posts/Get-Posh-Git-Test-Lab</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/posts/Get-Posh-Git-Test-Lab/">
+    
+
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-1.jpg&quot; alt=&quot;Get-Posh-Git \| Test-Lab&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+
+
+    &lt;h3 id=&quot;posts-in-this-series&quot;&gt;Posts in This series&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/test-homelab-inputobject-the-plan/&quot;&gt;Test-HomeLab -InputObject “The Plan”&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Get-Posh-Git | Test-Lab (This Post)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/get-dscframework-test-lab/&quot;&gt;Get-DSCFramework | Test-Lab&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/invoke-dscbuild-test-lab/&quot;&gt;Invoke-DscBuild | Test-Lab&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/test-lab-update-github/&quot;&gt;Test-Lab | Update-GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;My initial test lab starting to take shape.&lt;/p&gt;
+
+&lt;p&gt;I have a vyos router bridging my production environment and my isolated virtual switch similar to what &lt;a href=&quot;http://powershell.org/wp/2015/03/25/home-labs-for-the-it-pro/&quot;&gt;Greg Altman talks about&lt;/a&gt; on PowerShell.org&lt;/p&gt;
+
+&lt;p&gt;And I have one Windows 8.1 Pro VM to setup the &lt;a href=&quot;https://github.com/powershellorg/dsc/tree/development&quot;&gt;PowerShell.org DSC tools&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now I’m going to get the development branch, as it has some major fixes, including a re-working of how modules are tested and package, and how passwords are stored.  The part on password is the big item for me.&lt;/p&gt;
+
+&lt;p&gt;Now I could just download it via GitHub using IE.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/devbranch.png&quot; alt=&quot;DevBranch&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;But this blog is about giving back to the community so I’m going to using the GitHub client, and it’s included Posh-Git module for PowerShell.&lt;/p&gt;
+
+&lt;p&gt;The GitHub client is a nice simple GUI client, but I have one issue with it. It installs into a users profile. While all store apps and downloaded .net apps do this and it’s a good thing for isolation. In a secure environment like where i work it’s frowned apon. So ifyour in that boat, Posh-Git can be downloaded from github and works with other git clients.&lt;/p&gt;
+
+&lt;p&gt;Now I dont plan on using the GUI for the purpose of this blog so I’m going to change my PowerShell profile to load posh-git. GitHub client has to be ran once to create the files I use in my profile.&lt;/p&gt;
+
+&lt;p&gt;The commands for that are.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#create/add posh-git to profile&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;-not &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;test-path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;split-path&lt;/span&gt; -Path &lt;span class=&quot;nv&quot;&gt;$profile&lt;/span&gt;.CurrentUserAllHosts -Parent&lt;span class=&quot;o&quot;&gt;)))&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+mkdir &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;split-path&lt;/span&gt; -Path &lt;span class=&quot;nv&quot;&gt;$profile&lt;/span&gt;.CurrentUserAllHosts -Parent&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;s1&quot;&gt;&#39;. (Resolve-Path &quot;$env:LOCALAPPDATA\GitHub\shell.ps1&quot;)&#39;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;out-file&lt;/span&gt; -Path &lt;span class=&quot;nv&quot;&gt;$profile&lt;/span&gt;.CurrentUserAllHosts -Append
+&lt;span class=&quot;s1&quot;&gt;&#39;. $env:github_posh_git\profile.example.ps1&#39;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;out-file&lt;/span&gt; -Path &lt;span class=&quot;nv&quot;&gt;$profile&lt;/span&gt;.CurrentUserAllHosts -Append&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;restart powershell and I can run get-module to see what modules are loaded.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;gp&quot;&gt;C:\&amp;gt; &lt;/span&gt;Get-Module
+ 
+ModuleType Version    Name                                ExportedCommands
+---------- -------    ----                                ----------------
+Script     1.0.0.0    &lt;span class=&quot;nb&quot;&gt;ISE&lt;/span&gt;                                 &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;Get-IseSnippet, Import-IseSnippet, New-IseSnippet&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+Manifest   3.1.0.0    Microsoft.PowerShell.Management     &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;Add-Computer, &lt;span class=&quot;nb&quot;&gt;Add-Content&lt;/span&gt;, Checkpoint-Computer, &lt;span class=&quot;nb&quot;&gt;Clear&lt;/span&gt;-Content...&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+Manifest   3.1.0.0    Microsoft.PowerShell.Utility        &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Add-Member&lt;/span&gt;, Add-Type, &lt;span class=&quot;nb&quot;&gt;Clear-Variable&lt;/span&gt;, &lt;span class=&quot;nb&quot;&gt;Compare&lt;/span&gt;-Object...&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+Script     0.0        posh-git                            &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;Add-SshKey, Enable-GitColors, Get-AliasPattern, Get-GitDirectory...&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Now we are ready to fork the PowerShell.org DSC repository and clone it locally.&lt;/p&gt;
+
+    
+
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/posts/Get-Posh-Git-Test-Lab/&quot; rel=&quot;nofollow&quot;&gt;Get-Posh-Git \| Test-Lab&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+
+
+  </content>
+
+  
+  <author>
+    
+      <name>David Jones</name>
+    
+    
+      <email>BladeFireLight@outlook.com</email>
+    
+    <uri>https://blog.bladefirelight.com/</uri>
+  </author>
+
+
+
+  
+    <category term="posts" />
+  
+
+  
+    <category term="TestLab" />
+  
+
+  
+    <summary type="text">My initial test lab starting to take shape.</summary>
+  
+</entry>
+
+  
+    <entry>
+  <title>Test-HomeLab -InputObject “The Plan”</title>
+  <link href="https://blog.bladefirelight.com/posts/test-homelab-inputobject-the-plan/" rel="alternate" type="text/html" title="Test-HomeLab -InputObject &quot;The Plan&quot;" />
+  <published>2015-04-27T00:00:00-05:00</published>
+
+  
+    <updated>2015-04-27T00:00:00-05:00</updated>
+  
+
+  <id>https://blog.bladefirelight.com/posts/test-homelab-inputobject-the-plan</id>
+  <content type="html" xml:base="https://blog.bladefirelight.com/posts/test-homelab-inputobject-the-plan/">
+    
+
+&lt;p&gt;&amp;lt;img src=”https://blog.bladefirelight.com/images/sample-image-1.jpg” alt=”Test-HomeLab -InputObject “The Plan””&amp;gt;&lt;br /&gt;&lt;/p&gt;
+
+
+    &lt;h3 id=&quot;posts-in-this-series&quot;&gt;Posts in This series&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Test-HomeLab -InputObject “The Plan” (This Post)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/Get-Posh-Git-Test-Lab/&quot;&gt;Get-Posh-Git | Test-Lab&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/get-dscframework-test-lab/&quot;&gt;Get-DSCFramework | Test-Lab&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/invoke-dscbuild-test-lab/&quot;&gt;Invoke-DscBuild | Test-Lab&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/posts/test-lab-update-github/&quot;&gt;Test-Lab | Update-GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;the-plan&quot;&gt;The Plan&lt;/h2&gt;
+
+&lt;p&gt;What I intend to do is to create and in home test lab that I can use to test and develop DSC.  I’m basing my lab from &lt;a href=&quot;http://powershell.org/wp/2015/03/25/home-labs-for-the-it-pro/&quot;&gt;Greg Altman excellent post&lt;/a&gt; over on &lt;a href=&quot;http://powershell.org/&quot;&gt;PowerShell.org&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The only exception I to this is that I have 2 machines to use a Hyper-V hosts. Now the second one I plan on installing Nano if/when it got into preview. Baring that I will use Hyper-V server 2012 R2.&lt;/p&gt;
+
+&lt;p&gt;Now to keep the lab services into the virtual realm as Greg mentioned, &lt;em&gt;and&lt;/em&gt; use two hosts. I have spend the weekend trying to create a vyos VPN tunnel between two isolated networks.&lt;/p&gt;
+
+&lt;p&gt;Needless to say not everything go according to plan. the Tunnel reports the link is up, but their is no traffic between network.&lt;/p&gt;
+
+&lt;p&gt;I have already wasted most of the weekend on this, so I’m going to move forward for now with with out the VPN.  It’s not like I need it yet.&lt;/p&gt;
+
+&lt;p&gt;So, onward.&lt;/p&gt;
+
+&lt;p&gt;I’m going to first build a windows 8.1 dev PC by hand, and load the PowerShell.org DSC tooling on it. From there I can build configs for building a as much of the rest of the environment as possible.&lt;/p&gt;
+
+&lt;p&gt;I hope to have a Pull Server, DC, PKI CA, up first, then move on to other servers that I can use to build resources for.&lt;/p&gt;
+
+&lt;p&gt;I have been running DSC in production for the last year, and I hope I can share may experience via a how to for a test environment and how it relates back to problems in the enterprise.&lt;/p&gt;
+
+    
+
+&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/posts/test-homelab-inputobject-the-plan/&quot; rel=&quot;nofollow&quot;&gt;Test-HomeLab -InputObject &quot;The Plan&quot;&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
+
+
+  </content>
+
+  
+  <author>
+    
+      <name>David Jones</name>
+    
+    
+      <email>BladeFireLight@outlook.com</email>
+    
+    <uri>https://blog.bladefirelight.com/</uri>
+  </author>
+
+
+
+  
+    <category term="posts" />
+  
+
+  
+    <category term="TestLab" />
+  
+
+  
+    <summary type="text">My Plan for a home test lab</summary>
   
 </entry>
 
@@ -535,225 +1259,6 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
   
     <entry>
-  <title>Post with Large Feature Image and Text</title>
-  <link href="https://blog.bladefirelight.com/nuggets/readability-feature-post/" rel="alternate" type="text/html" title="Post with Large Feature Image and Text" />
-  <published>2013-05-23T00:00:00-05:00</published>
-
-  
-    <updated>2013-05-23T00:00:00-05:00</updated>
-  
-
-  <id>https://blog.bladefirelight.com/nuggets/readability-feature-post</id>
-  <content type="html" xml:base="https://blog.bladefirelight.com/nuggets/readability-feature-post/">
-    
-
-&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-1.jpg&quot; alt=&quot;Post with Large Feature Image and Text&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
-
-
-    &lt;p&gt;This is a sample post with a large feature image&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; up top and tons of text. Odio ad blue bottle vinyl, 90’s narwhal commodo bitters pour-over nostrud. Ugh est hashtag in, fingerstache adipisicing laboris esse Pinterest shabby chic Portland. Shoreditch bicycle rights anim, flexitarian laboris put a bird on it vinyl cupidatat narwhal. Hashtag artisan skateboard, flannel Bushwick nesciunt salvia aute fixie do plaid post-ironic dolor McSweeney’s. Cliche pour-over chambray nulla four loko skateboard sapiente hashtag.&lt;/p&gt;
-
-&lt;p&gt;Vero laborum commodo occupy. Semiotics voluptate mumblecore pug. Cosby sweater ullamco quinoa ennui assumenda, sapiente occupy delectus lo-fi. &lt;em&gt;Ea fashion axe &lt;a href=&quot;#&quot;&gt;Marfa cillum aliquip&lt;/a&gt;. Retro Bushwick keytar cliche.&lt;/em&gt; Before they sold out sustainable gastropub Marfa readymade, ethical Williamsburg skateboard brunch qui consectetur gentrify semiotics. Mustache cillum irony, fingerstache magna pour-over keffiyeh tousled selfies.&lt;/p&gt;
-
-&lt;h2 id=&quot;cupidatat-90s-lo-fi-authentic-try-hard&quot;&gt;Cupidatat 90’s lo-fi authentic try-hard&lt;/h2&gt;
-
-&lt;p&gt;In pug Portland incididunt mlkshk put a bird on it vinyl quinoa. &lt;strong&gt;&lt;a href=&quot;#&quot;&gt;Terry Richardson&lt;/a&gt; shabby chic +1&lt;/strong&gt;, scenester Tonx excepteur tempor fugiat voluptate fingerstache aliquip nisi next level. Farm-to-table hashtag Truffaut, Odd Future ex meggings gentrify single-origin coffee try-hard 90’s.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Sartorial hoodie&lt;/li&gt;
-  &lt;li&gt;Labore viral forage&lt;/li&gt;
-  &lt;li&gt;Tote bag selvage&lt;/li&gt;
-  &lt;li&gt;DIY exercitation et id ugh tumblr church-key&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Incididunt umami sriracha, ethical fugiat VHS ex assumenda yr irure direct trade. Marfa Truffaut bicycle rights, kitsch placeat Etsy kogi asymmetrical. Beard locavore flexitarian, kitsch photo booth hoodie plaid ethical readymade leggings yr.&lt;/p&gt;
-
-&lt;p&gt;Aesthetic odio dolore, meggings disrupt qui readymade stumptown brunch Terry Richardson pour-over gluten-free. Banksy american apparel in selfies, biodiesel flexitarian organic meh wolf quinoa gentrify banjo kogi. Readymade tofu ex, scenester dolor umami fingerstache occaecat fashion axe Carles jean shorts minim. Keffiyeh fashion axe nisi Godard mlkshk dolore. Lomo you probably haven’t heard of them eu non, Odd Future Truffaut pug keytar meggings McSweeney’s Pinterest cred. Etsy literally aute esse, eu bicycle rights qui meggings fanny pack. Gentrify leggings pug flannel duis.&lt;/p&gt;
-
-&lt;h2 id=&quot;forage-occaecat-cardigan-qui&quot;&gt;Forage occaecat cardigan qui&lt;/h2&gt;
-
-&lt;p&gt;Fashion axe hella gastropub lo-fi kogi 90’s aliquip +1 veniam delectus tousled. Cred sriracha locavore gastropub kale chips, iPhone mollit sartorial. Anim dolore 8-bit, pork belly dolor photo booth aute flannel small batch. Dolor disrupt ennui, tattooed whatever salvia Banksy sartorial roof party selfies raw denim sint meh pour-over. Ennui eu cardigan sint, gentrify iPhone cornhole.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Whatever velit occaecat quis deserunt gastropub, leggings elit tousled roof party 3 wolf moon kogi pug blue bottle ea. Fashion axe shabby chic Austin quinoa pickled laborum bitters next level, disrupt deep v accusamus non fingerstache.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Tote bag asymmetrical elit sunt. Occaecat authentic Marfa, hella McSweeney’s next level irure veniam master cleanse. Sed hoodie letterpress artisan wolf leggings, 3 wolf moon commodo ullamco. Anim occupy ea labore Terry Richardson. Tofu ex master cleanse in whatever pitchfork banh mi, occupy fugiat fanny pack Austin authentic. Magna fugiat 3 wolf moon, labore McSweeney’s sustainable vero consectetur. Gluten-free disrupt enim, aesthetic fugiat jean shorts trust fund keffiyeh magna try-hard.&lt;/p&gt;
-
-&lt;h2 id=&quot;hoodie-duis&quot;&gt;Hoodie Duis&lt;/h2&gt;
-
-&lt;p&gt;Actually salvia consectetur, hoodie duis lomo YOLO sunt sriracha. Aute pop-up brunch farm-to-table odio, salvia irure occaecat. Sriracha small batch literally skateboard. Echo Park nihil hoodie, aliquip forage artisan laboris. Trust fund reprehenderit nulla locavore. Stumptown raw denim kitsch, keffiyeh nulla twee dreamcatcher fanny pack ullamco 90’s pop-up est culpa farm-to-table. Selfies 8-bit do pug odio.&lt;/p&gt;
-
-&lt;h3 id=&quot;thundercats-ho&quot;&gt;Thundercats Ho!&lt;/h3&gt;
-
-&lt;p&gt;Fingerstache thundercats Williamsburg, deep v scenester Banksy ennui vinyl selfies mollit biodiesel duis odio pop-up. Banksy 3 wolf moon try-hard, sapiente enim stumptown deep v ad letterpress. Squid beard brunch, exercitation raw denim yr sint direct trade. Raw denim narwhal id, flannel DIY McSweeney’s seitan. Letterpress artisan bespoke accusamus, meggings laboris consequat Truffaut qui in seitan. Sustainable cornhole Schlitz, twee Cosby sweater banh mi deep v forage letterpress flannel whatever keffiyeh. Sartorial cred irure, semiotics ethical sed blue bottle nihil letterpress.&lt;/p&gt;
-
-&lt;p&gt;Occupy et selvage squid, pug brunch blog nesciunt hashtag mumblecore skateboard yr kogi. Ugh small batch swag four loko. Fap post-ironic qui tote bag farm-to-table american apparel scenester keffiyeh vero, swag non pour-over gentrify authentic pitchfork. Schlitz scenester lo-fi voluptate, tote bag irony bicycle rights pariatur vero Vice freegan wayfarers exercitation nisi shoreditch. Chambray tofu vero sed. Street art swag literally leggings, Cosby sweater mixtape PBR lomo Banksy non in pitchfork ennui McSweeney’s selfies. Odd Future Banksy non authentic.&lt;/p&gt;
-
-&lt;p&gt;Aliquip enim artisan dolor post-ironic. Pug tote bag Marfa, deserunt pour-over Portland wolf eu odio intelligentsia american apparel ugh ea. Sunt viral et, 3 wolf moon gastropub pug id. Id fashion axe est typewriter, mlkshk Portland art party aute brunch. Sint pork belly Cosby sweater, deep v mumblecore kitsch american apparel. Try-hard direct trade tumblr sint skateboard. Adipisicing bitters excepteur biodiesel, pickled gastropub aute veniam.&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;Texture image courtesty of &lt;a href=&quot;http://www.lovetextures.com/&quot;&gt;Lovetextures&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;
-
-    
-
-&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/nuggets/readability-feature-post/&quot; rel=&quot;nofollow&quot;&gt;Post with Large Feature Image and Text&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
-
-
-  </content>
-
-  
-  <author>
-    
-      <name>David Jones</name>
-    
-    
-      <email>BladeFireLight@outlook.com</email>
-    
-    <uri>https://blog.bladefirelight.com/</uri>
-  </author>
-
-
-
-  
-    <category term="nuggets" />
-  
-
-  
-    <category term="sample post" />
-  
-    <category term="readability" />
-  
-    <category term="test" />
-  
-
-  
-    <summary type="text">Custom written post descriptions are the way to go… if you’re not lazy.</summary>
-  
-</entry>
-
-  
-    <entry>
-  <title>Post with Large Feature Image and Text</title>
-  <link href="https://blog.bladefirelight.com/posts/readability-feature-post/" rel="alternate" type="text/html" title="Post with Large Feature Image and Text" />
-  <published>2013-05-23T00:00:00-05:00</published>
-
-  
-    <updated>2013-05-23T00:00:00-05:00</updated>
-  
-
-  <id>https://blog.bladefirelight.com/posts/readability-feature-post</id>
-  <content type="html" xml:base="https://blog.bladefirelight.com/posts/readability-feature-post/">
-    
-
-&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-1.jpg&quot; alt=&quot;Post with Large Feature Image and Text&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
-
-
-    &lt;nav class=&quot;js-toc toc&quot;&gt;
-  &lt;h4 class=&quot;toc__title&quot;&gt;Contents&lt;/h4&gt;
-&lt;ul class=&quot;toc__menu&quot; id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#cupidatat-90s-lo-fi-authentic-try-hard&quot; id=&quot;markdown-toc-cupidatat-90s-lo-fi-authentic-try-hard&quot;&gt;Cupidatat 90’s lo-fi authentic try-hard&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#forage-occaecat-cardigan-qui&quot; id=&quot;markdown-toc-forage-occaecat-cardigan-qui&quot;&gt;Forage occaecat cardigan qui&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#hoodie-duis&quot; id=&quot;markdown-toc-hoodie-duis&quot;&gt;Hoodie Duis&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#thundercats-ho&quot; id=&quot;markdown-toc-thundercats-ho&quot;&gt;Thundercats Ho!&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;/nav&gt;
-
-&lt;p&gt;This is a sample post with a large feature image&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; up top and tons of text. Odio ad blue bottle vinyl, 90’s narwhal commodo bitters pour-over nostrud. Ugh est hashtag in, fingerstache adipisicing laboris esse Pinterest shabby chic Portland. Shoreditch bicycle rights anim, flexitarian laboris put a bird on it vinyl cupidatat narwhal. Hashtag artisan skateboard, flannel Bushwick nesciunt salvia aute fixie do plaid post-ironic dolor McSweeney’s. Cliche pour-over chambray nulla four loko skateboard sapiente hashtag.&lt;/p&gt;
-
-&lt;p&gt;Vero laborum commodo occupy. Semiotics voluptate mumblecore pug. Cosby sweater ullamco quinoa ennui assumenda, sapiente occupy delectus lo-fi. &lt;em&gt;Ea fashion axe &lt;a href=&quot;#&quot;&gt;Marfa cillum aliquip&lt;/a&gt;. Retro Bushwick keytar cliche.&lt;/em&gt; Before they sold out sustainable gastropub Marfa readymade, ethical Williamsburg skateboard brunch qui consectetur gentrify semiotics. Mustache cillum irony, fingerstache magna pour-over keffiyeh tousled selfies.&lt;/p&gt;
-
-&lt;h2 id=&quot;cupidatat-90s-lo-fi-authentic-try-hard&quot;&gt;Cupidatat 90’s lo-fi authentic try-hard&lt;/h2&gt;
-
-&lt;p&gt;In pug Portland incididunt mlkshk put a bird on it vinyl quinoa. &lt;strong&gt;&lt;a href=&quot;#&quot;&gt;Terry Richardson&lt;/a&gt; shabby chic +1&lt;/strong&gt;, scenester Tonx excepteur tempor fugiat voluptate fingerstache aliquip nisi next level. Farm-to-table hashtag Truffaut, Odd Future ex meggings gentrify single-origin coffee try-hard 90’s.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Sartorial hoodie&lt;/li&gt;
-  &lt;li&gt;Labore viral forage&lt;/li&gt;
-  &lt;li&gt;Tote bag selvage&lt;/li&gt;
-  &lt;li&gt;DIY exercitation et id ugh tumblr church-key&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Incididunt umami sriracha, ethical fugiat VHS ex assumenda yr irure direct trade. Marfa Truffaut bicycle rights, kitsch placeat Etsy kogi asymmetrical. Beard locavore flexitarian, kitsch photo booth hoodie plaid ethical readymade leggings yr.&lt;/p&gt;
-
-&lt;p&gt;Aesthetic odio dolore, meggings disrupt qui readymade stumptown brunch Terry Richardson pour-over gluten-free. Banksy american apparel in selfies, biodiesel flexitarian organic meh wolf quinoa gentrify banjo kogi. Readymade tofu ex, scenester dolor umami fingerstache occaecat fashion axe Carles jean shorts minim. Keffiyeh fashion axe nisi Godard mlkshk dolore. Lomo you probably haven’t heard of them eu non, Odd Future Truffaut pug keytar meggings McSweeney’s Pinterest cred. Etsy literally aute esse, eu bicycle rights qui meggings fanny pack. Gentrify leggings pug flannel duis.&lt;/p&gt;
-
-&lt;h2 id=&quot;forage-occaecat-cardigan-qui&quot;&gt;Forage occaecat cardigan qui&lt;/h2&gt;
-
-&lt;p&gt;Fashion axe hella gastropub lo-fi kogi 90’s aliquip +1 veniam delectus tousled. Cred sriracha locavore gastropub kale chips, iPhone mollit sartorial. Anim dolore 8-bit, pork belly dolor photo booth aute flannel small batch. Dolor disrupt ennui, tattooed whatever salvia Banksy sartorial roof party selfies raw denim sint meh pour-over. Ennui eu cardigan sint, gentrify iPhone cornhole.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Whatever velit occaecat quis deserunt gastropub, leggings elit tousled roof party 3 wolf moon kogi pug blue bottle ea. Fashion axe shabby chic Austin quinoa pickled laborum bitters next level, disrupt deep v accusamus non fingerstache.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Tote bag asymmetrical elit sunt. Occaecat authentic Marfa, hella McSweeney’s next level irure veniam master cleanse. Sed hoodie letterpress artisan wolf leggings, 3 wolf moon commodo ullamco. Anim occupy ea labore Terry Richardson. Tofu ex master cleanse in whatever pitchfork banh mi, occupy fugiat fanny pack Austin authentic. Magna fugiat 3 wolf moon, labore McSweeney’s sustainable vero consectetur. Gluten-free disrupt enim, aesthetic fugiat jean shorts trust fund keffiyeh magna try-hard.&lt;/p&gt;
-
-&lt;h2 id=&quot;hoodie-duis&quot;&gt;Hoodie Duis&lt;/h2&gt;
-
-&lt;p&gt;Actually salvia consectetur, hoodie duis lomo YOLO sunt sriracha. Aute pop-up brunch farm-to-table odio, salvia irure occaecat. Sriracha small batch literally skateboard. Echo Park nihil hoodie, aliquip forage artisan laboris. Trust fund reprehenderit nulla locavore. Stumptown raw denim kitsch, keffiyeh nulla twee dreamcatcher fanny pack ullamco 90’s pop-up est culpa farm-to-table. Selfies 8-bit do pug odio.&lt;/p&gt;
-
-&lt;h3 id=&quot;thundercats-ho&quot;&gt;Thundercats Ho!&lt;/h3&gt;
-
-&lt;p&gt;Fingerstache thundercats Williamsburg, deep v scenester Banksy ennui vinyl selfies mollit biodiesel duis odio pop-up. Banksy 3 wolf moon try-hard, sapiente enim stumptown deep v ad letterpress. Squid beard brunch, exercitation raw denim yr sint direct trade. Raw denim narwhal id, flannel DIY McSweeney’s seitan. Letterpress artisan bespoke accusamus, meggings laboris consequat Truffaut qui in seitan. Sustainable cornhole Schlitz, twee Cosby sweater banh mi deep v forage letterpress flannel whatever keffiyeh. Sartorial cred irure, semiotics ethical sed blue bottle nihil letterpress.&lt;/p&gt;
-
-&lt;p&gt;Occupy et selvage squid, pug brunch blog nesciunt hashtag mumblecore skateboard yr kogi. Ugh small batch swag four loko. Fap post-ironic qui tote bag farm-to-table american apparel scenester keffiyeh vero, swag non pour-over gentrify authentic pitchfork. Schlitz scenester lo-fi voluptate, tote bag irony bicycle rights pariatur vero Vice freegan wayfarers exercitation nisi shoreditch. Chambray tofu vero sed. Street art swag literally leggings, Cosby sweater mixtape PBR lomo Banksy non in pitchfork ennui McSweeney’s selfies. Odd Future Banksy non authentic.&lt;/p&gt;
-
-&lt;p&gt;Aliquip enim artisan dolor post-ironic. Pug tote bag Marfa, deserunt pour-over Portland wolf eu odio intelligentsia american apparel ugh ea. Sunt viral et, 3 wolf moon gastropub pug id. Id fashion axe est typewriter, mlkshk Portland art party aute brunch. Sint pork belly Cosby sweater, deep v mumblecore kitsch american apparel. Try-hard direct trade tumblr sint skateboard. Adipisicing bitters excepteur biodiesel, pickled gastropub aute veniam.&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;Texture image courtesty of &lt;a href=&quot;http://www.lovetextures.com/&quot;&gt;Lovetextures&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;
-
-    
-
-&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/posts/readability-feature-post/&quot; rel=&quot;nofollow&quot;&gt;Post with Large Feature Image and Text&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
-
-
-  </content>
-
-  
-  <author>
-    
-      <name>David Jones</name>
-    
-    
-      <email>BladeFireLight@outlook.com</email>
-    
-    <uri>https://blog.bladefirelight.com/</uri>
-  </author>
-
-
-
-  
-    <category term="posts" />
-  
-
-  
-    <category term="sample post" />
-  
-    <category term="readability" />
-  
-    <category term="test" />
-  
-
-  
-    <summary type="text">Custom written post descriptions are the way to go… if you’re not lazy.</summary>
-  
-</entry>
-
-  
-    <entry>
   <title>A Post with Images</title>
   <link href="https://blog.bladefirelight.com/projects/proj2/sample-post-images/" rel="alternate" type="text/html" title="A Post with Images" />
   <published>2013-05-22T00:00:00-05:00</published>
@@ -765,6 +1270,10 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
   <id>https://blog.bladefirelight.com/projects/proj2/sample-post-images</id>
   <content type="html" xml:base="https://blog.bladefirelight.com/projects/proj2/sample-post-images/">
     
+
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-1.jpg&quot; alt=&quot;A Post with Images&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+
+
     &lt;p&gt;Here are some examples of what a post with images might look like. If you want to display two or three images next to each other responsively use &lt;code class=&quot;highlighter-rouge&quot;&gt;figure&lt;/code&gt; with the appropriate &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;. Each instance of &lt;code class=&quot;highlighter-rouge&quot;&gt;figure&lt;/code&gt; is auto-numbered and displayed in the caption.&lt;/p&gt;
 
 &lt;h3 id=&quot;figures-for-images-or-video&quot;&gt;Figures (for images or video)&lt;/h3&gt;
@@ -855,225 +1364,6 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
   
     <entry>
-  <title>A Post with Images</title>
-  <link href="https://blog.bladefirelight.com/nuggets/sample-post-images/" rel="alternate" type="text/html" title="A Post with Images" />
-  <published>2013-05-22T00:00:00-05:00</published>
-
-  
-    <updated>2013-05-22T00:00:00-05:00</updated>
-  
-
-  <id>https://blog.bladefirelight.com/nuggets/sample-post-images</id>
-  <content type="html" xml:base="https://blog.bladefirelight.com/nuggets/sample-post-images/">
-    
-    &lt;p&gt;Here are some examples of what a post with images might look like. If you want to display two or three images next to each other responsively use &lt;code class=&quot;highlighter-rouge&quot;&gt;figure&lt;/code&gt; with the appropriate &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;. Each instance of &lt;code class=&quot;highlighter-rouge&quot;&gt;figure&lt;/code&gt; is auto-numbered and displayed in the caption.&lt;/p&gt;
-
-&lt;h3 id=&quot;figures-for-images-or-video&quot;&gt;Figures (for images or video)&lt;/h3&gt;
-
-&lt;h4 id=&quot;one-up&quot;&gt;One Up&lt;/h4&gt;
-
-&lt;figure&gt;
-	&lt;a href=&quot;http://farm9.staticflickr.com/8426/7758832526_cc8f681e48_b.jpg&quot;&gt;&lt;img src=&quot;http://farm9.staticflickr.com/8426/7758832526_cc8f681e48_c.jpg&quot; /&gt;&lt;/a&gt;
-	&lt;figcaption&gt;&lt;a href=&quot;http://www.flickr.com/photos/80901381@N04/7758832526/&quot; title=&quot;Morning Fog Emerging From Trees by A Guy Taking Pictures, on Flickr&quot;&gt;Morning Fog Emerging From Trees by A Guy Taking Pictures, on Flickr&lt;/a&gt;.&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Vero laborum commodo occupy. Semiotics voluptate mumblecore pug. Cosby sweater ullamco quinoa ennui assumenda, sapiente occupy delectus lo-fi. Ea fashion axe Marfa cillum aliquip. Retro Bushwick keytar cliche. Before they sold out sustainable gastropub Marfa readymade, ethical Williamsburg skateboard brunch qui consectetur gentrify semiotics. Mustache cillum irony, fingerstache magna pour-over keffiyeh tousled selfies.&lt;/p&gt;
-
-&lt;h4 id=&quot;two-up&quot;&gt;Two Up&lt;/h4&gt;
-
-&lt;p&gt;Apply the &lt;code class=&quot;highlighter-rouge&quot;&gt;half&lt;/code&gt; class like so to display two images side by side that share the same caption.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;figure&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;half&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/images/image-filename-1-large.jpg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/images/image-filename-1.jpg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/images/image-filename-2-large.jpg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/images/image-filename-2.jpg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;figcaption&amp;gt;&lt;/span&gt;Caption describing these two images.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/figcaption&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/figure&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;And you’ll get something that looks like this:&lt;/p&gt;
-
-&lt;figure class=&quot;half&quot;&gt;
-	&lt;a href=&quot;http://placehold.it/1200x600.JPG&quot;&gt;&lt;img src=&quot;http://placehold.it/600x300.jpg&quot; /&gt;&lt;/a&gt;
-	&lt;a href=&quot;http://placehold.it/1200x600.jpeg&quot;&gt;&lt;img src=&quot;http://placehold.it/600x300.jpg&quot; /&gt;&lt;/a&gt;
-	&lt;figcaption&gt;Two images.&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;h4 id=&quot;three-up&quot;&gt;Three Up&lt;/h4&gt;
-
-&lt;p&gt;Apply the &lt;code class=&quot;highlighter-rouge&quot;&gt;third&lt;/code&gt; class like so to display three images side by side that share the same caption.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;figure&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;third&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/images/image-filename-1.jpg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/images/image-filename-2.jpg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/images/image-filename-3.jpg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;&amp;lt;figcaption&amp;gt;&lt;/span&gt;Caption describing these three images.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/figcaption&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/figure&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;And you’ll get something that looks like this:&lt;/p&gt;
-
-&lt;figure class=&quot;third&quot;&gt;
-	&lt;img src=&quot;http://placehold.it/600x300.jpg&quot; /&gt;
-	&lt;img src=&quot;http://placehold.it/600x300.jpg&quot; /&gt;
-	&lt;img src=&quot;http://placehold.it/600x300.jpg&quot; /&gt;
-	&lt;figcaption&gt;Three images.&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-    
-
-&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/nuggets/sample-post-images/&quot; rel=&quot;nofollow&quot;&gt;A Post with Images&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
-
-
-  </content>
-
-  
-  <author>
-    
-      <name>David Jones</name>
-    
-    
-      <email>BladeFireLight@outlook.com</email>
-    
-    <uri>https://blog.bladefirelight.com/</uri>
-  </author>
-
-
-
-  
-    <category term="nuggets" />
-  
-
-  
-    <category term="sample post" />
-  
-    <category term="images" />
-  
-    <category term="test" />
-  
-
-  
-    <summary type="text">Examples and code for displaying images in posts.</summary>
-  
-</entry>
-
-  
-    <entry>
-  <title>A Post with Images</title>
-  <link href="https://blog.bladefirelight.com/posts/sample-post-images/" rel="alternate" type="text/html" title="A Post with Images" />
-  <published>2013-05-22T00:00:00-05:00</published>
-
-  
-    <updated>2013-05-22T00:00:00-05:00</updated>
-  
-
-  <id>https://blog.bladefirelight.com/posts/sample-post-images</id>
-  <content type="html" xml:base="https://blog.bladefirelight.com/posts/sample-post-images/">
-    
-
-&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-1.jpg&quot; alt=&quot;A Post with Images&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
-
-
-    &lt;nav class=&quot;js-toc toc&quot;&gt;
-  &lt;h4 class=&quot;toc__title&quot;&gt;Contents&lt;/h4&gt;
-&lt;ul class=&quot;toc__menu&quot; id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#figures-for-images-or-video&quot; id=&quot;markdown-toc-figures-for-images-or-video&quot;&gt;Figures (for images or video)&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#one-up&quot; id=&quot;markdown-toc-one-up&quot;&gt;One Up&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#two-up&quot; id=&quot;markdown-toc-two-up&quot;&gt;Two Up&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#three-up&quot; id=&quot;markdown-toc-three-up&quot;&gt;Three Up&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;/nav&gt;
-
-&lt;p&gt;Here are some examples of what a post with images might look like. If you want to display two or three images next to each other responsively use &lt;code class=&quot;highlighter-rouge&quot;&gt;figure&lt;/code&gt; with the appropriate &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;. Each instance of &lt;code class=&quot;highlighter-rouge&quot;&gt;figure&lt;/code&gt; is auto-numbered and displayed in the caption.&lt;/p&gt;
-
-&lt;h3 id=&quot;figures-for-images-or-video&quot;&gt;Figures (for images or video)&lt;/h3&gt;
-
-&lt;h4 id=&quot;one-up&quot;&gt;One Up&lt;/h4&gt;
-
-&lt;figure&gt;
-	&lt;a class=&quot;image-popup&quot; href=&quot;http://farm9.staticflickr.com/8426/7758832526_cc8f681e48_b.jpg&quot;&gt;&lt;img src=&quot;http://farm9.staticflickr.com/8426/7758832526_cc8f681e48_c.jpg&quot; /&gt;&lt;/a&gt;
-	&lt;figcaption&gt;&lt;a href=&quot;http://www.flickr.com/photos/80901381@N04/7758832526/&quot; title=&quot;Morning Fog Emerging From Trees by A Guy Taking Pictures, on Flickr&quot;&gt;Morning Fog Emerging From Trees by A Guy Taking Pictures, on Flickr&lt;/a&gt;.&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Vero laborum commodo occupy. Semiotics voluptate mumblecore pug. Cosby sweater ullamco quinoa ennui assumenda, sapiente occupy delectus lo-fi. Ea fashion axe Marfa cillum aliquip. Retro Bushwick keytar cliche. Before they sold out sustainable gastropub Marfa readymade, ethical Williamsburg skateboard brunch qui consectetur gentrify semiotics. Mustache cillum irony, fingerstache magna pour-over keffiyeh tousled selfies.&lt;/p&gt;
-
-&lt;h4 id=&quot;two-up&quot;&gt;Two Up&lt;/h4&gt;
-
-&lt;p&gt;Apply the &lt;code class=&quot;highlighter-rouge&quot;&gt;half&lt;/code&gt; class like so to display two images side by side that share the same caption.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;figure&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;half&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image-popup&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/images/image-filename-1-large.jpg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/images/image-filename-1.jpg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image-popup&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/images/image-filename-2-large.jpg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/images/image-filename-2.jpg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;figcaption&amp;gt;&lt;/span&gt;Caption describing these two images.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/figcaption&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/figure&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;And you’ll get something that looks like this:&lt;/p&gt;
-
-&lt;figure class=&quot;half&quot;&gt;
-	&lt;a class=&quot;image-popup&quot; href=&quot;http://placehold.it/1200x600.JPG&quot;&gt;&lt;img src=&quot;http://placehold.it/600x300.jpg&quot; /&gt;&lt;/a&gt;
-	&lt;a class=&quot;image-popup&quot; href=&quot;http://placehold.it/1200x600.jpeg&quot;&gt;&lt;img src=&quot;http://placehold.it/600x300.jpg&quot; /&gt;&lt;/a&gt;
-	&lt;figcaption&gt;Two images.&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;h4 id=&quot;three-up&quot;&gt;Three Up&lt;/h4&gt;
-
-&lt;p&gt;Apply the &lt;code class=&quot;highlighter-rouge&quot;&gt;third&lt;/code&gt; class like so to display three images side by side that share the same caption.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;figure&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;third&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/images/image-filename-1.jpg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/images/image-filename-2.jpg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/images/image-filename-3.jpg&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-	&lt;span class=&quot;nt&quot;&gt;&amp;lt;figcaption&amp;gt;&lt;/span&gt;Caption describing these three images.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/figcaption&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/figure&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;And you’ll get something that looks like this:&lt;/p&gt;
-
-&lt;figure class=&quot;third&quot;&gt;
-	&lt;img src=&quot;http://placehold.it/600x300.jpg&quot; /&gt;
-	&lt;img src=&quot;http://placehold.it/600x300.jpg&quot; /&gt;
-	&lt;img src=&quot;http://placehold.it/600x300.jpg&quot; /&gt;
-	&lt;figcaption&gt;Three images.&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-    
-
-&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/posts/sample-post-images/&quot; rel=&quot;nofollow&quot;&gt;A Post with Images&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
-
-
-  </content>
-
-  
-  <author>
-    
-      <name>David Jones</name>
-    
-    
-      <email>BladeFireLight@outlook.com</email>
-    
-    <uri>https://blog.bladefirelight.com/</uri>
-  </author>
-
-
-
-  
-    <category term="posts" />
-  
-
-  
-    <category term="sample post" />
-  
-    <category term="images" />
-  
-    <category term="test" />
-  
-
-  
-    <summary type="text">Examples and code for displaying images in posts.</summary>
-  
-</entry>
-
-  
-    <entry>
   <title>Testing Readability with a Bunch of Text</title>
   <link href="https://blog.bladefirelight.com/projects/proj1/readability-post/" rel="alternate" type="text/html" title="Testing Readability with a Bunch of Text" />
   <published>2012-05-22T00:00:00-05:00</published>
@@ -1085,6 +1375,10 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
   <id>https://blog.bladefirelight.com/projects/proj1/readability-post</id>
   <content type="html" xml:base="https://blog.bladefirelight.com/projects/proj1/readability-post/">
     
+
+&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-1.jpg&quot; alt=&quot;Testing Readability with a Bunch of Text&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
+
+
     &lt;p&gt;Portland in shoreditch Vice, labore typewriter pariatur hoodie fap sartorial Austin. Pinterest literally occupy Schlitz forage. Odio ad blue bottle vinyl, 90’s narwhal commodo bitters pour-over nostrud. Ugh est hashtag in, fingerstache adipisicing laboris esse Pinterest shabby chic Portland. Shoreditch bicycle rights anim, flexitarian laboris put a bird on it vinyl cupidatat narwhal. Hashtag artisan skateboard, flannel Bushwick nesciunt salvia aute fixie do plaid post-ironic dolor McSweeney’s. Cliche pour-over chambray nulla four loko skateboard sapiente hashtag.&lt;/p&gt;
 
 &lt;p&gt;Vero laborum commodo occupy. Semiotics voluptate mumblecore pug. Cosby sweater ullamco quinoa ennui assumenda, sapiente occupy delectus lo-fi. Ea fashion axe Marfa cillum aliquip. Retro Bushwick keytar cliche. Before they sold out sustainable gastropub Marfa readymade, ethical Williamsburg skateboard brunch qui consectetur gentrify semiotics. Mustache cillum irony, fingerstache magna pour-over keffiyeh tousled selfies.&lt;/p&gt;
@@ -1148,205 +1442,6 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
   
     <category term="projects" />
-  
-
-  
-    <category term="sample post" />
-  
-    <category term="readability" />
-  
-    <category term="test" />
-  
-
-  
-    <summary type="text">A ton of text to test readability.</summary>
-  
-</entry>
-
-  
-    <entry>
-  <title>Testing Readability with a Bunch of Text</title>
-  <link href="https://blog.bladefirelight.com/nuggets/readability-post/" rel="alternate" type="text/html" title="Testing Readability with a Bunch of Text" />
-  <published>2012-05-22T00:00:00-05:00</published>
-
-  
-    <updated>2012-05-22T00:00:00-05:00</updated>
-  
-
-  <id>https://blog.bladefirelight.com/nuggets/readability-post</id>
-  <content type="html" xml:base="https://blog.bladefirelight.com/nuggets/readability-post/">
-    
-    &lt;p&gt;Portland in shoreditch Vice, labore typewriter pariatur hoodie fap sartorial Austin. Pinterest literally occupy Schlitz forage. Odio ad blue bottle vinyl, 90’s narwhal commodo bitters pour-over nostrud. Ugh est hashtag in, fingerstache adipisicing laboris esse Pinterest shabby chic Portland. Shoreditch bicycle rights anim, flexitarian laboris put a bird on it vinyl cupidatat narwhal. Hashtag artisan skateboard, flannel Bushwick nesciunt salvia aute fixie do plaid post-ironic dolor McSweeney’s. Cliche pour-over chambray nulla four loko skateboard sapiente hashtag.&lt;/p&gt;
-
-&lt;p&gt;Vero laborum commodo occupy. Semiotics voluptate mumblecore pug. Cosby sweater ullamco quinoa ennui assumenda, sapiente occupy delectus lo-fi. Ea fashion axe Marfa cillum aliquip. Retro Bushwick keytar cliche. Before they sold out sustainable gastropub Marfa readymade, ethical Williamsburg skateboard brunch qui consectetur gentrify semiotics. Mustache cillum irony, fingerstache magna pour-over keffiyeh tousled selfies.&lt;/p&gt;
-
-&lt;h2 id=&quot;cupidatat-90s-lo-fi-authentic-try-hard&quot;&gt;Cupidatat 90’s lo-fi authentic try-hard&lt;/h2&gt;
-
-&lt;p&gt;In pug Portland incididunt mlkshk put a bird on it vinyl quinoa. Terry Richardson shabby chic +1, scenester Tonx excepteur tempor fugiat voluptate fingerstache aliquip nisi next level. Farm-to-table hashtag Truffaut, Odd Future ex meggings gentrify single-origin coffee try-hard 90’s.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Sartorial hoodie&lt;/li&gt;
-  &lt;li&gt;Labore viral forage&lt;/li&gt;
-  &lt;li&gt;Tote bag selvage&lt;/li&gt;
-  &lt;li&gt;DIY exercitation et id ugh tumblr church-key&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Incididunt umami sriracha, ethical fugiat VHS ex assumenda yr irure direct trade. Marfa Truffaut bicycle rights, kitsch placeat Etsy kogi asymmetrical. Beard locavore flexitarian, kitsch photo booth hoodie plaid ethical readymade leggings yr.&lt;/p&gt;
-
-&lt;p&gt;Aesthetic odio dolore, meggings disrupt qui readymade stumptown brunch Terry Richardson pour-over gluten-free. Banksy american apparel in selfies, biodiesel flexitarian organic meh wolf quinoa gentrify banjo kogi. Readymade tofu ex, scenester dolor umami fingerstache occaecat fashion axe Carles jean shorts minim. Keffiyeh fashion axe nisi Godard mlkshk dolore. Lomo you probably haven’t heard of them eu non, Odd Future Truffaut pug keytar meggings McSweeney’s Pinterest cred. Etsy literally aute esse, eu bicycle rights qui meggings fanny pack. Gentrify leggings pug flannel duis.&lt;/p&gt;
-
-&lt;h2 id=&quot;forage-occaecat-cardigan-qui&quot;&gt;Forage occaecat cardigan qui&lt;/h2&gt;
-
-&lt;p&gt;Fashion axe hella gastropub lo-fi kogi 90’s aliquip +1 veniam delectus tousled. Cred sriracha locavore gastropub kale chips, iPhone mollit sartorial. Anim dolore 8-bit, pork belly dolor photo booth aute flannel small batch. Dolor disrupt ennui, tattooed whatever salvia Banksy sartorial roof party selfies raw denim sint meh pour-over. Ennui eu cardigan sint, gentrify iPhone cornhole.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Whatever velit occaecat quis deserunt gastropub, leggings elit tousled roof party 3 wolf moon kogi pug blue bottle ea. Fashion axe shabby chic Austin quinoa pickled laborum bitters next level, disrupt deep v accusamus non fingerstache.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Tote bag asymmetrical elit sunt. Occaecat authentic Marfa, hella McSweeney’s next level irure veniam master cleanse. Sed hoodie letterpress artisan wolf leggings, 3 wolf moon commodo ullamco. Anim occupy ea labore Terry Richardson. Tofu ex master cleanse in whatever pitchfork banh mi, occupy fugiat fanny pack Austin authentic. Magna fugiat 3 wolf moon, labore McSweeney’s sustainable vero consectetur. Gluten-free disrupt enim, aesthetic fugiat jean shorts trust fund keffiyeh magna try-hard.&lt;/p&gt;
-
-&lt;h2 id=&quot;hoodie-duis&quot;&gt;Hoodie Duis&lt;/h2&gt;
-
-&lt;p&gt;Actually salvia consectetur, hoodie duis lomo YOLO sunt sriracha. Aute pop-up brunch farm-to-table odio, salvia irure occaecat. Sriracha small batch literally skateboard. Echo Park nihil hoodie, aliquip forage artisan laboris. Trust fund reprehenderit nulla locavore. Stumptown raw denim kitsch, keffiyeh nulla twee dreamcatcher fanny pack ullamco 90’s pop-up est culpa farm-to-table. Selfies 8-bit do pug odio.&lt;/p&gt;
-
-&lt;h3 id=&quot;thundercats-ho&quot;&gt;Thundercats Ho!&lt;/h3&gt;
-
-&lt;p&gt;Fingerstache thundercats Williamsburg, deep v scenester Banksy ennui vinyl selfies mollit biodiesel duis odio pop-up. Banksy 3 wolf moon try-hard, sapiente enim stumptown deep v ad letterpress. Squid beard brunch, exercitation raw denim yr sint direct trade. Raw denim narwhal id, flannel DIY McSweeney’s seitan. Letterpress artisan bespoke accusamus, meggings laboris consequat Truffaut qui in seitan. Sustainable cornhole Schlitz, twee Cosby sweater banh mi deep v forage letterpress flannel whatever keffiyeh. Sartorial cred irure, semiotics ethical sed blue bottle nihil letterpress.&lt;/p&gt;
-
-&lt;p&gt;Occupy et selvage squid, pug brunch blog nesciunt hashtag mumblecore skateboard yr kogi. Ugh small batch swag four loko. Fap post-ironic qui tote bag farm-to-table american apparel scenester keffiyeh vero, swag non pour-over gentrify authentic pitchfork. Schlitz scenester lo-fi voluptate, tote bag irony bicycle rights pariatur vero Vice freegan wayfarers exercitation nisi shoreditch. Chambray tofu vero sed. Street art swag literally leggings, Cosby sweater mixtape PBR lomo Banksy non in pitchfork ennui McSweeney’s selfies. Odd Future Banksy non authentic.&lt;/p&gt;
-
-&lt;p&gt;Aliquip enim artisan dolor post-ironic. Pug tote bag Marfa, deserunt pour-over Portland wolf eu odio intelligentsia american apparel ugh ea. Sunt viral et, 3 wolf moon gastropub pug id. Id fashion axe est typewriter, mlkshk Portland art party aute brunch. Sint pork belly Cosby sweater, deep v mumblecore kitsch american apparel. Try-hard direct trade tumblr sint skateboard. Adipisicing bitters excepteur biodiesel, pickled gastropub aute veniam.&lt;/p&gt;
-
-    
-
-&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/nuggets/readability-post/&quot; rel=&quot;nofollow&quot;&gt;Testing Readability with a Bunch of Text&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
-
-
-  </content>
-
-  
-  <author>
-    
-      <name>David Jones</name>
-    
-    
-      <email>BladeFireLight@outlook.com</email>
-    
-    <uri>https://blog.bladefirelight.com/</uri>
-  </author>
-
-
-
-  
-    <category term="nuggets" />
-  
-
-  
-    <category term="sample post" />
-  
-    <category term="readability" />
-  
-    <category term="test" />
-  
-
-  
-    <summary type="text">A ton of text to test readability.</summary>
-  
-</entry>
-
-  
-    <entry>
-  <title>Testing Readability with a Bunch of Text</title>
-  <link href="https://blog.bladefirelight.com/posts/readability-post/" rel="alternate" type="text/html" title="Testing Readability with a Bunch of Text" />
-  <published>2012-05-22T00:00:00-05:00</published>
-
-  
-    <updated>2012-05-22T00:00:00-05:00</updated>
-  
-
-  <id>https://blog.bladefirelight.com/posts/readability-post</id>
-  <content type="html" xml:base="https://blog.bladefirelight.com/posts/readability-post/">
-    
-
-&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-1.jpg&quot; alt=&quot;Testing Readability with a Bunch of Text&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
-
-
-    &lt;nav class=&quot;js-toc toc&quot;&gt;
-  &lt;h4 class=&quot;toc__title&quot;&gt;Contents&lt;/h4&gt;
-&lt;ul class=&quot;toc__menu&quot; id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#cupidatat-90s-lo-fi-authentic-try-hard&quot; id=&quot;markdown-toc-cupidatat-90s-lo-fi-authentic-try-hard&quot;&gt;Cupidatat 90’s lo-fi authentic try-hard&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#forage-occaecat-cardigan-qui&quot; id=&quot;markdown-toc-forage-occaecat-cardigan-qui&quot;&gt;Forage occaecat cardigan qui&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#hoodie-duis&quot; id=&quot;markdown-toc-hoodie-duis&quot;&gt;Hoodie Duis&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#thundercats-ho&quot; id=&quot;markdown-toc-thundercats-ho&quot;&gt;Thundercats Ho!&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;/nav&gt;
-
-&lt;p&gt;Portland in shoreditch Vice, labore typewriter pariatur hoodie fap sartorial Austin. Pinterest literally occupy Schlitz forage. Odio ad blue bottle vinyl, 90’s narwhal commodo bitters pour-over nostrud. Ugh est hashtag in, fingerstache adipisicing laboris esse Pinterest shabby chic Portland. Shoreditch bicycle rights anim, flexitarian laboris put a bird on it vinyl cupidatat narwhal. Hashtag artisan skateboard, flannel Bushwick nesciunt salvia aute fixie do plaid post-ironic dolor McSweeney’s. Cliche pour-over chambray nulla four loko skateboard sapiente hashtag.&lt;/p&gt;
-
-&lt;p&gt;Vero laborum commodo occupy. Semiotics voluptate mumblecore pug. Cosby sweater ullamco quinoa ennui assumenda, sapiente occupy delectus lo-fi. Ea fashion axe Marfa cillum aliquip. Retro Bushwick keytar cliche. Before they sold out sustainable gastropub Marfa readymade, ethical Williamsburg skateboard brunch qui consectetur gentrify semiotics. Mustache cillum irony, fingerstache magna pour-over keffiyeh tousled selfies.&lt;/p&gt;
-
-&lt;h2 id=&quot;cupidatat-90s-lo-fi-authentic-try-hard&quot;&gt;Cupidatat 90’s lo-fi authentic try-hard&lt;/h2&gt;
-
-&lt;p&gt;In pug Portland incididunt mlkshk put a bird on it vinyl quinoa. Terry Richardson shabby chic +1, scenester Tonx excepteur tempor fugiat voluptate fingerstache aliquip nisi next level. Farm-to-table hashtag Truffaut, Odd Future ex meggings gentrify single-origin coffee try-hard 90’s.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Sartorial hoodie&lt;/li&gt;
-  &lt;li&gt;Labore viral forage&lt;/li&gt;
-  &lt;li&gt;Tote bag selvage&lt;/li&gt;
-  &lt;li&gt;DIY exercitation et id ugh tumblr church-key&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Incididunt umami sriracha, ethical fugiat VHS ex assumenda yr irure direct trade. Marfa Truffaut bicycle rights, kitsch placeat Etsy kogi asymmetrical. Beard locavore flexitarian, kitsch photo booth hoodie plaid ethical readymade leggings yr.&lt;/p&gt;
-
-&lt;p&gt;Aesthetic odio dolore, meggings disrupt qui readymade stumptown brunch Terry Richardson pour-over gluten-free. Banksy american apparel in selfies, biodiesel flexitarian organic meh wolf quinoa gentrify banjo kogi. Readymade tofu ex, scenester dolor umami fingerstache occaecat fashion axe Carles jean shorts minim. Keffiyeh fashion axe nisi Godard mlkshk dolore. Lomo you probably haven’t heard of them eu non, Odd Future Truffaut pug keytar meggings McSweeney’s Pinterest cred. Etsy literally aute esse, eu bicycle rights qui meggings fanny pack. Gentrify leggings pug flannel duis.&lt;/p&gt;
-
-&lt;h2 id=&quot;forage-occaecat-cardigan-qui&quot;&gt;Forage occaecat cardigan qui&lt;/h2&gt;
-
-&lt;p&gt;Fashion axe hella gastropub lo-fi kogi 90’s aliquip +1 veniam delectus tousled. Cred sriracha locavore gastropub kale chips, iPhone mollit sartorial. Anim dolore 8-bit, pork belly dolor photo booth aute flannel small batch. Dolor disrupt ennui, tattooed whatever salvia Banksy sartorial roof party selfies raw denim sint meh pour-over. Ennui eu cardigan sint, gentrify iPhone cornhole.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Whatever velit occaecat quis deserunt gastropub, leggings elit tousled roof party 3 wolf moon kogi pug blue bottle ea. Fashion axe shabby chic Austin quinoa pickled laborum bitters next level, disrupt deep v accusamus non fingerstache.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Tote bag asymmetrical elit sunt. Occaecat authentic Marfa, hella McSweeney’s next level irure veniam master cleanse. Sed hoodie letterpress artisan wolf leggings, 3 wolf moon commodo ullamco. Anim occupy ea labore Terry Richardson. Tofu ex master cleanse in whatever pitchfork banh mi, occupy fugiat fanny pack Austin authentic. Magna fugiat 3 wolf moon, labore McSweeney’s sustainable vero consectetur. Gluten-free disrupt enim, aesthetic fugiat jean shorts trust fund keffiyeh magna try-hard.&lt;/p&gt;
-
-&lt;h2 id=&quot;hoodie-duis&quot;&gt;Hoodie Duis&lt;/h2&gt;
-
-&lt;p&gt;Actually salvia consectetur, hoodie duis lomo YOLO sunt sriracha. Aute pop-up brunch farm-to-table odio, salvia irure occaecat. Sriracha small batch literally skateboard. Echo Park nihil hoodie, aliquip forage artisan laboris. Trust fund reprehenderit nulla locavore. Stumptown raw denim kitsch, keffiyeh nulla twee dreamcatcher fanny pack ullamco 90’s pop-up est culpa farm-to-table. Selfies 8-bit do pug odio.&lt;/p&gt;
-
-&lt;h3 id=&quot;thundercats-ho&quot;&gt;Thundercats Ho!&lt;/h3&gt;
-
-&lt;p&gt;Fingerstache thundercats Williamsburg, deep v scenester Banksy ennui vinyl selfies mollit biodiesel duis odio pop-up. Banksy 3 wolf moon try-hard, sapiente enim stumptown deep v ad letterpress. Squid beard brunch, exercitation raw denim yr sint direct trade. Raw denim narwhal id, flannel DIY McSweeney’s seitan. Letterpress artisan bespoke accusamus, meggings laboris consequat Truffaut qui in seitan. Sustainable cornhole Schlitz, twee Cosby sweater banh mi deep v forage letterpress flannel whatever keffiyeh. Sartorial cred irure, semiotics ethical sed blue bottle nihil letterpress.&lt;/p&gt;
-
-&lt;p&gt;Occupy et selvage squid, pug brunch blog nesciunt hashtag mumblecore skateboard yr kogi. Ugh small batch swag four loko. Fap post-ironic qui tote bag farm-to-table american apparel scenester keffiyeh vero, swag non pour-over gentrify authentic pitchfork. Schlitz scenester lo-fi voluptate, tote bag irony bicycle rights pariatur vero Vice freegan wayfarers exercitation nisi shoreditch. Chambray tofu vero sed. Street art swag literally leggings, Cosby sweater mixtape PBR lomo Banksy non in pitchfork ennui McSweeney’s selfies. Odd Future Banksy non authentic.&lt;/p&gt;
-
-&lt;p&gt;Aliquip enim artisan dolor post-ironic. Pug tote bag Marfa, deserunt pour-over Portland wolf eu odio intelligentsia american apparel ugh ea. Sunt viral et, 3 wolf moon gastropub pug id. Id fashion axe est typewriter, mlkshk Portland art party aute brunch. Sint pork belly Cosby sweater, deep v mumblecore kitsch american apparel. Try-hard direct trade tumblr sint skateboard. Adipisicing bitters excepteur biodiesel, pickled gastropub aute veniam.&lt;/p&gt;
-
-    
-
-&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/posts/readability-post/&quot; rel=&quot;nofollow&quot;&gt;Testing Readability with a Bunch of Text&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
-
-
-  </content>
-
-  
-  <author>
-    
-      <name>David Jones</name>
-    
-    
-      <email>BladeFireLight@outlook.com</email>
-    
-    <uri>https://blog.bladefirelight.com/</uri>
-  </author>
-
-
-
-  
-    <category term="posts" />
   
 
   
@@ -1563,218 +1658,6 @@ test-function -verbose&lt;/pre&gt;&lt;/noscript&gt;
 
   
     <category term="projects" />
-  
-
-  
-    <category term="nugget" />
-  
-
-  
-    <summary type="text">Just about everything you’ll need to style in the theme: headings, paragraphs, blockquotes, tables, code blocks, and more.</summary>
-  
-</entry>
-
-  
-    <entry>
-  <title>Sample Post</title>
-  <link href="https://blog.bladefirelight.com/nuggets/sample-post/" rel="alternate" type="text/html" title="Sample Post" />
-  <published>2011-03-10T00:00:00-06:00</published>
-
-  
-    <updated>2013-05-31T00:00:00-05:00</updated>
-  
-
-  <id>https://blog.bladefirelight.com/nuggets/sample-post</id>
-  <content type="html" xml:base="https://blog.bladefirelight.com/nuggets/sample-post/">
-    
-
-&lt;p&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/sample-image-5.jpg&quot; alt=&quot;Sample Post&quot; /&gt;&lt;br /&gt;&lt;/p&gt;
-
-
-    &lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
-  &lt;header&gt;
-    &lt;h3&gt;Overview&lt;/h3&gt;
-  &lt;/header&gt;
-&lt;div id=&quot;drawer&quot;&gt;
-&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#html-elements&quot; id=&quot;markdown-toc-html-elements&quot;&gt;HTML Elements&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#heading-1&quot; id=&quot;markdown-toc-heading-1&quot;&gt;Heading 1&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#heading-2&quot; id=&quot;markdown-toc-heading-2&quot;&gt;Heading 2&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#heading-3&quot; id=&quot;markdown-toc-heading-3&quot;&gt;Heading 3&lt;/a&gt;            &lt;ul&gt;
-              &lt;li&gt;&lt;a href=&quot;#heading-4&quot; id=&quot;markdown-toc-heading-4&quot;&gt;Heading 4&lt;/a&gt;                &lt;ul&gt;
-                  &lt;li&gt;&lt;a href=&quot;#heading-5&quot; id=&quot;markdown-toc-heading-5&quot;&gt;Heading 5&lt;/a&gt;                    &lt;ul&gt;
-                      &lt;li&gt;&lt;a href=&quot;#heading-6&quot; id=&quot;markdown-toc-heading-6&quot;&gt;Heading 6&lt;/a&gt;&lt;/li&gt;
-                    &lt;/ul&gt;
-                  &lt;/li&gt;
-                &lt;/ul&gt;
-              &lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#body-text&quot; id=&quot;markdown-toc-body-text&quot;&gt;Body text&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#blockquotes&quot; id=&quot;markdown-toc-blockquotes&quot;&gt;Blockquotes&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#list-types&quot; id=&quot;markdown-toc-list-types&quot;&gt;List Types&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#ordered-lists&quot; id=&quot;markdown-toc-ordered-lists&quot;&gt;Ordered Lists&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#unordered-lists&quot; id=&quot;markdown-toc-unordered-lists&quot;&gt;Unordered Lists&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#tables&quot; id=&quot;markdown-toc-tables&quot;&gt;Tables&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#code-snippets&quot; id=&quot;markdown-toc-code-snippets&quot;&gt;Code Snippets&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#buttons&quot; id=&quot;markdown-toc-buttons&quot;&gt;Buttons&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#notices&quot; id=&quot;markdown-toc-notices&quot;&gt;Notices&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-  &lt;/div&gt;
-&lt;/section&gt;
-&lt;!-- /#table-of-contents --&gt;
-
-&lt;h2 id=&quot;html-elements&quot;&gt;HTML Elements&lt;/h2&gt;
-
-&lt;p&gt;Below is just about everything you’ll need to style in the theme. Check the source code to see the many embedded elements within paragraphs.&lt;/p&gt;
-
-&lt;h1 id=&quot;heading-1&quot;&gt;Heading 1&lt;/h1&gt;
-
-&lt;h2 id=&quot;heading-2&quot;&gt;Heading 2&lt;/h2&gt;
-
-&lt;h3 id=&quot;heading-3&quot;&gt;Heading 3&lt;/h3&gt;
-
-&lt;h4 id=&quot;heading-4&quot;&gt;Heading 4&lt;/h4&gt;
-
-&lt;h5 id=&quot;heading-5&quot;&gt;Heading 5&lt;/h5&gt;
-
-&lt;h6 id=&quot;heading-6&quot;&gt;Heading 6&lt;/h6&gt;
-
-&lt;h3 id=&quot;body-text&quot;&gt;Body text&lt;/h3&gt;
-
-&lt;p&gt;Lorem ipsum dolor sit amet, test link adipiscing elit. &lt;strong&gt;This is strong&lt;/strong&gt;. Nullam dignissim convallis est. Quisque aliquam.&lt;/p&gt;
-
-&lt;p class=&quot;image-pull-right&quot;&gt;&lt;img src=&quot;https://blog.bladefirelight.com/images/3953273590_704e3899d5_m.jpg&quot; alt=&quot;Smithsonian Image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;This is emphasized&lt;/em&gt;. Donec faucibus. Nunc iaculis suscipit dui. 53 = 125. Water is H2O. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. The New York Times (That’s a citation). Underline.Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.&lt;/p&gt;
-
-&lt;p&gt;HTML and CSS are our tools. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus.&lt;/p&gt;
-
-&lt;h3 id=&quot;blockquotes&quot;&gt;Blockquotes&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Lorem ipsum dolor sit amet, test link adipiscing elit. Nullam dignissim convallis est. Quisque aliquam.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;list-types&quot;&gt;List Types&lt;/h2&gt;
-
-&lt;h3 id=&quot;ordered-lists&quot;&gt;Ordered Lists&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Item one
-    &lt;ol&gt;
-      &lt;li&gt;sub item one&lt;/li&gt;
-      &lt;li&gt;sub item two&lt;/li&gt;
-      &lt;li&gt;sub item three&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Item two&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;unordered-lists&quot;&gt;Unordered Lists&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Item one&lt;/li&gt;
-  &lt;li&gt;Item two&lt;/li&gt;
-  &lt;li&gt;Item three&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;tables&quot;&gt;Tables&lt;/h2&gt;
-
-&lt;table rules=&quot;groups&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Header1&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Header2&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;Header3&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;cell1&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;cell2&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;cell3&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;cell4&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;cell5&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;cell6&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;cell1&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;cell2&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;cell3&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;cell4&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;cell5&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;cell6&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-  &lt;tfoot&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Foot1&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Foot2&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;Foot3&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tfoot&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;code-snippets&quot;&gt;Code Snippets&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nf&quot;&gt;#container&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;-240px&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;buttons&quot;&gt;Buttons&lt;/h2&gt;
-
-&lt;p&gt;Make any link standout more when applying the &lt;code class=&quot;highlighter-rouge&quot;&gt;.btn&lt;/code&gt; class.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;#&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;btn btn-success&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Success Button&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;div&gt;&lt;a href=&quot;#&quot; class=&quot;btn&quot;&gt;Primary Button&lt;/a&gt;&lt;/div&gt;
-&lt;div&gt;&lt;a href=&quot;#&quot; class=&quot;btn btn-success&quot;&gt;Success Button&lt;/a&gt;&lt;/div&gt;
-&lt;div&gt;&lt;a href=&quot;#&quot; class=&quot;btn btn-warning&quot;&gt;Warning Button&lt;/a&gt;&lt;/div&gt;
-&lt;div&gt;&lt;a href=&quot;#&quot; class=&quot;btn btn-danger&quot;&gt;Danger Button&lt;/a&gt;&lt;/div&gt;
-&lt;div&gt;&lt;a href=&quot;#&quot; class=&quot;btn btn-info&quot;&gt;Info Button&lt;/a&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;notices&quot;&gt;Notices&lt;/h2&gt;
-
-&lt;p class=&quot;notice&quot;&gt;&lt;strong&gt;Watch out!&lt;/strong&gt; You can also add notices by appending &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.notice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt; to a paragraph.&lt;/p&gt;
-
-    
-
-&lt;p&gt;&lt;a href=&quot;https://blog.bladefirelight.com/nuggets/sample-post/&quot; rel=&quot;nofollow&quot;&gt;Sample Post&lt;/a&gt; was originally published by &lt;a href=&quot;https://blog.bladefirelight.com/about/&quot; rel=&quot;nofollow&quot;&gt;David Jones&lt;/a&gt; on &lt;a href=&quot;https://blog.bladefirelight.com&quot; rel=&quot;nofollow&quot;&gt;PowerShell Journey&lt;/a&gt;&lt;/p&gt;
-
-
-  </content>
-
-  
-  <author>
-    
-      <name>David Jones</name>
-    
-    
-      <email>BladeFireLight@outlook.com</email>
-    
-    <uri>https://blog.bladefirelight.com/</uri>
-  </author>
-
-
-
-  
-    <category term="nuggets" />
   
 
   
