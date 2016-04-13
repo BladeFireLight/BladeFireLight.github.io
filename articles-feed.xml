@@ -4,10 +4,10 @@
 
 
   <generator uri="http://jekyllrb.com" version="3.1.2">Jekyll</generator>
-  <link href="http://localhost:4000/articles-feed.xml" rel="self" type="application/atom+xml" />
-  <link href="http://localhost:4000/" rel="alternate" type="text/html" />
-  <updated>2016-03-18T16:01:08-05:00</updated>
-  <id>http://localhost:4000/</id>
+  <link href="https://blog.bladefirelight.com/articles-feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://blog.bladefirelight.com/" rel="alternate" type="text/html" />
+  <updated>2016-04-13T11:01:19-05:00</updated>
+  <id>https://blog.bladefirelight.com/</id>
 
   <title>Articles - PowerShell Journey</title>
 
@@ -15,7 +15,7 @@
     <subtitle>Documenting my personal journey in powershell</subtitle>
   
 
-  <icon>http://localhost:4000/apple-touch-icon-precomposed.png</icon>
+  <icon>https://blog.bladefirelight.com/apple-touch-icon-precomposed.png</icon>
 
 
   
@@ -26,7 +26,7 @@
     
       <email>BladeFireLight@outlook.com</email>
     
-    <uri>http://localhost:4000/</uri>
+    <uri>https://blog.bladefirelight.com/</uri>
   </author>
 
 
