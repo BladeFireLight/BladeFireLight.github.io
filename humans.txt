@@ -8,10 +8,11 @@
   Twitter:              @mmistakes
   Location:             Buffalo, New York USA
 
-/* About Site */  
-  Last updated:         2016-08-25 22:25:35 -0500
+/* About Site */
+  Last updated:         2017-01-23 18:44:25 -0600
   Language:             English
-  Built with:           Jekyll 3.1.2 <http://jekyllrb.com>
+  Built with:           Jekyll 3.3.1 <http://jekyllrb.com>
                         Notepad++ <https://notepad-plus-plus.org/>
                         Grunt <http://gruntjs.com>
                         Twitter Emoji <https://github.com/twitter/twemoji>
+                        Visual Studio Code <https://code.visualstudio.com>

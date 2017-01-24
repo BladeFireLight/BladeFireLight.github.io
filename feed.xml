@@ -1,0 +1,1381 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-01-23T18:44:25-06:00</updated><id>http://localhost:4000//</id><title type="html">PowerShell Journey</title><subtitle>Randome musings of a IT Pro</subtitle><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><entry><title type="html">Windows Image Tools \| Creating an Updated Image Part 3</title><link href="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates/" rel="alternate" type="text/html" title="Windows Image Tools \| Creating an Updated Image Part 3" /><published>2016-10-12T16:48:59-05:00</published><updated>2016-10-12T16:48:59-05:00</updated><id>http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates</id><content type="html" xml:base="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates/">&lt;aside class=&quot;sidebar__right&quot;&gt;
+&lt;nav class=&quot;toc&quot;&gt;
+    &lt;header&gt;&lt;h4 class=&quot;nav__title&quot;&gt;&lt;i class=&quot;fa fa-file-text&quot;&gt;&lt;/i&gt; On This Page&lt;/h4&gt;&lt;/header&gt;
+&lt;ul class=&quot;toc__menu&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#plan-for-today&quot; id=&quot;markdown-toc-plan-for-today&quot;&gt;Plan for today&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#prerequisites&quot; id=&quot;markdown-toc-prerequisites&quot;&gt;Prerequisites&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#kicking-off-updates&quot; id=&quot;markdown-toc-kicking-off-updates&quot;&gt;Kicking off Updates&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+  &lt;/nav&gt;
+&lt;/aside&gt;
+
+&lt;h2 id=&quot;plan-for-today&quot;&gt;Plan for today&lt;/h2&gt;
+
+&lt;p&gt;The end game is in site. Now that I have 2 images with WMF 5. it’s time to apply all the Windows Updates.&lt;/p&gt;
+
+&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h2&gt;
+
+&lt;p&gt;If you are folowing along you shoudl have a WindowsImageTools Update directory with two images. A striped down Core image, and all you can eat GUI image for source.&lt;/p&gt;
+
+&lt;h2 id=&quot;kicking-off-updates&quot;&gt;Kicking off Updates&lt;/h2&gt;
+
+&lt;p&gt;First off I’m going to run the updates. There are a nubmer of ways to do this, Invoke-WindowsUpdate can target individual images or all the images in our Update folders, and it can control the output.
+Because i’m doing source and small core images. I will update each image separately, and export the WIM only for the source, and shrink the Core&lt;/p&gt;
+
+&lt;p&gt;Lets start with the source&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code&gt;&lt;span style=&quot;color:#E0FFFF;&quot;&gt;get-date&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#E0FFFF;&quot;&gt;Invoke-WindowsImageUpdate&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#FFE4B5;&quot;&gt;-Path&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#EE82EE;&quot;&gt;G:\Blog_Example&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#FFE4B5;&quot;&gt;-output&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#EE82EE;&quot;&gt;Both&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#FFE4B5;&quot;&gt;-ImageName&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#EE82EE;&quot;&gt;Srv2012r2_Core&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#FFE4B5;&quot;&gt;-ReduceImageSize&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#FFE4B5;&quot;&gt;-Verbose&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#E0FFFF;&quot;&gt;get-date&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#E0FFFF;&quot;&gt;Invoke-WindowsImageUpdate&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#FFE4B5;&quot;&gt;-Path&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#EE82EE;&quot;&gt;G:\Blog_Example&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#FFE4B5;&quot;&gt;-output&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#EE82EE;&quot;&gt;WIM&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#FFE4B5;&quot;&gt;-ImageName&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#EE82EE;&quot;&gt;Srv2012r2_Source&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#FFE4B5;&quot;&gt;-Verbose&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#E0FFFF;&quot;&gt;get-date&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code&gt;&lt;span style=&quot;color:#F5F5F5;&quot;&gt;Wednesday,&amp;nbsp;October&amp;nbsp;12,&amp;nbsp;2016&amp;nbsp;12:26:17&amp;nbsp;AM&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;Validateing&amp;nbsp;[Srv2012r2_Core]&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;Validateing&amp;nbsp;VM&amp;nbsp;switch&amp;nbsp;config&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Performing&amp;nbsp;the&amp;nbsp;operation&amp;nbsp;&amp;quot;Download&amp;nbsp;required&amp;nbsp;Modules&amp;quot;&amp;nbsp;on&amp;nbsp;target&amp;nbsp;&amp;quot;PowerShell&amp;nbsp;Gallery&amp;quot;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Loading&amp;nbsp;module&amp;nbsp;from&amp;nbsp;path&amp;nbsp;&amp;#39;C:\Program&amp;nbsp;Files\WindowsPowerShell\Modules\PackageManagement\1.0.0.1\PackageManagement.psd1&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Loading&amp;nbsp;&amp;#39;FormatsToProcess&amp;#39;&amp;nbsp;from&amp;nbsp;path&amp;nbsp;&amp;#39;C:\Program&amp;nbsp;Files\WindowsPowerShell\Modules\PackageManagement\1.0.0.1\PackageManagement.format.ps1xml&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Loading&amp;nbsp;module&amp;nbsp;from&amp;nbsp;path&amp;nbsp;&amp;#39;C:\Program&amp;nbsp;Files\WindowsPowerShell\Modules\PackageManagement\1.0.0.1\Microsoft.PowerShell.PackageManagement.dll&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Exporting&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Find-Package&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Exporting&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Get-Package&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Exporting&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Get-PackageProvider&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Exporting&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Get-PackageSource&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Exporting&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Install-Package&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Exporting&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Import-PackageProvider&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Exporting&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Find-PackageProvider&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Exporting&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Install-PackageProvider&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Exporting&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Register-PackageSource&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Exporting&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Save-Package&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Exporting&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Set-PackageSource&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Exporting&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Uninstall-Package&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Exporting&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Unregister-PackageSource&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Importing&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Find-Package&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Importing&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Find-PackageProvider&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Importing&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Get-Package&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Importing&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Get-PackageProvider&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Importing&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Get-PackageSource&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Importing&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Import-PackageProvider&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Importing&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Install-Package&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Importing&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Install-PackageProvider&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Importing&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Register-PackageSource&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Importing&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Save-Package&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Importing&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Set-PackageSource&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Importing&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Uninstall-Package&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Importing&amp;nbsp;cmdlet&amp;nbsp;&amp;#39;Unregister-PackageSource&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;Geting&amp;nbsp;latest&amp;nbsp;PSWindowsUpdate&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Using&amp;nbsp;the&amp;nbsp;provider&amp;nbsp;&amp;#39;PowerShellGet&amp;#39;&amp;nbsp;for&amp;nbsp;searching&amp;nbsp;packages.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;The&amp;nbsp;-Repository&amp;nbsp;parameter&amp;nbsp;was&amp;nbsp;not&amp;nbsp;specified.&amp;nbsp;&amp;nbsp;PowerShellGet&amp;nbsp;will&amp;nbsp;use&amp;nbsp;all&amp;nbsp;of&amp;nbsp;the&amp;nbsp;registered&amp;nbsp;repositories.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Getting&amp;nbsp;the&amp;nbsp;provider&amp;nbsp;object&amp;nbsp;for&amp;nbsp;the&amp;nbsp;PackageManagement&amp;nbsp;Provider&amp;nbsp;&amp;#39;NuGet&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;The&amp;nbsp;specified&amp;nbsp;Location&amp;nbsp;is&amp;nbsp;&amp;#39;https://www.powershellgallery.com/api/v2/&amp;#39;&amp;nbsp;and&amp;nbsp;PackageManagementProvider&amp;nbsp;is&amp;nbsp;&amp;#39;NuGet&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Searching&amp;nbsp;repository&amp;nbsp;&amp;#39;https://www.powershellgallery.com/api/v2/FindPackagesById()?id=&amp;#39;PSWindowsUpdate&amp;#39;&amp;#39;&amp;nbsp;for&amp;nbsp;&amp;#39;&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Total&amp;nbsp;package&amp;nbsp;yield:&amp;#39;1&amp;#39;&amp;nbsp;for&amp;nbsp;the&amp;nbsp;specified&amp;nbsp;package&amp;nbsp;&amp;#39;PSWindowsUpdate&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Performing&amp;nbsp;the&amp;nbsp;operation&amp;nbsp;&amp;quot;Save&amp;nbsp;Package&amp;quot;&amp;nbsp;on&amp;nbsp;target&amp;nbsp;&amp;quot;&amp;#39;PSWindowsUpdate&amp;#39;&amp;nbsp;to&amp;nbsp;location&amp;nbsp;&amp;#39;G:\Blog_Example\Resource\Modules&amp;#39;&amp;quot;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;The&amp;nbsp;specified&amp;nbsp;module&amp;nbsp;will&amp;nbsp;be&amp;nbsp;installed&amp;nbsp;in&amp;nbsp;&amp;#39;G:\Blog_Example\Resource\Modules&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;The&amp;nbsp;specified&amp;nbsp;Location&amp;nbsp;is&amp;nbsp;&amp;#39;NuGet&amp;#39;&amp;nbsp;and&amp;nbsp;PackageManagementProvider&amp;nbsp;is&amp;nbsp;&amp;#39;NuGet&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Downloading&amp;nbsp;module&amp;nbsp;&amp;#39;PSWindowsUpdate&amp;#39;&amp;nbsp;with&amp;nbsp;version&amp;nbsp;&amp;#39;1.5.2.2&amp;#39;&amp;nbsp;from&amp;nbsp;the&amp;nbsp;repository&amp;nbsp;&amp;#39;https://www.powershellgallery.com/api/v2/&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Searching&amp;nbsp;repository&amp;nbsp;&amp;#39;https://www.powershellgallery.com/api/v2/FindPackagesById()?id=&amp;#39;PSWindowsUpdate&amp;#39;&amp;#39;&amp;nbsp;for&amp;nbsp;&amp;#39;&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;InstallPackage&amp;#39;&amp;nbsp;-&amp;nbsp;name=&amp;#39;PSWindowsUpdate&amp;#39;,&amp;nbsp;version=&amp;#39;1.5.2.2&amp;#39;,destination=&amp;#39;C:\Users\Blade_000\AppData\Local\Temp\239759536&amp;#39;&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;DownloadPackage&amp;#39;&amp;nbsp;-&amp;nbsp;name=&amp;#39;PSWindowsUpdate&amp;#39;,&amp;nbsp;version=&amp;#39;1.5.2.2&amp;#39;,destination=&amp;#39;C:\Users\Blade_000\AppData\Local\Temp\239759536\PSWindowsUpdate\PSWindowsUpdate.nupkg&amp;#39;,&amp;nbsp;uri=&amp;#39;https://www.powershellgallery.com/api/v2/package/PSWindowsUpdate/1.5.2.2&amp;#39;&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Downloading&amp;nbsp;&amp;#39;https://www.powershellgallery.com/api/v2/package/PSWindowsUpdate/1.5.2.2&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Completed&amp;nbsp;downloading&amp;nbsp;&amp;#39;https://www.powershellgallery.com/api/v2/package/PSWindowsUpdate/1.5.2.2&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Completed&amp;nbsp;downloading&amp;nbsp;&amp;#39;PSWindowsUpdate&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Hash&amp;nbsp;for&amp;nbsp;package&amp;nbsp;&amp;#39;PSWindowsUpdate&amp;#39;&amp;nbsp;does&amp;nbsp;not&amp;nbsp;match&amp;nbsp;hash&amp;nbsp;provided&amp;nbsp;from&amp;nbsp;the&amp;nbsp;server.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;InstallPackageLocal&amp;#39;&amp;nbsp;-&amp;nbsp;name=&amp;#39;PSWindowsUpdate&amp;#39;,&amp;nbsp;version=&amp;#39;1.5.2.2&amp;#39;,destination=&amp;#39;C:\Users\Blade_000\AppData\Local\Temp\239759536&amp;#39;&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Module&amp;nbsp;&amp;#39;PSWindowsUpdate&amp;#39;&amp;nbsp;was&amp;nbsp;saved&amp;nbsp;successfully&amp;nbsp;to&amp;nbsp;path&amp;nbsp;&amp;#39;G:\Blog_Example\Resource\Modules\PSWindowsUpdate\1.5.2.2&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Performing&amp;nbsp;the&amp;nbsp;operation&amp;nbsp;&amp;quot;Invoke&amp;nbsp;Windows&amp;nbsp;Updates&amp;nbsp;on&amp;nbsp;Image&amp;quot;&amp;nbsp;on&amp;nbsp;target&amp;nbsp;&amp;quot;Srv2012r2_Core&amp;quot;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;Windows&amp;nbsp;Update&amp;nbsp;:&amp;nbsp;New&amp;nbsp;Diff&amp;nbsp;Disk&amp;nbsp;:&amp;nbsp;Creating&amp;nbsp;G:\Blog_Example\BaseImage\Srv2012r2_Core_Update.vhdx&amp;nbsp;from&amp;nbsp;G:\Blog_Example\BaseImage\Srv2012r2_Core_base.vhdx&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;New-VHD&amp;nbsp;will&amp;nbsp;create&amp;nbsp;a&amp;nbsp;new&amp;nbsp;virtual&amp;nbsp;hard&amp;nbsp;disk&amp;nbsp;with&amp;nbsp;the&amp;nbsp;path&amp;nbsp;&amp;quot;G:\Blog_Example\BaseImage\Srv2012r2_Core_Update.vhdx&amp;quot;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;Windows&amp;nbsp;Update&amp;nbsp;:&amp;nbsp;Adding&amp;nbsp;PSWindowsUpdate&amp;nbsp;Module&amp;nbsp;to&amp;nbsp;G:\Blog_Example\BaseImage\Srv2012r2_Core_Update.vhdx&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;Windows&amp;nbsp;Update&amp;nbsp;:&amp;nbsp;updateting&amp;nbsp;AtStartup&amp;nbsp;script&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Sidebyside&amp;nbsp;detected&amp;nbsp;in&amp;nbsp;PSWindowsUpdate&amp;nbsp;:&amp;nbsp;switching&amp;nbsp;to&amp;nbsp;v4&amp;nbsp;compatability&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[createRunAndWaitVM]&amp;nbsp;:&amp;nbsp;Creating&amp;nbsp;VM&amp;nbsp;40floaow&amp;nbsp;at&amp;nbsp;10/12/2016&amp;nbsp;00:26:34&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[createRunAndWaitVM]&amp;nbsp;:&amp;nbsp;VM&amp;nbsp;40floaow&amp;nbsp;Stoped&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[createRunAndWaitVM]&amp;nbsp;:&amp;nbsp;VM&amp;nbsp;40floaow&amp;nbsp;Deleted&amp;nbsp;at&amp;nbsp;10/12/2016&amp;nbsp;02:25:36&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;Windows&amp;nbsp;Update&amp;nbsp;:&amp;nbsp;Changes&amp;nbsp;detected&amp;nbsp;:&amp;nbsp;Merging&amp;nbsp;G:\Blog_Example\BaseImage\Srv2012r2_Core_Update.vhdx&amp;nbsp;into&amp;nbsp;G:\Blog_Example\BaseImage\Srv2012r2_Core_base.vhdx&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Merge-VHD&amp;nbsp;will&amp;nbsp;merge&amp;nbsp;the&amp;nbsp;virtual&amp;nbsp;hard&amp;nbsp;disk&amp;nbsp;&amp;quot;g:\blog_example\baseimage\srv2012r2_core_update.vhdx&amp;quot;&amp;nbsp;into&amp;nbsp;its&amp;nbsp;parent&amp;nbsp;&amp;quot;g:\blog_example\baseimage\srv2012r2_core_base.vhdx&amp;quot;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#F5F5F5;&quot;&gt;Wednesday,&amp;nbsp;October&amp;nbsp;12,&amp;nbsp;2016&amp;nbsp;2:28:08&amp;nbsp;AM&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;Validateing&amp;nbsp;[Srv2012r2_Source]&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;Validateing&amp;nbsp;VM&amp;nbsp;switch&amp;nbsp;config&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Performing&amp;nbsp;the&amp;nbsp;operation&amp;nbsp;&amp;quot;Download&amp;nbsp;required&amp;nbsp;Modules&amp;quot;&amp;nbsp;on&amp;nbsp;target&amp;nbsp;&amp;quot;PowerShell&amp;nbsp;Gallery&amp;quot;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;Geting&amp;nbsp;latest&amp;nbsp;PSWindowsUpdate&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Using&amp;nbsp;the&amp;nbsp;provider&amp;nbsp;&amp;#39;PowerShellGet&amp;#39;&amp;nbsp;for&amp;nbsp;searching&amp;nbsp;packages.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;The&amp;nbsp;-Repository&amp;nbsp;parameter&amp;nbsp;was&amp;nbsp;not&amp;nbsp;specified.&amp;nbsp;&amp;nbsp;PowerShellGet&amp;nbsp;will&amp;nbsp;use&amp;nbsp;all&amp;nbsp;of&amp;nbsp;the&amp;nbsp;registered&amp;nbsp;repositories.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Getting&amp;nbsp;the&amp;nbsp;provider&amp;nbsp;object&amp;nbsp;for&amp;nbsp;the&amp;nbsp;PackageManagement&amp;nbsp;Provider&amp;nbsp;&amp;#39;NuGet&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;The&amp;nbsp;specified&amp;nbsp;Location&amp;nbsp;is&amp;nbsp;&amp;#39;https://www.powershellgallery.com/api/v2/&amp;#39;&amp;nbsp;and&amp;nbsp;PackageManagementProvider&amp;nbsp;is&amp;nbsp;&amp;#39;NuGet&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Searching&amp;nbsp;repository&amp;nbsp;&amp;#39;https://www.powershellgallery.com/api/v2/FindPackagesById()?id=&amp;#39;PSWindowsUpdate&amp;#39;&amp;#39;&amp;nbsp;for&amp;nbsp;&amp;#39;&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Total&amp;nbsp;package&amp;nbsp;yield:&amp;#39;1&amp;#39;&amp;nbsp;for&amp;nbsp;the&amp;nbsp;specified&amp;nbsp;package&amp;nbsp;&amp;#39;PSWindowsUpdate&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Performing&amp;nbsp;the&amp;nbsp;operation&amp;nbsp;&amp;quot;Save&amp;nbsp;Package&amp;quot;&amp;nbsp;on&amp;nbsp;target&amp;nbsp;&amp;quot;&amp;#39;PSWindowsUpdate&amp;#39;&amp;nbsp;to&amp;nbsp;location&amp;nbsp;&amp;#39;G:\Blog_Example\Resource\Modules&amp;#39;&amp;quot;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;The&amp;nbsp;specified&amp;nbsp;module&amp;nbsp;will&amp;nbsp;be&amp;nbsp;installed&amp;nbsp;in&amp;nbsp;&amp;#39;G:\Blog_Example\Resource\Modules&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;The&amp;nbsp;specified&amp;nbsp;Location&amp;nbsp;is&amp;nbsp;&amp;#39;NuGet&amp;#39;&amp;nbsp;and&amp;nbsp;PackageManagementProvider&amp;nbsp;is&amp;nbsp;&amp;#39;NuGet&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Downloading&amp;nbsp;module&amp;nbsp;&amp;#39;PSWindowsUpdate&amp;#39;&amp;nbsp;with&amp;nbsp;version&amp;nbsp;&amp;#39;1.5.2.2&amp;#39;&amp;nbsp;from&amp;nbsp;the&amp;nbsp;repository&amp;nbsp;&amp;#39;https://www.powershellgallery.com/api/v2/&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Searching&amp;nbsp;repository&amp;nbsp;&amp;#39;https://www.powershellgallery.com/api/v2/FindPackagesById()?id=&amp;#39;PSWindowsUpdate&amp;#39;&amp;#39;&amp;nbsp;for&amp;nbsp;&amp;#39;&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;InstallPackage&amp;#39;&amp;nbsp;-&amp;nbsp;name=&amp;#39;PSWindowsUpdate&amp;#39;,&amp;nbsp;version=&amp;#39;1.5.2.2&amp;#39;,destination=&amp;#39;C:\Users\Blade_000\AppData\Local\Temp\1874556358&amp;#39;&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;DownloadPackage&amp;#39;&amp;nbsp;-&amp;nbsp;name=&amp;#39;PSWindowsUpdate&amp;#39;,&amp;nbsp;version=&amp;#39;1.5.2.2&amp;#39;,destination=&amp;#39;C:\Users\Blade_000\AppData\Local\Temp\1874556358\PSWindowsUpdate\PSWindowsUpdate.nupkg&amp;#39;,&amp;nbsp;uri=&amp;#39;https://www.powershellgallery.com/api/v2/package/PSWindowsUpdate/1.5.2.2&amp;#39;&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Downloading&amp;nbsp;&amp;#39;https://www.powershellgallery.com/api/v2/package/PSWindowsUpdate/1.5.2.2&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Completed&amp;nbsp;downloading&amp;nbsp;&amp;#39;https://www.powershellgallery.com/api/v2/package/PSWindowsUpdate/1.5.2.2&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Completed&amp;nbsp;downloading&amp;nbsp;&amp;#39;PSWindowsUpdate&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Hash&amp;nbsp;for&amp;nbsp;package&amp;nbsp;&amp;#39;PSWindowsUpdate&amp;#39;&amp;nbsp;does&amp;nbsp;not&amp;nbsp;match&amp;nbsp;hash&amp;nbsp;provided&amp;nbsp;from&amp;nbsp;the&amp;nbsp;server.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;InstallPackageLocal&amp;#39;&amp;nbsp;-&amp;nbsp;name=&amp;#39;PSWindowsUpdate&amp;#39;,&amp;nbsp;version=&amp;#39;1.5.2.2&amp;#39;,destination=&amp;#39;C:\Users\Blade_000\AppData\Local\Temp\1874556358&amp;#39;&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Module&amp;nbsp;&amp;#39;PSWindowsUpdate&amp;#39;&amp;nbsp;was&amp;nbsp;saved&amp;nbsp;successfully&amp;nbsp;to&amp;nbsp;path&amp;nbsp;&amp;#39;G:\Blog_Example\Resource\Modules\PSWindowsUpdate\1.5.2.2&amp;#39;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Performing&amp;nbsp;the&amp;nbsp;operation&amp;nbsp;&amp;quot;Invoke&amp;nbsp;Windows&amp;nbsp;Updates&amp;nbsp;on&amp;nbsp;Image&amp;quot;&amp;nbsp;on&amp;nbsp;target&amp;nbsp;&amp;quot;Srv2012r2_Source&amp;quot;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;Windows&amp;nbsp;Update&amp;nbsp;:&amp;nbsp;New&amp;nbsp;Diff&amp;nbsp;Disk&amp;nbsp;:&amp;nbsp;Creating&amp;nbsp;G:\Blog_Example\BaseImage\Srv2012r2_Source_Update.vhdx&amp;nbsp;from&amp;nbsp;G:\Blog_Example\BaseImage\Srv2012r2_Source_base.vhdx&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;New-VHD&amp;nbsp;will&amp;nbsp;create&amp;nbsp;a&amp;nbsp;new&amp;nbsp;virtual&amp;nbsp;hard&amp;nbsp;disk&amp;nbsp;with&amp;nbsp;the&amp;nbsp;path&amp;nbsp;&amp;quot;G:\Blog_Example\BaseImage\Srv2012r2_Source_Update.vhdx&amp;quot;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;Windows&amp;nbsp;Update&amp;nbsp;:&amp;nbsp;Adding&amp;nbsp;PSWindowsUpdate&amp;nbsp;Module&amp;nbsp;to&amp;nbsp;G:\Blog_Example\BaseImage\Srv2012r2_Source_Update.vhdx&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;Windows&amp;nbsp;Update&amp;nbsp;:&amp;nbsp;updateting&amp;nbsp;AtStartup&amp;nbsp;script&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Sidebyside&amp;nbsp;detected&amp;nbsp;in&amp;nbsp;PSWindowsUpdate&amp;nbsp;:&amp;nbsp;switching&amp;nbsp;to&amp;nbsp;v4&amp;nbsp;compatability&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[createRunAndWaitVM]&amp;nbsp;:&amp;nbsp;Creating&amp;nbsp;VM&amp;nbsp;5dvm2bu2&amp;nbsp;at&amp;nbsp;10/12/2016&amp;nbsp;02:28:24&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[createRunAndWaitVM]&amp;nbsp;:&amp;nbsp;VM&amp;nbsp;5dvm2bu2&amp;nbsp;Stoped&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[createRunAndWaitVM]&amp;nbsp;:&amp;nbsp;VM&amp;nbsp;5dvm2bu2&amp;nbsp;Deleted&amp;nbsp;at&amp;nbsp;10/12/2016&amp;nbsp;05:30:56&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;Windows&amp;nbsp;Update&amp;nbsp;:&amp;nbsp;Changes&amp;nbsp;detected&amp;nbsp;:&amp;nbsp;Merging&amp;nbsp;G:\Blog_Example\BaseImage\Srv2012r2_Source_Update.vhdx&amp;nbsp;into&amp;nbsp;G:\Blog_Example\BaseImage\Srv2012r2_Source_base.vhdx&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Merge-VHD&amp;nbsp;will&amp;nbsp;merge&amp;nbsp;the&amp;nbsp;virtual&amp;nbsp;hard&amp;nbsp;disk&amp;nbsp;&amp;quot;g:\blog_example\baseimage\srv2012r2_source_update.vhdx&amp;quot;&amp;nbsp;into&amp;nbsp;its&amp;nbsp;parent&amp;nbsp;&amp;quot;g:\blog_example\baseimage\srv2012r2_source_base.vhdx&amp;quot;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;SysPrep&amp;nbsp;:&amp;nbsp;New&amp;nbsp;Diff&amp;nbsp;Disk&amp;nbsp;:&amp;nbsp;Creating&amp;nbsp;G:\Blog_Example\BaseImage\Srv2012r2_Source_Sysprep.vhdx&amp;nbsp;from&amp;nbsp;G:\Blog_Example\BaseImage\Srv2012r2_Source_base.vhdx&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;New-VHD&amp;nbsp;will&amp;nbsp;create&amp;nbsp;a&amp;nbsp;new&amp;nbsp;virtual&amp;nbsp;hard&amp;nbsp;disk&amp;nbsp;with&amp;nbsp;the&amp;nbsp;path&amp;nbsp;&amp;quot;G:\Blog_Example\BaseImage\Srv2012r2_Source_Sysprep.vhdx&amp;quot;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;SysPrep&amp;nbsp;:&amp;nbsp;updateting&amp;nbsp;AtStartup&amp;nbsp;script&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;SysPrep&amp;nbsp;:&amp;nbsp;Creating&amp;nbsp;temp&amp;nbsp;vm&amp;nbsp;and&amp;nbsp;waiting&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[createRunAndWaitVM]&amp;nbsp;:&amp;nbsp;Creating&amp;nbsp;VM&amp;nbsp;4nxvrw5x&amp;nbsp;at&amp;nbsp;10/12/2016&amp;nbsp;05:34:45&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[createRunAndWaitVM]&amp;nbsp;:&amp;nbsp;VM&amp;nbsp;4nxvrw5x&amp;nbsp;Stoped&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[createRunAndWaitVM]&amp;nbsp;:&amp;nbsp;VM&amp;nbsp;4nxvrw5x&amp;nbsp;Deleted&amp;nbsp;at&amp;nbsp;10/12/2016&amp;nbsp;05:41:37&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;SysPrep&amp;nbsp;:&amp;nbsp;Removing&amp;nbsp;PageFile&amp;nbsp;and&amp;nbsp;PsTemp&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;SysPrep&amp;nbsp;:&amp;nbsp;Cleaning&amp;nbsp;SxS&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;WIM&amp;nbsp;:&amp;nbsp;Creating&amp;nbsp;G:\Blog_Example\UpdatedImageShare\Srv2012r2_Source.wim&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Invoke-WindowsImageUpdate]&amp;nbsp;:&amp;nbsp;WIM&amp;nbsp;:&amp;nbsp;removing&amp;nbsp;G:\Blog_Example\BaseImage\Srv2012r2_Source_Sysprep.vhdx&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#F5F5F5;&quot;&gt;Wednesday,&amp;nbsp;October&amp;nbsp;12,&amp;nbsp;2016&amp;nbsp;6:19:52&amp;nbsp;AM&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;br class=&quot;&quot; /&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;After a few hours I have a a fully patched system.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;G:\Blog_Example\UpdatedImageShare
+
+    Directory: G:\Blog_Example\UpdatedImageShare
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----        9/27/2016   3:24 PM     7541358592 Srv2012r2_Core.vhdx 
+-a----        9/27/2016   3:14 PM     3415926982 Srv2012r2_Core.wim
+-a----        9/26/2016   6:36 PM     4523302203 Srv2012r2_Source.wim  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><category term="VHDX" /><category term="WindowsUpdate" /><category term="WindowsUpdateTools" /><category term="Module" /><summary type="html">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).</summary></entry><entry><title type="html">Windows Image Tools \| Creating an Updated Image Part 2</title><link href="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part2-WMF5/" rel="alternate" type="text/html" title="Windows Image Tools \| Creating an Updated Image Part 2" /><published>2016-09-01T16:48:59-05:00</published><updated>2016-09-01T16:48:59-05:00</updated><id>http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part2-WMF5</id><content type="html" xml:base="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part2-WMF5/">&lt;aside class=&quot;sidebar__right&quot;&gt;
+&lt;nav class=&quot;toc&quot;&gt;
+    &lt;header&gt;&lt;h4 class=&quot;nav__title&quot;&gt;&lt;i class=&quot;fa fa-file-text&quot;&gt;&lt;/i&gt; On This Page&lt;/h4&gt;&lt;/header&gt;
+&lt;ul class=&quot;toc__menu&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#plan-for-today&quot; id=&quot;markdown-toc-plan-for-today&quot;&gt;Plan for today&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#prerequisites&quot; id=&quot;markdown-toc-prerequisites&quot;&gt;Prerequisites&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#updating-wmf&quot; id=&quot;markdown-toc-updating-wmf&quot;&gt;Updating WMF&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+  &lt;/nav&gt;
+&lt;/aside&gt;
+
+&lt;h2 id=&quot;plan-for-today&quot;&gt;Plan for today&lt;/h2&gt;
+
+&lt;p&gt;Windows Management Framework contains PowerShell. You should always run the latest supported in your environment, and it’s a good idea to get your hands on the preview and give it test run. I want my 2012r2 servers to be running WMF 5.0 the current stable realease.&lt;/p&gt;
+
+&lt;p&gt;Now I could install 5.1 preview, but as it has to be uninstalled when the final get’s released, so I’m going to pass for now.&lt;/p&gt;
+
+&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h2&gt;
+
+&lt;p&gt;If you folowing along you will need the WindowsImageTools update folder and two VHDX created in the last blog&lt;/p&gt;
+
+&lt;h2 id=&quot;updating-wmf&quot;&gt;Updating WMF&lt;/h2&gt;
+
+&lt;p&gt;Using Update-WindowsImageWMF we will download WMF 5.0 and .net 4.6.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PS G:\&amp;gt; Update-WindowsImageWMF -Path G:\Blog_Example\ -ImageName Srv2012r2_Core -Verbose
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;First it’s going to create a child vhdx so we can revert if things go south&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;VERBOSE: Performing the operation &quot;Update WMF in Windows Image Tools Update Image&quot; on target
+&quot;G:\Blog_Example\\BaseImage\Srv2012r2_Core_Base.vhdx&quot;.
+VERBOSE: [Update-WindowsImageWMF] : Creating G:\Blog_Example\\BaseImage\Srv2012r2_Core_Update.vhdx from
+G:\Blog_Example\\BaseImage\Srv2012r2_Core_Base.vhdx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then it’s going to download the installer packages&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;VERBOSE: [Update-WindowsImageWMF] : Checking for the latest WMF in G:\Blog_Example\\Resource\WMF\5
+VERBOSE: GET https://www.microsoft.com/en-us/download/details.aspx?id=50395 with 0-byte payload
+VERBOSE: received 107311-byte response of content type text/html
+VERBOSE: GET http://www.microsoft.com/en-us/download/confirmation.aspx?id=50395 with 0-byte payload
+VERBOSE: received -1-byte response of content type text/html
+WARNING: [Update-WindowsImageWMF] : Checking for the latest WMF : W2K12-KB3134759-x64.msu Missing, Downloading
+VERBOSE: GET https://download.microsoft.com/download/2/C/6/2C6E1B4A-EBE5-48A6-B225-2D2058A9CEFB/W2K12-KB3134759-x64.msu
+ with 0-byte payload
+VERBOSE: received 21540661-byte response of content type application/octet-stream
+VERBOSE: [Update-WindowsImageWMF] : Checking for the latest WMF :
+G:\Blog_Example\\Resource\WMF\5\W2K12-KB3134759-x64.msu : Found
+WARNING: [Update-WindowsImageWMF] : Checking for the latest WMF : Win7AndW2K8R2-KB3134760-x64.msu Missing, Downloading
+VERBOSE: GET
+https://download.microsoft.com/download/2/C/6/2C6E1B4A-EBE5-48A6-B225-2D2058A9CEFB/Win7AndW2K8R2-KB3134760-x64.msu with
+ 0-byte payload
+VERBOSE: received 21779572-byte response of content type application/octet-stream
+VERBOSE: [Update-WindowsImageWMF] : Checking for the latest WMF :
+G:\Blog_Example\\Resource\WMF\5\Win7AndW2K8R2-KB3134760-x64.msu : Found
+WARNING: [Update-WindowsImageWMF] : Checking for the latest WMF : Win7-KB3134760-x86.msu Missing, Downloading
+VERBOSE: GET https://download.microsoft.com/download/2/C/6/2C6E1B4A-EBE5-48A6-B225-2D2058A9CEFB/Win7-KB3134760-x86.msu
+with 0-byte payload
+VERBOSE: received 16961221-byte response of content type application/octet-stream
+VERBOSE: [Update-WindowsImageWMF] : Checking for the latest WMF :
+G:\Blog_Example\\Resource\WMF\5\Win7-KB3134760-x86.msu : Found
+WARNING: [Update-WindowsImageWMF] : Checking for the latest WMF : Win8.1AndW2K12R2-KB3134758-x64.msu Missing,
+Downloading
+VERBOSE: GET
+https://download.microsoft.com/download/2/C/6/2C6E1B4A-EBE5-48A6-B225-2D2058A9CEFB/Win8.1AndW2K12R2-KB3134758-x64.msu
+with 0-byte payload
+VERBOSE: received 19764832-byte response of content type application/octet-stream
+VERBOSE: [Update-WindowsImageWMF] : Checking for the latest WMF :
+G:\Blog_Example\\Resource\WMF\5\Win8.1AndW2K12R2-KB3134758-x64.msu : Found
+WARNING: [Update-WindowsImageWMF] : Checking for the latest WMF : Win8.1-KB3134758-x86.msu Missing, Downloading
+VERBOSE: GET
+https://download.microsoft.com/download/2/C/6/2C6E1B4A-EBE5-48A6-B225-2D2058A9CEFB/Win8.1-KB3134758-x86.msu with 0-byte
+ payload
+VERBOSE: received 15059790-byte response of content type application/octet-stream
+VERBOSE: [Update-WindowsImageWMF] : Checking for the latest WMF :
+G:\Blog_Example\\Resource\WMF\5\Win8.1-KB3134758-x86.msu : Found
+VERBOSE: [Update-WindowsImageWMF] : Checking for .NET 4.6.1 installer
+WARNING: [Update-WindowsImageWMF] : Checking for .NET 4.6 installer : Missing : Downloading
+VERBOSE: GET
+https://download.microsoft.com/download/E/4/1/E4173890-A24A-4936-9FC9-AF930FE3FA40/NDP461-KB3102436-x86-x64-AllOS-ENU.e
+xe with 0-byte payload
+VERBOSE: received 67681000-byte response of content type application/octet-stream
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now it will copy the .NET installer and an AtStartup.ps1 to run the install.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;VERBOSE: [Update-WindowsImageWMF] : .NET : Adding installer to G:\Blog_Example\\BaseImage\Srv2012r2_Core_Update.vhdx
+VERBOSE: [Update-WindowsImageWMF] : .NET : updateting AtStartup script
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;It is going to create a VM with a random name and wait for it to stop. 
+While it’s running the AtStartup script will install .net, reboot and check the version of .net
+If it find’s what it’s expecting it creates a file that Update-WindowsImageWMF will look for to decide if it can continue.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;VERBOSE: [Update-WindowsImageWMF] : .NET : Creating temp vm and waiting
+VERBOSE: [createRunAndWaitVM] : Creating VM s4gzlpa4 at 09/22/2016 16:54:47
+VERBOSE: [createRunAndWaitVM] : VM s4gzlpa4 Stoped
+VERBOSE: [createRunAndWaitVM] : VM s4gzlpa4 Deleted at 09/22/2016 17:12:52
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You cant use PowerShell to WMF because that updates PowerShell. So It will apply the MSU to the VHDX.
+Now because Update-WindowsImageWMF does not know what OS is inside the vhdx. It will apply them all. Unfortunetly DISM (that does the work) reports succses when the MSU does not apply to that version of the OS. So it looks like all of the are installing but only the one that should actualy does.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;VERBOSE: [Update-WindowsImageWMF] : WMF : Applying WMF to G:\Blog_Example\\BaseImage\Srv2012r2_Core_Update.vhdx and
+Updating AtStartup script
+VERBOSE: checking if G:\Blog_Example\Resource\WMF\5\W2K12-KB3134759-x64.msu applies to
+G:\Blog_Example\\BaseImage\Srv2012r2_Core_Update.vhdx
+VERBOSE: Target Image Version 6.3.9600.17031
+VERBOSE: Successfully added package G:\Blog_Example\Resource\WMF\5\W2K12-KB3134759-x64.msu
+VERBOSE: checking if G:\Blog_Example\Resource\WMF\5\Win7-KB3134760-x86.msu applies to
+G:\Blog_Example\\BaseImage\Srv2012r2_Core_Update.vhdx
+VERBOSE: Target Image Version 6.3.9600.17031
+VERBOSE: Successfully added package G:\Blog_Example\Resource\WMF\5\Win7-KB3134760-x86.msu
+VERBOSE: checking if G:\Blog_Example\Resource\WMF\5\Win7AndW2K8R2-KB3134760-x64.msu applies to
+G:\Blog_Example\\BaseImage\Srv2012r2_Core_Update.vhdx
+VERBOSE: Target Image Version 6.3.9600.17031
+VERBOSE: Successfully added package G:\Blog_Example\Resource\WMF\5\Win7AndW2K8R2-KB3134760-x64.msu
+VERBOSE: checking if G:\Blog_Example\Resource\WMF\5\Win8.1-KB3134758-x86.msu applies to
+G:\Blog_Example\\BaseImage\Srv2012r2_Core_Update.vhdx
+VERBOSE: Target Image Version 6.3.9600.17031
+VERBOSE: Successfully added package G:\Blog_Example\Resource\WMF\5\Win8.1-KB3134758-x86.msu
+VERBOSE: checking if G:\Blog_Example\Resource\WMF\5\Win8.1AndW2K12R2-KB3134758-x64.msu applies to
+G:\Blog_Example\\BaseImage\Srv2012r2_Core_Update.vhdx
+VERBOSE: Target Image Version 6.3.9600.17031
+VERBOSE: Successfully added package G:\Blog_Example\Resource\WMF\5\Win8.1AndW2K12R2-KB3134758-x64.msu
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;To finalize the install Update-WindowsImageWMF needs to create a vm and let it finish installing then run a AtStartup script to check the version of PowerShell to validate the install worked. and if so write a flag file.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;VERBOSE: [Update-WindowsImageWMF] : WMF : creating temp VM to finalize install on
+G:\Blog_Example\\BaseImage\Srv2012r2_Core_Update.vhdx
+VERBOSE: [createRunAndWaitVM] : Creating VM yary1ogs at 09/22/2016 17:15:55
+VERBOSE: [createRunAndWaitVM] : VM yary1ogs Stoped
+VERBOSE: [createRunAndWaitVM] : VM yary1ogs Deleted at 09/22/2016 17:18:17
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If the flag file is detected then the child vhdx is merged back into the base. if not the child file id discarded and an error thrown&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;VERBOSE: [Update-WindowsImageWMF] : WMF : Checking if changes made
+VERBOSE: [Update-WindowsImageWMF] : WMF : Changes found : Merging G:\Blog_Example\\BaseImage\Srv2012r2_Core_Update.vhdx
+ into G:\Blog_Example\\BaseImage\Srv2012r2_Core_Base.vhdx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I’m going to run the same command again on the other vhdx&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;
+  &lt;code&gt;
+&lt;span style=&quot;color:#E0FFFF;&quot;&gt;Update-WindowsImageWMF&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color:#FFE4B5;&quot;&gt;-Path&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color:#EE82EE;&quot;&gt;G:\Blog_Example\&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color:#FFE4B5;&quot;&gt;-ImageName&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color:#EE82EE;&quot;&gt;Srv2012r2_Source&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color:#FFE4B5;&quot;&gt;-Verbose&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;
+
+&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Performing&amp;nbsp;the&amp;nbsp;operation&amp;nbsp;&amp;quot;Update&amp;nbsp;WMF&amp;nbsp;in&amp;nbsp;Windows&amp;nbsp;Image&amp;nbsp;Tools&amp;nbsp;Update&amp;nbsp;Image&amp;quot;&amp;nbsp;on&amp;nbsp;target&amp;nbsp;&amp;quot;G:\Blog_Example\\BaseImage\Srv2012r2_Source_Base.vhdx&amp;quot;.&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;Creating&amp;nbsp;G:\Blog_Example\\BaseImage\Srv2012r2_Source_Update.vhdx&amp;nbsp;from&amp;nbsp;G:\Blog_Example\\BaseImage\Srv2012r2_Source_Base.vhdx&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;Checking&amp;nbsp;for&amp;nbsp;the&amp;nbsp;latest&amp;nbsp;WMF&amp;nbsp;in&amp;nbsp;G:\Blog_Example\\Resource\WMF\5&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;GET&amp;nbsp;https://www.microsoft.com/en-us/download/details.aspx?id=50395&amp;nbsp;with&amp;nbsp;0-byte&amp;nbsp;payload&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;received&amp;nbsp;107378-byte&amp;nbsp;response&amp;nbsp;of&amp;nbsp;content&amp;nbsp;type&amp;nbsp;text/html&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;GET&amp;nbsp;http://www.microsoft.com/en-us/download/confirmation.aspx?id=50395&amp;nbsp;with&amp;nbsp;0-byte&amp;nbsp;payload&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;received&amp;nbsp;-1-byte&amp;nbsp;response&amp;nbsp;of&amp;nbsp;content&amp;nbsp;type&amp;nbsp;text/html&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;Checking&amp;nbsp;for&amp;nbsp;the&amp;nbsp;latest&amp;nbsp;WMF&amp;nbsp;:&amp;nbsp;G:\Blog_Example\\Resource\WMF\5\W2K12-KB3134759-x64.msu&amp;nbsp;:&amp;nbsp;Found&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;Checking&amp;nbsp;for&amp;nbsp;the&amp;nbsp;latest&amp;nbsp;WMF&amp;nbsp;:&amp;nbsp;G:\Blog_Example\\Resource\WMF\5\W2K12-KB3134759-x64.msu&amp;nbsp;:&amp;nbsp;Found&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;Checking&amp;nbsp;for&amp;nbsp;the&amp;nbsp;latest&amp;nbsp;WMF&amp;nbsp;:&amp;nbsp;G:\Blog_Example\\Resource\WMF\5\Win7AndW2K8R2-KB3134760-x64.msu&amp;nbsp;:&amp;nbsp;Found&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;Checking&amp;nbsp;for&amp;nbsp;the&amp;nbsp;latest&amp;nbsp;WMF&amp;nbsp;:&amp;nbsp;G:\Blog_Example\\Resource\WMF\5\Win7AndW2K8R2-KB3134760-x64.msu&amp;nbsp;:&amp;nbsp;Found&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;Checking&amp;nbsp;for&amp;nbsp;the&amp;nbsp;latest&amp;nbsp;WMF&amp;nbsp;:&amp;nbsp;G:\Blog_Example\\Resource\WMF\5\Win7-KB3134760-x86.msu&amp;nbsp;:&amp;nbsp;Found&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;Checking&amp;nbsp;for&amp;nbsp;the&amp;nbsp;latest&amp;nbsp;WMF&amp;nbsp;:&amp;nbsp;G:\Blog_Example\\Resource\WMF\5\Win7-KB3134760-x86.msu&amp;nbsp;:&amp;nbsp;Found&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;Checking&amp;nbsp;for&amp;nbsp;the&amp;nbsp;latest&amp;nbsp;WMF&amp;nbsp;:&amp;nbsp;G:\Blog_Example\\Resource\WMF\5\Win8.1AndW2K12R2-KB3134758-x64.msu&amp;nbsp;:&amp;nbsp;Found&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;Checking&amp;nbsp;for&amp;nbsp;the&amp;nbsp;latest&amp;nbsp;WMF&amp;nbsp;:&amp;nbsp;G:\Blog_Example\\Resource\WMF\5\Win8.1AndW2K12R2-KB3134758-x64.msu&amp;nbsp;:&amp;nbsp;Found&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;Checking&amp;nbsp;for&amp;nbsp;the&amp;nbsp;latest&amp;nbsp;WMF&amp;nbsp;:&amp;nbsp;G:\Blog_Example\\Resource\WMF\5\Win8.1-KB3134758-x86.msu&amp;nbsp;:&amp;nbsp;Found&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;Checking&amp;nbsp;for&amp;nbsp;the&amp;nbsp;latest&amp;nbsp;WMF&amp;nbsp;:&amp;nbsp;G:\Blog_Example\\Resource\WMF\5\Win8.1-KB3134758-x86.msu&amp;nbsp;:&amp;nbsp;Found&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;Checking&amp;nbsp;for&amp;nbsp;.NET&amp;nbsp;4.6.1&amp;nbsp;installer&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;.NET&amp;nbsp;:&amp;nbsp;Adding&amp;nbsp;installer&amp;nbsp;to&amp;nbsp;G:\Blog_Example\\BaseImage\Srv2012r2_Source_Update.vhdx&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;.NET&amp;nbsp;:&amp;nbsp;updateting&amp;nbsp;AtStartup&amp;nbsp;script&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;.NET&amp;nbsp;:&amp;nbsp;Creating&amp;nbsp;temp&amp;nbsp;vm&amp;nbsp;and&amp;nbsp;waiting&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[createRunAndWaitVM]&amp;nbsp;:&amp;nbsp;Creating&amp;nbsp;VM&amp;nbsp;dkdjxvqm&amp;nbsp;at&amp;nbsp;09/23/2016&amp;nbsp;08:56:23&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[createRunAndWaitVM]&amp;nbsp;:&amp;nbsp;VM&amp;nbsp;dkdjxvqm&amp;nbsp;Stoped&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[createRunAndWaitVM]&amp;nbsp;:&amp;nbsp;VM&amp;nbsp;dkdjxvqm&amp;nbsp;Deleted&amp;nbsp;at&amp;nbsp;09/23/2016&amp;nbsp;09:12:39&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;WMF&amp;nbsp;:&amp;nbsp;Applying&amp;nbsp;WMF&amp;nbsp;to&amp;nbsp;G:\Blog_Example\\BaseImage\Srv2012r2_Source_Update.vhdx&amp;nbsp;and&amp;nbsp;Updating&amp;nbsp;AtStartup&amp;nbsp;script&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;checking&amp;nbsp;if&amp;nbsp;G:\Blog_Example\Resource\WMF\5\W2K12-KB3134759-x64.msu&amp;nbsp;applies&amp;nbsp;to&amp;nbsp;G:\Blog_Example\\BaseImage\Srv2012r2_Source_Update.vhdx&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Target&amp;nbsp;Image&amp;nbsp;Version&amp;nbsp;6.3.9600.17031&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Successfully&amp;nbsp;added&amp;nbsp;package&amp;nbsp;G:\Blog_Example\Resource\WMF\5\W2K12-KB3134759-x64.msu&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;checking&amp;nbsp;if&amp;nbsp;G:\Blog_Example\Resource\WMF\5\Win7-KB3134760-x86.msu&amp;nbsp;applies&amp;nbsp;to&amp;nbsp;G:\Blog_Example\\BaseImage\Srv2012r2_Source_Update.vhdx&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Target&amp;nbsp;Image&amp;nbsp;Version&amp;nbsp;6.3.9600.17031&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Successfully&amp;nbsp;added&amp;nbsp;package&amp;nbsp;G:\Blog_Example\Resource\WMF\5\Win7-KB3134760-x86.msu&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;checking&amp;nbsp;if&amp;nbsp;G:\Blog_Example\Resource\WMF\5\Win7AndW2K8R2-KB3134760-x64.msu&amp;nbsp;applies&amp;nbsp;to&amp;nbsp;G:\Blog_Example\\BaseImage\Srv2012r2_Source_Update.vhdx&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Target&amp;nbsp;Image&amp;nbsp;Version&amp;nbsp;6.3.9600.17031&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Successfully&amp;nbsp;added&amp;nbsp;package&amp;nbsp;G:\Blog_Example\Resource\WMF\5\Win7AndW2K8R2-KB3134760-x64.msu&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;checking&amp;nbsp;if&amp;nbsp;G:\Blog_Example\Resource\WMF\5\Win8.1-KB3134758-x86.msu&amp;nbsp;applies&amp;nbsp;to&amp;nbsp;G:\Blog_Example\\BaseImage\Srv2012r2_Source_Update.vhdx&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Target&amp;nbsp;Image&amp;nbsp;Version&amp;nbsp;6.3.9600.17031&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Successfully&amp;nbsp;added&amp;nbsp;package&amp;nbsp;G:\Blog_Example\Resource\WMF\5\Win8.1-KB3134758-x86.msu&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;checking&amp;nbsp;if&amp;nbsp;G:\Blog_Example\Resource\WMF\5\Win8.1AndW2K12R2-KB3134758-x64.msu&amp;nbsp;applies&amp;nbsp;to&amp;nbsp;G:\Blog_Example\\BaseImage\Srv2012r2_Source_Update.vhdx&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Target&amp;nbsp;Image&amp;nbsp;Version&amp;nbsp;6.3.9600.17031&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;Successfully&amp;nbsp;added&amp;nbsp;package&amp;nbsp;G:\Blog_Example\Resource\WMF\5\Win8.1AndW2K12R2-KB3134758-x64.msu&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;WMF&amp;nbsp;:&amp;nbsp;creating&amp;nbsp;temp&amp;nbsp;VM&amp;nbsp;to&amp;nbsp;finalize&amp;nbsp;install&amp;nbsp;on&amp;nbsp;G:\Blog_Example\\BaseImage\Srv2012r2_Source_Update.vhdx&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[createRunAndWaitVM]&amp;nbsp;:&amp;nbsp;Creating&amp;nbsp;VM&amp;nbsp;e5h2cc34&amp;nbsp;at&amp;nbsp;09/23/2016&amp;nbsp;09:15:50&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[createRunAndWaitVM]&amp;nbsp;:&amp;nbsp;VM&amp;nbsp;e5h2cc34&amp;nbsp;Stoped&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[createRunAndWaitVM]&amp;nbsp;:&amp;nbsp;VM&amp;nbsp;e5h2cc34&amp;nbsp;Deleted&amp;nbsp;at&amp;nbsp;09/23/2016&amp;nbsp;09:18:25&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;WMF&amp;nbsp;:&amp;nbsp;Checking&amp;nbsp;if&amp;nbsp;changes&amp;nbsp;made&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#00FFFF;&quot;&gt;VERBOSE:&amp;nbsp;[Update-WindowsImageWMF]&amp;nbsp;:&amp;nbsp;WMF&amp;nbsp;:&amp;nbsp;Changes&amp;nbsp;found&amp;nbsp;:&amp;nbsp;Merging&amp;nbsp;G:\Blog_Example\\BaseImage\Srv2012r2_Source_Update.vhdx&amp;nbsp;into&amp;nbsp;G:\Blog_Example\\BaseImage\Srv2012r2_Source_Base.vhdx&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;
+ &lt;/code&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Now I’m going to quickly check to make sure this worked. I dont want to make any changes to the drive as it is so I will create a child vhdx and boot it.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;
+  &lt;code&gt;
+&lt;span style=&quot;color:#E0FFFF;&quot;&gt;New-VHD&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#FFE4B5;&quot;&gt;-Path&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#EE82EE;&quot;&gt;G:\Blog_Example\BaseImage\Srv2012r2_Core_temp.vhdx&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#FFE4B5;&quot;&gt;-ParentPath&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#EE82EE;&quot;&gt;G:\Blog_Example\BaseImage\Srv2012r2_Core_base.vhdx&lt;/span&gt;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#E0FFFF;&quot;&gt;Invoke-CreateVmRunAndWait&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#FFE4B5;&quot;&gt;-VhdPath&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#EE82EE;&quot;&gt;G:\Blog_Example\\BaseImage\Srv2012r2_Core_temp.vhdx&lt;/span&gt;&amp;nbsp;&lt;br class=&quot;&quot; /&gt;&lt;span style=&quot;color:#E0FFFF;&quot;&gt;Remove-Item&lt;/span&gt;&amp;nbsp;&lt;span style=&quot;color:#EE82EE;&quot;&gt;G:\Blog_Example\\BaseImage\Srv2012r2_Core_temp.vhdx&lt;/span&gt;
+  &lt;/code&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;checking the psversion table we see what is expected.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000\assets\images\PS5Version.JPG&quot; alt=&quot;PowerShell Version Table&quot; /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;notice--info&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Dealing with 2008/Win7&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;WMF 5 on 2008 and Win7 need a few patches after WMF 4 is installed. So You want to run windows update before installing WMF 5&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Next up. Windows update and output of WIM/VHDX&lt;/p&gt;</content><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><category term="VHDX" /><category term="WindowsUpdate" /><category term="WindowsUpdateTools" /><category term="Module" /><summary type="html">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).</summary></entry><entry><title type="html">Windows Image Tools \| Creating an Updated Image Part 1</title><link href="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part1-Base-VHDX/" rel="alternate" type="text/html" title="Windows Image Tools \| Creating an Updated Image Part 1" /><published>2016-09-01T16:48:59-05:00</published><updated>2016-09-01T16:48:59-05:00</updated><id>http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part1-Base-VHDX</id><content type="html" xml:base="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part1-Base-VHDX/">&lt;aside class=&quot;sidebar__right&quot;&gt;
+&lt;nav class=&quot;toc&quot;&gt;
+    &lt;header&gt;&lt;h4 class=&quot;nav__title&quot;&gt;&lt;i class=&quot;fa fa-file-text&quot;&gt;&lt;/i&gt; On This Page&lt;/h4&gt;&lt;/header&gt;
+&lt;ul class=&quot;toc__menu&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#staring-over&quot; id=&quot;markdown-toc-staring-over&quot;&gt;Staring over&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#prerequisites&quot; id=&quot;markdown-toc-prerequisites&quot;&gt;Prerequisites&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#a-la-carte-or-all-you-can-eat&quot; id=&quot;markdown-toc-a-la-carte-or-all-you-can-eat&quot;&gt;A la carte or All you can eat&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+  &lt;/nav&gt;
+&lt;/aside&gt;
+
+&lt;h2 id=&quot;staring-over&quot;&gt;Staring over&lt;/h2&gt;
+
+&lt;p&gt;In the last post I demonstrated creating a fresh VHDX, with unattent.xml and using that to install 7zip.&lt;/p&gt;
+
+&lt;p&gt;Now i’m going to throw all that out, and starting over with a base image to install WMF5 and run windows updates.&lt;/p&gt;
+
+&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h2&gt;
+
+&lt;p&gt;For this we need the folder scructure used the WindowsImageTools to store the files. Luckily we have New-WindowsImageToolsExample that will create the folders and files we need.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;New-WindowsImageToolsExample -Path g:&lt;span class=&quot;se&quot;&gt;\B&lt;/span&gt;log_Example
+WARNING: Unable to &lt;span class=&quot;nb&quot;&gt;read &lt;/span&gt;Windows Image Tools Update Cofniguration &lt;span class=&quot;k&quot;&gt;from &lt;/span&gt;g:&lt;span class=&quot;se&quot;&gt;\B&lt;/span&gt;log_Example&lt;span class=&quot;se&quot;&gt;\C&lt;/span&gt;onfig.xml, creating a new file
+
+
+    Directory: G:&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----         9/6/2016   4:09 PM                Blog_Example&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Let’s take a look at what we get&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;dir G:\Blog_Example\
+
+
+    Directory: G:\Blog_Example
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----         9/6/2016   4:09 PM                BaseImage
+d-----         9/6/2016   4:09 PM                ISO
+d-----         9/6/2016   4:09 PM                Resource
+d-----         9/6/2016   4:09 PM                UpdatedImageShare
+-a----         9/6/2016   4:09 PM           3993 AdvancedUpdateExample.ps1
+-a----         9/6/2016   4:09 PM           4775 BasicConvertExample.ps1
+-a----         9/6/2016   4:09 PM           7456 BasicUpdateExample.ps1
+-a----         9/6/2016   4:09 PM           1788 Config.xml
+-a----         9/6/2016   4:09 PM           4814 DownloadEvalIso.ps1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I will not be delving into the example ps1 files. I’m going to walkthrough a similar example to the advanced one.&lt;/p&gt;
+
+&lt;p&gt;We will start by looking at the Config.xml&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;Objs&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;Version=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1.1.0.1&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/powershell/2004/04&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Obj&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;RefId=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;TN&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;RefId=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;T&amp;gt;&lt;/span&gt;System.Collections.Hashtable&lt;span class=&quot;nt&quot;&gt;&amp;lt;/T&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;T&amp;gt;&lt;/span&gt;System.Object&lt;span class=&quot;nt&quot;&gt;&amp;lt;/T&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/TN&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;DCT&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;En&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;S&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;N=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Key&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Gateway&lt;span class=&quot;nt&quot;&gt;&amp;lt;/S&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;S&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;N=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Value&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;192.168.0.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/S&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/En&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;En&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;S&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;N=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Key&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;vLan&lt;span class=&quot;nt&quot;&gt;&amp;lt;/S&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;I32&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;N=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Value&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;0&lt;span class=&quot;nt&quot;&gt;&amp;lt;/I32&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/En&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;En&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;S&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;N=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Key&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;IpAddress&lt;span class=&quot;nt&quot;&gt;&amp;lt;/S&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;S&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;N=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Value&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;192.168.0.100&lt;span class=&quot;nt&quot;&gt;&amp;lt;/S&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/En&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;En&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;S&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;N=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Key&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;VmSwitch&lt;span class=&quot;nt&quot;&gt;&amp;lt;/S&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;S&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;N=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Value&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;vmswitch&lt;span class=&quot;nt&quot;&gt;&amp;lt;/S&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/En&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;En&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;S&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;N=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Key&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;IpType&lt;span class=&quot;nt&quot;&gt;&amp;lt;/S&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;S&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;N=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Value&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;DHCP&lt;span class=&quot;nt&quot;&gt;&amp;lt;/S&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/En&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;En&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;S&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;N=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Key&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;SubnetMask&lt;span class=&quot;nt&quot;&gt;&amp;lt;/S&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;I32&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;N=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Value&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;24&lt;span class=&quot;nt&quot;&gt;&amp;lt;/I32&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/En&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;En&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;S&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;N=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Key&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;DnsServer&lt;span class=&quot;nt&quot;&gt;&amp;lt;/S&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;S&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;N=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Value&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;192.168.0.1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/S&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/En&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/DCT&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/Obj&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Objs&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;It’s a basic clixml file created with Export-Clixml containing the configuration used by WindowsImageTools to manage network settings for the vm’s it creates. Now I’m not about to edit that file manual, and while I could use Import-Clixml/Export-Clixml to work with it. It simpler to use the functions that come with WindowsImageTools Get-UpdateConfig/Set-UpdateConfig&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Get-UpdateConfig -Path G:\Blog_Example\
+
+Name                           Value
+----                           -----
+IpType                         DHCP
+vLan                           0
+DnsServer                      192.168.0.1
+Gateway                        192.168.0.1
+VmSwitch                       vmswitch
+SubnetMask                     24
+IpAddress                      192.168.0.100
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;As you can see the default uses DHCP for the vm’s IP assignment, does not use vLan tageing and attached to the virtual switch called vmswitch. To use it in my enviroment I need to make one small change&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Set-UpdateConfig -Path G:\Blog_Example\ -VmSwitch Bridge | Get-UpdateConfig
+
+Name                           Value
+----                           -----
+IpType                         DHCP
+vLan                           0
+DnsServer                      192.168.0.1
+Gateway                        192.168.0.1
+VmSwitch                       Bridge
+SubnetMask                     24
+IpAddress                      192.168.0.100
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now we are ready to add a base images.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-la-carte-or-all-you-can-eat&quot;&gt;A la carte or All you can eat&lt;/h2&gt;
+
+&lt;p&gt;I’m going to create two images. One bear-bones 2012 R2 Core and one 2012 R2 GUI with .net 3.5. The reason for this is I want one really small WIM/VHDX for a starting port, and one WIM that I can use for a source to add Windows Features.&lt;/p&gt;
+
+&lt;div class=&quot;notice--info&quot;&gt;
+  
+&lt;h4 id=&quot;why-the-soruce-wim&quot;&gt;Why the Soruce WIM?&lt;/h4&gt;
+
+&lt;p&gt;Windows Core comes with very little of the Windows Features installed, and when you add them Install-WindowsFeature will look to Windows Update for the missing bits. However if you don’t have internet access then you need a source WIM. In a secure environment InfoSec usually frowns on web surfing from servers and expect you to use WSUS for updates. Unfortunately Install-WindowsFeature will not use WSUS.&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;Add-UpdateImage -Path &lt;span class=&quot;s1&quot;&gt;'G:\Blog_Example\'&lt;/span&gt; -FriendlyName &lt;span class=&quot;s1&quot;&gt;'Srv2012r2_Source'&lt;/span&gt; -DiskLayout UEFI -SourcePath &lt;span class=&quot;s1&quot;&gt;'G:\iso\Srv2012r2Eval.ISO'&lt;/span&gt;  -AdminCredential &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Get-Credential&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; -AddPayloadForRemovedFeature -Index 4
+Add-UpdateImage -Path &lt;span class=&quot;s1&quot;&gt;'G:\Blog_Example\'&lt;/span&gt; -FriendlyName &lt;span class=&quot;s1&quot;&gt;'Srv2012r2_Core'&lt;/span&gt; -DiskLayout UEFI -SourcePath &lt;span class=&quot;s1&quot;&gt;'G:\iso\Srv2012r2Eval.ISO'&lt;/span&gt;  -AdminCredential &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Get-Credential&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; -Index 3
+&lt;span class=&quot;nb&quot;&gt;dir&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'G:\Blog_Example\BaseImage\'&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This gives us the two files.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    Directory: G:\Blog_Example\BaseImage
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----         9/6/2016   8:55 PM     4874829824 Srv2012r2_Core_base.vhdx
+-a----         9/6/2016   8:28 PM     8250195968 Srv2012r2_Source_base.vhdx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Next up I’m going to update both to WMF5.&lt;/p&gt;</content><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><category term="VHDX" /><category term="WindowsUpdate" /><category term="WindowsUpdateTools" /><category term="Module" /><summary type="html">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).</summary></entry><entry><title type="html">Re-factoring the Blog</title><link href="http://localhost:4000/Blog-Refactoring/" rel="alternate" type="text/html" title="Re-factoring the Blog" /><published>2016-09-01T00:00:00-05:00</published><updated>2016-09-01T00:00:00-05:00</updated><id>http://localhost:4000/Blog-Refactoring</id><content type="html" xml:base="http://localhost:4000/Blog-Refactoring/">&lt;h2 id=&quot;sometimes-rebooting-fixes-everything&quot;&gt;Sometimes rebooting fixes everything&lt;/h2&gt;
+
+&lt;p&gt;After spending month after month on WidnowsImageTools and little else in my free time. My blog has been looking like abandonware. I had always planed to comeback, but there was always this nagging issue. WordPress. is a hosted service and cost money if you want more then the vanilla. And I had no interest in hosting WordPress elseware. It also was missing a plug-in that allowed you to to reference GitHub files directly. Copying code from a GitHub project into Gist seems like a major waste of time.&lt;/p&gt;
+
+&lt;h2 id=&quot;enter-jekyll&quot;&gt;Enter Jekyll&lt;/h2&gt;
+
+&lt;p&gt;A few months ago I listened to a podcast where they briefly mentioned github pages. This perked my interest. Partially because if was free, and partly because if was GitHub. (I also like the idea of bloging like a hacker).&lt;/p&gt;
+
+&lt;p&gt;I figured if it was hosted on GitHub, surely they would have a easy way to reference a GitHub Repo. No such luck. The default plugins were somewhat limited. If I wanted unsupported plugins I had to compile the site locally. So I looked at all the plugins for Jekyll in Ruby Gems, I came across one that worked. However it only wanted to work in Jekyll version 1. I looked at the code on it’s GitHub repo and it looked to be an arbitrary requirement. So I set out the setup Jekyll using Bash on Windows 10.&lt;/p&gt;
+
+&lt;p&gt;I plan to write a full blog on the experience. There were many bumps and gatcha’s getting here, but I now can reference sections of GitHub Repos files in my posts, so it was worth it.&lt;/p&gt;</content><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><category term="Blog" /><category term="Jekyll" /><summary type="html">Sometimes rebooting fixes everything</summary></entry><entry><title type="html">Windows Image Tools \| Modify VHDX</title><link href="http://localhost:4000/windowsimagetools/Modifying-Fresh-VHDX/" rel="alternate" type="text/html" title="Windows Image Tools \| Modify VHDX" /><published>2016-08-30T16:48:59-05:00</published><updated>2016-08-30T16:48:59-05:00</updated><id>http://localhost:4000/windowsimagetools/Modifying-Fresh-VHDX</id><content type="html" xml:base="http://localhost:4000/windowsimagetools/Modifying-Fresh-VHDX/">&lt;aside class=&quot;sidebar__right&quot;&gt;
+&lt;nav class=&quot;toc&quot;&gt;
+    &lt;header&gt;&lt;h4 class=&quot;nav__title&quot;&gt;&lt;i class=&quot;fa fa-file-text&quot;&gt;&lt;/i&gt; On This Page&lt;/h4&gt;&lt;/header&gt;
+&lt;ul class=&quot;toc__menu&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#continuing-onward&quot; id=&quot;markdown-toc-continuing-onward&quot;&gt;Continuing onward&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#prerequisites&quot; id=&quot;markdown-toc-prerequisites&quot;&gt;Prerequisites&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#creating-a-new-improved-firstbootps1&quot; id=&quot;markdown-toc-creating-a-new-improved-firstbootps1&quot;&gt;Creating a new improved FirstBoot.ps1&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#placing-the-files-in-the-vhdx&quot; id=&quot;markdown-toc-placing-the-files-in-the-vhdx&quot;&gt;Placing the files in the VHDX&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#mount-vhdandrunblock&quot; id=&quot;markdown-toc-mount-vhdandrunblock&quot;&gt;Mount-VhdAndRunBlock&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#before-we-create-a-vm&quot; id=&quot;markdown-toc-before-we-create-a-vm&quot;&gt;Before we create a VM&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#deciding-on-a-vm-generation&quot; id=&quot;markdown-toc-deciding-on-a-vm-generation&quot;&gt;Deciding on a VM Generation&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#getting-the-switch&quot; id=&quot;markdown-toc-getting-the-switch&quot;&gt;Getting the switch&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#creating-the-vm&quot; id=&quot;markdown-toc-creating-the-vm&quot;&gt;Creating the VM&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#checking-the-results&quot; id=&quot;markdown-toc-checking-the-results&quot;&gt;Checking the results&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#summary&quot; id=&quot;markdown-toc-summary&quot;&gt;Summary&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+  &lt;/nav&gt;
+&lt;/aside&gt;
+
+&lt;h2 id=&quot;continuing-onward&quot;&gt;Continuing onward&lt;/h2&gt;
+
+&lt;p&gt;In the last post I talked about Unattend.xml and using WindowsImageTools to create a new VHDX with an Unattend.xml and FirstBoot.ps1 for it to run.&lt;/p&gt;
+
+&lt;p&gt;using that as a starting point I’m going to replace the do-nothing FirstBoot.ps1 add have it so something more interesting.&lt;/p&gt;
+
+&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;/h2&gt;
+
+&lt;p&gt;You will need the VHDX created at the end of my post on New-UnattendXml and obviously a copy on WindowsImageTools from the PowerShell gallery.&lt;/p&gt;
+
+&lt;p&gt;We are going to have our VHDX install &lt;a href=&quot;http://www.7-zip.org/download.html&quot;&gt;7Zip&lt;/a&gt; on first boot so you will need to download a the MSI if your following along.&lt;/p&gt;
+
+&lt;h2 id=&quot;creating-a-new-improved-firstbootps1&quot;&gt;Creating a new improved FirstBoot.ps1&lt;/h2&gt;
+
+&lt;p&gt;I downloaded my MSI into G:\filesToInject\PsTemp and now i’m going to replace firstboot.ps1 so it will silently install it and write a log and shutdown&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$BetterFirstBootContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;nb&quot;&gt;start&lt;/span&gt;-process C:&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;sTemp&lt;span class=&quot;se&quot;&gt;\7&lt;/span&gt;z1602-x64.msi -ArgumentList &lt;span class=&quot;s1&quot;&gt;'/q'&lt;/span&gt;,&lt;span class=&quot;s1&quot;&gt;'INSTALLDIR=&quot;C:\Program Files\7-Zip&quot;'&lt;/span&gt; -wait
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+ &lt;span class=&quot;nb&quot;&gt;New-Item&lt;/span&gt; -Path &lt;span class=&quot;s2&quot;&gt;&quot;G:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\f&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ilesToInject&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sTemp&quot;&lt;/span&gt; -Name FirstBoot.ps1 -ItemType &lt;span class=&quot;s1&quot;&gt;'file'&lt;/span&gt; -Value &lt;span class=&quot;nv&quot;&gt;$BetterFirstBootContent&lt;/span&gt; -Force&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;placing-the-files-in-the-vhdx&quot;&gt;Placing the files in the VHDX&lt;/h3&gt;
+
+&lt;p&gt;So now we need to get the two fils into our existing VHD. Now I could just run Convert-Wim2VHD again with the same commands and I would get the desired effect, but I dont want to wait for the that process. I also could just mount the VHDX and drag and drop the files into the VHDX, but that would not let me show off another function in WindowsImageTools&lt;/p&gt;
+
+&lt;h4 id=&quot;mount-vhdandrunblock&quot;&gt;Mount-VhdAndRunBlock&lt;/h4&gt;
+
+&lt;p&gt;Mount-VhdAndRunBlock is one of my favorite tools. It will mount a VHD and run a script block allowing me to manipulate the files inside. This can be used for copying in files, Editing the registry, checking if a file exists and so on.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ScriptBlock&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;copy &lt;/span&gt;G:&lt;span class=&quot;se&quot;&gt;\f&lt;/span&gt;ilesToInject&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;sTemp&lt;span class=&quot;se&quot;&gt;\*&lt;/span&gt;.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$driveletter&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sTemp&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; -Force
+} 
+Mount-VhdAndRunBlock -VHD 'G:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\v&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;hd&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\2&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;012r2_eval_Core.vhdx' -block &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ScriptBlock&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Now that we have the better first boot script we need to create a VM to attach the vhdx to. for that I’m going to use Invoke-CreateVmRunAndWait.&lt;/p&gt;
+
+&lt;h3 id=&quot;before-we-create-a-vm&quot;&gt;Before we create a VM&lt;/h3&gt;
+
+&lt;p&gt;Lets look at what we need besides the vhdx to use Invoke-CreateVmRunAndWait&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nb&quot;&gt;help &lt;/span&gt;Invoke-CreateVmRunAndWait
+
+NAME
+    Invoke-CreateVmRunAndWait
+
+SYNOPSIS
+    Create a temp vm with a random name and &lt;span class=&quot;nb&quot;&gt;wait &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;it to stop
+
+
+SYNTAX
+    Invoke-CreateVmRunAndWait &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-VhdPath] &amp;lt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&amp;gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-VmGeneration] &amp;lt;Int32&amp;gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-VmSwitch] &amp;lt;&lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&amp;gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;-vLan] &amp;lt;Int32&amp;gt;]
+    &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;-ProcessorCount] &amp;lt;Int32&amp;gt;] &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;-MemoryStartupBytess] &amp;lt;Int64&amp;gt;] &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&amp;lt;CommonParameters&amp;gt;]&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;So according to the syntax VhdPath, VmGeneration and VmSwitch are required parameters.&lt;/p&gt;
+
+&lt;h4 id=&quot;deciding-on-a-vm-generation&quot;&gt;Deciding on a VM Generation&lt;/h4&gt;
+
+&lt;p&gt;While I know what type of VHDX i created, when creating automation script we may not always know if I need a Gen1 or Gen2 VM. So I’m going use Get-VhdPartitionStyle.&lt;/p&gt;
+
+&lt;p&gt;Get-VhdPartitionStyle will return a string of either MBR for Master Boot Record or GPT for GUID Partition Table. Generation 1 VM’s are based on BIOS and windows only works with MBR partitions for BIOS based computers. Generation 2 VM’s are based on uEFI architecture and Windows uses GPT partitions by default with uEFI.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$vmGeneration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 2 &lt;span class=&quot;c1&quot;&gt;#default to gen2 &lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$PartitionStyle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Get-VhdPartitionStyle -vhd &lt;span class=&quot;s1&quot;&gt;'G:\vhd\2012r2_eval_Core.vhdx'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PartitionStyle&lt;/span&gt; -eq &lt;span class=&quot;s1&quot;&gt;'GPT'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$vmGeneration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 2
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h4 id=&quot;getting-the-switch&quot;&gt;Getting the switch&lt;/h4&gt;
+
+&lt;p&gt;We are not actually going to use the network in this example so I’m just going to grab the first VmSwitch&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$VmSwitch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Get-VMSwitch&lt;span class=&quot;o&quot;&gt;)[&lt;/span&gt;0].Name &lt;span class=&quot;c1&quot;&gt;#First switch&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;creating-the-vm&quot;&gt;Creating the VM&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;Invoke-CreateVmRunAndWait -VhdPath &lt;span class=&quot;s1&quot;&gt;'G:\vhd\2012r2_eval_Core.vhdx'&lt;/span&gt; -VmGeneration &lt;span class=&quot;nv&quot;&gt;$vmGeneration&lt;/span&gt; -VmSwitch &lt;span class=&quot;nv&quot;&gt;$VmSwitch&lt;/span&gt; -verbose&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;We now have a randomly named vm that will run our script and install z7ip. Because it running this during the specialize phase once it’s done it will reboot and end up at the “Press Ctrl+Alt+Del to login” I”m just going to use Hyper-V manager to shut it down.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;VERBOSE: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Invoke-CreateVmRunAndWait] : Creating VM 1utbdwad at 08/30/2016 10:57:29
+VERBOSE: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Invoke-CreateVmRunAndWait] : VM 1utbdwad stopped
+VERBOSE: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Invoke-CreateVmRunAndWait] : VM 1utbdwad Deleted at 08/30/2016 11:08:47&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;checking-the-results&quot;&gt;Checking the results&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ScriptBlock&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;dir&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$driveletter&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;rogram Files&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;
+} 
+Mount-VhdAndRunBlock -VHD 'G:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\v&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;hd&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\2&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;012r2_eval_Core.vhdx' -block &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ScriptBlock&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    Directory: K:\Program Files
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----         9/4/2016   9:42 AM                7-Zip
+d-----        8/22/2013  10:39 AM                Common Files
+d-----        3/21/2014   1:09 PM                Internet Explorer
+d-----        8/22/2013  10:39 AM                WindowsPowerShell
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;So now we have a VM with an app installed, users created and automated the Out of Box Esperance. However a fresh install of Server 2012 R2 does not have WMF 5 and will have a ton of patches that need to be installed.&lt;/p&gt;
+
+&lt;p&gt;I will tackle that next.&lt;/p&gt;</content><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><category term="VHDX" /><category term="WindowsUpdate" /><category term="WindowsUpdateTools" /><category term="Module" /><summary type="html">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).</summary></entry><entry><title type="html">Windows Image Tools \| Unattend.xml</title><link href="http://localhost:4000/windowsimagetools/Unattend/" rel="alternate" type="text/html" title="Windows Image Tools \| Unattend.xml" /><published>2016-08-22T16:48:59-05:00</published><updated>2016-08-22T16:48:59-05:00</updated><id>http://localhost:4000/windowsimagetools/Unattend</id><content type="html" xml:base="http://localhost:4000/windowsimagetools/Unattend/">&lt;aside class=&quot;sidebar__right&quot;&gt;
+&lt;nav class=&quot;toc&quot;&gt;
+    &lt;header&gt;&lt;h4 class=&quot;nav__title&quot;&gt;&lt;i class=&quot;fa fa-file-text&quot;&gt;&lt;/i&gt; On This Page&lt;/h4&gt;&lt;/header&gt;
+&lt;ul class=&quot;toc__menu&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#getting-started&quot; id=&quot;markdown-toc-getting-started&quot;&gt;Getting started&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#prerequisites&quot; id=&quot;markdown-toc-prerequisites&quot;&gt;prerequisites&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#creating-a-basic-unattentxml&quot; id=&quot;markdown-toc-creating-a-basic-unattentxml&quot;&gt;Creating a basic Unattent.xml&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#anatomy-of-unattentxml&quot; id=&quot;markdown-toc-anatomy-of-unattentxml&quot;&gt;Anatomy of Unattent.xml&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#specialize--deployment&quot; id=&quot;markdown-toc-specialize--deployment&quot;&gt;Specialize : Deployment&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#specialize--shell-setup&quot; id=&quot;markdown-toc-specialize--shell-setup&quot;&gt;Specialize : Shell Setup&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#oobesystem--international-core&quot; id=&quot;markdown-toc-oobesystem--international-core&quot;&gt;oobeSystem : International Core&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#oobesystem---shell-setup&quot; id=&quot;markdown-toc-oobesystem---shell-setup&quot;&gt;oobeSystem :  Shell-Setup&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#more-usefull-unattentxml&quot; id=&quot;markdown-toc-more-usefull-unattentxml&quot;&gt;More usefull Unattent.xml&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#specialize---deployment&quot; id=&quot;markdown-toc-specialize---deployment&quot;&gt;specialize :  Deployment&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#oobesystem---shell-setup-1&quot; id=&quot;markdown-toc-oobesystem---shell-setup-1&quot;&gt;oobeSystem :  Shell Setup&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#puting-it-together&quot; id=&quot;markdown-toc-puting-it-together&quot;&gt;Puting it together&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#adding-the-unattend-and-script-file-when-creating-a-vhdx&quot; id=&quot;markdown-toc-adding-the-unattend-and-script-file-when-creating-a-vhdx&quot;&gt;Adding the unattend and script file when creating a VHDX&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+  &lt;/nav&gt;
+&lt;/aside&gt;
+
+&lt;h2 id=&quot;getting-started&quot;&gt;Getting started&lt;/h2&gt;
+
+&lt;p&gt;The second item need to automate the creation of a VM is a way to bootstrap said automation of a fresh windows image. That requires an unattend.xml&lt;/p&gt;
+
+&lt;h2 id=&quot;prerequisites&quot;&gt;prerequisites&lt;/h2&gt;
+
+&lt;p&gt;Now to work with Unattent.xml you need a deep understanding of XML structure and namespace… Just kidding. I’m going to use New-UnattendXml part of WindowsImageTools&lt;/p&gt;
+
+&lt;p&gt;You can install WindowsImageTools from the PowerShell Gallery with install-module WindowsImageTools&lt;/p&gt;
+
+&lt;h2 id=&quot;creating-a-basic-unattentxml&quot;&gt;Creating a basic Unattent.xml&lt;/h2&gt;
+
+&lt;p&gt;Lets start off with a basic Unattend. Minimum requirements for this is changing the administrator password&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;New-UnattendXml -AdminCredential &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Get-Credential&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; |
+&lt;span class=&quot;nb&quot;&gt;Get-Content&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cmdlet Get-Credential at command pipeline position 1
+Supply values for the following parameters:
+Credential
+WARNING: C:\Users\BLADE_~1\AppData\Local\Temp\hqfyjyg2\unattend.xml only usable on a server SKU, for a client OS, use
+either -EnableAdministrator or -UserAccount
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Notice the warning. Setting the Admin password on a server is all you need, as the build in Administrator account is allready enabled. On a client OS you have to either enable the administrator or add a second one or three.
+It spits out this mass of XML&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;unattend&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;urn:schemas-microsoft-com:unattend&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;settings&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;pass=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;specialize&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-Deployment&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;amd64&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-Deployment&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x86&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-Shell-Setup&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;amd64&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;ComputerName&amp;gt;&lt;/span&gt;*&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ComputerName&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-Shell-Setup&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x86&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;ComputerName&amp;gt;&lt;/span&gt;*&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ComputerName&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/settings&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;settings&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;pass=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;oobeSystem&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-International-Core&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;amd64&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;InputLocale&amp;gt;&lt;/span&gt;en-US&lt;span class=&quot;nt&quot;&gt;&amp;lt;/InputLocale&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;SystemLocale&amp;gt;&lt;/span&gt;en-US&lt;span class=&quot;nt&quot;&gt;&amp;lt;/SystemLocale&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;UILanguage&amp;gt;&lt;/span&gt;en-US&lt;span class=&quot;nt&quot;&gt;&amp;lt;/UILanguage&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;UserLocale&amp;gt;&lt;/span&gt;en-US&lt;span class=&quot;nt&quot;&gt;&amp;lt;/UserLocale&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-International-Core&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x86&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;InputLocale&amp;gt;&lt;/span&gt;en-US&lt;span class=&quot;nt&quot;&gt;&amp;lt;/InputLocale&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;SystemLocale&amp;gt;&lt;/span&gt;en-US&lt;span class=&quot;nt&quot;&gt;&amp;lt;/SystemLocale&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;UILanguage&amp;gt;&lt;/span&gt;en-US&lt;span class=&quot;nt&quot;&gt;&amp;lt;/UILanguage&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;UserLocale&amp;gt;&lt;/span&gt;en-US&lt;span class=&quot;nt&quot;&gt;&amp;lt;/UserLocale&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-Shell-Setup&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;amd64&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;OOBE&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;HideEULAPage&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/HideEULAPage&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;HideWirelessSetupInOOBE&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/HideWirelessSetupInOOBE&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;NetworkLocation&amp;gt;&lt;/span&gt;Work&lt;span class=&quot;nt&quot;&gt;&amp;lt;/NetworkLocation&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;ProtectYourPC&amp;gt;&lt;/span&gt;1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ProtectYourPC&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;SkipUserOOBE&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/SkipUserOOBE&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;SkipMachineOOBE&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/SkipMachineOOBE&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/OOBE&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;TimeZone&amp;gt;&lt;/span&gt;GMT Standard Time&lt;span class=&quot;nt&quot;&gt;&amp;lt;/TimeZone&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;UserAccounts&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;AdministratorPassword&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;Value&amp;gt;&lt;/span&gt;YQBkAHMAZgBBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByAFAAYQBzAHMAdwBvAHIAZAA=&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Value&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;PlainText&amp;gt;&lt;/span&gt;false&lt;span class=&quot;nt&quot;&gt;&amp;lt;/PlainText&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/AdministratorPassword&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/UserAccounts&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;RegisteredOrganization&amp;gt;&lt;/span&gt;Generic Organization&lt;span class=&quot;nt&quot;&gt;&amp;lt;/RegisteredOrganization&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;RegisteredOwner&amp;gt;&lt;/span&gt;Generic Owner&lt;span class=&quot;nt&quot;&gt;&amp;lt;/RegisteredOwner&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-Shell-Setup&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x86&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;OOBE&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;HideEULAPage&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/HideEULAPage&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;HideWirelessSetupInOOBE&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/HideWirelessSetupInOOBE&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;NetworkLocation&amp;gt;&lt;/span&gt;Work&lt;span class=&quot;nt&quot;&gt;&amp;lt;/NetworkLocation&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;ProtectYourPC&amp;gt;&lt;/span&gt;1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ProtectYourPC&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;SkipUserOOBE&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/SkipUserOOBE&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;SkipMachineOOBE&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/SkipMachineOOBE&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/OOBE&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;TimeZone&amp;gt;&lt;/span&gt;GMT Standard Time&lt;span class=&quot;nt&quot;&gt;&amp;lt;/TimeZone&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;UserAccounts&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;AdministratorPassword&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;Value&amp;gt;&lt;/span&gt;YQBkAHMAZgBBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByAFAAYQBzAHMAdwBvAHIAZAA=&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Value&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;PlainText&amp;gt;&lt;/span&gt;false&lt;span class=&quot;nt&quot;&gt;&amp;lt;/PlainText&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/AdministratorPassword&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/UserAccounts&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;RegisteredOrganization&amp;gt;&lt;/span&gt;Generic Organization&lt;span class=&quot;nt&quot;&gt;&amp;lt;/RegisteredOrganization&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;RegisteredOwner&amp;gt;&lt;/span&gt;Generic Owner&lt;span class=&quot;nt&quot;&gt;&amp;lt;/RegisteredOwner&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/settings&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/unattend&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;anatomy-of-unattentxml&quot;&gt;Anatomy of Unattent.xml&lt;/h2&gt;
+
+&lt;p&gt;Takeing a closer look at each section&lt;/p&gt;
+
+&lt;h3 id=&quot;specialize--deployment&quot;&gt;Specialize : Deployment&lt;/h3&gt;
+
+&lt;p&gt;Contrary to popular belief, the unattend.xml can have one file that can be use for both 32 and 64bit. All you have to do is repeat the section with a different architecture. With one caveat that I will get into later. In the basic Unattent the Deployment section is empty.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-Deployment&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;amd64&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-Deployment&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x86&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;specialize--shell-setup&quot;&gt;Specialize : Shell Setup&lt;/h3&gt;
+
+&lt;p&gt;Basic settings lets windows pick a random computer name.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-Shell-Setup&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;amd64&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;ComputerName&amp;gt;&lt;/span&gt;*&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ComputerName&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-Shell-Setup&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x86&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;ComputerName&amp;gt;&lt;/span&gt;*&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ComputerName&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;oobesystem--international-core&quot;&gt;oobeSystem : International Core&lt;/h3&gt;
+
+&lt;p&gt;The language and input are localized to en-US by default, This can be changed via parameters&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-International-Core&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;amd64&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;InputLocale&amp;gt;&lt;/span&gt;en-US&lt;span class=&quot;nt&quot;&gt;&amp;lt;/InputLocale&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;SystemLocale&amp;gt;&lt;/span&gt;en-US&lt;span class=&quot;nt&quot;&gt;&amp;lt;/SystemLocale&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;UILanguage&amp;gt;&lt;/span&gt;en-US&lt;span class=&quot;nt&quot;&gt;&amp;lt;/UILanguage&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;UserLocale&amp;gt;&lt;/span&gt;en-US&lt;span class=&quot;nt&quot;&gt;&amp;lt;/UserLocale&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-International-Core&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x86&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;InputLocale&amp;gt;&lt;/span&gt;en-US&lt;span class=&quot;nt&quot;&gt;&amp;lt;/InputLocale&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;SystemLocale&amp;gt;&lt;/span&gt;en-US&lt;span class=&quot;nt&quot;&gt;&amp;lt;/SystemLocale&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;UILanguage&amp;gt;&lt;/span&gt;en-US&lt;span class=&quot;nt&quot;&gt;&amp;lt;/UILanguage&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;UserLocale&amp;gt;&lt;/span&gt;en-US&lt;span class=&quot;nt&quot;&gt;&amp;lt;/UserLocale&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;oobesystem---shell-setup&quot;&gt;oobeSystem :  Shell-Setup&lt;/h3&gt;
+
+&lt;p&gt;This section is a bit larger. It going to hide or skip everything it can to avoid any prompting. Afterall this is suposed to be automated.
+We also set the Timezone to a default of GMT and set the admin password
+Now the Admin Password may look encrypted, but it’s not that is 64bit encodeing. The best thing to do is set a password here for troubleshooting, then change it via LAPS or DSC once windows is up and running.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-Shell-Setup&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;amd64&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;OOBE&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;HideEULAPage&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/HideEULAPage&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;HideWirelessSetupInOOBE&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/HideWirelessSetupInOOBE&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;NetworkLocation&amp;gt;&lt;/span&gt;Work&lt;span class=&quot;nt&quot;&gt;&amp;lt;/NetworkLocation&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;ProtectYourPC&amp;gt;&lt;/span&gt;1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ProtectYourPC&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;SkipUserOOBE&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/SkipUserOOBE&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;SkipMachineOOBE&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/SkipMachineOOBE&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/OOBE&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;TimeZone&amp;gt;&lt;/span&gt;GMT Standard Time&lt;span class=&quot;nt&quot;&gt;&amp;lt;/TimeZone&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;UserAccounts&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;AdministratorPassword&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;Value&amp;gt;&lt;/span&gt;YQBkAHMAZgBBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByAFAAYQBzAHMAdwBvAHIAZAA=&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Value&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;PlainText&amp;gt;&lt;/span&gt;false&lt;span class=&quot;nt&quot;&gt;&amp;lt;/PlainText&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/AdministratorPassword&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/UserAccounts&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;RegisteredOrganization&amp;gt;&lt;/span&gt;Generic Organization&lt;span class=&quot;nt&quot;&gt;&amp;lt;/RegisteredOrganization&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;RegisteredOwner&amp;gt;&lt;/span&gt;Generic Owner&lt;span class=&quot;nt&quot;&gt;&amp;lt;/RegisteredOwner&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-Shell-Setup&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x86&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;OOBE&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;HideEULAPage&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/HideEULAPage&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;HideWirelessSetupInOOBE&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/HideWirelessSetupInOOBE&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;NetworkLocation&amp;gt;&lt;/span&gt;Work&lt;span class=&quot;nt&quot;&gt;&amp;lt;/NetworkLocation&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;ProtectYourPC&amp;gt;&lt;/span&gt;1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ProtectYourPC&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;SkipUserOOBE&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/SkipUserOOBE&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;SkipMachineOOBE&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/SkipMachineOOBE&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/OOBE&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;TimeZone&amp;gt;&lt;/span&gt;GMT Standard Time&lt;span class=&quot;nt&quot;&gt;&amp;lt;/TimeZone&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;UserAccounts&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;AdministratorPassword&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;Value&amp;gt;&lt;/span&gt;YQBkAHMAZgBBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByAFAAYQBzAHMAdwBvAHIAZAA=&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Value&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;PlainText&amp;gt;&lt;/span&gt;false&lt;span class=&quot;nt&quot;&gt;&amp;lt;/PlainText&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/AdministratorPassword&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/UserAccounts&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;RegisteredOrganization&amp;gt;&lt;/span&gt;Generic Organization&lt;span class=&quot;nt&quot;&gt;&amp;lt;/RegisteredOrganization&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;RegisteredOwner&amp;gt;&lt;/span&gt;Generic Owner&lt;span class=&quot;nt&quot;&gt;&amp;lt;/RegisteredOwner&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;This is all well and good but it’s still only get’s us the first step. To automate deployment we need to do more then bypass prompts and set a password.&lt;/p&gt;
+
+&lt;h2 id=&quot;more-usefull-unattentxml&quot;&gt;More usefull Unattent.xml&lt;/h2&gt;
+
+&lt;p&gt;Now we will set a few more items.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$param&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; @&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  AdminCredential &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Get-Credential&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 
+  UserAccount &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Get-Credential&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Get-Credential&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 
+  FirstBootScriptPath &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'C:\PsTemp\FirstBoot.ps1'&lt;/span&gt; 
+  TimeZone &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Central Standard Time'&lt;/span&gt; 
+  RegisteredOwner &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Employee'&lt;/span&gt;
+  RegisteredOrganization &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Contoso'&lt;/span&gt;
+  enableAdministrator &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$true&lt;/span&gt; 
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+New-UnattendXml @param | 
+&lt;span class=&quot;nb&quot;&gt;get-content&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;specialize---deployment&quot;&gt;specialize :  Deployment&lt;/h3&gt;
+
+&lt;p&gt;One thing to notice here is the amd64 component is still blank. The reason for this is 64bit OS’s will run the commands in both the 32 and 64bit sections.&lt;/p&gt;
+
+&lt;p&gt;We have two commands in the RunSynchronous section. The first one enables the Administrator account. the second launches PowerShell with the script path we asked for.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-Deployment&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;amd64&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-Deployment&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x86&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;RunSynchronous&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;RunSynchronousCommand&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;wcm:action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;add&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;Description&amp;gt;&lt;/span&gt;Enable Administrator&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Description&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;Order&amp;gt;&lt;/span&gt;1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Order&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;Path&amp;gt;&lt;/span&gt;net user administrator /active:yes&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Path&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/RunSynchronousCommand&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;RunSynchronousCommand&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;wcm:action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;add&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;Description&amp;gt;&lt;/span&gt;PowerShell First boot script&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Description&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;Order&amp;gt;&lt;/span&gt;2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Order&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;Path&amp;gt;&lt;/span&gt;%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File &quot;C:\PsTemp\FirstBoot.ps1&quot;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Path&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/RunSynchronousCommand&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/RunSynchronous&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h3 id=&quot;oobesystem---shell-setup-1&quot;&gt;oobeSystem :  Shell Setup&lt;/h3&gt;
+
+&lt;p&gt;The next section that is diferent is the shell setup. You will notice I set two additional user accounts. Remember that the passwords are encoded not encrypted. I also have entries to set the ownership.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-Shell-Setup&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;amd64&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;OOBE&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;HideEULAPage&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/HideEULAPage&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;HideWirelessSetupInOOBE&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/HideWirelessSetupInOOBE&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;NetworkLocation&amp;gt;&lt;/span&gt;Work&lt;span class=&quot;nt&quot;&gt;&amp;lt;/NetworkLocation&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;ProtectYourPC&amp;gt;&lt;/span&gt;1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ProtectYourPC&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;SkipUserOOBE&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/SkipUserOOBE&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;SkipMachineOOBE&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/SkipMachineOOBE&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/OOBE&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;TimeZone&amp;gt;&lt;/span&gt;Central Standard Time&lt;span class=&quot;nt&quot;&gt;&amp;lt;/TimeZone&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;UserAccounts&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;AdministratorPassword&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;Value&amp;gt;&lt;/span&gt;UABAAHMAcwB3ADAAcgBkAEEAZABtAGkAbgBpAHMAdAByAGEAdABvAHIAUABhAHMAcwB3AG8AcgBkAA==&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Value&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;PlainText&amp;gt;&lt;/span&gt;false&lt;span class=&quot;nt&quot;&gt;&amp;lt;/PlainText&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/AdministratorPassword&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;LocalAccounts&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;LocalAccount&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;wcm:action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;add&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;Password&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;Value&amp;gt;&lt;/span&gt;UABAAHMAcwB3ADAAcgBkADEAMgAzAFAAYQBzAHMAdwBvAHIAZAA=&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Value&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;PlainText&amp;gt;&lt;/span&gt;false&lt;span class=&quot;nt&quot;&gt;&amp;lt;/PlainText&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/Password&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;DisplayName&amp;gt;&lt;/span&gt;Don&lt;span class=&quot;nt&quot;&gt;&amp;lt;/DisplayName&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;Group&amp;gt;&lt;/span&gt;Administrators&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Group&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;Name&amp;gt;&lt;/span&gt;Don&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Name&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/LocalAccount&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;LocalAccount&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;wcm:action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;add&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;Password&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;Value&amp;gt;&lt;/span&gt;UABAAHMAcwB3ADAAcgBkADQANQA2AFAAYQBzAHMAdwBvAHIAZAA=&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Value&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;PlainText&amp;gt;&lt;/span&gt;false&lt;span class=&quot;nt&quot;&gt;&amp;lt;/PlainText&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/Password&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;DisplayName&amp;gt;&lt;/span&gt;Mike&lt;span class=&quot;nt&quot;&gt;&amp;lt;/DisplayName&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;Group&amp;gt;&lt;/span&gt;Administrators&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Group&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;Name&amp;gt;&lt;/span&gt;Mike&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Name&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/LocalAccount&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/LocalAccounts&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/UserAccounts&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;RegisteredOrganization&amp;gt;&lt;/span&gt;Contoso&lt;span class=&quot;nt&quot;&gt;&amp;lt;/RegisteredOrganization&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;RegisteredOwner&amp;gt;&lt;/span&gt;Employee&lt;span class=&quot;nt&quot;&gt;&amp;lt;/RegisteredOwner&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;component&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Microsoft-Windows-Shell-Setup&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;processorArchitecture=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x86&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;publicKeyToken=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;31bf3856ad364e35&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;language=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;neutral&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;versionScope=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nonSxS&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:wcm=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schemas.microsoft.com/WMIConfig/2002/State&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;OOBE&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;HideEULAPage&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/HideEULAPage&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;HideWirelessSetupInOOBE&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/HideWirelessSetupInOOBE&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;NetworkLocation&amp;gt;&lt;/span&gt;Work&lt;span class=&quot;nt&quot;&gt;&amp;lt;/NetworkLocation&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;ProtectYourPC&amp;gt;&lt;/span&gt;1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ProtectYourPC&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;SkipUserOOBE&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/SkipUserOOBE&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;SkipMachineOOBE&amp;gt;&lt;/span&gt;true&lt;span class=&quot;nt&quot;&gt;&amp;lt;/SkipMachineOOBE&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/OOBE&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;TimeZone&amp;gt;&lt;/span&gt;Central Standard Time&lt;span class=&quot;nt&quot;&gt;&amp;lt;/TimeZone&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;UserAccounts&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;AdministratorPassword&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;Value&amp;gt;&lt;/span&gt;UABAAHMAcwB3ADAAcgBkAEEAZABtAGkAbgBpAHMAdAByAGEAdABvAHIAUABhAHMAcwB3AG8AcgBkAA==&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Value&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;PlainText&amp;gt;&lt;/span&gt;false&lt;span class=&quot;nt&quot;&gt;&amp;lt;/PlainText&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/AdministratorPassword&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;LocalAccounts&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;LocalAccount&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;wcm:action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;add&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;Password&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;Value&amp;gt;&lt;/span&gt;UABAAHMAcwB3ADAAcgBkADEAMgAzAFAAYQBzAHMAdwBvAHIAZAA=&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Value&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;PlainText&amp;gt;&lt;/span&gt;false&lt;span class=&quot;nt&quot;&gt;&amp;lt;/PlainText&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/Password&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;DisplayName&amp;gt;&lt;/span&gt;Don&lt;span class=&quot;nt&quot;&gt;&amp;lt;/DisplayName&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;Group&amp;gt;&lt;/span&gt;Administrators&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Group&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;Name&amp;gt;&lt;/span&gt;Don&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Name&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/LocalAccount&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;LocalAccount&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;wcm:action=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;add&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;Password&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;Value&amp;gt;&lt;/span&gt;UABAAHMAcwB3ADAAcgBkADQANQA2AFAAYQBzAHMAdwBvAHIAZAA=&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Value&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;PlainText&amp;gt;&lt;/span&gt;false&lt;span class=&quot;nt&quot;&gt;&amp;lt;/PlainText&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/Password&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;DisplayName&amp;gt;&lt;/span&gt;Mike&lt;span class=&quot;nt&quot;&gt;&amp;lt;/DisplayName&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;Group&amp;gt;&lt;/span&gt;Administrators&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Group&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;Name&amp;gt;&lt;/span&gt;Mike&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Name&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/LocalAccount&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/LocalAccounts&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/UserAccounts&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;RegisteredOrganization&amp;gt;&lt;/span&gt;Contoso&lt;span class=&quot;nt&quot;&gt;&amp;lt;/RegisteredOrganization&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;RegisteredOwner&amp;gt;&lt;/span&gt;Employee&lt;span class=&quot;nt&quot;&gt;&amp;lt;/RegisteredOwner&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;FirstLogonCommands&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;LogonCommands&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/component&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;puting-it-together&quot;&gt;Puting it together&lt;/h2&gt;
+
+&lt;p&gt;New-UnattentXML returns a path object to the file created, and by default that is in $env:TEMP. so we will store the path in a variable and use it pluss the path to our FirstBoot script when creating the VHDX&lt;/p&gt;
+
+&lt;h3 id=&quot;adding-the-unattend-and-script-file-when-creating-a-vhdx&quot;&gt;Adding the unattend and script file when creating a VHDX&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$UnattentParam&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; @&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  AdminCredential &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Get-Credential&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 
+  UserAccount &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Get-Credential&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Get-Credential&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 
+  FirstBootScriptPath &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'C:\PsTemp\FirstBoot.ps1'&lt;/span&gt; 
+  TimeZone &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Central Standard Time'&lt;/span&gt; 
+  RegisteredOwner &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Employee'&lt;/span&gt;
+  RegisteredOrganization &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Contoso'&lt;/span&gt;
+  enableAdministrator &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$true&lt;/span&gt; 
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$UnattentPath&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;New-UnattendXml @UnattentParam &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.FullName
+
+&lt;span class=&quot;nv&quot;&gt;$FirstBootContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;## Do something Cool&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+ &lt;span class=&quot;nb&quot;&gt;New-Item&lt;/span&gt; -Path &lt;span class=&quot;s2&quot;&gt;&quot;G:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\f&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ilesToInject&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\P&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sTemp&quot;&lt;/span&gt; -Name FirstBoot.ps1 -ItemType &lt;span class=&quot;s1&quot;&gt;'file'&lt;/span&gt; -Value &lt;span class=&quot;nv&quot;&gt;$FirstBootContent&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ConverParm&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; @&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  Path &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'G:\vhd\2012r2_eval_Core.vhdx'&lt;/span&gt; 
+  Size &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 60gb 
+  Dynamic &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$true&lt;/span&gt; 
+  DiskLayout &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'UEFI'&lt;/span&gt; 
+  SourcePath &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'G:\iso\Srv2012r2Eval.ISO'&lt;/span&gt; 
+  Index &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 1 
+  Feature &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'NetFx3'&lt;/span&gt;
+  Unattend &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$UnattentPath&lt;/span&gt; 
+  filesToInject &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'G:\filesToInject\PsTemp'&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+ Convert-Wim2VHD @ConverParm -Verbose&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Below is part of the verbose output that covers Unattend and filesToInject&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] Windows Partition [3] : Adding files from G:\filesToInject
+VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] Windows Partition [3] : Adding Unattend.xml (C:\Users\Blade_000\AppData\Local\Temp\djebkgrz\unattend.xml)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;So now when this vhdx first boots it will process Unattend creating users and running our PowerShell script&lt;/p&gt;</content><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><category term="VHDX" /><category term="WindowsUpdate" /><category term="WindowsUpdateTools" /><category term="Module" /><summary type="html">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).</summary></entry><entry><title type="html">Windows Image Tools \| VHDX Creation</title><link href="http://localhost:4000/windowsimagetools/VHDXCreation/" rel="alternate" type="text/html" title="Windows Image Tools \| VHDX Creation" /><published>2016-08-21T16:48:59-05:00</published><updated>2016-08-21T16:48:59-05:00</updated><id>http://localhost:4000/windowsimagetools/VHDXCreation</id><content type="html" xml:base="http://localhost:4000/windowsimagetools/VHDXCreation/">&lt;aside class=&quot;sidebar__right&quot;&gt;
+&lt;nav class=&quot;toc&quot;&gt;
+    &lt;header&gt;&lt;h4 class=&quot;nav__title&quot;&gt;&lt;i class=&quot;fa fa-file-text&quot;&gt;&lt;/i&gt; On This Page&lt;/h4&gt;&lt;/header&gt;
+&lt;ul class=&quot;toc__menu&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#server-with-a-gui-and-net-35&quot; id=&quot;markdown-toc-server-with-a-gui-and-net-35&quot;&gt;Server with a GUI and .net 3.5&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+  &lt;/nav&gt;
+&lt;/aside&gt;
+
+&lt;p&gt;## Getting started&lt;/p&gt;
+
+&lt;p&gt;To automate the creation of clean VM’s we need a clean diskimage. for that we will use Convert-Wim2VHD from WindowsImageTools&lt;/p&gt;
+
+&lt;p&gt;Before you can create a VHDX your going to need a source. either a WIM or ISO. In tha lab that would usually be a trial version. For work, the iso from your licencing portal, or heaven forbid a physical CD.&lt;/p&gt;
+
+&lt;p&gt;You can get an evaluation copy of windows from &lt;a href=&quot;https://www.microsoft.com/en-us/evalcenter&quot;&gt;TechNet Evaluation Center&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I’m going to use a evaluation of 2012r2. I have it downloaded and saved to G:\ISO\Srv2012r2Eval.iso and i’m going to create a new vhdx in G:\vhd&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;Convert-Wim2VHD -Path G:&lt;span class=&quot;se&quot;&gt;\v&lt;/span&gt;hd&lt;span class=&quot;se&quot;&gt;\2&lt;/span&gt;012r2_eval_Core.vhdx -Size 60gb -Dynamic -DiskLayout UEFI -SourcePath G:&lt;span class=&quot;se&quot;&gt;\i&lt;/span&gt;so&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;rv2012r2Eval.ISO -Index 1 -Verbose&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;VERBOSE: [Convert-Wim2VHD] : Overwrite partitions inside [G:\vhd\2012r2_eval_Core.vhdx] 
+with content of [G:\iso\Srv2012r2Eval.ISO]
+VERBOSE: [Convert-Wim2VHD] : InitializeVHDPartitionParam
+VERBOSE:
+Name                           Value
+----                           -----
+Dynamic                        True
+Path                           G:\vhd\2012r2_eval_Core.vhdx
+DiskLayout                     UEFI
+force                          True
+Size                           64424509440
+
+VERBOSE: [Convert-Wim2VHD] : SetVHDPartitionParam
+VERBOSE:
+Name                           Value
+----                           -----
+SourcePath                     G:\iso\Srv2012r2Eval.ISO
+Path                           G:\vhd\2012r2_eval_Core.vhdx
+FeatureSourceIndex             1
+Index                          1
+Force                          True
+Confirm                        False
+
+VERBOSE: [Convert-Wim2VHD] : ParametersToPass
+VERBOSE:
+Name                           Value
+----                           -----
+Verbose                        True
+
+VERBOSE: [Initialize-VHDPartition] Create partition structure for Bootable vhd(x) on 
+[G:\vhd\2012r2_eval_Core.vhdx]
+VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : Creating
+VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : @vhdParms
+VERBOSE:
+Name                           Value
+----                           -----
+Path                           G:\vhd\2012r2_eval_Core.vhdx
+SizeBytes                      64424509440
+Dynamic                        True
+ErrorAction                    Stop
+BlockSizeBytes                 1048576
+
+VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : Mounting disk image
+VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : Initializing disk [5] as 
+GPT
+VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : Clearing disk partitions to 
+start all over
+VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : EFI system : Creating 
+partition of [209715200] bytes
+VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : EFI system : Formatting 
+FAT32
+VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : EFI system : Setting system 
+partition as ESP
+VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : MSR : Creating partition of 
+[134217728] bytes
+VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : Windows : Creating partition 
+of [64078479360] bytes
+VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : Windows : Formatting volume 
+NTFS
+VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : Dismounting disk image
+VERBOSE: [Set-VHDPartition] : Overwrite partitions inside [G:\vhd\2012r2_eval_Core.vhdx] 
+with content of
+[G:\iso\Srv2012r2Eval.ISO]
+VERBOSE: [Set-VHDPartition] : Opening ISO [Srv2012r2Eval.ISO]
+VERBOSE: [Set-VHDPartition] : Looking for I:\sources\install.wim
+VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Mounting disk image 
+[G:\vhd\2012r2_eval_Core.vhdx]
+VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Munted as disknumber [5]
+VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Partition Table
+VERBOSE:
+PartitionNumber DriveLetter        Size Type
+--------------- -----------        ---- ----
+              1           J   209715200 System
+              2               134217728 Reserved
+              3           K 64078479360 Basic
+
+VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] Windows Partition [3] : Applying 
+image from
+[I:\sources\install.wim] to [K:\] using Index [1]
+VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Disk Layout [UEFI]
+VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] System Partition [1] : Running 
+[K:\Windows\System32\bcdboot.exe] -&amp;gt;
+ K:\Windows /s J: /v /f UEFI
+VERBOSE: [Run-Executable] : Running [K:\Windows\System32\bcdboot.exe] 
+[K:\Windows /s J: /v /f UEFI]
+VERBOSE:
+Name                           Value
+----                           -----
+PassThru                       True
+FilePath                       K:\Windows\System32\bcdboot.exe
+ArgumentList                   {K:\Windows, /s J:, /v, /f UEFI}
+RedirectStandardError          C:\Users\BLADE_~1\AppData\Local\Temp\bcdboot.exe-Standard
+Error.txt
+NoNewWindow                    True
+Wait                           True
+
+RedirectStandardOutput         C:\Users\BLADE_~1\AppData\Local\Temp\bcdboot.exe-Standard
+Output.txt
+VERBOSE: [Run-Executable] : Return code was [0]
+VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Removing Drive letters
+VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Dismounting
+VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Finished
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;server-with-a-gui-and-net-35&quot;&gt;Server with a GUI and .net 3.5&lt;/h2&gt;
+
+&lt;p&gt;Lets say we need a VM with the Desktop and .Net 3.5 to run a legacy vendor app.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;Convert-Wim2VHD -Path G:&lt;span class=&quot;se&quot;&gt;\v&lt;/span&gt;hd&lt;span class=&quot;se&quot;&gt;\2&lt;/span&gt;012r2_eval_gui.vhdx -Size 60gb -Dynamic -DiskLayout UEFI -SourcePath G:&lt;span class=&quot;se&quot;&gt;\i&lt;/span&gt;so&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;rv2012r2Eval.ISO -Index 2 -Feature NetFx3&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The -Feature command takes the feature names that would be understood by DISM, or Install-WindowsOptionalFeature&lt;/p&gt;
+
+&lt;p&gt;Creating a VHDX is a good start, but we want to automate this. for that we need an Unatten.xml. I will cover that in the next blog&lt;/p&gt;</content><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><category term="VHDX" /><category term="WindowsUpdate" /><category term="WindowsUpdateTools" /><category term="Module" /><summary type="html">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).</summary></entry><entry><title type="html">Windows Image Tools \| Overview</title><link href="http://localhost:4000/windowsimagetools/windows-image-tools-overview/" rel="alternate" type="text/html" title="Windows Image Tools \| Overview" /><published>2016-03-16T16:48:59-05:00</published><updated>2016-03-16T16:48:59-05:00</updated><id>http://localhost:4000/windowsimagetools/windows-image-tools-overview</id><content type="html" xml:base="http://localhost:4000/windowsimagetools/windows-image-tools-overview/">&lt;aside class=&quot;sidebar__right&quot;&gt;
+&lt;nav class=&quot;toc&quot;&gt;
+    &lt;header&gt;&lt;h4 class=&quot;nav__title&quot;&gt;&lt;i class=&quot;fa fa-file-text&quot;&gt;&lt;/i&gt; On This Page&lt;/h4&gt;&lt;/header&gt;
+&lt;ul class=&quot;toc__menu&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#the-problem&quot; id=&quot;markdown-toc-the-problem&quot;&gt;The problem&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#what-to-do-about-it&quot; id=&quot;markdown-toc-what-to-do-about-it&quot;&gt;What to do about it&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#why-a-module-why-not-a-script&quot; id=&quot;markdown-toc-why-a-module-why-not-a-script&quot;&gt;Why a Module, why not a script?&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#functions-included-in-windowsimagetools&quot; id=&quot;markdown-toc-functions-included-in-windowsimagetools&quot;&gt;Functions included in WindowsImageTools&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#create-vhdx&quot; id=&quot;markdown-toc-create-vhdx&quot;&gt;Create VHDX&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#work-with-vhdx&quot; id=&quot;markdown-toc-work-with-vhdx&quot;&gt;Work with VHDX&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#update-vhdx&quot; id=&quot;markdown-toc-update-vhdx&quot;&gt;Update VHDX&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+  &lt;/nav&gt;
+&lt;/aside&gt;
+
+&lt;h2 id=&quot;the-problem&quot;&gt;The problem&lt;/h2&gt;
+
+&lt;p&gt;One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).&lt;/p&gt;
+
+&lt;h2 id=&quot;what-to-do-about-it&quot;&gt;What to do about it&lt;/h2&gt;
+
+&lt;p&gt;I have spend some time putting together a number of scripts to automate this, but after the release of windows 10 and it’s built in access to the galaxy I decided to look at updating and packaging my script into something portable and share it.&lt;/p&gt;
+
+&lt;h3 id=&quot;why-a-module-why-not-a-script&quot;&gt;Why a Module, why not a script?&lt;/h3&gt;
+
+&lt;p&gt;Well scripts are great for automating a process, but not the best when you want to customize for your own process. Say you use a script on the &lt;a href=&quot;https://www.powershellgallery.com/&quot;&gt;PowerShell Gallery&lt;/a&gt; and have customized it to fit your environment and business process. Then their is a bug fix posted to the gallery. You get the fun of adapting the changes into your modified code. This is time consuming, and the reason so many thing in production remain outdated and buggy. But if your using a customized controller script&lt;sup id=&quot;fnref:ControlerSsript&quot;&gt;&lt;a href=&quot;#fn:ControlerSsript&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; that relies on a module function, being able to use the newer release from the PowerShell Gallery is less painful.&lt;/p&gt;
+
+&lt;p&gt;For that reason I have chosen to use a module and include a function that creates an example controller script.&lt;/p&gt;
+
+&lt;h2 id=&quot;functions-included-in-windowsimagetools&quot;&gt;Functions included in WindowsImageTools&lt;/h2&gt;
+
+&lt;p&gt;Functions cover three different areas, Creating VHDX, Manipulating them, and Updates.&lt;/p&gt;
+
+&lt;h3 id=&quot;create-vhdx&quot;&gt;Create VHDX&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Initialize-VHDPartition
+    &lt;ul&gt;
+      &lt;li&gt;Create a VHD(x) with the partitions structure appropriate for the target generation of a VM&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Set-VHDPartition
+    &lt;ul&gt;
+      &lt;li&gt;Populate the VHD(x) partitions with the content of an ISO or WIM&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Convert-Wim2VHD
+    &lt;ul&gt;
+      &lt;li&gt;Wrapper combining Initialize-VHDPartition and Set-VHDPartition in a single function&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;New-UnattendXml
+    &lt;ul&gt;
+      &lt;li&gt;Create an Unattent.xml to silently setup windows&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;work-with-vhdx&quot;&gt;Work with VHDX&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Get-VhdPartitionStyle
+    &lt;ul&gt;
+      &lt;li&gt;Returns GPT&lt;sup id=&quot;fnref:GPT&quot;&gt;&lt;a href=&quot;#fn:GPT&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; or MBR&lt;sup id=&quot;fnref:MBR&quot;&gt;&lt;a href=&quot;#fn:MBR&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Mount-VhdAndRunBlock
+    &lt;ul&gt;
+      &lt;li&gt;Mounts a VHD(x) sets the letter of the first mount point to $driveLeter and invokes a script block. useful for manipulating  files inside a VHD&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Invoke-CreateVmRunAndWait
+    &lt;ul&gt;
+      &lt;li&gt;Created a VM attached the VHD to it and waits for it to stop. Used for running boot time scripts that shut down when finished.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;update-vhdx&quot;&gt;Update VHDX&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;New-WindowsImageToolsExample
+    &lt;ul&gt;
+      &lt;li&gt;Creates an example folder structure and example controller scripts&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Get-UpdateConfig
+    &lt;ul&gt;
+      &lt;li&gt;Gets the update configuration stored in the update folders. Contains VM Switch, and IP addresses needed to access the internet when running updates.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Set-UpdateConfig
+    &lt;ul&gt;
+      &lt;li&gt;Change settings in the update configuration&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Add-UpdateImage
+    &lt;ul&gt;
+      &lt;li&gt;Uses Convert-Wim2VHD and New-UnattendXml to prep a VHDX for updating&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Update-WindowsImageWMF
+    &lt;ul&gt;
+      &lt;li&gt;Update VHDX to WMF 4 or WMF 5&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Invoke-WindowsImageUpdate
+    &lt;ul&gt;
+      &lt;li&gt;For one VHDX or all VHD’s in update folder, run windows update and output WIM and optional VHDX&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:ControlerSsript&quot;&gt;
+      &lt;p&gt;A script that is specific to a business process&amp;nbsp;&lt;a href=&quot;#fnref:ControlerSsript&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:GPT&quot;&gt;
+      &lt;p&gt;GUID Partition Table. Used for Generation 2 and UEFI. will contain MSR, UEFI and Primary partition, may include options Recovery Tools and Recovery Image partitions&amp;nbsp;&lt;a href=&quot;#fnref:GPT&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:MBR&quot;&gt;
+      &lt;p&gt;Master Boot Record. Used for Generation 1 and legacy BIOS. Will use one Primary partition&amp;nbsp;&lt;a href=&quot;#fnref:MBR&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><category term="VHDX" /><category term="WindowsUpdate" /><category term="WindowsUpdateTools" /><category term="Module" /><summary type="html">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).</summary></entry><entry><title type="html">Shaving the Yak, Leads Me to Create New Module WindowsImageTools</title><link href="http://localhost:4000/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/" rel="alternate" type="text/html" title="Shaving the Yak, Leads Me to Create New Module WindowsImageTools" /><published>2015-09-29T00:00:00-05:00</published><updated>2015-09-29T00:00:00-05:00</updated><id>http://localhost:4000/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools</id><content type="html" xml:base="http://localhost:4000/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/">&lt;aside class=&quot;sidebar__right&quot;&gt;
+&lt;nav class=&quot;toc&quot;&gt;
+    &lt;header&gt;&lt;h4 class=&quot;nav__title&quot;&gt;&lt;i class=&quot;fa fa-file-text&quot;&gt;&lt;/i&gt; On This Page&lt;/h4&gt;&lt;/header&gt;
+&lt;ul class=&quot;toc__menu&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#my-yak-needs-shaving&quot; id=&quot;markdown-toc-my-yak-needs-shaving&quot;&gt;My Yak needs shaving.&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#windowsimagetools&quot; id=&quot;markdown-toc-windowsimagetools&quot;&gt;WindowsImageTools&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#onward&quot; id=&quot;markdown-toc-onward&quot;&gt;Onward&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+  &lt;/nav&gt;
+&lt;/aside&gt;
+
+&lt;h2 id=&quot;my-yak-needs-shaving&quot;&gt;My Yak needs shaving.&lt;/h2&gt;
+
+&lt;p&gt;If your not familiar with the term.&lt;/p&gt;
+
+&lt;p&gt;http://www.hanselman.com/blog/YakShavingDefinedIllGetThatDoneAsSoonAsIShaveThisYak.aspx&lt;/p&gt;
+
+&lt;p&gt;It’s been quite a journey since my last post.&lt;/p&gt;
+
+&lt;p&gt;Windows 10 came out, and Convert-WindowsImage.ps1 was upgraded (braking my scripts I blogged about this summer) and Server 2016 Preview 3 was released.&lt;/p&gt;
+
+&lt;p&gt;Looking at the Nano folder on Preview 3 they are using a WIM and Convert-WindowsImage.ps1to create a VHDX. Good move Microsoft.&lt;/p&gt;
+
+&lt;p&gt;Now for the bad part.&lt;/p&gt;
+
+&lt;p&gt;Convert-WindowImage.ps1 is buggy, and not a module. But Microsoft is working hart to fix this. Not being one to wait. I decided to take the functionality I need and re-work the whole process as a module. (and found some underlying bugs in PowerShell in the process )  The results of my effort is documented below.&lt;/p&gt;
+
+&lt;p&gt;As for Windows 10.&lt;/p&gt;
+
+&lt;p&gt;There are a number of changes to DSC that have broken all my production configuration scripts. And Configurations created on Windows10 or WMF 5 preview have bugs when using depends on, that cause the LCM on 2012R2 to hang.&lt;/p&gt;
+
+&lt;p&gt;For Production this is a show stopper, but I’m already working to separate out the configuration’s based on target OS.&lt;/p&gt;
+
+&lt;h2 id=&quot;windowsimagetools&quot;&gt;WindowsImageTools&lt;/h2&gt;
+
+&lt;p&gt;Microsoft recently moved Convert-WindowsImage over to GitHub and added some nice features, but it’s still a script, not a module. They also nicely added an MIT licence to that repo. So taking advantage of that I started my own project based on that code. I’m calling it WindowsImageTools&lt;/p&gt;
+
+&lt;p&gt;So far there are four exported functions.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Initialize-VHDPartition
+    &lt;ol&gt;
+      &lt;li&gt;Create a VHD with correct partition for BIOS or UEFI with or without Recovery tools/image&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Set-VHDPartition
+    &lt;ol&gt;
+      &lt;li&gt;take an ISO or WIM and populate the VHD. This detects the layout and acts accordingly.&lt;/li&gt;
+      &lt;li&gt;It also can add drivers, enable features, inject unattend.xml and inject additional files or folders&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Convert-Wim2VHD
+    &lt;ol&gt;
+      &lt;li&gt;This is a wrapper functions around the first two&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;New-UnattendXml
+    &lt;ol&gt;
+      &lt;li&gt;Create an Unattend.xml that works with both 32 and 64 bit in a single file&lt;/li&gt;
+      &lt;li&gt;Sets the admin password and autologin count&lt;/li&gt;
+      &lt;li&gt;Creates then deletes a second user (for Windows7)&lt;/li&gt;
+      &lt;li&gt;Sets TimeZone&lt;/li&gt;
+      &lt;li&gt;Starts a PowerShell script to bootstrap the system configuration&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;That last one took quite some work to figure out. It only fully works with Volume media because it does not set the license key.&lt;/p&gt;
+
+&lt;p&gt;I also discovered that 64bit windows will run both the 32bit sections for adding users and running scripts, but not the part for skipping licensing and autologin. This is true from win7 forward. If your not familiar with Unattend.xml those parts are all under the same section in the xml.&lt;/p&gt;
+
+&lt;p&gt;If you want to give it a spin it’s &lt;a href=&quot;https://www.powershellgallery.com/packages/WindowsImageTools/&quot;&gt;available at the PowerShell Gallery&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;onward&quot;&gt;Onward&lt;/h2&gt;
+
+&lt;p&gt;So equipped with these tools i’m now going to reword my auto patching and WIM creation script. and add that into the module.&lt;/p&gt;</content><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><category term="Rant" /><summary type="html">On This Page</summary></entry><entry><title type="html">Test-Lab \| Update-GitHub</title><link href="http://localhost:4000/test-lab-update-github/" rel="alternate" type="text/html" title="Test-Lab \| Update-GitHub" /><published>2015-05-06T00:00:00-05:00</published><updated>2015-05-06T00:00:00-05:00</updated><id>http://localhost:4000/test-lab-update-github</id><content type="html" xml:base="http://localhost:4000/test-lab-update-github/">&lt;aside class=&quot;sidebar__right&quot;&gt;
+&lt;nav class=&quot;toc&quot;&gt;
+    &lt;header&gt;&lt;h4 class=&quot;nav__title&quot;&gt;&lt;i class=&quot;fa fa-file-text&quot;&gt;&lt;/i&gt; On This Page&lt;/h4&gt;&lt;/header&gt;
+&lt;ul class=&quot;toc__menu&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#posts-in-this-series&quot; id=&quot;markdown-toc-posts-in-this-series&quot;&gt;Posts in This series&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+  &lt;/nav&gt;
+&lt;/aside&gt;
+
+&lt;h3 id=&quot;posts-in-this-series&quot;&gt;Posts in This series&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;/test-homelab-inputobject-the-plan/&quot;&gt;Test-HomeLab -InputObject “The Plan”&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/Get-Posh-Git-Test-Lab/&quot;&gt;Get-Posh-Git | Test-Lab&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/get-dscframework-test-lab/&quot;&gt;Get-DSCFramework | Test-Lab&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/invoke-dscbuild-test-lab/&quot;&gt;Invoke-DscBuild | Test-Lab&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Test-Lab | Update-GitHub (This Post)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Last time we were able to get the sample DSC config to build. The problem is we had to modify the sample script and the instructions were not clear on the setup of the files.&lt;/p&gt;
+
+&lt;p&gt;So to day I plan to update the SampleBuild.ps1, SampleConfiguration.psm1 and readme.md with my changes and submit a pull request.&lt;/p&gt;
+
+&lt;p&gt;The first thing I’m going to modify is SampleConfiguration.psm1, now this file worked as is with the previous blog. but some of the things we did were to get arround an issue with this file.&lt;/p&gt;
+
+&lt;p&gt;The line i’m talking about is here&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Import-Module DscConfiguration -ErrorAction Stop
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This imports a module that is already loaded by SampleBuild.ps1 but is also not in the path at this point of Invoke-DscBuild, unless the DscConfiguration module is added to a path in -ModulePath used by Invoke-DscBuild.  Now if your going to run import-module SampleConfiguration crate the ConfigurationData hash table your self and call SampleConfiguration then it makes sense to have that here. I don’t imagine anyone doing that but stranger things have happen, so I’m going to keep that line but wrap it in something to avoid the requirement of placing extra modules in DSC_Tools&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;-not &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Get-Module DscConfiguration&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+ Import-Module DscConfiguration -ErrorAction Stop
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This checks to see if DscConfiguration is already loaded into memory and skips the import is it is.&lt;/p&gt;
+
+&lt;p&gt;Now I don’t need any modules in DSC_Tooling. Unless I have modules used by my scripts that I dont import prior to calling Invoke-DscBuild&lt;/p&gt;
+
+&lt;p&gt;Next up is SampleBuild.ps1, I dont have any changes to make from what I did last time. so i will add that to my git repo in just a bit.&lt;/p&gt;
+
+&lt;p&gt;Now Readme.md in the examples folder needs some serious work.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Example DSC Build
+------
+
+This folder contains some very basic examples of what a DSC configurationData folder structure, script, and call to Invoke-DscBuild might look like.  If you want to execute SampleBuild.ps1, there are a few dependencies you need to set up ahead of time:
+
+- You must install all of the DSC tooling modules (content of \Tools minus the example folder) from this repository into your PSModulePath (typically into C:\Program Files\WindowsPowerShell\Modules\)
+- You must also copy the Tooling\Examples\SampleConfiguration folder to the PSModulePath.
+- You must copy [Pester](https://github.com/pester/Pester) (version 3.0.0 or later) and [ProtectedData](https://github.com/dlwyatt/ProtectedData) (version 2.1 or later) into the PSModulePath.
+- You should create a DSC_Resources folder in the same directory as SampleBuild.ps1 and DSC_Configuration.  Copy the following modules into that DSC_Resources folder:
+  - [StackExchangeResources](https://github.com/PowerShellOrg/StackExchangeResources)
+  - [cWebAdministration](https://github.com/PowerShellOrg/cWebAdministration)
+  - [cSmbShare](https://github.com/PowerShellOrg/cSmbShare)
+
+Create a folder to place all the files into. i.e. c:\DSC, inside that folder create folders named BuildOutput, DSC_Configuration, DSC_Resorces, DSC_Script, DSC_Tooling.
+
+the folder structure should look like this
+C:\DSC                # copy SampleBuild.ps1 here
++---BuldOutput        # Where the MOF files and ziped modules end up
++---DSC_Configuration # Copy \Tooling\Examples\DSC_Configuration\*  here
++---DSC_Resources     # copy StackExchangeResources, cSmbShare and cWebAdministration here
++---DSC_Script        # copy \Tooling\Examples\SampleConfiguration here
++---DSC_Tooling       # This is for any modules that may be used in a Configuration script, in the case of SampleConfiguration it would be empty.
+
+If you plan on modifying SampleConfiguration.psm1 inside of DSC_Script you will also want to add the content of DSC_Modules to C:\Program Files\WindowsPowerShell\Modules\ but that is not necessary if your just building configurations that are authored on another machine.
+
+Once these dependencies are set up, you can execute SampleBuild.ps1.  It will run tests against the 3 modules in your DSC_Resources folder, compile your configuration into MOF documents, produce zip files for the resource modules, generate checksums for everything and copy them into BuildOutput
+
+_Note:  The SampleBuild.ps1 file currently just dumps DSC_Tooling modules into the temporary folder, since I wasn't using that feature.  We'll build on these examples soon to show off some of the other functionality in the DscBuild and DscConfiguration modules, such as encrypting credentials in source control._
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If you compare with my last post you will notice I removed the line about placing SampleConfguration into C:\Program Files\WindowsPowerShell\Modules. this path is no longer in the psmodulepath when inovke-DscBuild runs, as it used to be. This is due to needing to keep psmodulepath clean so that DSC_Resorces are accessible for configuration building but not necessarily needed.&lt;/p&gt;
+
+&lt;p&gt;I also added a section showing the required folder structure and what each folder is used for, along with what needs to be done if your going to author on the same machine you build on.&lt;/p&gt;
+
+&lt;p&gt;Now that that is done. I’m going to copy the files into C:\GitHub\PshOrgDSC\Tooling\Examples one at a time and add and commit changes.&lt;/p&gt;
+
+&lt;p&gt;copy SampleConfiguration.psm1 first. Notice the prompt change thanks to posh-git, (you will not see the color change)&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\GitHub\PshOrgDSC\Tooling\Examples\SampleConfiguration [development +0 ~1 -0]&amp;gt; git add *
+
+C:\GitHub\PshOrgDSC\Tooling\Examples\SampleConfiguration [development +0 ~1 -0]&amp;gt; git commit -m 'Fixed issue with loading scamplescript moduel not loading if module is already loaded but no longer in path'
+[development a5301a8] Fixed issue with loading scamplescript moduel not loading if module is already loaded but no longer in path
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+C:\GitHub\PshOrgDSC\Tooling\Examples\SampleConfiguration [development]&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;next up SampleBuild.ps1&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\GitHub\PshOrgDSC\Tooling\Examples [development +0 ~1 -0]&amp;gt; git add *
+
+C:\GitHub\PshOrgDSC\Tooling\Examples [development +0 ~1 -0]&amp;gt; git commit -m 'updated SampleBuild.ps1 to include missing value to invoke-DSCBuild. and added -verbose'
+[development 5c35462] updated SampleBuild.ps1 to include missing value to invoke-DSCBuild. and added -verbose
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+C:\GitHub\PshOrgDSC\Tooling\Examples [development]&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;last up readme.md&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\GitHub\PshOrgDSC\Tooling\Examples [development +0 ~1 -0]&amp;gt; git add *
+
+C:\GitHub\PshOrgDSC\Tooling\Examples [development +0 ~1 -0]&amp;gt; git commit -m 'updated \Tooling\Example\Readme.md to match the current state of development, and included section showing required folder structure'
+[development 3aa570d] updated \Tooling\Example\Readme.md to match the current state of development, and included section showing required folder structure
+ 1 file changed, 14 insertions(+), 2 deletions(-)
+
+C:\GitHub\PshOrgDSC\Tooling\Examples [development]&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;finally I push the commits to my fork&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\GitHub\PshOrgDSC\Tooling\Examples [development]&amp;gt; git push
+git : To https://github.com/BladeFireLight/DSC.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now I can subit a pull request.&lt;/p&gt;
+
+&lt;p&gt;I head over to github https://github.com/BladeFireLight/DSC/tree/development&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/compaireandpull.png&quot; alt=&quot;compaireandpull&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Clicking Compare and pull request gives me a diff of each file and it’s changes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/exampleDiff.png&quot; alt=&quot;exampleDiff&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It also tells me there are no issues merging my commits into the upstream Development branch.&lt;/p&gt;</content><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><category term="TestLab" /><summary type="html">On This Page</summary></entry></feed>

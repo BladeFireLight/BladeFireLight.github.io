@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Windows Image Tools | Modify VHDX - PowerShell Journey</title>
+
+
+
+
+<meta name="description" content="One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).">
+
+
+
+
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="PowerShell Journey">
+<meta property="og:title" content="Windows Image Tools | Modify VHDX">
+
+
+  <link rel="canonical" href="http://localhost:4000/windowsimagetools/Modifying-Fresh-VHDX/">
+  <meta property="og:url" content="http://localhost:4000/windowsimagetools/Modifying-Fresh-VHDX/">
+
+
+
+  <meta property="og:description" content="One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).">
+
+
+
+  <meta name="twitter:site" content="@BladeFireLight">
+  <meta name="twitter:title" content="Windows Image Tools | Modify VHDX">
+  <meta name="twitter:description" content="One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).">
+  <meta name="twitter:url" content="http://localhost:4000/windowsimagetools/Modifying-Fresh-VHDX/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  
+
+  
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2016-08-30T16:48:59-05:00">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "David Jones",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="PowerShell Journey Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 11]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><div class="navicon"></div></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="http://localhost:4000/">PowerShell Journey</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/Nuggets/">Nuggets</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/windowsimagetools/">Windows Image Tools</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/windowsimagetools/">PKI Tools</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/year-archive/">Archive by Date</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/categories/">By Category</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/tags/">By Tag</a></li>
+          
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="http://localhost:4000/windowsimagetools" itemprop="item"><span itemprop="name">Windowsimagetools</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Windows Image Tools | Modify VHDX</li>
+      
+    
+  </ol>
+</nav>
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://localhost:4000/assets/images/avatar1.jpg" class="author__avatar" alt="David Jones" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name" itemprop="name">David Jones</h3>
+    
+      <p class="author__bio" itemprop="description">
+        20 years IT Pro. life long student of tech
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Gretna, NE</span>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:BladeFireLight@outlook.com">
+            <meta itemprop="email" content="BladeFireLight@outlook.com" />
+            <i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/BladeFireLight" itemprop="sameAs">
+            <i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/BladeFireLight" itemprop="sameAs">
+            <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fa fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Windows Image Tools | Modify VHDX">
+    <meta itemprop="description" content="One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).">
+    <meta itemprop="datePublished" content="August 30, 2016">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Windows Image Tools | Modify VHDX
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <aside class="sidebar__right">
+<nav class="toc">
+    <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+<ul class="toc__menu" id="markdown-toc">
+  <li><a href="#continuing-onward" id="markdown-toc-continuing-onward">Continuing onward</a></li>
+  <li><a href="#prerequisites" id="markdown-toc-prerequisites">Prerequisites</a></li>
+  <li><a href="#creating-a-new-improved-firstbootps1" id="markdown-toc-creating-a-new-improved-firstbootps1">Creating a new improved FirstBoot.ps1</a>    <ul>
+      <li><a href="#placing-the-files-in-the-vhdx" id="markdown-toc-placing-the-files-in-the-vhdx">Placing the files in the VHDX</a>        <ul>
+          <li><a href="#mount-vhdandrunblock" id="markdown-toc-mount-vhdandrunblock">Mount-VhdAndRunBlock</a></li>
+        </ul>
+      </li>
+      <li><a href="#before-we-create-a-vm" id="markdown-toc-before-we-create-a-vm">Before we create a VM</a>        <ul>
+          <li><a href="#deciding-on-a-vm-generation" id="markdown-toc-deciding-on-a-vm-generation">Deciding on a VM Generation</a></li>
+          <li><a href="#getting-the-switch" id="markdown-toc-getting-the-switch">Getting the switch</a></li>
+        </ul>
+      </li>
+      <li><a href="#creating-the-vm" id="markdown-toc-creating-the-vm">Creating the VM</a></li>
+      <li><a href="#checking-the-results" id="markdown-toc-checking-the-results">Checking the results</a></li>
+    </ul>
+  </li>
+  <li><a href="#summary" id="markdown-toc-summary">Summary</a></li>
+</ul>
+
+  </nav>
+</aside>
+
+<h2 id="continuing-onward">Continuing onward</h2>
+
+<p>In the last post I talked about Unattend.xml and using WindowsImageTools to create a new VHDX with an Unattend.xml and FirstBoot.ps1 for it to run.</p>
+
+<p>using that as a starting point I’m going to replace the do-nothing FirstBoot.ps1 add have it so something more interesting.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>You will need the VHDX created at the end of my post on New-UnattendXml and obviously a copy on WindowsImageTools from the PowerShell gallery.</p>
+
+<p>We are going to have our VHDX install <a href="http://www.7-zip.org/download.html">7Zip</a> on first boot so you will need to download a the MSI if your following along.</p>
+
+<h2 id="creating-a-new-improved-firstbootps1">Creating a new improved FirstBoot.ps1</h2>
+
+<p>I downloaded my MSI into G:\filesToInject\PsTemp and now i’m going to replace firstboot.ps1 so it will silently install it and write a log and shutdown</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nv">$BetterFirstBootContent</span> <span class="o">=</span> <span class="o">{</span>
+   <span class="nb">start</span>-process C:<span class="se">\P</span>sTemp<span class="se">\7</span>z1602-x64.msi -ArgumentList <span class="s1">'/q'</span>,<span class="s1">'INSTALLDIR="C:\Program Files\7-Zip"'</span> -wait
+<span class="o">}</span>
+ <span class="nb">New-Item</span> -Path <span class="s2">"G:</span><span class="se">\f</span><span class="s2">ilesToInject</span><span class="se">\P</span><span class="s2">sTemp"</span> -Name FirstBoot.ps1 -ItemType <span class="s1">'file'</span> -Value <span class="nv">$BetterFirstBootContent</span> -Force</code></pre></figure>
+
+<h3 id="placing-the-files-in-the-vhdx">Placing the files in the VHDX</h3>
+
+<p>So now we need to get the two fils into our existing VHD. Now I could just run Convert-Wim2VHD again with the same commands and I would get the desired effect, but I dont want to wait for the that process. I also could just mount the VHDX and drag and drop the files into the VHDX, but that would not let me show off another function in WindowsImageTools</p>
+
+<h4 id="mount-vhdandrunblock">Mount-VhdAndRunBlock</h4>
+
+<p>Mount-VhdAndRunBlock is one of my favorite tools. It will mount a VHD and run a script block allowing me to manipulate the files inside. This can be used for copying in files, Editing the registry, checking if a file exists and so on.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nv">$ScriptBlock</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="nb">copy </span>G:<span class="se">\f</span>ilesToInject<span class="se">\P</span>sTemp<span class="se">\*</span>.<span class="k">*</span> <span class="s2">"</span><span class="k">$(</span><span class="nv">$driveletter</span><span class="k">)</span><span class="s2">:</span><span class="se">\P</span><span class="s2">sTemp</span><span class="se">\"</span><span class="s2"> -Force
+} 
+Mount-VhdAndRunBlock -VHD 'G:</span><span class="se">\v</span><span class="s2">hd</span><span class="se">\2</span><span class="s2">012r2_eval_Core.vhdx' -block </span><span class="nv">$ScriptBlock</span></code></pre></figure>
+
+<p>Now that we have the better first boot script we need to create a VM to attach the vhdx to. for that I’m going to use Invoke-CreateVmRunAndWait.</p>
+
+<h3 id="before-we-create-a-vm">Before we create a VM</h3>
+
+<p>Lets look at what we need besides the vhdx to use Invoke-CreateVmRunAndWait</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nb">help </span>Invoke-CreateVmRunAndWait
+
+NAME
+    Invoke-CreateVmRunAndWait
+
+SYNOPSIS
+    Create a temp vm with a random name and <span class="nb">wait </span><span class="k">for </span>it to stop
+
+
+SYNTAX
+    Invoke-CreateVmRunAndWait <span class="o">[</span>-VhdPath] &lt;<span class="kt">String</span>&gt; <span class="o">[</span>-VmGeneration] &lt;Int32&gt; <span class="o">[</span>-VmSwitch] &lt;<span class="kt">String</span>&gt; <span class="o">[[</span>-vLan] &lt;Int32&gt;]
+    <span class="o">[[</span>-ProcessorCount] &lt;Int32&gt;] <span class="o">[[</span>-MemoryStartupBytess] &lt;Int64&gt;] <span class="o">[</span>&lt;CommonParameters&gt;]</code></pre></figure>
+
+<p>So according to the syntax VhdPath, VmGeneration and VmSwitch are required parameters.</p>
+
+<h4 id="deciding-on-a-vm-generation">Deciding on a VM Generation</h4>
+
+<p>While I know what type of VHDX i created, when creating automation script we may not always know if I need a Gen1 or Gen2 VM. So I’m going use Get-VhdPartitionStyle.</p>
+
+<p>Get-VhdPartitionStyle will return a string of either MBR for Master Boot Record or GPT for GUID Partition Table. Generation 1 VM’s are based on BIOS and windows only works with MBR partitions for BIOS based computers. Generation 2 VM’s are based on uEFI architecture and Windows uses GPT partitions by default with uEFI.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nv">$vmGeneration</span> <span class="o">=</span> 2 <span class="c1">#default to gen2 </span>
+<span class="nv">$PartitionStyle</span> <span class="o">=</span> Get-VhdPartitionStyle -vhd <span class="s1">'G:\vhd\2012r2_eval_Core.vhdx'</span>
+<span class="k">if</span> <span class="o">(</span><span class="nv">$PartitionStyle</span> -eq <span class="s1">'GPT'</span><span class="o">)</span> 
+<span class="o">{</span>
+    <span class="nv">$vmGeneration</span> <span class="o">=</span> 2
+<span class="o">}</span></code></pre></figure>
+
+<h4 id="getting-the-switch">Getting the switch</h4>
+
+<p>We are not actually going to use the network in this example so I’m just going to grab the first VmSwitch</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nv">$VmSwitch</span> <span class="o">=</span> <span class="o">(</span>Get-VMSwitch<span class="o">)[</span>0].Name <span class="c1">#First switch</span></code></pre></figure>
+
+<h3 id="creating-the-vm">Creating the VM</h3>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell">Invoke-CreateVmRunAndWait -VhdPath <span class="s1">'G:\vhd\2012r2_eval_Core.vhdx'</span> -VmGeneration <span class="nv">$vmGeneration</span> -VmSwitch <span class="nv">$VmSwitch</span> -verbose</code></pre></figure>
+
+<p>We now have a randomly named vm that will run our script and install z7ip. Because it running this during the specialize phase once it’s done it will reboot and end up at the “Press Ctrl+Alt+Del to login” I”m just going to use Hyper-V manager to shut it down.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell">VERBOSE: <span class="o">[</span>Invoke-CreateVmRunAndWait] : Creating VM 1utbdwad at 08/30/2016 10:57:29
+VERBOSE: <span class="o">[</span>Invoke-CreateVmRunAndWait] : VM 1utbdwad stopped
+VERBOSE: <span class="o">[</span>Invoke-CreateVmRunAndWait] : VM 1utbdwad Deleted at 08/30/2016 11:08:47</code></pre></figure>
+
+<h3 id="checking-the-results">Checking the results</h3>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nv">$ScriptBlock</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="nb">dir</span> <span class="s2">"</span><span class="k">$(</span><span class="nv">$driveletter</span><span class="k">)</span><span class="s2">:</span><span class="se">\P</span><span class="s2">rogram Files</span><span class="se">\"</span><span class="s2">
+} 
+Mount-VhdAndRunBlock -VHD 'G:</span><span class="se">\v</span><span class="s2">hd</span><span class="se">\2</span><span class="s2">012r2_eval_Core.vhdx' -block </span><span class="nv">$ScriptBlock</span></code></pre></figure>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    Directory: K:\Program Files
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----         9/4/2016   9:42 AM                7-Zip
+d-----        8/22/2013  10:39 AM                Common Files
+d-----        3/21/2014   1:09 PM                Internet Explorer
+d-----        8/22/2013  10:39 AM                WindowsPowerShell
+</code></pre>
+</div>
+
+<h2 id="summary">Summary</h2>
+
+<p>So now we have a VM with an app installed, users created and automated the Out of Box Esperance. However a fresh install of Server 2012 R2 does not have WMF 5 and will have a ton of patches that need to be installed.</p>
+
+<p>I will tackle that next.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/module" class="page__taxonomy-item" rel="tag">Module</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/vhdx" class="page__taxonomy-item" rel="tag">VHDX</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/windowsupdate" class="page__taxonomy-item" rel="tag">WindowsUpdate</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/windowsupdatetools" class="page__taxonomy-item" rel="tag">WindowsUpdateTools</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/windowsimagetools" class="page__taxonomy-item" rel="tag">WindowsImageTools</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-08-30T16:48:59-05:00">August 30, 2016</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=BladeFireLight&text=Windows Image Tools \| Modify VHDX http://localhost:4000/windowsimagetools/Modifying-Fresh-VHDX/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/windowsimagetools/Modifying-Fresh-VHDX/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=http://localhost:4000/windowsimagetools/Modifying-Fresh-VHDX/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/windowsimagetools/Modifying-Fresh-VHDX/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/windowsimagetools/Unattend/" class="pagination--pager" title="Windows Image Tools | Unattend.xml
+">Previous</a>
+    
+    
+      <a href="http://localhost:4000/Blog-Refactoring/" class="pagination--pager" title="Re-factoring the Blog
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+    <h4 class="page__comments-title">Leave a Comment</h4>
+    <section id="disqus_thread"></section>
+  
+</div>
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      
+        <h4 class="page__related-title">You May Also Enjoy</h4>
+      
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use ...</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part2-WMF5/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use ...</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part1-Base-VHDX/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use ...</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/Blog-Refactoring/" rel="permalink">Re-factoring the Blog
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Sometimes rebooting fixes everything
+
+</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+</div>
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/BladeFireLight"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="http://github.com/BladeFireLight"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <li><a href="http://localhost:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2017 David Jones. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    <script src="http://localhost:4000/assets/js/main.min.js"></script>
+
+
+
+
+
+  
+  <script type="text/javascript">
+  	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  	var disqus_shortname = 'blogbladefirelightcom';
+
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function() {
+  		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  	})();
+
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function () {
+  		var s = document.createElement('script'); s.async = true;
+  		s.type = 'text/javascript';
+  		s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  	}());
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+  </body>
+</html>
+

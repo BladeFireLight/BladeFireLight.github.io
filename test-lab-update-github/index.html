@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Test-Lab | Update-GitHub - PowerShell Journey</title>
+
+
+
+
+<meta name="description" content="     On This Page  ">
+
+
+
+
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="PowerShell Journey">
+<meta property="og:title" content="Test-Lab | Update-GitHub">
+
+
+  <link rel="canonical" href="http://localhost:4000/test-lab-update-github/">
+  <meta property="og:url" content="http://localhost:4000/test-lab-update-github/">
+
+
+
+  <meta property="og:description" content="     On This Page  ">
+
+
+
+  <meta name="twitter:site" content="@BladeFireLight">
+  <meta name="twitter:title" content="Test-Lab | Update-GitHub">
+  <meta name="twitter:description" content="     On This Page  ">
+  <meta name="twitter:url" content="http://localhost:4000/test-lab-update-github/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  
+
+  
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2015-05-06T00:00:00-05:00">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "David Jones",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="PowerShell Journey Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 11]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><div class="navicon"></div></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="http://localhost:4000/">PowerShell Journey</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/Nuggets/">Nuggets</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/windowsimagetools/">Windows Image Tools</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/windowsimagetools/">PKI Tools</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/year-archive/">Archive by Date</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/categories/">By Category</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/tags/">By Tag</a></li>
+          
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">Test-Lab | Update-GitHub</li>
+      
+    
+  </ol>
+</nav>
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://localhost:4000/assets/images/avatar1.jpg" class="author__avatar" alt="David Jones" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name" itemprop="name">David Jones</h3>
+    
+      <p class="author__bio" itemprop="description">
+        20 years IT Pro. life long student of tech
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Gretna, NE</span>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:BladeFireLight@outlook.com">
+            <meta itemprop="email" content="BladeFireLight@outlook.com" />
+            <i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/BladeFireLight" itemprop="sameAs">
+            <i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/BladeFireLight" itemprop="sameAs">
+            <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fa fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Test-Lab | Update-GitHub">
+    <meta itemprop="description" content="     On This Page  ">
+    <meta itemprop="datePublished" content="May 06, 2015">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Test-Lab | Update-GitHub
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <aside class="sidebar__right">
+<nav class="toc">
+    <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+<ul class="toc__menu" id="markdown-toc">
+  <li><a href="#posts-in-this-series" id="markdown-toc-posts-in-this-series">Posts in This series</a></li>
+</ul>
+
+  </nav>
+</aside>
+
+<h3 id="posts-in-this-series">Posts in This series</h3>
+
+<ol>
+  <li><a href="/test-homelab-inputobject-the-plan/">Test-HomeLab -InputObject “The Plan”</a></li>
+  <li><a href="/Get-Posh-Git-Test-Lab/">Get-Posh-Git | Test-Lab</a></li>
+  <li><a href="/get-dscframework-test-lab/">Get-DSCFramework | Test-Lab</a></li>
+  <li><a href="/invoke-dscbuild-test-lab/">Invoke-DscBuild | Test-Lab</a></li>
+  <li>Test-Lab | Update-GitHub (This Post)</li>
+</ol>
+
+<p>Last time we were able to get the sample DSC config to build. The problem is we had to modify the sample script and the instructions were not clear on the setup of the files.</p>
+
+<p>So to day I plan to update the SampleBuild.ps1, SampleConfiguration.psm1 and readme.md with my changes and submit a pull request.</p>
+
+<p>The first thing I’m going to modify is SampleConfiguration.psm1, now this file worked as is with the previous blog. but some of the things we did were to get arround an issue with this file.</p>
+
+<p>The line i’m talking about is here</p>
+
+<div class="language-powershell highlighter-rouge"><pre class="highlight"><code> Import-Module DscConfiguration -ErrorAction Stop
+</code></pre>
+</div>
+
+<p>This imports a module that is already loaded by SampleBuild.ps1 but is also not in the path at this point of Invoke-DscBuild, unless the DscConfiguration module is added to a path in -ModulePath used by Invoke-DscBuild.  Now if your going to run import-module SampleConfiguration crate the ConfigurationData hash table your self and call SampleConfiguration then it makes sense to have that here. I don’t imagine anyone doing that but stranger things have happen, so I’m going to keep that line but wrap it in something to avoid the requirement of placing extra modules in DSC_Tools</p>
+
+<div class="language-powershell highlighter-rouge"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span>-not <span class="o">(</span>Get-Module DscConfiguration<span class="o">))</span> <span class="o">{</span>
+ Import-Module DscConfiguration -ErrorAction Stop
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>This checks to see if DscConfiguration is already loaded into memory and skips the import is it is.</p>
+
+<p>Now I don’t need any modules in DSC_Tooling. Unless I have modules used by my scripts that I dont import prior to calling Invoke-DscBuild</p>
+
+<p>Next up is SampleBuild.ps1, I dont have any changes to make from what I did last time. so i will add that to my git repo in just a bit.</p>
+
+<p>Now Readme.md in the examples folder needs some serious work.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Example DSC Build
+------
+
+This folder contains some very basic examples of what a DSC configurationData folder structure, script, and call to Invoke-DscBuild might look like.  If you want to execute SampleBuild.ps1, there are a few dependencies you need to set up ahead of time:
+
+- You must install all of the DSC tooling modules (content of \Tools minus the example folder) from this repository into your PSModulePath (typically into C:\Program Files\WindowsPowerShell\Modules\)
+- You must also copy the Tooling\Examples\SampleConfiguration folder to the PSModulePath.
+- You must copy [Pester](https://github.com/pester/Pester) (version 3.0.0 or later) and [ProtectedData](https://github.com/dlwyatt/ProtectedData) (version 2.1 or later) into the PSModulePath.
+- You should create a DSC_Resources folder in the same directory as SampleBuild.ps1 and DSC_Configuration.  Copy the following modules into that DSC_Resources folder:
+  - [StackExchangeResources](https://github.com/PowerShellOrg/StackExchangeResources)
+  - [cWebAdministration](https://github.com/PowerShellOrg/cWebAdministration)
+  - [cSmbShare](https://github.com/PowerShellOrg/cSmbShare)
+
+Create a folder to place all the files into. i.e. c:\DSC, inside that folder create folders named BuildOutput, DSC_Configuration, DSC_Resorces, DSC_Script, DSC_Tooling.
+
+the folder structure should look like this
+C:\DSC                # copy SampleBuild.ps1 here
++---BuldOutput        # Where the MOF files and ziped modules end up
++---DSC_Configuration # Copy \Tooling\Examples\DSC_Configuration\*  here
++---DSC_Resources     # copy StackExchangeResources, cSmbShare and cWebAdministration here
++---DSC_Script        # copy \Tooling\Examples\SampleConfiguration here
++---DSC_Tooling       # This is for any modules that may be used in a Configuration script, in the case of SampleConfiguration it would be empty.
+
+If you plan on modifying SampleConfiguration.psm1 inside of DSC_Script you will also want to add the content of DSC_Modules to C:\Program Files\WindowsPowerShell\Modules\ but that is not necessary if your just building configurations that are authored on another machine.
+
+Once these dependencies are set up, you can execute SampleBuild.ps1.  It will run tests against the 3 modules in your DSC_Resources folder, compile your configuration into MOF documents, produce zip files for the resource modules, generate checksums for everything and copy them into BuildOutput
+
+_Note:  The SampleBuild.ps1 file currently just dumps DSC_Tooling modules into the temporary folder, since I wasn't using that feature.  We'll build on these examples soon to show off some of the other functionality in the DscBuild and DscConfiguration modules, such as encrypting credentials in source control._
+</code></pre>
+</div>
+
+<p>If you compare with my last post you will notice I removed the line about placing SampleConfguration into C:\Program Files\WindowsPowerShell\Modules. this path is no longer in the psmodulepath when inovke-DscBuild runs, as it used to be. This is due to needing to keep psmodulepath clean so that DSC_Resorces are accessible for configuration building but not necessarily needed.</p>
+
+<p>I also added a section showing the required folder structure and what each folder is used for, along with what needs to be done if your going to author on the same machine you build on.</p>
+
+<p>Now that that is done. I’m going to copy the files into C:\GitHub\PshOrgDSC\Tooling\Examples one at a time and add and commit changes.</p>
+
+<p>copy SampleConfiguration.psm1 first. Notice the prompt change thanks to posh-git, (you will not see the color change)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>C:\GitHub\PshOrgDSC\Tooling\Examples\SampleConfiguration [development +0 ~1 -0]&gt; git add *
+
+C:\GitHub\PshOrgDSC\Tooling\Examples\SampleConfiguration [development +0 ~1 -0]&gt; git commit -m 'Fixed issue with loading scamplescript moduel not loading if module is already loaded but no longer in path'
+[development a5301a8] Fixed issue with loading scamplescript moduel not loading if module is already loaded but no longer in path
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+C:\GitHub\PshOrgDSC\Tooling\Examples\SampleConfiguration [development]&gt;
+</code></pre>
+</div>
+
+<p>next up SampleBuild.ps1</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>C:\GitHub\PshOrgDSC\Tooling\Examples [development +0 ~1 -0]&gt; git add *
+
+C:\GitHub\PshOrgDSC\Tooling\Examples [development +0 ~1 -0]&gt; git commit -m 'updated SampleBuild.ps1 to include missing value to invoke-DSCBuild. and added -verbose'
+[development 5c35462] updated SampleBuild.ps1 to include missing value to invoke-DSCBuild. and added -verbose
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+C:\GitHub\PshOrgDSC\Tooling\Examples [development]&gt;
+</code></pre>
+</div>
+
+<p>last up readme.md</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>C:\GitHub\PshOrgDSC\Tooling\Examples [development +0 ~1 -0]&gt; git add *
+
+C:\GitHub\PshOrgDSC\Tooling\Examples [development +0 ~1 -0]&gt; git commit -m 'updated \Tooling\Example\Readme.md to match the current state of development, and included section showing required folder structure'
+[development 3aa570d] updated \Tooling\Example\Readme.md to match the current state of development, and included section showing required folder structure
+ 1 file changed, 14 insertions(+), 2 deletions(-)
+
+C:\GitHub\PshOrgDSC\Tooling\Examples [development]&gt;
+</code></pre>
+</div>
+
+<p>finally I push the commits to my fork</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>C:\GitHub\PshOrgDSC\Tooling\Examples [development]&gt; git push
+git : To https://github.com/BladeFireLight/DSC.git
+</code></pre>
+</div>
+
+<p>Now I can subit a pull request.</p>
+
+<p>I head over to github https://github.com/BladeFireLight/DSC/tree/development</p>
+
+<p><img src="http://localhost:4000/images/compaireandpull.png" alt="compaireandpull" /></p>
+
+<p>Clicking Compare and pull request gives me a diff of each file and it’s changes.</p>
+
+<p><img src="http://localhost:4000/images/exampleDiff.png" alt="exampleDiff" /></p>
+
+<p>It also tells me there are no issues merging my commits into the upstream Development branch.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/testlab" class="page__taxonomy-item" rel="tag">TestLab</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-05-06T00:00:00-05:00">May 06, 2015</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=BladeFireLight&text=Test-Lab \| Update-GitHub http://localhost:4000/test-lab-update-github/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/test-lab-update-github/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=http://localhost:4000/test-lab-update-github/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/test-lab-update-github/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/invoke-dscbuild-test-lab/" class="pagination--pager" title="Invoke-DscBuild | Test-Lab
+">Previous</a>
+    
+    
+      <a href="http://localhost:4000/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/" class="pagination--pager" title="Shaving the Yak, Leads Me to Create New Module WindowsImageTools
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+    <h4 class="page__comments-title">Leave a Comment</h4>
+    <section id="disqus_thread"></section>
+  
+</div>
+    
+  </article>
+
+  
+  
+</div>
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/BladeFireLight"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="http://github.com/BladeFireLight"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <li><a href="http://localhost:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2017 David Jones. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    <script src="http://localhost:4000/assets/js/main.min.js"></script>
+
+
+
+
+
+  
+  <script type="text/javascript">
+  	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  	var disqus_shortname = 'blogbladefirelightcom';
+
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function() {
+  		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  	})();
+
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function () {
+  		var s = document.createElement('script'); s.async = true;
+  		s.type = 'text/javascript';
+  		s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  	}());
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+  </body>
+</html>
+

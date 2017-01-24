@@ -1,0 +1,1025 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Windows Image Tools | Unattend.xml - PowerShell Journey</title>
+
+
+
+
+<meta name="description" content="One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).">
+
+
+
+
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="PowerShell Journey">
+<meta property="og:title" content="Windows Image Tools | Unattend.xml">
+
+
+  <link rel="canonical" href="http://localhost:4000/windowsimagetools/Unattend/">
+  <meta property="og:url" content="http://localhost:4000/windowsimagetools/Unattend/">
+
+
+
+  <meta property="og:description" content="One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).">
+
+
+
+  <meta name="twitter:site" content="@BladeFireLight">
+  <meta name="twitter:title" content="Windows Image Tools | Unattend.xml">
+  <meta name="twitter:description" content="One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).">
+  <meta name="twitter:url" content="http://localhost:4000/windowsimagetools/Unattend/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  
+
+  
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2016-08-22T16:48:59-05:00">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "David Jones",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="PowerShell Journey Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 11]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><div class="navicon"></div></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="http://localhost:4000/">PowerShell Journey</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/Nuggets/">Nuggets</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/windowsimagetools/">Windows Image Tools</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/windowsimagetools/">PKI Tools</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/year-archive/">Archive by Date</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/categories/">By Category</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/tags/">By Tag</a></li>
+          
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="http://localhost:4000/windowsimagetools" itemprop="item"><span itemprop="name">Windowsimagetools</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Windows Image Tools | Unattend.xml</li>
+      
+    
+  </ol>
+</nav>
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://localhost:4000/assets/images/avatar1.jpg" class="author__avatar" alt="David Jones" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name" itemprop="name">David Jones</h3>
+    
+      <p class="author__bio" itemprop="description">
+        20 years IT Pro. life long student of tech
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Gretna, NE</span>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:BladeFireLight@outlook.com">
+            <meta itemprop="email" content="BladeFireLight@outlook.com" />
+            <i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/BladeFireLight" itemprop="sameAs">
+            <i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/BladeFireLight" itemprop="sameAs">
+            <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fa fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Windows Image Tools | Unattend.xml">
+    <meta itemprop="description" content="One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).">
+    <meta itemprop="datePublished" content="August 22, 2016">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Windows Image Tools | Unattend.xml
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <aside class="sidebar__right">
+<nav class="toc">
+    <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+<ul class="toc__menu" id="markdown-toc">
+  <li><a href="#getting-started" id="markdown-toc-getting-started">Getting started</a></li>
+  <li><a href="#prerequisites" id="markdown-toc-prerequisites">prerequisites</a></li>
+  <li><a href="#creating-a-basic-unattentxml" id="markdown-toc-creating-a-basic-unattentxml">Creating a basic Unattent.xml</a></li>
+  <li><a href="#anatomy-of-unattentxml" id="markdown-toc-anatomy-of-unattentxml">Anatomy of Unattent.xml</a>    <ul>
+      <li><a href="#specialize--deployment" id="markdown-toc-specialize--deployment">Specialize : Deployment</a></li>
+      <li><a href="#specialize--shell-setup" id="markdown-toc-specialize--shell-setup">Specialize : Shell Setup</a></li>
+      <li><a href="#oobesystem--international-core" id="markdown-toc-oobesystem--international-core">oobeSystem : International Core</a></li>
+      <li><a href="#oobesystem---shell-setup" id="markdown-toc-oobesystem---shell-setup">oobeSystem :  Shell-Setup</a></li>
+    </ul>
+  </li>
+  <li><a href="#more-usefull-unattentxml" id="markdown-toc-more-usefull-unattentxml">More usefull Unattent.xml</a>    <ul>
+      <li><a href="#specialize---deployment" id="markdown-toc-specialize---deployment">specialize :  Deployment</a></li>
+      <li><a href="#oobesystem---shell-setup-1" id="markdown-toc-oobesystem---shell-setup-1">oobeSystem :  Shell Setup</a></li>
+    </ul>
+  </li>
+  <li><a href="#puting-it-together" id="markdown-toc-puting-it-together">Puting it together</a>    <ul>
+      <li><a href="#adding-the-unattend-and-script-file-when-creating-a-vhdx" id="markdown-toc-adding-the-unattend-and-script-file-when-creating-a-vhdx">Adding the unattend and script file when creating a VHDX</a></li>
+    </ul>
+  </li>
+</ul>
+
+  </nav>
+</aside>
+
+<h2 id="getting-started">Getting started</h2>
+
+<p>The second item need to automate the creation of a VM is a way to bootstrap said automation of a fresh windows image. That requires an unattend.xml</p>
+
+<h2 id="prerequisites">prerequisites</h2>
+
+<p>Now to work with Unattent.xml you need a deep understanding of XML structure and namespace… Just kidding. I’m going to use New-UnattendXml part of WindowsImageTools</p>
+
+<p>You can install WindowsImageTools from the PowerShell Gallery with install-module WindowsImageTools</p>
+
+<h2 id="creating-a-basic-unattentxml">Creating a basic Unattent.xml</h2>
+
+<p>Lets start off with a basic Unattend. Minimum requirements for this is changing the administrator password</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell">New-UnattendXml -AdminCredential <span class="o">(</span><span class="nb">Get-Credential</span><span class="o">)</span> |
+<span class="nb">Get-Content</span></code></pre></figure>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cmdlet Get-Credential at command pipeline position 1
+Supply values for the following parameters:
+Credential
+WARNING: C:\Users\BLADE_~1\AppData\Local\Temp\hqfyjyg2\unattend.xml only usable on a server SKU, for a client OS, use
+either -EnableAdministrator or -UserAccount
+</code></pre>
+</div>
+
+<p>Notice the warning. Setting the Admin password on a server is all you need, as the build in Administrator account is allready enabled. On a client OS you have to either enable the administrator or add a second one or three.
+It spits out this mass of XML</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;unattend</span> <span class="na">xmlns=</span><span class="s">"urn:schemas-microsoft-com:unattend"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;settings</span> <span class="na">pass=</span><span class="s">"specialize"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-Deployment"</span> <span class="na">processorArchitecture=</span><span class="s">"amd64"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-Deployment"</span> <span class="na">processorArchitecture=</span><span class="s">"x86"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-Shell-Setup"</span> <span class="na">processorArchitecture=</span><span class="s">"amd64"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;ComputerName&gt;</span>*<span class="nt">&lt;/ComputerName&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-Shell-Setup"</span> <span class="na">processorArchitecture=</span><span class="s">"x86"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;ComputerName&gt;</span>*<span class="nt">&lt;/ComputerName&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+  <span class="nt">&lt;/settings&gt;</span>
+  <span class="nt">&lt;settings</span> <span class="na">pass=</span><span class="s">"oobeSystem"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-International-Core"</span> <span class="na">processorArchitecture=</span><span class="s">"amd64"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;InputLocale&gt;</span>en-US<span class="nt">&lt;/InputLocale&gt;</span>
+      <span class="nt">&lt;SystemLocale&gt;</span>en-US<span class="nt">&lt;/SystemLocale&gt;</span>
+      <span class="nt">&lt;UILanguage&gt;</span>en-US<span class="nt">&lt;/UILanguage&gt;</span>
+      <span class="nt">&lt;UserLocale&gt;</span>en-US<span class="nt">&lt;/UserLocale&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-International-Core"</span> <span class="na">processorArchitecture=</span><span class="s">"x86"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;InputLocale&gt;</span>en-US<span class="nt">&lt;/InputLocale&gt;</span>
+      <span class="nt">&lt;SystemLocale&gt;</span>en-US<span class="nt">&lt;/SystemLocale&gt;</span>
+      <span class="nt">&lt;UILanguage&gt;</span>en-US<span class="nt">&lt;/UILanguage&gt;</span>
+      <span class="nt">&lt;UserLocale&gt;</span>en-US<span class="nt">&lt;/UserLocale&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-Shell-Setup"</span> <span class="na">processorArchitecture=</span><span class="s">"amd64"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;OOBE&gt;</span>
+        <span class="nt">&lt;HideEULAPage&gt;</span>true<span class="nt">&lt;/HideEULAPage&gt;</span>
+        <span class="nt">&lt;HideWirelessSetupInOOBE&gt;</span>true<span class="nt">&lt;/HideWirelessSetupInOOBE&gt;</span>
+        <span class="nt">&lt;NetworkLocation&gt;</span>Work<span class="nt">&lt;/NetworkLocation&gt;</span>
+        <span class="nt">&lt;ProtectYourPC&gt;</span>1<span class="nt">&lt;/ProtectYourPC&gt;</span>
+        <span class="nt">&lt;SkipUserOOBE&gt;</span>true<span class="nt">&lt;/SkipUserOOBE&gt;</span>
+        <span class="nt">&lt;SkipMachineOOBE&gt;</span>true<span class="nt">&lt;/SkipMachineOOBE&gt;</span>
+      <span class="nt">&lt;/OOBE&gt;</span>
+      <span class="nt">&lt;TimeZone&gt;</span>GMT Standard Time<span class="nt">&lt;/TimeZone&gt;</span>
+      <span class="nt">&lt;UserAccounts&gt;</span>
+        <span class="nt">&lt;AdministratorPassword&gt;</span>
+          <span class="nt">&lt;Value&gt;</span>YQBkAHMAZgBBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByAFAAYQBzAHMAdwBvAHIAZAA=<span class="nt">&lt;/Value&gt;</span>
+          <span class="nt">&lt;PlainText&gt;</span>false<span class="nt">&lt;/PlainText&gt;</span>
+        <span class="nt">&lt;/AdministratorPassword&gt;</span>
+      <span class="nt">&lt;/UserAccounts&gt;</span>
+      <span class="nt">&lt;RegisteredOrganization&gt;</span>Generic Organization<span class="nt">&lt;/RegisteredOrganization&gt;</span>
+      <span class="nt">&lt;RegisteredOwner&gt;</span>Generic Owner<span class="nt">&lt;/RegisteredOwner&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+    <span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-Shell-Setup"</span> <span class="na">processorArchitecture=</span><span class="s">"x86"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;OOBE&gt;</span>
+        <span class="nt">&lt;HideEULAPage&gt;</span>true<span class="nt">&lt;/HideEULAPage&gt;</span>
+        <span class="nt">&lt;HideWirelessSetupInOOBE&gt;</span>true<span class="nt">&lt;/HideWirelessSetupInOOBE&gt;</span>
+        <span class="nt">&lt;NetworkLocation&gt;</span>Work<span class="nt">&lt;/NetworkLocation&gt;</span>
+        <span class="nt">&lt;ProtectYourPC&gt;</span>1<span class="nt">&lt;/ProtectYourPC&gt;</span>
+        <span class="nt">&lt;SkipUserOOBE&gt;</span>true<span class="nt">&lt;/SkipUserOOBE&gt;</span>
+        <span class="nt">&lt;SkipMachineOOBE&gt;</span>true<span class="nt">&lt;/SkipMachineOOBE&gt;</span>
+      <span class="nt">&lt;/OOBE&gt;</span>
+      <span class="nt">&lt;TimeZone&gt;</span>GMT Standard Time<span class="nt">&lt;/TimeZone&gt;</span>
+      <span class="nt">&lt;UserAccounts&gt;</span>
+        <span class="nt">&lt;AdministratorPassword&gt;</span>
+          <span class="nt">&lt;Value&gt;</span>YQBkAHMAZgBBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByAFAAYQBzAHMAdwBvAHIAZAA=<span class="nt">&lt;/Value&gt;</span>
+          <span class="nt">&lt;PlainText&gt;</span>false<span class="nt">&lt;/PlainText&gt;</span>
+        <span class="nt">&lt;/AdministratorPassword&gt;</span>
+      <span class="nt">&lt;/UserAccounts&gt;</span>
+      <span class="nt">&lt;RegisteredOrganization&gt;</span>Generic Organization<span class="nt">&lt;/RegisteredOrganization&gt;</span>
+      <span class="nt">&lt;RegisteredOwner&gt;</span>Generic Owner<span class="nt">&lt;/RegisteredOwner&gt;</span>
+    <span class="nt">&lt;/component&gt;</span>
+  <span class="nt">&lt;/settings&gt;</span>
+<span class="nt">&lt;/unattend&gt;</span></code></pre></figure>
+
+<h2 id="anatomy-of-unattentxml">Anatomy of Unattent.xml</h2>
+
+<p>Takeing a closer look at each section</p>
+
+<h3 id="specialize--deployment">Specialize : Deployment</h3>
+
+<p>Contrary to popular belief, the unattend.xml can have one file that can be use for both 32 and 64bit. All you have to do is repeat the section with a different architecture. With one caveat that I will get into later. In the basic Unattent the Deployment section is empty.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-Deployment"</span> <span class="na">processorArchitecture=</span><span class="s">"amd64"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-Deployment"</span> <span class="na">processorArchitecture=</span><span class="s">"x86"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/component&gt;</span></code></pre></figure>
+
+<h3 id="specialize--shell-setup">Specialize : Shell Setup</h3>
+
+<p>Basic settings lets windows pick a random computer name.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-Shell-Setup"</span> <span class="na">processorArchitecture=</span><span class="s">"amd64"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;ComputerName&gt;</span>*<span class="nt">&lt;/ComputerName&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-Shell-Setup"</span> <span class="na">processorArchitecture=</span><span class="s">"x86"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;ComputerName&gt;</span>*<span class="nt">&lt;/ComputerName&gt;</span>
+<span class="nt">&lt;/component&gt;</span></code></pre></figure>
+
+<h3 id="oobesystem--international-core">oobeSystem : International Core</h3>
+
+<p>The language and input are localized to en-US by default, This can be changed via parameters</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-International-Core"</span> <span class="na">processorArchitecture=</span><span class="s">"amd64"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;InputLocale&gt;</span>en-US<span class="nt">&lt;/InputLocale&gt;</span>
+  <span class="nt">&lt;SystemLocale&gt;</span>en-US<span class="nt">&lt;/SystemLocale&gt;</span>
+  <span class="nt">&lt;UILanguage&gt;</span>en-US<span class="nt">&lt;/UILanguage&gt;</span>
+  <span class="nt">&lt;UserLocale&gt;</span>en-US<span class="nt">&lt;/UserLocale&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-International-Core"</span> <span class="na">processorArchitecture=</span><span class="s">"x86"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;InputLocale&gt;</span>en-US<span class="nt">&lt;/InputLocale&gt;</span>
+  <span class="nt">&lt;SystemLocale&gt;</span>en-US<span class="nt">&lt;/SystemLocale&gt;</span>
+  <span class="nt">&lt;UILanguage&gt;</span>en-US<span class="nt">&lt;/UILanguage&gt;</span>
+  <span class="nt">&lt;UserLocale&gt;</span>en-US<span class="nt">&lt;/UserLocale&gt;</span>
+<span class="nt">&lt;/component&gt;</span></code></pre></figure>
+
+<h3 id="oobesystem---shell-setup">oobeSystem :  Shell-Setup</h3>
+
+<p>This section is a bit larger. It going to hide or skip everything it can to avoid any prompting. Afterall this is suposed to be automated.
+We also set the Timezone to a default of GMT and set the admin password
+Now the Admin Password may look encrypted, but it’s not that is 64bit encodeing. The best thing to do is set a password here for troubleshooting, then change it via LAPS or DSC once windows is up and running.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-Shell-Setup"</span> <span class="na">processorArchitecture=</span><span class="s">"amd64"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;OOBE&gt;</span>
+    <span class="nt">&lt;HideEULAPage&gt;</span>true<span class="nt">&lt;/HideEULAPage&gt;</span>
+    <span class="nt">&lt;HideWirelessSetupInOOBE&gt;</span>true<span class="nt">&lt;/HideWirelessSetupInOOBE&gt;</span>
+    <span class="nt">&lt;NetworkLocation&gt;</span>Work<span class="nt">&lt;/NetworkLocation&gt;</span>
+    <span class="nt">&lt;ProtectYourPC&gt;</span>1<span class="nt">&lt;/ProtectYourPC&gt;</span>
+    <span class="nt">&lt;SkipUserOOBE&gt;</span>true<span class="nt">&lt;/SkipUserOOBE&gt;</span>
+    <span class="nt">&lt;SkipMachineOOBE&gt;</span>true<span class="nt">&lt;/SkipMachineOOBE&gt;</span>
+  <span class="nt">&lt;/OOBE&gt;</span>
+  <span class="nt">&lt;TimeZone&gt;</span>GMT Standard Time<span class="nt">&lt;/TimeZone&gt;</span>
+  <span class="nt">&lt;UserAccounts&gt;</span>
+    <span class="nt">&lt;AdministratorPassword&gt;</span>
+      <span class="nt">&lt;Value&gt;</span>YQBkAHMAZgBBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByAFAAYQBzAHMAdwBvAHIAZAA=<span class="nt">&lt;/Value&gt;</span>
+      <span class="nt">&lt;PlainText&gt;</span>false<span class="nt">&lt;/PlainText&gt;</span>
+    <span class="nt">&lt;/AdministratorPassword&gt;</span>
+  <span class="nt">&lt;/UserAccounts&gt;</span>
+  <span class="nt">&lt;RegisteredOrganization&gt;</span>Generic Organization<span class="nt">&lt;/RegisteredOrganization&gt;</span>
+  <span class="nt">&lt;RegisteredOwner&gt;</span>Generic Owner<span class="nt">&lt;/RegisteredOwner&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-Shell-Setup"</span> <span class="na">processorArchitecture=</span><span class="s">"x86"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;OOBE&gt;</span>
+    <span class="nt">&lt;HideEULAPage&gt;</span>true<span class="nt">&lt;/HideEULAPage&gt;</span>
+    <span class="nt">&lt;HideWirelessSetupInOOBE&gt;</span>true<span class="nt">&lt;/HideWirelessSetupInOOBE&gt;</span>
+    <span class="nt">&lt;NetworkLocation&gt;</span>Work<span class="nt">&lt;/NetworkLocation&gt;</span>
+    <span class="nt">&lt;ProtectYourPC&gt;</span>1<span class="nt">&lt;/ProtectYourPC&gt;</span>
+    <span class="nt">&lt;SkipUserOOBE&gt;</span>true<span class="nt">&lt;/SkipUserOOBE&gt;</span>
+    <span class="nt">&lt;SkipMachineOOBE&gt;</span>true<span class="nt">&lt;/SkipMachineOOBE&gt;</span>
+  <span class="nt">&lt;/OOBE&gt;</span>
+  <span class="nt">&lt;TimeZone&gt;</span>GMT Standard Time<span class="nt">&lt;/TimeZone&gt;</span>
+  <span class="nt">&lt;UserAccounts&gt;</span>
+    <span class="nt">&lt;AdministratorPassword&gt;</span>
+      <span class="nt">&lt;Value&gt;</span>YQBkAHMAZgBBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByAFAAYQBzAHMAdwBvAHIAZAA=<span class="nt">&lt;/Value&gt;</span>
+      <span class="nt">&lt;PlainText&gt;</span>false<span class="nt">&lt;/PlainText&gt;</span>
+    <span class="nt">&lt;/AdministratorPassword&gt;</span>
+  <span class="nt">&lt;/UserAccounts&gt;</span>
+  <span class="nt">&lt;RegisteredOrganization&gt;</span>Generic Organization<span class="nt">&lt;/RegisteredOrganization&gt;</span>
+  <span class="nt">&lt;RegisteredOwner&gt;</span>Generic Owner<span class="nt">&lt;/RegisteredOwner&gt;</span>
+<span class="nt">&lt;/component&gt;</span></code></pre></figure>
+
+<p>This is all well and good but it’s still only get’s us the first step. To automate deployment we need to do more then bypass prompts and set a password.</p>
+
+<h2 id="more-usefull-unattentxml">More usefull Unattent.xml</h2>
+
+<p>Now we will set a few more items.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nv">$param</span> <span class="o">=</span> @<span class="o">{</span>
+  AdminCredential <span class="o">=</span> <span class="o">(</span><span class="nb">Get-Credential</span><span class="o">)</span> 
+  UserAccount <span class="o">=</span> <span class="o">(</span><span class="nb">Get-Credential</span><span class="o">)</span>, <span class="o">(</span><span class="nb">Get-Credential</span><span class="o">)</span> 
+  FirstBootScriptPath <span class="o">=</span> <span class="s1">'C:\PsTemp\FirstBoot.ps1'</span> 
+  TimeZone <span class="o">=</span> <span class="s1">'Central Standard Time'</span> 
+  RegisteredOwner <span class="o">=</span> <span class="s1">'Employee'</span>
+  RegisteredOrganization <span class="o">=</span> <span class="s1">'Contoso'</span>
+  enableAdministrator <span class="o">=</span> <span class="nv">$true</span> 
+<span class="o">}</span>
+New-UnattendXml @param | 
+<span class="nb">get-content</span></code></pre></figure>
+
+<h3 id="specialize---deployment">specialize :  Deployment</h3>
+
+<p>One thing to notice here is the amd64 component is still blank. The reason for this is 64bit OS’s will run the commands in both the 32 and 64bit sections.</p>
+
+<p>We have two commands in the RunSynchronous section. The first one enables the Administrator account. the second launches PowerShell with the script path we asked for.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-Deployment"</span> <span class="na">processorArchitecture=</span><span class="s">"amd64"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-Deployment"</span> <span class="na">processorArchitecture=</span><span class="s">"x86"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;RunSynchronous&gt;</span>
+    <span class="nt">&lt;RunSynchronousCommand</span> <span class="na">wcm:action=</span><span class="s">"add"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;Description&gt;</span>Enable Administrator<span class="nt">&lt;/Description&gt;</span>
+      <span class="nt">&lt;Order&gt;</span>1<span class="nt">&lt;/Order&gt;</span>
+      <span class="nt">&lt;Path&gt;</span>net user administrator /active:yes<span class="nt">&lt;/Path&gt;</span>
+    <span class="nt">&lt;/RunSynchronousCommand&gt;</span>
+    <span class="nt">&lt;RunSynchronousCommand</span> <span class="na">wcm:action=</span><span class="s">"add"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;Description&gt;</span>PowerShell First boot script<span class="nt">&lt;/Description&gt;</span>
+      <span class="nt">&lt;Order&gt;</span>2<span class="nt">&lt;/Order&gt;</span>
+      <span class="nt">&lt;Path&gt;</span>%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File "C:\PsTemp\FirstBoot.ps1"<span class="nt">&lt;/Path&gt;</span>
+    <span class="nt">&lt;/RunSynchronousCommand&gt;</span>
+  <span class="nt">&lt;/RunSynchronous&gt;</span>
+<span class="nt">&lt;/component&gt;</span></code></pre></figure>
+
+<h3 id="oobesystem---shell-setup-1">oobeSystem :  Shell Setup</h3>
+
+<p>The next section that is diferent is the shell setup. You will notice I set two additional user accounts. Remember that the passwords are encoded not encrypted. I also have entries to set the ownership.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-Shell-Setup"</span> <span class="na">processorArchitecture=</span><span class="s">"amd64"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;OOBE&gt;</span>
+    <span class="nt">&lt;HideEULAPage&gt;</span>true<span class="nt">&lt;/HideEULAPage&gt;</span>
+    <span class="nt">&lt;HideWirelessSetupInOOBE&gt;</span>true<span class="nt">&lt;/HideWirelessSetupInOOBE&gt;</span>
+    <span class="nt">&lt;NetworkLocation&gt;</span>Work<span class="nt">&lt;/NetworkLocation&gt;</span>
+    <span class="nt">&lt;ProtectYourPC&gt;</span>1<span class="nt">&lt;/ProtectYourPC&gt;</span>
+    <span class="nt">&lt;SkipUserOOBE&gt;</span>true<span class="nt">&lt;/SkipUserOOBE&gt;</span>
+    <span class="nt">&lt;SkipMachineOOBE&gt;</span>true<span class="nt">&lt;/SkipMachineOOBE&gt;</span>
+  <span class="nt">&lt;/OOBE&gt;</span>
+  <span class="nt">&lt;TimeZone&gt;</span>Central Standard Time<span class="nt">&lt;/TimeZone&gt;</span>
+  <span class="nt">&lt;UserAccounts&gt;</span>
+    <span class="nt">&lt;AdministratorPassword&gt;</span>
+      <span class="nt">&lt;Value&gt;</span>UABAAHMAcwB3ADAAcgBkAEEAZABtAGkAbgBpAHMAdAByAGEAdABvAHIAUABhAHMAcwB3AG8AcgBkAA==<span class="nt">&lt;/Value&gt;</span>
+      <span class="nt">&lt;PlainText&gt;</span>false<span class="nt">&lt;/PlainText&gt;</span>
+    <span class="nt">&lt;/AdministratorPassword&gt;</span>
+    <span class="nt">&lt;LocalAccounts&gt;</span>
+      <span class="nt">&lt;LocalAccount</span> <span class="na">wcm:action=</span><span class="s">"add"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;Password&gt;</span>
+          <span class="nt">&lt;Value&gt;</span>UABAAHMAcwB3ADAAcgBkADEAMgAzAFAAYQBzAHMAdwBvAHIAZAA=<span class="nt">&lt;/Value&gt;</span>
+          <span class="nt">&lt;PlainText&gt;</span>false<span class="nt">&lt;/PlainText&gt;</span>
+        <span class="nt">&lt;/Password&gt;</span>
+        <span class="nt">&lt;DisplayName&gt;</span>Don<span class="nt">&lt;/DisplayName&gt;</span>
+        <span class="nt">&lt;Group&gt;</span>Administrators<span class="nt">&lt;/Group&gt;</span>
+        <span class="nt">&lt;Name&gt;</span>Don<span class="nt">&lt;/Name&gt;</span>
+      <span class="nt">&lt;/LocalAccount&gt;</span>
+      <span class="nt">&lt;LocalAccount</span> <span class="na">wcm:action=</span><span class="s">"add"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;Password&gt;</span>
+          <span class="nt">&lt;Value&gt;</span>UABAAHMAcwB3ADAAcgBkADQANQA2AFAAYQBzAHMAdwBvAHIAZAA=<span class="nt">&lt;/Value&gt;</span>
+          <span class="nt">&lt;PlainText&gt;</span>false<span class="nt">&lt;/PlainText&gt;</span>
+        <span class="nt">&lt;/Password&gt;</span>
+        <span class="nt">&lt;DisplayName&gt;</span>Mike<span class="nt">&lt;/DisplayName&gt;</span>
+        <span class="nt">&lt;Group&gt;</span>Administrators<span class="nt">&lt;/Group&gt;</span>
+        <span class="nt">&lt;Name&gt;</span>Mike<span class="nt">&lt;/Name&gt;</span>
+      <span class="nt">&lt;/LocalAccount&gt;</span>
+    <span class="nt">&lt;/LocalAccounts&gt;</span>
+  <span class="nt">&lt;/UserAccounts&gt;</span>
+  <span class="nt">&lt;RegisteredOrganization&gt;</span>Contoso<span class="nt">&lt;/RegisteredOrganization&gt;</span>
+  <span class="nt">&lt;RegisteredOwner&gt;</span>Employee<span class="nt">&lt;/RegisteredOwner&gt;</span>
+<span class="nt">&lt;/component&gt;</span>
+<span class="nt">&lt;component</span> <span class="na">name=</span><span class="s">"Microsoft-Windows-Shell-Setup"</span> <span class="na">processorArchitecture=</span><span class="s">"x86"</span> <span class="na">publicKeyToken=</span><span class="s">"31bf3856ad364e35"</span> <span class="na">language=</span><span class="s">"neutral"</span> <span class="na">versionScope=</span><span class="s">"nonSxS"</span> <span class="na">xmlns:wcm=</span><span class="s">"http://schemas.microsoft.com/WMIConfig/2002/State"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;OOBE&gt;</span>
+    <span class="nt">&lt;HideEULAPage&gt;</span>true<span class="nt">&lt;/HideEULAPage&gt;</span>
+    <span class="nt">&lt;HideWirelessSetupInOOBE&gt;</span>true<span class="nt">&lt;/HideWirelessSetupInOOBE&gt;</span>
+    <span class="nt">&lt;NetworkLocation&gt;</span>Work<span class="nt">&lt;/NetworkLocation&gt;</span>
+    <span class="nt">&lt;ProtectYourPC&gt;</span>1<span class="nt">&lt;/ProtectYourPC&gt;</span>
+    <span class="nt">&lt;SkipUserOOBE&gt;</span>true<span class="nt">&lt;/SkipUserOOBE&gt;</span>
+    <span class="nt">&lt;SkipMachineOOBE&gt;</span>true<span class="nt">&lt;/SkipMachineOOBE&gt;</span>
+  <span class="nt">&lt;/OOBE&gt;</span>
+  <span class="nt">&lt;TimeZone&gt;</span>Central Standard Time<span class="nt">&lt;/TimeZone&gt;</span>
+  <span class="nt">&lt;UserAccounts&gt;</span>
+    <span class="nt">&lt;AdministratorPassword&gt;</span>
+      <span class="nt">&lt;Value&gt;</span>UABAAHMAcwB3ADAAcgBkAEEAZABtAGkAbgBpAHMAdAByAGEAdABvAHIAUABhAHMAcwB3AG8AcgBkAA==<span class="nt">&lt;/Value&gt;</span>
+      <span class="nt">&lt;PlainText&gt;</span>false<span class="nt">&lt;/PlainText&gt;</span>
+    <span class="nt">&lt;/AdministratorPassword&gt;</span>
+    <span class="nt">&lt;LocalAccounts&gt;</span>
+      <span class="nt">&lt;LocalAccount</span> <span class="na">wcm:action=</span><span class="s">"add"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;Password&gt;</span>
+          <span class="nt">&lt;Value&gt;</span>UABAAHMAcwB3ADAAcgBkADEAMgAzAFAAYQBzAHMAdwBvAHIAZAA=<span class="nt">&lt;/Value&gt;</span>
+          <span class="nt">&lt;PlainText&gt;</span>false<span class="nt">&lt;/PlainText&gt;</span>
+        <span class="nt">&lt;/Password&gt;</span>
+        <span class="nt">&lt;DisplayName&gt;</span>Don<span class="nt">&lt;/DisplayName&gt;</span>
+        <span class="nt">&lt;Group&gt;</span>Administrators<span class="nt">&lt;/Group&gt;</span>
+        <span class="nt">&lt;Name&gt;</span>Don<span class="nt">&lt;/Name&gt;</span>
+      <span class="nt">&lt;/LocalAccount&gt;</span>
+      <span class="nt">&lt;LocalAccount</span> <span class="na">wcm:action=</span><span class="s">"add"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;Password&gt;</span>
+          <span class="nt">&lt;Value&gt;</span>UABAAHMAcwB3ADAAcgBkADQANQA2AFAAYQBzAHMAdwBvAHIAZAA=<span class="nt">&lt;/Value&gt;</span>
+          <span class="nt">&lt;PlainText&gt;</span>false<span class="nt">&lt;/PlainText&gt;</span>
+        <span class="nt">&lt;/Password&gt;</span>
+        <span class="nt">&lt;DisplayName&gt;</span>Mike<span class="nt">&lt;/DisplayName&gt;</span>
+        <span class="nt">&lt;Group&gt;</span>Administrators<span class="nt">&lt;/Group&gt;</span>
+        <span class="nt">&lt;Name&gt;</span>Mike<span class="nt">&lt;/Name&gt;</span>
+      <span class="nt">&lt;/LocalAccount&gt;</span>
+    <span class="nt">&lt;/LocalAccounts&gt;</span>
+  <span class="nt">&lt;/UserAccounts&gt;</span>
+  <span class="nt">&lt;RegisteredOrganization&gt;</span>Contoso<span class="nt">&lt;/RegisteredOrganization&gt;</span>
+  <span class="nt">&lt;RegisteredOwner&gt;</span>Employee<span class="nt">&lt;/RegisteredOwner&gt;</span>
+  <span class="nt">&lt;FirstLogonCommands</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;LogonCommands</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/component&gt;</span></code></pre></figure>
+
+<h2 id="puting-it-together">Puting it together</h2>
+
+<p>New-UnattentXML returns a path object to the file created, and by default that is in $env:TEMP. so we will store the path in a variable and use it pluss the path to our FirstBoot script when creating the VHDX</p>
+
+<h3 id="adding-the-unattend-and-script-file-when-creating-a-vhdx">Adding the unattend and script file when creating a VHDX</h3>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="nv">$UnattentParam</span> <span class="o">=</span> @<span class="o">{</span>
+  AdminCredential <span class="o">=</span> <span class="o">(</span><span class="nb">Get-Credential</span><span class="o">)</span> 
+  UserAccount <span class="o">=</span> <span class="o">(</span><span class="nb">Get-Credential</span><span class="o">)</span>, <span class="o">(</span><span class="nb">Get-Credential</span><span class="o">)</span> 
+  FirstBootScriptPath <span class="o">=</span> <span class="s1">'C:\PsTemp\FirstBoot.ps1'</span> 
+  TimeZone <span class="o">=</span> <span class="s1">'Central Standard Time'</span> 
+  RegisteredOwner <span class="o">=</span> <span class="s1">'Employee'</span>
+  RegisteredOrganization <span class="o">=</span> <span class="s1">'Contoso'</span>
+  enableAdministrator <span class="o">=</span> <span class="nv">$true</span> 
+<span class="o">}</span>
+<span class="nv">$UnattentPath</span> <span class="o">=</span> <span class="o">(</span>New-UnattendXml @UnattentParam <span class="o">)</span>.FullName
+
+<span class="nv">$FirstBootContent</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="c1">## Do something Cool</span>
+<span class="o">}</span>
+ <span class="nb">New-Item</span> -Path <span class="s2">"G:</span><span class="se">\f</span><span class="s2">ilesToInject</span><span class="se">\P</span><span class="s2">sTemp"</span> -Name FirstBoot.ps1 -ItemType <span class="s1">'file'</span> -Value <span class="nv">$FirstBootContent</span>
+<span class="nv">$ConverParm</span> <span class="o">=</span> @<span class="o">{</span>
+  Path <span class="o">=</span> <span class="s1">'G:\vhd\2012r2_eval_Core.vhdx'</span> 
+  Size <span class="o">=</span> 60gb 
+  Dynamic <span class="o">=</span> <span class="nv">$true</span> 
+  DiskLayout <span class="o">=</span> <span class="s1">'UEFI'</span> 
+  SourcePath <span class="o">=</span> <span class="s1">'G:\iso\Srv2012r2Eval.ISO'</span> 
+  Index <span class="o">=</span> 1 
+  Feature <span class="o">=</span> <span class="s1">'NetFx3'</span>
+  Unattend <span class="o">=</span> <span class="nv">$UnattentPath</span> 
+  filesToInject <span class="o">=</span> <span class="s1">'G:\filesToInject\PsTemp'</span>
+<span class="o">}</span>
+ Convert-Wim2VHD @ConverParm -Verbose</code></pre></figure>
+
+<p>Below is part of the verbose output that covers Unattend and filesToInject</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] Windows Partition [3] : Adding files from G:\filesToInject
+VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] Windows Partition [3] : Adding Unattend.xml (C:\Users\Blade_000\AppData\Local\Temp\djebkgrz\unattend.xml)
+</code></pre>
+</div>
+
+<p>So now when this vhdx first boots it will process Unattend creating users and running our PowerShell script</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/module" class="page__taxonomy-item" rel="tag">Module</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/vhdx" class="page__taxonomy-item" rel="tag">VHDX</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/windowsupdate" class="page__taxonomy-item" rel="tag">WindowsUpdate</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/windowsupdatetools" class="page__taxonomy-item" rel="tag">WindowsUpdateTools</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/windowsimagetools" class="page__taxonomy-item" rel="tag">WindowsImageTools</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-08-22T16:48:59-05:00">August 22, 2016</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=BladeFireLight&text=Windows Image Tools \| Unattend.xml http://localhost:4000/windowsimagetools/Unattend/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/windowsimagetools/Unattend/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=http://localhost:4000/windowsimagetools/Unattend/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/windowsimagetools/Unattend/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/windowsimagetools/VHDXCreation/" class="pagination--pager" title="Windows Image Tools | VHDX Creation
+">Previous</a>
+    
+    
+      <a href="http://localhost:4000/windowsimagetools/Modifying-Fresh-VHDX/" class="pagination--pager" title="Windows Image Tools | Modify VHDX
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+    <h4 class="page__comments-title">Leave a Comment</h4>
+    <section id="disqus_thread"></section>
+  
+</div>
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      
+        <h4 class="page__related-title">You May Also Enjoy</h4>
+      
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use ...</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part2-WMF5/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use ...</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part1-Base-VHDX/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use ...</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/Blog-Refactoring/" rel="permalink">Re-factoring the Blog
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Sometimes rebooting fixes everything
+
+</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+</div>
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/BladeFireLight"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="http://github.com/BladeFireLight"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <li><a href="http://localhost:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2017 David Jones. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    <script src="http://localhost:4000/assets/js/main.min.js"></script>
+
+
+
+
+
+  
+  <script type="text/javascript">
+  	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  	var disqus_shortname = 'blogbladefirelightcom';
+
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function() {
+  		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  	})();
+
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function () {
+  		var s = document.createElement('script'); s.async = true;
+  		s.type = 'text/javascript';
+  		s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  	}());
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+  </body>
+</html>
+

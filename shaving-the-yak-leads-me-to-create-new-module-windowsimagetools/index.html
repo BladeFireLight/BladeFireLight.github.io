@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Shaving the Yak, Leads Me to Create New Module WindowsImageTools - PowerShell Journey</title>
+
+
+
+
+<meta name="description" content="     On This Page  ">
+
+
+
+
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="PowerShell Journey">
+<meta property="og:title" content="Shaving the Yak, Leads Me to Create New Module WindowsImageTools">
+
+
+  <link rel="canonical" href="http://localhost:4000/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/">
+  <meta property="og:url" content="http://localhost:4000/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/">
+
+
+
+  <meta property="og:description" content="     On This Page  ">
+
+
+
+  <meta name="twitter:site" content="@BladeFireLight">
+  <meta name="twitter:title" content="Shaving the Yak, Leads Me to Create New Module WindowsImageTools">
+  <meta name="twitter:description" content="     On This Page  ">
+  <meta name="twitter:url" content="http://localhost:4000/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  
+
+  
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2015-09-29T00:00:00-05:00">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "David Jones",
+      "url" : "http://localhost:4000",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="PowerShell Journey Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 11]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><div class="navicon"></div></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="http://localhost:4000/">PowerShell Journey</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/about/">About</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/Nuggets/">Nuggets</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/windowsimagetools/">Windows Image Tools</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/windowsimagetools/">PKI Tools</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/year-archive/">Archive by Date</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/categories/">By Category</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="http://localhost:4000/tags/">By Tag</a></li>
+          
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">Shaving the Yak, Leads Me to Create New Module WindowsImageTools</li>
+      
+    
+  </ol>
+</nav>
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://localhost:4000/assets/images/avatar1.jpg" class="author__avatar" alt="David Jones" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name" itemprop="name">David Jones</h3>
+    
+      <p class="author__bio" itemprop="description">
+        20 years IT Pro. life long student of tech
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Gretna, NE</span>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:BladeFireLight@outlook.com">
+            <meta itemprop="email" content="BladeFireLight@outlook.com" />
+            <i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/BladeFireLight" itemprop="sameAs">
+            <i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/BladeFireLight" itemprop="sameAs">
+            <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fa fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Shaving the Yak, Leads Me to Create New Module WindowsImageTools">
+    <meta itemprop="description" content="     On This Page  ">
+    <meta itemprop="datePublished" content="September 29, 2015">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Shaving the Yak, Leads Me to Create New Module WindowsImageTools
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <aside class="sidebar__right">
+<nav class="toc">
+    <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
+<ul class="toc__menu" id="markdown-toc">
+  <li><a href="#my-yak-needs-shaving" id="markdown-toc-my-yak-needs-shaving">My Yak needs shaving.</a></li>
+  <li><a href="#windowsimagetools" id="markdown-toc-windowsimagetools">WindowsImageTools</a></li>
+  <li><a href="#onward" id="markdown-toc-onward">Onward</a></li>
+</ul>
+
+  </nav>
+</aside>
+
+<h2 id="my-yak-needs-shaving">My Yak needs shaving.</h2>
+
+<p>If your not familiar with the term.</p>
+
+<p>http://www.hanselman.com/blog/YakShavingDefinedIllGetThatDoneAsSoonAsIShaveThisYak.aspx</p>
+
+<p>It’s been quite a journey since my last post.</p>
+
+<p>Windows 10 came out, and Convert-WindowsImage.ps1 was upgraded (braking my scripts I blogged about this summer) and Server 2016 Preview 3 was released.</p>
+
+<p>Looking at the Nano folder on Preview 3 they are using a WIM and Convert-WindowsImage.ps1to create a VHDX. Good move Microsoft.</p>
+
+<p>Now for the bad part.</p>
+
+<p>Convert-WindowImage.ps1 is buggy, and not a module. But Microsoft is working hart to fix this. Not being one to wait. I decided to take the functionality I need and re-work the whole process as a module. (and found some underlying bugs in PowerShell in the process )  The results of my effort is documented below.</p>
+
+<p>As for Windows 10.</p>
+
+<p>There are a number of changes to DSC that have broken all my production configuration scripts. And Configurations created on Windows10 or WMF 5 preview have bugs when using depends on, that cause the LCM on 2012R2 to hang.</p>
+
+<p>For Production this is a show stopper, but I’m already working to separate out the configuration’s based on target OS.</p>
+
+<h2 id="windowsimagetools">WindowsImageTools</h2>
+
+<p>Microsoft recently moved Convert-WindowsImage over to GitHub and added some nice features, but it’s still a script, not a module. They also nicely added an MIT licence to that repo. So taking advantage of that I started my own project based on that code. I’m calling it WindowsImageTools</p>
+
+<p>So far there are four exported functions.</p>
+
+<ol>
+  <li>Initialize-VHDPartition
+    <ol>
+      <li>Create a VHD with correct partition for BIOS or UEFI with or without Recovery tools/image</li>
+    </ol>
+  </li>
+  <li>Set-VHDPartition
+    <ol>
+      <li>take an ISO or WIM and populate the VHD. This detects the layout and acts accordingly.</li>
+      <li>It also can add drivers, enable features, inject unattend.xml and inject additional files or folders</li>
+    </ol>
+  </li>
+  <li>Convert-Wim2VHD
+    <ol>
+      <li>This is a wrapper functions around the first two</li>
+    </ol>
+  </li>
+  <li>New-UnattendXml
+    <ol>
+      <li>Create an Unattend.xml that works with both 32 and 64 bit in a single file</li>
+      <li>Sets the admin password and autologin count</li>
+      <li>Creates then deletes a second user (for Windows7)</li>
+      <li>Sets TimeZone</li>
+      <li>Starts a PowerShell script to bootstrap the system configuration</li>
+    </ol>
+  </li>
+</ol>
+
+<p>That last one took quite some work to figure out. It only fully works with Volume media because it does not set the license key.</p>
+
+<p>I also discovered that 64bit windows will run both the 32bit sections for adding users and running scripts, but not the part for skipping licensing and autologin. This is true from win7 forward. If your not familiar with Unattend.xml those parts are all under the same section in the xml.</p>
+
+<p>If you want to give it a spin it’s <a href="https://www.powershellgallery.com/packages/WindowsImageTools/">available at the PowerShell Gallery</a></p>
+
+<h2 id="onward">Onward</h2>
+
+<p>So equipped with these tools i’m now going to reword my auto patching and WIM creation script. and add that into the module.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/tags/rant" class="page__taxonomy-item" rel="tag">Rant</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-09-29T00:00:00-05:00">September 29, 2015</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=BladeFireLight&text=Shaving the Yak, Leads Me to Create New Module WindowsImageTools http://localhost:4000/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=http://localhost:4000/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/test-lab-update-github/" class="pagination--pager" title="Test-Lab | Update-GitHub
+">Previous</a>
+    
+    
+      <a href="http://localhost:4000/windowsimagetools/windows-image-tools-overview/" class="pagination--pager" title="Windows Image Tools | Overview
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+    <h4 class="page__comments-title">Leave a Comment</h4>
+    <section id="disqus_thread"></section>
+  
+</div>
+    
+  </article>
+
+  
+  
+</div>
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/BladeFireLight"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="http://github.com/BladeFireLight"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <li><a href="http://localhost:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2017 David Jones. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    <script src="http://localhost:4000/assets/js/main.min.js"></script>
+
+
+
+
+
+  
+  <script type="text/javascript">
+  	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  	var disqus_shortname = 'blogbladefirelightcom';
+
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function() {
+  		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  	})();
+
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function () {
+  		var s = document.createElement('script'); s.async = true;
+  		s.type = 'text/javascript';
+  		s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  	}());
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+  </body>
+</html>
+
