@@ -13,34 +13,34 @@
 
 
 
-<title>Shaving the Yak, Leads Me to Create New Module WindowsImageTools - PowerShell Journey</title>
+<title>Collecting CA Certificates for DSC Configuration - PowerShell Journey</title>
 
 
 
 
-<meta name="description" content="     On This Page  ">
+<meta name="description" content="Best practice is to use individual certificates for each Node for DSC. While you can use auto enrollment, getting the certificates to where the MOF are build can be a problem. This is one solution">
 
 
 
 
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="PowerShell Journey">
-<meta property="og:title" content="Shaving the Yak, Leads Me to Create New Module WindowsImageTools">
+<meta property="og:title" content="Collecting CA Certificates for DSC Configuration">
 
 
-  <link rel="canonical" href="http://localhost:4000/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/">
-  <meta property="og:url" content="http://localhost:4000/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/">
+  <link rel="canonical" href="http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration/">
+  <meta property="og:url" content="http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration/">
 
 
 
-  <meta property="og:description" content="     On This Page  ">
+  <meta property="og:description" content="Best practice is to use individual certificates for each Node for DSC. While you can use auto enrollment, getting the certificates to where the MOF are build can be a problem. This is one solution">
 
 
 
   <meta name="twitter:site" content="@BladeFireLight">
-  <meta name="twitter:title" content="Shaving the Yak, Leads Me to Create New Module WindowsImageTools">
-  <meta name="twitter:description" content="     On This Page  ">
-  <meta name="twitter:url" content="http://localhost:4000/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/">
+  <meta name="twitter:title" content="Collecting CA Certificates for DSC Configuration">
+  <meta name="twitter:description" content="Best practice is to use individual certificates for each Node for DSC. While you can use auto enrollment, getting the certificates to where the MOF are build can be a problem. This is one solution">
+  <meta name="twitter:url" content="http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration/">
 
   
     <meta name="twitter:card" content="summary">
@@ -60,7 +60,7 @@
 
 
   <meta property="og:type" content="article">
-  <meta property="article:published_time" content="2015-09-29T00:00:00-05:00">
+  <meta property="article:published_time" content="2017-01-27T00:00:00-06:00">
 
 
 
@@ -171,7 +171,17 @@
         <span class="sep">/</span>
       
       
-        <li class="current">Shaving the Yak, Leads Me to Create New Module WindowsImageTools</li>
+        
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="http://localhost:4000/nuggets" itemprop="item"><span itemprop="name">Nuggets</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Collecting CA Certificates for DSC Configuration</li>
       
     
   </ol>
@@ -295,15 +305,15 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Shaving the Yak, Leads Me to Create New Module WindowsImageTools">
-    <meta itemprop="description" content="     On This Page  ">
-    <meta itemprop="datePublished" content="September 29, 2015">
+    <meta itemprop="headline" content="Collecting CA Certificates for DSC Configuration">
+    <meta itemprop="description" content="Best practice is to use individual certificates for each Node for DSC. While you can use auto enrollment, getting the certificates to where the MOF are build can be a problem. This is one solution">
+    <meta itemprop="datePublished" content="January 27, 2017">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Shaving the Yak, Leads Me to Create New Module WindowsImageTools
+          <h1 class="page__title" itemprop="headline">Collecting CA Certificates for DSC Configuration
 </h1>
           
             <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
@@ -311,90 +321,43 @@
 
 
 
-  2 minute read
+  less than 1 minute read
 </p>
           
         </header>
       
 
       <section class="page__content" itemprop="text">
-        <aside class="sidebar__right">
-<nav class="toc">
-    <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
-<ul class="toc__menu" id="markdown-toc">
-  <li><a href="#my-yak-needs-shaving" id="markdown-toc-my-yak-needs-shaving">My Yak needs shaving.</a></li>
-  <li><a href="#windowsimagetools" id="markdown-toc-windowsimagetools">WindowsImageTools</a></li>
-  <li><a href="#onward" id="markdown-toc-onward">Onward</a></li>
-</ul>
+        <h2 id="the-goal">The Goal</h2>
 
-  </nav>
-</aside>
+<p>Microsoft PFE Ashely McGlone <a href="https://blogs.msdn.microsoft.com/powershell/2015/10/01/powershell-dsc-faq-sorting-out-certificates/">recommends</a> that each node managed by DSC (Desired State Configuration) have unique certificate for protecting credentials.</p>
 
-<h2 id="my-yak-needs-shaving">My Yak needs shaving.</h2>
+<p><img src="http://localhost:4000/assets/images/MofCredSecurity.png" alt="Mof Credential Security Chart" /></p>
 
-<p>If your not familiar with the term.</p>
+<p class="notice--info">Starting in WMF 5.0 .MOF are <a href="https://msdn.microsoft.com/en-us/powershell/wmf/5.0/dsc_encryptedmof">encrypted at rest</a> on the Node by . But that is not the case for the file on the pull server. So I’m going on the assumption that this is still a best practice.</p>
 
-<p>http://www.hanselman.com/blog/YakShavingDefinedIllGetThatDoneAsSoonAsIShaveThisYak.aspx</p>
+<p>The problem with that is getting the certificates either from the node or from a CA (Certificate Authority) to the DSC development workstation or CI/CD (Continuous Integration/Continuous Deployment) server. I’m going to cover one method.</p>
 
-<p>It’s been quite a journey since my last post.</p>
+<h2 id="pre-requisites">Pre-requisites</h2>
 
-<p>Windows 10 came out, and Convert-WindowsImage.ps1 was upgraded (braking my scripts I blogged about this summer) and Server 2016 Preview 3 was released.</p>
+<p>For this I’m going to be using <a href="https://github.com/theJasonHelmick/PS-AutoLab-Env">PowerShell Automated Lab Environment</a> and it’s Configuration called “devops-powershell-fundamentals”</p>
 
-<p>Looking at the Nano folder on Preview 3 they are using a WIM and Convert-WindowsImage.ps1to create a VHDX. Good move Microsoft.</p>
-
-<p>Now for the bad part.</p>
-
-<p>Convert-WindowImage.ps1 is buggy, and not a module. But Microsoft is working hart to fix this. Not being one to wait. I decided to take the functionality I need and re-work the whole process as a module. (and found some underlying bugs in PowerShell in the process )  The results of my effort is documented below.</p>
-
-<p>As for Windows 10.</p>
-
-<p>There are a number of changes to DSC that have broken all my production configuration scripts. And Configurations created on Windows10 or WMF 5 preview have bugs when using depends on, that cause the LCM on 2012R2 to hang.</p>
-
-<p>For Production this is a show stopper, but I’m already working to separate out the configuration’s based on target OS.</p>
-
-<h2 id="windowsimagetools">WindowsImageTools</h2>
-
-<p>Microsoft recently moved Convert-WindowsImage over to GitHub and added some nice features, but it’s still a script, not a module. They also nicely added an MIT licence to that repo. So taking advantage of that I started my own project based on that code. I’m calling it WindowsImageTools</p>
-
-<p>So far there are four exported functions.</p>
+<p>This will generate the following:</p>
 
 <ol>
-  <li>Initialize-VHDPartition
-    <ol>
-      <li>Create a VHD with correct partition for BIOS or UEFI with or without Recovery tools/image</li>
-    </ol>
-  </li>
-  <li>Set-VHDPartition
-    <ol>
-      <li>take an ISO or WIM and populate the VHD. This detects the layout and acts accordingly.</li>
-      <li>It also can add drivers, enable features, inject unattend.xml and inject additional files or folders</li>
-    </ol>
-  </li>
-  <li>Convert-Wim2VHD
-    <ol>
-      <li>This is a wrapper functions around the first two</li>
-    </ol>
-  </li>
-  <li>New-UnattendXml
-    <ol>
-      <li>Create an Unattend.xml that works with both 32 and 64 bit in a single file</li>
-      <li>Sets the admin password and autologin count</li>
-      <li>Creates then deletes a second user (for Windows7)</li>
-      <li>Sets TimeZone</li>
-      <li>Starts a PowerShell script to bootstrap the system configuration</li>
-    </ol>
-  </li>
+  <li>DC1 - Domain Controller and Certificate Authority</li>
+  <li>S1, S2 - Member servers</li>
+  <li>N1 - Nano server (not used)</li>
+  <li>Cli1 - Windows 10 workstation</li>
+  <li>NAT virtual switch and static IP’s</li>
+  <li>Certificate Template called “DSC Template”</li>
+  <li>Auto-Enrollment GPO</li>
 </ol>
 
-<p>That last one took quite some work to figure out. It only fully works with Volume media because it does not set the license key.</p>
+<h2 id="demo">Demo</h2>
 
-<p>I also discovered that 64bit windows will run both the 32bit sections for adding users and running scripts, but not the part for skipping licensing and autologin. This is true from win7 forward. If your not familiar with Unattend.xml those parts are all under the same section in the xml.</p>
+<p>I’m going to start with the</p>
 
-<p>If you want to give it a spin it’s <a href="https://www.powershellgallery.com/packages/WindowsImageTools/">available at the PowerShell Gallery</a></p>
-
-<h2 id="onward">Onward</h2>
-
-<p>So equipped with these tools i’m now going to reword my auto patching and WIM creation script. and add that into the module.</p>
 
         
       </section>
@@ -415,7 +378,11 @@
     
       
       
-      <a href="http://localhost:4000/tags/rant" class="page__taxonomy-item" rel="tag">Rant</a>
+      <a href="http://localhost:4000/tags/dsc" class="page__taxonomy-item" rel="tag">DSC</a><span class="sep">, </span>
+    
+      
+      
+      <a href="http://localhost:4000/tags/pki" class="page__taxonomy-item" rel="tag">PKI</a>
     
     </span>
   </p>
@@ -423,8 +390,27 @@
 
 
 
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/nuggets" class="page__taxonomy-item" rel="tag">Nuggets</a>
+    
+    </span>
+  </p>
+
+
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-09-29T00:00:00-05:00">September 29, 2015</time></p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2017-01-27T00:00:00-06:00">January 27, 2017</time></p>
         
       </footer>
 
@@ -433,25 +419,24 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=BladeFireLight&text=Shaving the Yak, Leads Me to Create New Module WindowsImageTools http://localhost:4000/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=BladeFireLight&text=Collecting CA Certificates for DSC Configuration http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=http://localhost:4000/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="http://localhost:4000/test-lab-update-github/" class="pagination--pager" title="Test-Lab | Update-GitHub
+      <a href="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates/" class="pagination--pager" title="Windows Image Tools | Creating an Updated Image Part 3
 ">Previous</a>
     
     
-      <a href="http://localhost:4000/windowsimagetools/windows-image-tools-overview/" class="pagination--pager" title="Windows Image Tools | Overview
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -496,7 +481,7 @@
             <input type="url" id="comment-form-url" name="fields[url]" tabindex="4"/>
           </fieldset>
           <fieldset class="hidden" style="display: none;">
-            <input type="hidden" name="options[slug]" value="shaving-the-yak-leads-me-to-create-new-module-windowsimagetools">
+            <input type="hidden" name="options[slug]" value="collecting-ca-certificates-for-dsc-configuration">
             <label for="comment-form-location">Not used. Leave blank if you are a human.</label>
             <input type="text" id="comment-form-location" name="fields[hidden]" autocomplete="off"/>
           </fieldset>
@@ -518,6 +503,189 @@
   </article>
 
   
+  
+    <div class="page__related">
+      
+        <h4 class="page__related-title">You May Also Enjoy</h4>
+      
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta">
+      
+        <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated: <time datetime="2016-10-12T16:48:59-05:00">October 12, 2016</time>
+      
+      
+       - 
+       <i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+      
+      </p>
+    
+    <p class="archive__item-excerpt" itemprop="description">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use ...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part2-WMF5/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta">
+      
+        <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated: <time datetime="2016-09-01T16:48:59-05:00">September 01, 2016</time>
+      
+      
+       - 
+       <i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+      
+      </p>
+    
+    <p class="archive__item-excerpt" itemprop="description">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use ...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part1-Base-VHDX/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta">
+      
+        <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated: <time datetime="2016-09-01T16:48:59-05:00">September 01, 2016</time>
+      
+      
+       - 
+       <i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+      
+      </p>
+    
+    <p class="archive__item-excerpt" itemprop="description">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use ...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "http://localhost:4000/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/Blog-Refactoring/" rel="permalink">Re-factoring the Blog
+</a>
+      
+    </h2>
+    
+      <p class="page__meta">
+      
+        <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated: <time datetime="2016-09-01T00:00:00-05:00">September 01, 2016</time>
+      
+      
+       - 
+       <i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+      
+      </p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Sometimes rebooting fixes everything
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
   
 </div>
 

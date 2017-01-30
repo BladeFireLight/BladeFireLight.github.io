@@ -1,4 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-01-23T18:44:25-06:00</updated><id>http://localhost:4000//</id><title type="html">PowerShell Journey</title><subtitle>Randome musings of a IT Pro</subtitle><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><entry><title type="html">Windows Image Tools \| Creating an Updated Image Part 3</title><link href="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates/" rel="alternate" type="text/html" title="Windows Image Tools \| Creating an Updated Image Part 3" /><published>2016-10-12T16:48:59-05:00</published><updated>2016-10-12T16:48:59-05:00</updated><id>http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates</id><content type="html" xml:base="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates/">&lt;aside class=&quot;sidebar__right&quot;&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-01-30T11:52:11-06:00</updated><id>http://localhost:4000//</id><title type="html">PowerShell Journey</title><subtitle>Randome musings of a IT Pro</subtitle><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><entry><title type="html">Collecting CA Certificates for DSC Configuration</title><link href="http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration/" rel="alternate" type="text/html" title="Collecting CA Certificates for DSC Configuration" /><published>2017-01-27T00:00:00-06:00</published><updated>2017-01-27T00:00:00-06:00</updated><id>http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration</id><content type="html" xml:base="http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration/">&lt;h2 id=&quot;the-goal&quot;&gt;The Goal&lt;/h2&gt;
+
+&lt;p&gt;Microsoft PFE Ashely McGlone &lt;a href=&quot;https://blogs.msdn.microsoft.com/powershell/2015/10/01/powershell-dsc-faq-sorting-out-certificates/&quot;&gt;recommends&lt;/a&gt; that each node managed by DSC (Desired State Configuration) have unique certificate for protecting credentials.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/MofCredSecurity.png&quot; alt=&quot;Mof Credential Security Chart&quot; /&gt;&lt;/p&gt;
+
+&lt;p class=&quot;notice--info&quot;&gt;Starting in WMF 5.0 .MOF are &lt;a href=&quot;https://msdn.microsoft.com/en-us/powershell/wmf/5.0/dsc_encryptedmof&quot;&gt;encrypted at rest&lt;/a&gt; on the Node by . But that is not the case for the file on the pull server. So I’m going on the assumption that this is still a best practice.&lt;/p&gt;
+
+&lt;p&gt;The problem with that is getting the certificates either from the node or from a CA (Certificate Authority) to the DSC development workstation or CI/CD (Continuous Integration/Continuous Deployment) server. I’m going to cover one method.&lt;/p&gt;
+
+&lt;h2 id=&quot;pre-requisites&quot;&gt;Pre-requisites&lt;/h2&gt;
+
+&lt;p&gt;For this I’m going to be using &lt;a href=&quot;https://github.com/theJasonHelmick/PS-AutoLab-Env&quot;&gt;PowerShell Automated Lab Environment&lt;/a&gt; and it’s Configuration called “devops-powershell-fundamentals”&lt;/p&gt;
+
+&lt;p&gt;This will generate the following:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;DC1 - Domain Controller and Certificate Authority&lt;/li&gt;
+  &lt;li&gt;S1, S2 - Member servers&lt;/li&gt;
+  &lt;li&gt;N1 - Nano server (not used)&lt;/li&gt;
+  &lt;li&gt;Cli1 - Windows 10 workstation&lt;/li&gt;
+  &lt;li&gt;NAT virtual switch and static IP’s&lt;/li&gt;
+  &lt;li&gt;Certificate Template called “DSC Template”&lt;/li&gt;
+  &lt;li&gt;Auto-Enrollment GPO&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;demo&quot;&gt;Demo&lt;/h2&gt;
+
+&lt;p&gt;I’m going to start with the&lt;/p&gt;</content><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><category term="DSC" /><category term="PKI" /><summary type="html">Best practice is to use individual certificates for each Node for DSC. While you can use auto enrollment, getting the certificates to where the MOF are build can be a problem. This is one solution</summary></entry><entry><title type="html">Windows Image Tools \| Creating an Updated Image Part 3</title><link href="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates/" rel="alternate" type="text/html" title="Windows Image Tools \| Creating an Updated Image Part 3" /><published>2016-10-12T16:48:59-05:00</published><updated>2016-10-12T16:48:59-05:00</updated><id>http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates</id><content type="html" xml:base="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates/">&lt;aside class=&quot;sidebar__right&quot;&gt;
 &lt;nav class=&quot;toc&quot;&gt;
     &lt;header&gt;&lt;h4 class=&quot;nav__title&quot;&gt;&lt;i class=&quot;fa fa-file-text&quot;&gt;&lt;/i&gt; On This Page&lt;/h4&gt;&lt;/header&gt;
 &lt;ul class=&quot;toc__menu&quot; id=&quot;markdown-toc&quot;&gt;
@@ -1240,142 +1268,4 @@ VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Finished
 
 &lt;h2 id=&quot;onward&quot;&gt;Onward&lt;/h2&gt;
 
-&lt;p&gt;So equipped with these tools i’m now going to reword my auto patching and WIM creation script. and add that into the module.&lt;/p&gt;</content><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><category term="Rant" /><summary type="html">On This Page</summary></entry><entry><title type="html">Test-Lab \| Update-GitHub</title><link href="http://localhost:4000/test-lab-update-github/" rel="alternate" type="text/html" title="Test-Lab \| Update-GitHub" /><published>2015-05-06T00:00:00-05:00</published><updated>2015-05-06T00:00:00-05:00</updated><id>http://localhost:4000/test-lab-update-github</id><content type="html" xml:base="http://localhost:4000/test-lab-update-github/">&lt;aside class=&quot;sidebar__right&quot;&gt;
-&lt;nav class=&quot;toc&quot;&gt;
-    &lt;header&gt;&lt;h4 class=&quot;nav__title&quot;&gt;&lt;i class=&quot;fa fa-file-text&quot;&gt;&lt;/i&gt; On This Page&lt;/h4&gt;&lt;/header&gt;
-&lt;ul class=&quot;toc__menu&quot; id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#posts-in-this-series&quot; id=&quot;markdown-toc-posts-in-this-series&quot;&gt;Posts in This series&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-  &lt;/nav&gt;
-&lt;/aside&gt;
-
-&lt;h3 id=&quot;posts-in-this-series&quot;&gt;Posts in This series&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;/test-homelab-inputobject-the-plan/&quot;&gt;Test-HomeLab -InputObject “The Plan”&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;/Get-Posh-Git-Test-Lab/&quot;&gt;Get-Posh-Git | Test-Lab&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;/get-dscframework-test-lab/&quot;&gt;Get-DSCFramework | Test-Lab&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;/invoke-dscbuild-test-lab/&quot;&gt;Invoke-DscBuild | Test-Lab&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Test-Lab | Update-GitHub (This Post)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Last time we were able to get the sample DSC config to build. The problem is we had to modify the sample script and the instructions were not clear on the setup of the files.&lt;/p&gt;
-
-&lt;p&gt;So to day I plan to update the SampleBuild.ps1, SampleConfiguration.psm1 and readme.md with my changes and submit a pull request.&lt;/p&gt;
-
-&lt;p&gt;The first thing I’m going to modify is SampleConfiguration.psm1, now this file worked as is with the previous blog. but some of the things we did were to get arround an issue with this file.&lt;/p&gt;
-
-&lt;p&gt;The line i’m talking about is here&lt;/p&gt;
-
-&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Import-Module DscConfiguration -ErrorAction Stop
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;This imports a module that is already loaded by SampleBuild.ps1 but is also not in the path at this point of Invoke-DscBuild, unless the DscConfiguration module is added to a path in -ModulePath used by Invoke-DscBuild.  Now if your going to run import-module SampleConfiguration crate the ConfigurationData hash table your self and call SampleConfiguration then it makes sense to have that here. I don’t imagine anyone doing that but stranger things have happen, so I’m going to keep that line but wrap it in something to avoid the requirement of placing extra modules in DSC_Tools&lt;/p&gt;
-
-&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;-not &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Get-Module DscConfiguration&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
- Import-Module DscConfiguration -ErrorAction Stop
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;This checks to see if DscConfiguration is already loaded into memory and skips the import is it is.&lt;/p&gt;
-
-&lt;p&gt;Now I don’t need any modules in DSC_Tooling. Unless I have modules used by my scripts that I dont import prior to calling Invoke-DscBuild&lt;/p&gt;
-
-&lt;p&gt;Next up is SampleBuild.ps1, I dont have any changes to make from what I did last time. so i will add that to my git repo in just a bit.&lt;/p&gt;
-
-&lt;p&gt;Now Readme.md in the examples folder needs some serious work.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Example DSC Build
-------
-
-This folder contains some very basic examples of what a DSC configurationData folder structure, script, and call to Invoke-DscBuild might look like.  If you want to execute SampleBuild.ps1, there are a few dependencies you need to set up ahead of time:
-
-- You must install all of the DSC tooling modules (content of \Tools minus the example folder) from this repository into your PSModulePath (typically into C:\Program Files\WindowsPowerShell\Modules\)
-- You must also copy the Tooling\Examples\SampleConfiguration folder to the PSModulePath.
-- You must copy [Pester](https://github.com/pester/Pester) (version 3.0.0 or later) and [ProtectedData](https://github.com/dlwyatt/ProtectedData) (version 2.1 or later) into the PSModulePath.
-- You should create a DSC_Resources folder in the same directory as SampleBuild.ps1 and DSC_Configuration.  Copy the following modules into that DSC_Resources folder:
-  - [StackExchangeResources](https://github.com/PowerShellOrg/StackExchangeResources)
-  - [cWebAdministration](https://github.com/PowerShellOrg/cWebAdministration)
-  - [cSmbShare](https://github.com/PowerShellOrg/cSmbShare)
-
-Create a folder to place all the files into. i.e. c:\DSC, inside that folder create folders named BuildOutput, DSC_Configuration, DSC_Resorces, DSC_Script, DSC_Tooling.
-
-the folder structure should look like this
-C:\DSC                # copy SampleBuild.ps1 here
-+---BuldOutput        # Where the MOF files and ziped modules end up
-+---DSC_Configuration # Copy \Tooling\Examples\DSC_Configuration\*  here
-+---DSC_Resources     # copy StackExchangeResources, cSmbShare and cWebAdministration here
-+---DSC_Script        # copy \Tooling\Examples\SampleConfiguration here
-+---DSC_Tooling       # This is for any modules that may be used in a Configuration script, in the case of SampleConfiguration it would be empty.
-
-If you plan on modifying SampleConfiguration.psm1 inside of DSC_Script you will also want to add the content of DSC_Modules to C:\Program Files\WindowsPowerShell\Modules\ but that is not necessary if your just building configurations that are authored on another machine.
-
-Once these dependencies are set up, you can execute SampleBuild.ps1.  It will run tests against the 3 modules in your DSC_Resources folder, compile your configuration into MOF documents, produce zip files for the resource modules, generate checksums for everything and copy them into BuildOutput
-
-_Note:  The SampleBuild.ps1 file currently just dumps DSC_Tooling modules into the temporary folder, since I wasn't using that feature.  We'll build on these examples soon to show off some of the other functionality in the DscBuild and DscConfiguration modules, such as encrypting credentials in source control._
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;If you compare with my last post you will notice I removed the line about placing SampleConfguration into C:\Program Files\WindowsPowerShell\Modules. this path is no longer in the psmodulepath when inovke-DscBuild runs, as it used to be. This is due to needing to keep psmodulepath clean so that DSC_Resorces are accessible for configuration building but not necessarily needed.&lt;/p&gt;
-
-&lt;p&gt;I also added a section showing the required folder structure and what each folder is used for, along with what needs to be done if your going to author on the same machine you build on.&lt;/p&gt;
-
-&lt;p&gt;Now that that is done. I’m going to copy the files into C:\GitHub\PshOrgDSC\Tooling\Examples one at a time and add and commit changes.&lt;/p&gt;
-
-&lt;p&gt;copy SampleConfiguration.psm1 first. Notice the prompt change thanks to posh-git, (you will not see the color change)&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\GitHub\PshOrgDSC\Tooling\Examples\SampleConfiguration [development +0 ~1 -0]&amp;gt; git add *
-
-C:\GitHub\PshOrgDSC\Tooling\Examples\SampleConfiguration [development +0 ~1 -0]&amp;gt; git commit -m 'Fixed issue with loading scamplescript moduel not loading if module is already loaded but no longer in path'
-[development a5301a8] Fixed issue with loading scamplescript moduel not loading if module is already loaded but no longer in path
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-C:\GitHub\PshOrgDSC\Tooling\Examples\SampleConfiguration [development]&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;next up SampleBuild.ps1&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\GitHub\PshOrgDSC\Tooling\Examples [development +0 ~1 -0]&amp;gt; git add *
-
-C:\GitHub\PshOrgDSC\Tooling\Examples [development +0 ~1 -0]&amp;gt; git commit -m 'updated SampleBuild.ps1 to include missing value to invoke-DSCBuild. and added -verbose'
-[development 5c35462] updated SampleBuild.ps1 to include missing value to invoke-DSCBuild. and added -verbose
- 1 file changed, 4 insertions(+), 3 deletions(-)
-
-C:\GitHub\PshOrgDSC\Tooling\Examples [development]&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;last up readme.md&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\GitHub\PshOrgDSC\Tooling\Examples [development +0 ~1 -0]&amp;gt; git add *
-
-C:\GitHub\PshOrgDSC\Tooling\Examples [development +0 ~1 -0]&amp;gt; git commit -m 'updated \Tooling\Example\Readme.md to match the current state of development, and included section showing required folder structure'
-[development 3aa570d] updated \Tooling\Example\Readme.md to match the current state of development, and included section showing required folder structure
- 1 file changed, 14 insertions(+), 2 deletions(-)
-
-C:\GitHub\PshOrgDSC\Tooling\Examples [development]&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;finally I push the commits to my fork&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C:\GitHub\PshOrgDSC\Tooling\Examples [development]&amp;gt; git push
-git : To https://github.com/BladeFireLight/DSC.git
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Now I can subit a pull request.&lt;/p&gt;
-
-&lt;p&gt;I head over to github https://github.com/BladeFireLight/DSC/tree/development&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/compaireandpull.png&quot; alt=&quot;compaireandpull&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Clicking Compare and pull request gives me a diff of each file and it’s changes.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/images/exampleDiff.png&quot; alt=&quot;exampleDiff&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;It also tells me there are no issues merging my commits into the upstream Development branch.&lt;/p&gt;</content><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><category term="TestLab" /><summary type="html">On This Page</summary></entry></feed>
+&lt;p&gt;So equipped with these tools i’m now going to reword my auto patching and WIM creation script. and add that into the module.&lt;/p&gt;</content><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><category term="Rant" /><summary type="html">On This Page</summary></entry></feed>
