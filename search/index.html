@@ -13,7 +13,7 @@
 
 
 
-<title>DSC - PowerShell Journey</title>
+<title>Search Posts - PowerShell Journey</title>
 
 
 
@@ -25,20 +25,20 @@
 
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="PowerShell Journey">
-<meta property="og:title" content="DSC">
+<meta property="og:title" content="Search Posts">
 
 
-  <link rel="canonical" href="http://localhost:4000/tags/dsc/">
-  <meta property="og:url" content="http://localhost:4000/tags/dsc/">
+  <link rel="canonical" href="http://localhost:4000/search/">
+  <meta property="og:url" content="http://localhost:4000/search/">
 
 
 
 
 
   <meta name="twitter:site" content="@BladeFireLight">
-  <meta name="twitter:title" content="DSC">
+  <meta name="twitter:title" content="Search Posts">
   <meta name="twitter:description" content="Randome musings of a IT Pro">
-  <meta name="twitter:url" content="http://localhost:4000/tags/dsc/">
+  <meta name="twitter:url" content="http://localhost:4000/search/">
 
   
     <meta name="twitter:card" content="summary">
@@ -104,7 +104,7 @@
 <!-- end custom head snippets -->
   </head>
 
-  <body class="layout--archive-taxonomy">
+  <body class="layout--single">
 
     <!--[if lt IE 11]>
 <div class="notice__danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
@@ -146,49 +146,106 @@
   </div>
 </div>
 
-    <div id="main" role="main">
+    
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">Search Posts</li>
+      
+    
+  </ol>
+</nav>
   
 
-  <div class="archive">
-    <h1 class="page__title">DSC</h1>
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Search Posts">
     
-      
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration/" rel="permalink">Collecting CA Certificates for DSC Configuration
-</a>
-      
-    </h2>
     
-      <p class="page__meta">
+
+    <div class="page__inner-wrap">
       
-        <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated: <time datetime="2017-01-27T00:00:00-06:00">January 27, 2017</time>
+        <header>
+          <h1 class="page__title" itemprop="headline">Search Posts
+</h1>
+          
+        </header>
       
+
+      <section class="page__content" itemprop="text">
+        <header class="post-header">
+	<h1>Search: PowerShell Journey</h1>
+</header>
+
+<div id="search">
+	<form action="/search" method="get">
+		<input type="text" id="search-query" name="q" placeholder="Search" autocomplete="on">
+	</form>
+</div>
+
+<section id="search-results" style="display: none;">
+	<h1>Search Results</h1>
+	<div class="entries">
+	</div>
+</section>
+
+
+<script id="search-results-template" type="text/mustache">
+	{{#entries}}
+	<article>
+		<h3>
+			{{#date}}<small><time datetime="{{pubdate}}" pubdate>{{displaydate}}</time></small>{{/date}}
+			- <a href="{{url}}">{{title}}</a>
+		</h3>
+	</article>
+	{{/entries}}
+</script>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
       
-       - 
-       <i class="fa fa-clock-o" aria-hidden="true"></i> 
-
-
-
-
-  1 minute read
 
       
-      </p>
+    </div>
+
     
-    <p class="archive__item-excerpt" itemprop="description">Best practice is to use individual certificates for each Node for DSC. While you can use auto enrollment, getting the certificates to where the MOF are build...</p>
   </article>
+
+  
+  
 </div>
 
-    
-  </div>
-</div>
 
     <div class="page__footer">
       <footer>
@@ -223,6 +280,23 @@
 <script src="http://localhost:4000/assets/js/staticman.js" type="text/javascript" charset="utf-8"></script>
 
 <!-- If viewing the search page, include Lunr scripts -->
+
+	<!-- Search Results by jekyll-lunr-js-search -->
+	<script src="http://localhost:4000/assets/js/lunr/lunr.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://localhost:4000/assets/js/lunr/mustache.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://localhost:4000/assets/js/lunr/date.format.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://localhost:4000/assets/js/lunr/URI.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://localhost:4000/assets/js/lunr/jquery.lunr.search.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	  $(function() {
+	  $('#search-query').lunrSearch({
+	    indexUrl: '/assets/js/lunr/index.json',     // URL of the `index.json` index data for your site
+	    results:  '#search-results',                // jQuery selector for the search results container
+	    entries:  '.entries',                       // jQuery selector for the element to contain the results list, must be a child of the results element above.
+	    template: '#search-results-template'        // jQuery selector for the Mustache.js template
+	  });
+	  });
+	</script>
 
 
 

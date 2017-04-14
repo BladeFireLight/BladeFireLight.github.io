@@ -112,8 +112,9 @@
   <body class="layout--single">
 
     <!--[if lt IE 11]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<div class="notice__danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
+
     <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
@@ -523,18 +524,26 @@ git : To https://github.com/BladeFireLight/DSC.git
       <div class="page__comments">
   
   
+
     <section id="static-comments">
       
-        <!-- Start static comments -->
-        <div class="js-comments">
-          
-        </div>
-        <!-- End static comments -->
+      
+
+
+        
+
+
 
         <!-- Start new comment form -->
-        <h4 class="page__comments-title">Leave a Comment</h4>
+        <div id="respond">
+        <h2 class="page__comments-title">
+          Leave a Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://localhost:4000/test-lab-update-github/#respond" style="display:none;">Cancel reply</a></small>
+        </h2>
+
         <p class="small">Your email address will not be published. Required fields are marked <span class="required">*</span></p>
-        <form id="new_comment" class="page__comments-form js-form form" method="post" action="https://api.staticman.net/v1/entry/BladeFireLight/BladeFireLight.github.io/master">
+
+        <form id="new_comment" class="page__comments-form js-form form" method="post" action="https://api.staticman.net/v2/entry/BladeFireLight/blog_source/master/comments">
+
           <div class="form__spinner">
             <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
             <span class="sr-only">Loading...</span>
@@ -553,12 +562,14 @@ git : To https://github.com/BladeFireLight/DSC.git
             <label for="comment-form-email">Email address <small class="required">*</small></label>
             <input type="email" id="comment-form-email" name="fields[email]" tabindex="3" />
           </fieldset>
-          <fieldset>
+<!--          <fieldset>
             <label for="comment-form-url">Website (optional)</label>
             <input type="url" id="comment-form-url" name="fields[url]" tabindex="4"/>
-          </fieldset>
+          </fieldset> -->
           <fieldset class="hidden" style="display: none;">
-            <input type="hidden" name="options[slug]" value="test-lab-update-github">
+            <input type="hidden" name="options[origin]" value="http://localhost:4000/test-lab-update-github/">
+            <input type="hidden" id="comment-parent" name="options[parent]" value="">
+            <input type="hidden" id="comment-post-id" name="options[slug]" value="test-lab-update-github">
             <label for="comment-form-location">Not used. Leave blank if you are a human.</label>
             <input type="text" id="comment-form-location" name="fields[hidden]" autocomplete="off"/>
           </fieldset>
@@ -568,14 +579,19 @@ git : To https://github.com/BladeFireLight/DSC.git
           </p>
           <!-- End comment form alert messaging -->
           <fieldset>
+            <label for="comment-form-reply"><input type="checkbox" id="comment-form-reply" name="options[subscribe]" value="email">&nbsp;Notify me of new comments by email.</label>
             <button type="submit" id="comment-form-submit" tabindex="5" class="btn btn--large">Submit Comment</button>
           </fieldset>
+
         </form>
-        <!-- End new comment form -->
+      </div>
+      <!-- End new comment form -->
       
-    </section>
+    
+  </section>
   
 </div>
+
     
   </article>
 
@@ -599,7 +615,10 @@ git : To https://github.com/BladeFireLight/DSC.git
     
     
     
-      <li><a href="http://github.com/BladeFireLight"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+      <li><a href="https://github.com/BladeFireLight"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
     
     
     <li><a href="http://localhost:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
@@ -610,7 +629,12 @@ git : To https://github.com/BladeFireLight/DSC.git
       </footer>
     </div>
 
-    <script src="http://localhost:4000/assets/js/main.min.js"></script>
+    <script src="http://localhost:4000/assets/js/main.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://localhost:4000/assets/js/staticman.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- If viewing the search page, include Lunr scripts -->
+
+
 
 
 
@@ -656,7 +680,106 @@ git : To https://github.com/BladeFireLight/DSC.git
       $('.page__comments-form .js-notice-text').html(message);
     }
   })(jQuery);
-  </script>
+
+  var addComment = {
+  moveForm: function( commId, parentId, respondId, postId ) {
+    var div, element, style, cssHidden,
+      t           = this,
+      comm        = t.I( commId ),
+      respond     = t.I( respondId ),
+      cancel      = t.I( 'cancel-comment-reply-link' ),
+      parent      = t.I( 'comment-parent' ),
+      post        = t.I( 'comment-post-slug' ),
+      commentForm = respond.getElementsByTagName( 'form' )[0];
+
+    if ( ! comm || ! respond || ! cancel || ! parent || ! commentForm ) {
+      return;
+    }
+
+    t.respondId = respondId;
+    postId = postId || false;
+
+    if ( ! t.I( 'sm-temp-form-div' ) ) {
+      div = document.createElement( 'div' );
+      div.id = 'sm-temp-form-div';
+      div.style.display = 'none';
+      respond.parentNode.insertBefore( div, respond );
+    }
+
+    comm.parentNode.insertBefore( respond, comm.nextSibling );
+    if ( post && postId ) {
+      post.value = postId;
+    }
+    parent.value = parentId;
+    cancel.style.display = '';
+
+    cancel.onclick = function() {
+      var t       = addComment,
+        temp    = t.I( 'sm-temp-form-div' ),
+        respond = t.I( t.respondId );
+
+      if ( ! temp || ! respond ) {
+        return;
+      }
+
+      t.I( 'comment-parent' ).value = '0';
+      temp.parentNode.insertBefore( respond, temp );
+      temp.parentNode.removeChild( temp );
+      this.style.display = 'none';
+      this.onclick = null;
+      return false;
+    };
+
+    /*
+     * Set initial focus to the first form focusable element.
+     * Try/catch used just to avoid errors in IE 7- which return visibility
+     * 'inherit' when the visibility value is inherited from an ancestor.
+     */
+    try {
+      for ( var i = 0; i < commentForm.elements.length; i++ ) {
+        element = commentForm.elements[i];
+        cssHidden = false;
+
+        // Modern browsers.
+        if ( 'getComputedStyle' in window ) {
+          style = window.getComputedStyle( element );
+        // IE 8.
+        } else if ( document.documentElement.currentStyle ) {
+          style = element.currentStyle;
+        }
+
+        /*
+         * For display none, do the same thing jQuery does. For visibility,
+         * check the element computed style since browsers are already doing
+         * the job for us. In fact, the visibility computed style is the actual
+         * computed value and already takes into account the element ancestors.
+         */
+        if ( ( element.offsetWidth <= 0 && element.offsetHeight <= 0 ) || style.visibility === 'hidden' ) {
+          cssHidden = true;
+        }
+
+        // Skip form elements that are hidden or disabled.
+        if ( 'hidden' === element.type || element.disabled || cssHidden ) {
+          continue;
+        }
+
+        element.focus();
+        // Stop after the first focusable element.
+        break;
+      }
+
+    } catch( er ) {}
+
+    return false;
+  },
+
+  I: function( id ) {
+    return document.getElementById( id );
+  }
+};
+</script>
+
+
 
 
 
