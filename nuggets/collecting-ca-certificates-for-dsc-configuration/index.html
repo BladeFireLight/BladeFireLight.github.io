@@ -28,8 +28,8 @@
 <meta property="og:title" content="Collecting CA Certificates for DSC Configuration">
 
 
-  <link rel="canonical" href="https://blog.bladefirelight.com/nuggets/collecting-ca-certificates-for-dsc-configuration/">
-  <meta property="og:url" content="https://blog.bladefirelight.com/nuggets/collecting-ca-certificates-for-dsc-configuration/">
+  <link rel="canonical" href="http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration/">
+  <meta property="og:url" content="http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration/">
 
 
 
@@ -40,7 +40,7 @@
   <meta name="twitter:site" content="@BladeFireLight">
   <meta name="twitter:title" content="Collecting CA Certificates for DSC Configuration">
   <meta name="twitter:description" content="Best practice is to use individual certificates for each Node for DSC. While you can use auto enrollment, getting the certificates to where the MOF are build can be a problem. This is one solution">
-  <meta name="twitter:url" content="https://blog.bladefirelight.com/nuggets/collecting-ca-certificates-for-dsc-configuration/">
+  <meta name="twitter:url" content="http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration/">
 
   
     <meta name="twitter:card" content="summary">
@@ -74,7 +74,7 @@
       "@context" : "http://schema.org",
       "@type" : "Person",
       "name" : "David Jones",
-      "url" : "https://blog.bladefirelight.com",
+      "url" : "http://localhost:4000",
       "sameAs" : null
     }
   </script>
@@ -87,7 +87,7 @@
 <!-- end SEO -->
 
 
-<link href="https://blog.bladefirelight.com/feed.xml" type="application/atom+xml" rel="alternate" title="PowerShell Journey Feed">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="PowerShell Journey Feed">
 
 <!-- http://t.co/dKP3o1e -->
 <meta name="HandheldFriendly" content="True">
@@ -99,7 +99,7 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="https://blog.bladefirelight.com/assets/css/main.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
 
 <meta http-equiv="cleartype" content="on">
     <!-- start custom head snippets -->
@@ -121,28 +121,28 @@
       <nav id="site-nav" class="greedy-nav">
         <button><div class="navicon"></div></button>
         <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg"><a href="https://blog.bladefirelight.com/">PowerShell Journey</a></li>
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="http://localhost:4000/">PowerShell Journey</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/about/">About</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/about/">About</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/nuggets/">Nuggets</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/nuggets/">Nuggets</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/windowsimagetools/">Windows Image Tools</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/windowsimagetools/">Windows Image Tools</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/windowsimagetools/">PKI Tools</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/windowsimagetools/">PKI Tools</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/year-archive/">Archive by Date</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/year-archive/">Archive by Date</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/categories/">By Category</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/categories/">By Category</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/tags/">By Tag</a></li>
+            <li class="masthead__menu-item"><a href="http://localhost:4000/tags/">By Tag</a></li>
           
         </ul>
         <ul class="hidden-links hidden"></ul>
@@ -166,7 +166,7 @@
     
       
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-          <a href="https://blog.bladefirelight.com/" itemprop="item"><span itemprop="name">Home</span></a>
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
           <meta itemprop="position" content="1" />
         </li>
         <span class="sep">/</span>
@@ -174,7 +174,7 @@
       
         
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-          <a href="https://blog.bladefirelight.com/nuggets" itemprop="item"><span itemprop="name">Nuggets</span></a>
+          <a href="http://localhost:4000/nuggets" itemprop="item"><span itemprop="name">Nuggets</span></a>
           <meta itemprop="position" content="2" />
         </li>
         <span class="sep">/</span>
@@ -200,7 +200,7 @@
   
     <div class="author__avatar">
       
-        <img src="https://blog.bladefirelight.com/assets/images/avatar1.jpg" class="author__avatar" alt="David Jones" itemprop="image">
+        <img src="http://localhost:4000/assets/images/avatar1.jpg" class="author__avatar" alt="David Jones" itemprop="image">
       
     </div>
   
@@ -322,7 +322,7 @@
 
 
 
-  1 minute read
+  4 minute read
 </p>
           
         </header>
@@ -333,7 +333,7 @@
 
 <p>Microsoft PFE Ashely McGlone <a href="https://blogs.msdn.microsoft.com/powershell/2015/10/01/powershell-dsc-faq-sorting-out-certificates/">recommends</a> that each node managed by DSC (Desired State Configuration) have unique certificate for protecting credentials.</p>
 
-<p><img src="https://blog.bladefirelight.com/assets/images/MofCredSecurity.png" alt="Mof Credential Security Chart" /></p>
+<p><img src="http://localhost:4000/assets/images/MofCredSecurity.png" alt="Mof Credential Security Chart" /></p>
 
 <p class="notice--info">Starting in WMF 5.0 .MOF are <a href="https://msdn.microsoft.com/en-us/powershell/wmf/5.0/dsc_encryptedmof">encrypted at rest</a> on the Node by . But that is not the case for the file on the pull server. So I’m going on the assumption that this is still a best practice.</p>
 
@@ -359,7 +359,7 @@
 
 <h2 id="demo">Demo</h2>
 
-<p>I’m going to start with installing PKITools from the Powershell Gallery  (and selecting Yes to install NuGet and allow use of untrusted rpo, this is new lab afterall)</p>
+<p>I’m going to start with installing PKITools from the PowerShell Gallery  (and selecting Yes to install NuGet and allow use of untrusted rpo, this is new lab after all)</p>
 
 <figure class="highlight"><pre><code class="language-powershell" data-lang="powershell">Install-Module PKITools
 <span class="nb">Get-Command</span> -Module PkiTools
@@ -372,6 +372,184 @@ CommandType     Name                                               Version    So
 <span class="k">Function        </span>Get-CertificateTemplateOID                         1.6        PkiTools
 <span class="k">Function        </span>Get-IssuedCertificate                              1.6        PkiTools</code></pre></figure>
 
+<p>The one I want to focus on is Get-IssuedCertificate. As part of a DSC build process I want to collect the public certificates for each node. Pulling the certificate from each node is one option, but not practical in large network, and may not even be be possible due to lack of connectivity. Thankfully all the public certificates also reside on the Certificate Authority that issues them.</p>
+
+<p>In our lab there is only one domain and one CA (also the DC. no not do that in production) So the code will be simple.</p>
+
+<p>First lets look at the parameters.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell">SYNTAX
+    Get-IssuedCertificate <span class="o">[[</span>-ExpireInDays] &lt;Int32&gt;] <span class="o">[[</span>-CAlocation] &lt;<span class="kt">String</span><span class="o">[]</span>&gt;] <span class="o">[[</span>-Properties] &lt;<span class="kt">String</span><span class="o">[]</span>&gt;]
+    <span class="o">[[</span>-CertificateTemplateOid] &lt;<span class="kt">String</span>&gt;] <span class="o">[[</span>-CommonName] &lt;<span class="kt">String</span>&gt;] <span class="o">[[</span>-Credential] &lt;PSCredential&gt;] <span class="o">[</span>&lt;CommonParameters&gt;]</code></pre></figure>
+
+<p>No parameters are required. lets see what it does</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="o">[</span>hv01]: <span class="o">[</span>Cli1]: <span class="nb">PS </span>C:<span class="se">\&gt;</span> Get-IssuedCertificate
+
+
+Issued Common Name          :
+Certificate Expiration Date : 4/18/2018 3:40:05 AM
+Certificate Effective Date  : 4/18/2017 3:40:05 AM
+Certificate Template        : 1.3.6.1.4.1.311.21.8.8376484.9891361.12404633.14452813.1016466.111.1.29
+Issued Request ID           : 2
+Certificate Hash            : f2 4e db 00 12 19 68 79 98 0b 6a 95 47 6d 7a c6 a7 40 e7 63
+Request Disposition Message : Issued
+Requester Name              : COMPANY<span class="se">\D</span>C1<span class="err">$</span>
+Binary Certificate          : -----BEGIN CERTIFICATE-----
+                              MIIF6jCCBNKgAwIBAgITUQAAAAL5xXyLo72OVAAAAAAAAjANBgkqhkiG9w0BAQsF
+                              ADBZMRAwDgYDVQQKEwdDb21wYW55MRAwDgYDVQQIEwdBcml6b25hMRAwDgYDVQQH
+                              EwdQaG9lbml4MQswCQYDVQQGEwJVUzEUMBIGA1UEAxMLQ29tcGFueS5QcmkwHhcN
+                              MTcwNDE4MDM0MDA1WhcNMTgwNDE4MDM0MDA1WjAAMIIBIjANBgkqhkiG9w0BAQEF
+                              AAOCAQ8AMIIBCgKCAQEAxjtOVDCixBoUEOWG1WKwPqw0DY77upmE0E4Bfc6CV94g
+                              X5ewYtagk7f8KvfigDaoq20qCNzFfaBprseL/0JoKPBY05Ws9O98pfAP639MGP6U
+                              MCbgXZ8ILhtoWZCqHi+S8UVyu7D2meyyl54IgeoVcb0MBISWoGyyJ5tzAWYX1XQL
+                              /0tnQ4YoWRcJulW7Qvn0kUhk6ooe9Mot4gCD0jPE/QjJ/loJDHO+aCRxsMwEil87
+                              KqGKfEcS54dV+g6wRhgxlrfi8b1NDwhKcpgglSzhtmBEUY72m1S5AxuL7V90ZxNU
+                              NQ/CBboy98NKri8RbmyvypAQ47MMyadVVmPLsAgGJwIDAQABo4IDAjCCAv4wNgYJ
+                              KwYBBAGCNxUHBCkwJwYfKwYBBAGCNxUIg/+hJITb3CGF9Y8ZhvKQTb6FEm8BHQIB
+                              cwIBADAUBgNVHSUEDTALBgkrBgEEAYI3FRMwDgYDVR0PAQH/BAQDAgWgMBwGCSsG
+                              AQQBgjcVCgQPMA0wCwYJKwYBBAGCNxUTMHgGCSqGSIb3DQEJDwRrMGkwDgYIKoZI
+                              hvcNAwICAgCAMA4GCCqGSIb3DQMEAgIAgDALBglghkgBZQMEASowCwYJYIZIAWUD
+                              BAEtMAsGCWCGSAFlAwQBAjALBglghkgBZQMEAQUwBwYFKw4DAgcwCgYIKoZIhvcN
+                              AwcwHQYDVR0OBBYEFOB1zbkBT8m9NW7DRh7xW13OjSmLMB8GA1UdIwQYMBaAFA+9
+                              p4ww6yyPs/vD4ugUNRM24pWIMIHFBgNVHR8Egb0wgbowgbeggbSggbGGga5sZGFw
+                              Oi8vL0NOPUNvbXBhbnkuUHJpLENOPURDMSxDTj1DRFAsQ049UHVibGljJTIwS2V5
+                              JTIwU2VydmljZXMsQ049U2VydmljZXMsQ049Q29uZmlndXJhdGlvbixEQz1Db21w
+                              YW55LERDPVByaT9jZXJ0aWZpY2F0ZVJldm9jYXRpb25MaXN0P2Jhc2U/b2JqZWN0
+                              Q2xhc3M9Y1JMRGlzdHJpYnV0aW9uUG9pbnQwgb0GCCsGAQUFBwEBBIGwMIGtMIGq
+                              BggrBgEFBQcwAoaBnWxkYXA6Ly8vQ049Q29tcGFueS5QcmksQ049QUlBLENOPVB1
+                              YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNlcnZpY2VzLENOPUNvbmZpZ3VyYXRp
+                              b24sREM9Q29tcGFueSxEQz1Qcmk/Y0FDZXJ0aWZpY2F0ZT9iYXNlP29iamVjdENs
+                              YXNzPWNlcnRpZmljYXRpb25BdXRob3JpdHkwPgYDVR0RAQH/BDQwMqAfBgkrBgEE
+                              AYI3GQGgEgQQezARELeYdUOiN2P2QTxNl4IPREMxLkNvbXBhbnkuUHJpMA0GCSqG
+                              SIb3DQEBCwUAA4IBAQBCV12I9eIaFLRFsgzbhMizfufvtCOI/EKAOsEYCxI9HFKJ
+                              H2HfC0lh7eEZABFQKPNx8XgCHCm5skzdR5oHLbtTwrnky2YJkFnuNOgTF/tuunoU
+                              p3+X0Kk3YH88wrv+YPE37PtqF/fJnZvEUzPfxRiaiOFaTisEIXfAxTvVYVBSwK9H
+                              oSgH5GTEblvlmiw6LD7JZYqrmYFCPQdB/mj+aOPjyeFClneGH2u8sxKCZHiJ/RWX
+                              wQJn8DO5ACctnLC8mH70HR5vVRJ0yFX6vrpnRyJEBSpawAYFK1vPf7Wks+gLSw4q
+                              g7ASEJG/MJK0oJpBosOKKGr+jMnEx6BTs1NJ3d0l
+                              -----END CERTIFICATE-----
+
+PSComputerName              : DC1.Company.Pri
+RunspaceId                  : 146e5d7a-b85a-4540-9360-fea7413a9978
+
+Issued Common Name          :
+Certificate Expiration Date : 4/18/2018 3:40:07 AM
+Certificate Effective Date  : 4/18/2017 3:40:07 AM
+Certificate Template        : 1.3.6.1.4.1.311.21.8.8376484.9891361.12404633.14452813.1016466.111.1.28
+
+~~~~~~~~SNIP~~~~~~~~~~~~~
+
+                              BgkrBgEEAYI3UAEwHQYDVR0OBBYEFKYaQhzh28O8Sy4jBG5/63E59OzBMB8GA1Ud
+                              IwQYMBaAFA+9p4ww6yyPs/vD4ugUNRM24pWIMIHFBgNVHR8Egb0wgbowgbeggbSg
+                              gbGGga5sZGFwOi8vL0NOPUNvbXBhbnkuUHJpLENOPURDMSxDTj1DRFAsQ049UHVi
+                              bGljJTIwS2V5JTIwU2VydmljZXMsQ049U2VydmljZXMsQ049Q29uZmlndXJhdGlv
+                              bixEQz1Db21wYW55LERDPVByaT9jZXJ0aWZpY2F0ZVJldm9jYXRpb25MaXN0P2Jh
+                              c2U/b2JqZWN0Q2xhc3M9Y1JMRGlzdHJpYnV0aW9uUG9pbnQwgb0GCCsGAQUFBwEB
+                              BIGwMIGtMIGqBggrBgEFBQcwAoaBnWxkYXA6Ly8vQ049Q29tcGFueS5QcmksQ049
+                              QUlBLENOPVB1YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNlcnZpY2VzLENOPUNv
+                              bmZpZ3VyYXRpb24sREM9Q29tcGFueSxEQz1Qcmk/Y0FDZXJ0aWZpY2F0ZT9iYXNl
+                              P29iamVjdENsYXNzPWNlcnRpZmljYXRpb25BdXRob3JpdHkwGwYDVR0RBBQwEoIQ
+                              Q2xpMS5Db21wYW55LlByaTANBgkqhkiG9w0BAQsFAAOCAQEAFt8fD8dq7WdYxldl
+                              648SS8KkqEeqUv4cBXt5/GBLBO/Cr7JB1m5K8U3VrjzwMgyU4n01h0xeJxYeHIvA
+                              WZ1Fy8BXSzurH3MOcbC0jKuqezzXAJIpVAfkHB0UBKx+OnZes21aGXjb0ZHTv+lv
+                              3lx6Wrc051RD+eDDLz0/+kLU6MRgJHTO8qlgRDRjRSqU7dcU1TKFmpij1IzWjvJb
+                              GU2qHCfAnhWr8b+lMjvRMXkBxQjRF9kmMdhQxhR+nWN0/056wpr7/bukwGzPBKAU
+                              HfFNFXqNT8nc79rB7IW4T6xZteEm0zG/TTNpIjL74/MGDBzFG3MTDE3i6ks9DoF/
+                              <span class="nv">9XDyDg</span><span class="o">==</span>
+                              -----END CERTIFICATE-----
+
+PSComputerName              : DC1.Company.Pri
+RunspaceId                  : 146e5d7a-b85a-4540-9360-fea7413a9978</code></pre></figure>
+
+<p>That got every issued certificate for every CA on the current domain. More then I need. Obviously we need to trim that down to just the DSC certificates. for that we will need to specify -CertificateTemplateOID. Lets look at the help for that parameter.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="o">[</span>hv01]: <span class="o">[</span>Cli1]: <span class="nb">PS </span>C:<span class="se">\&gt;</span> <span class="nb">help </span>Get-IssuedCertificate -Parameter CertificateTemplateOid
+
+-CertificateTemplateOid &lt;<span class="kt">String</span>&gt;
+    <span class="k">Filter </span>on Certificate Template OID <span class="o">(</span>use Get-CertificateTemplateOID<span class="o">)</span>
+
+    Required?                    <span class="nb">false
+    </span>Position?                    4
+    Default value
+    Accept pipeline input?       <span class="nb">false
+    </span>Accept wildcard characters?  <span class="nb">false</span></code></pre></figure>
+
+<p>Good it has a function to get the OID lets look at that.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell">SYNTAX
+    Get-CertificateTemplateOID <span class="o">[</span>-Name] &lt;<span class="kt">String</span>&gt; <span class="o">[[</span>-Domain] &lt;<span class="kt">String</span>&gt;] <span class="o">[</span>-WhatIf] <span class="o">[</span>-Confirm] <span class="o">[</span>&lt;CommonParameters&gt;]</code></pre></figure>
+
+<p>Only the -Name is required. That I know.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="o">[</span>hv01]: <span class="o">[</span>Cli1]: <span class="nb">PS </span>C:<span class="se">\&gt;</span> Get-CertificateTemplateOID DSCTemplate
+1.3.6.1.4.1.311.21.8.16187918.14945684.15749023.11519519.4925321.197.13392998.8282280</code></pre></figure>
+
+<p>And I though GUIDS were an eye full.</p>
+
+<p>Get-IssuedCertificate also has a -Propterties paramaters lets look at that.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="o">[</span>hv01]: <span class="o">[</span>Cli1]: <span class="nb">PS </span>C:<span class="se">\&gt;</span> <span class="nb">help </span>Get-IssuedCertificate -Parameter Properties
+
+-Properties &lt;<span class="kt">String</span><span class="o">[]</span>&gt;
+    Fields <span class="k">in </span>the Certificate Authority Database to Export
+
+    Required?                    <span class="nb">false
+    </span>Position?                    3
+    Default value                <span class="o">(</span>
+                <span class="s1">'Issued Common Name'</span>,
+                <span class="s1">'Certificate Expiration Date'</span>,
+                <span class="s1">'Certificate Effective Date'</span>,
+                <span class="s1">'Certificate Template'</span>,
+                <span class="c1">#'Issued Email Address',</span>
+                <span class="s1">'Issued Request ID'</span>,
+                <span class="s1">'Certificate Hash'</span>,
+                <span class="c1">#'Request Disposition',</span>
+                <span class="s1">'Request Disposition Message'</span>,
+                <span class="s1">'Requester Name'</span>,
+            <span class="s1">'Binary Certificate'</span> <span class="o">)</span>
+    Accept pipeline input?       <span class="nb">false
+    </span>Accept wildcard characters?  <span class="nb">false</span></code></pre></figure>
+
+<p>For collecting the Certificates I only need the ‘Issued Common Name’ and ‘Binary Certificate’</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="o">[</span>hv01]: <span class="o">[</span>Cli1]: <span class="nb">PS </span>C:<span class="se">\&gt;</span> <span class="nv">$DSCCerts</span> <span class="o">=</span> Get-IssuedCertificate -CertificateTemplateOid <span class="o">(</span>Get-CertificateTemplateOID -Name <span class="s1">'DSC
+Template'</span><span class="o">)</span> -Properties <span class="s1">'Issued Common Name'</span>, <span class="s1">'Binary Certificate'</span>
+<span class="o">[</span>hv01]: <span class="o">[</span>Cli1]: <span class="nb">PS </span>C:<span class="se">\&gt;</span>
+<span class="o">[</span>hv01]: <span class="o">[</span>Cli1]: <span class="nb">PS </span>C:<span class="se">\&gt;</span> <span class="nv">$DSCCerts</span>.Count
+4</code></pre></figure>
+
+<p>So that got me 4 certs. Now I can step through each one and save them.</p>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="o">[</span>hv01]: <span class="o">[</span>Cli1]: <span class="nb">PS </span>C:<span class="se">\&gt;</span> mkdir c:<span class="se">\c</span>erts
+
+
+    Directory: C:<span class="se">\</span>
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----        4/21/2017   7:12 AM                certs
+
+
+<span class="o">[</span>hv01]: <span class="o">[</span>Cli1]: <span class="nb">PS </span>C:<span class="se">\&gt;</span> <span class="k">foreach</span> <span class="o">(</span><span class="nv">$cert</span> <span class="k">in</span> <span class="nv">$DSCCerts</span><span class="o">)</span>
+<span class="gp">&gt;&gt; </span><span class="o">{</span>
+<span class="gp">&gt;&gt;     </span><span class="nb">set-content</span> -path <span class="s2">"c:</span><span class="se">\c</span><span class="s2">erts</span><span class="se">\$</span><span class="s2">(</span><span class="nv">$cert</span><span class="s2">.'Issued Common Name').cer"</span> -Value <span class="nv">$cert</span>.<span class="s1">'Binary Certificate'</span> -Encoding Ascii
+<span class="gp">&gt;&gt; </span><span class="o">}</span>
+<span class="o">[</span>hv01]: <span class="o">[</span>Cli1]: <span class="nb">PS </span>C:<span class="se">\&gt;</span> <span class="nb">dir </span>c:<span class="se">\c</span>erts
+
+
+    Directory: C:<span class="se">\c</span>erts
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----        4/21/2017   7:12 AM           1982 Cli1.Company.Pri.cer
+-a----        4/21/2017   7:12 AM           1978 DC1.Company.Pri.cer
+-a----        4/21/2017   7:12 AM           1972 S1.Company.Pri.cer
+-a----        4/21/2017   7:12 AM           1972 S2.Company.Pri.cer</code></pre></figure>
+
+<p>Now I have the certificate files for each node I can use for DSC.</p>
 
         
       </section>
@@ -392,11 +570,11 @@ CommandType     Name                                               Version    So
     
       
       
-      <a href="https://blog.bladefirelight.com/tags/dsc" class="page__taxonomy-item" rel="tag">DSC</a><span class="sep">, </span>
+      <a href="http://localhost:4000/tags/dsc" class="page__taxonomy-item" rel="tag">DSC</a><span class="sep">, </span>
     
       
       
-      <a href="https://blog.bladefirelight.com/tags/pki" class="page__taxonomy-item" rel="tag">PKI</a>
+      <a href="http://localhost:4000/tags/pki" class="page__taxonomy-item" rel="tag">PKI</a>
     
     </span>
   </p>
@@ -417,7 +595,7 @@ CommandType     Name                                               Version    So
     
       
       
-      <a href="https://blog.bladefirelight.com/nuggets" class="page__taxonomy-item" rel="tag">Nuggets</a>
+      <a href="http://localhost:4000/nuggets" class="page__taxonomy-item" rel="tag">Nuggets</a>
     
     </span>
   </p>
@@ -433,20 +611,20 @@ CommandType     Name                                               Version    So
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=BladeFireLight&text=Collecting CA Certificates for DSC Configuration https://blog.bladefirelight.com/nuggets/collecting-ca-certificates-for-dsc-configuration/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=BladeFireLight&text=Collecting CA Certificates for DSC Configuration http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https://blog.bladefirelight.com/nuggets/collecting-ca-certificates-for-dsc-configuration/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=https://blog.bladefirelight.com/nuggets/collecting-ca-certificates-for-dsc-configuration/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://blog.bladefirelight.com/nuggets/collecting-ca-certificates-for-dsc-configuration/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="https://blog.bladefirelight.com/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates/" class="pagination--pager" title="Windows Image Tools | Creating an Updated Image Part 3
+      <a href="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates/" class="pagination--pager" title="Windows Image Tools | Creating an Updated Image Part 3
 ">Previous</a>
     
     
@@ -904,7 +1082,7 @@ CommandType     Name                                               Version    So
         <!-- Start new comment form -->
         <div id="respond">
         <h2 class="page__comments-title">
-          Leave a Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://blog.bladefirelight.com/nuggets/collecting-ca-certificates-for-dsc-configuration/#respond" style="display:none;">Cancel reply</a></small>
+          Leave a Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration/#respond" style="display:none;">Cancel reply</a></small>
         </h2>
 
         <p class="small">Your email address will not be published. Required fields are marked <span class="required">*</span></p>
@@ -934,7 +1112,7 @@ CommandType     Name                                               Version    So
             <input type="url" id="comment-form-url" name="fields[url]" tabindex="4"/>
           </fieldset> -->
           <fieldset class="hidden" style="display: none;">
-            <input type="hidden" name="options[origin]" value="https://blog.bladefirelight.com/nuggets/collecting-ca-certificates-for-dsc-configuration/">
+            <input type="hidden" name="options[origin]" value="http://localhost:4000/nuggets/collecting-ca-certificates-for-dsc-configuration/">
             <input type="hidden" id="comment-parent" name="options[parent]" value="">
             <input type="hidden" id="comment-post-id" name="options[slug]" value="collecting-ca-certificates-for-dsc-configuration">
             <label for="comment-form-location">Not used. Leave blank if you are a human.</label>
@@ -980,14 +1158,14 @@ CommandType     Name                                               Version    So
       <div class="archive__item-teaser">
         <img src=
           
-            "https://blog.bladefirelight.com/assets/images/default-teaser.png"
+            "http://localhost:4000/assets/images/default-teaser.png"
           
           alt="">
       </div>
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 3
+        <a href="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 3
 </a>
       
     </h2>
@@ -1023,14 +1201,14 @@ CommandType     Name                                               Version    So
       <div class="archive__item-teaser">
         <img src=
           
-            "https://blog.bladefirelight.com/assets/images/default-teaser.png"
+            "http://localhost:4000/assets/images/default-teaser.png"
           
           alt="">
       </div>
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/windowsimagetools/Creating-an-Updateed-Image-Part2-WMF5/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 2
+        <a href="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part2-WMF5/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 2
 </a>
       
     </h2>
@@ -1066,14 +1244,14 @@ CommandType     Name                                               Version    So
       <div class="archive__item-teaser">
         <img src=
           
-            "https://blog.bladefirelight.com/assets/images/default-teaser.png"
+            "http://localhost:4000/assets/images/default-teaser.png"
           
           alt="">
       </div>
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/windowsimagetools/Creating-an-Updateed-Image-Part1-Base-VHDX/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 1
+        <a href="http://localhost:4000/windowsimagetools/Creating-an-Updateed-Image-Part1-Base-VHDX/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 1
 </a>
       
     </h2>
@@ -1109,14 +1287,14 @@ CommandType     Name                                               Version    So
       <div class="archive__item-teaser">
         <img src=
           
-            "https://blog.bladefirelight.com/assets/images/default-teaser.png"
+            "http://localhost:4000/assets/images/default-teaser.png"
           
           alt="">
       </div>
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/Blog-Refactoring/" rel="permalink">Re-factoring the Blog
+        <a href="http://localhost:4000/Blog-Refactoring/" rel="permalink">Re-factoring the Blog
 </a>
       
     </h2>
@@ -1171,7 +1349,7 @@ CommandType     Name                                               Version    So
     
     
     
-    <li><a href="https://blog.bladefirelight.com/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    <li><a href="http://localhost:4000/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
@@ -1179,8 +1357,8 @@ CommandType     Name                                               Version    So
       </footer>
     </div>
 
-    <script src="https://blog.bladefirelight.com/assets/js/main.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="https://blog.bladefirelight.com/assets/js/staticman.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://localhost:4000/assets/js/main.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://localhost:4000/assets/js/staticman.js" type="text/javascript" charset="utf-8"></script>
 
 <!-- If viewing the search page, include Lunr scripts -->
 
