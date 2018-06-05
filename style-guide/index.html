@@ -1,39 +1,29 @@
 <!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.11.2 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
 <html lang="en" class="no-js">
   <head>
     <meta charset="utf-8">
 
-<!-- begin SEO -->
-
-
-
-
-
-
-
-
-
-<title>Style Guide - PowerShell Journey</title>
-
-
-
-
+<!-- begin _includes/seo.html --><title>Style Guide - PowerShell Journey</title>
 <meta name="description" content="A handy collection of all the colors, typography, UI patterns, and components used.">
 
 
 
-
+<meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="PowerShell Journey">
 <meta property="og:title" content="Style Guide">
-
-
-  <link rel="canonical" href="https://blog.bladefirelight.com/style-guide/">
-  <meta property="og:url" content="https://blog.bladefirelight.com/style-guide/">
-
+<meta property="og:url" content="https://blog.bladefirelight.com/style-guide/">
 
 
   <meta property="og:description" content="A handy collection of all the colors, typography, UI patterns, and components used.">
+
+
 
 
 
@@ -51,14 +41,16 @@
 
 
 
+
+
+
+
   
 
   
 
 
-
-
-
+<link rel="canonical" href="https://blog.bladefirelight.com/style-guide/">
 
 
 
@@ -68,11 +60,11 @@
 
   <script type="application/ld+json">
     {
-      "@context" : "http://schema.org",
-      "@type" : "Person",
-      "name" : "David Jones",
-      "url" : "https://blog.bladefirelight.com",
-      "sameAs" : null
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "David Jones",
+      "url": "https://blog.bladefirelight.com",
+      "sameAs": null
     }
   </script>
 
@@ -81,10 +73,11 @@
 
 
 
-<!-- end SEO -->
+
+<!-- end _includes/seo.html -->
 
 
-<link href="https://blog.bladefirelight.com/feed.xml" type="application/atom+xml" rel="alternate" title="PowerShell Journey Feed">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="PowerShell Journey Feed">
 
 <!-- http://t.co/dKP3o1e -->
 <meta name="HandheldFriendly" content="True">
@@ -96,56 +89,95 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="https://blog.bladefirelight.com/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/main.css">
 
-<meta http-equiv="cleartype" content="on">
+<!--[if lte IE 11]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
     <!-- start custom head snippets -->
 
-<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
 
 <!-- end custom head snippets -->
+
   </head>
 
   <body class="layout--archive">
 
     <!--[if lt IE 11]>
-<div class="notice__danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
 
     <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <button><div class="navicon"></div></button>
+        <a class="site-title" href="/">PowerShell Journey</a>
         <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg"><a href="https://blog.bladefirelight.com/">PowerShell Journey</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/about/">About</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/about/" >About</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/nuggets/">Nuggets</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/nuggets/" >Nuggets</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/windowsimagetools/">Windows Image Tools</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/windowsimagetools/" >Windows Image Tools</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/year-archive/">Archive by Date</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/year-archive/" >Archive by Date</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/categories/">By Category</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/categories/" >By Category</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/tags/">By Tag</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/tags/" >By Tag</a>
+            </li>
           
         </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
         <ul class="hidden-links hidden"></ul>
       </nav>
     </div>
   </div>
 </div>
 
-    
+    <div class="initial-content">
+      
 
 
   
@@ -171,6 +203,7 @@
     
   </ol>
 </nav>
+
   
 
 
@@ -179,7 +212,7 @@
 
   <div class="archive">
     
-      <h1 class="page__title">Style Guide</h1>
+      <h1 id="page-title" class="page__title">Style Guide</h1>
     
     <h2 id="text-alignment">Text Alignment</h2>
 
@@ -187,46 +220,41 @@
 
 <p class="text-left">Left aligned text <code class="highlighter-rouge">.text-left</code></p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>Left aligned text
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Left aligned text
 {: .text-left}
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <hr />
 
 <p class="text-center">Center aligned text. <code class="highlighter-rouge">.text-center</code></p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>Center aligned text.
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Center aligned text.
 {: .text-center}
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <hr />
 
 <p class="text-right">Right aligned text. <code class="highlighter-rouge">.text-right</code></p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>Right aligned text.
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Right aligned text.
 {: .text-right}
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <hr />
 
 <p class="text-justify"><strong>Justified text.</strong> <code class="highlighter-rouge">.text-justify</code> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel eleifend odio, eu elementum purus. In hac habitasse platea dictumst. Fusce sed sapien eleifend, sollicitudin neque non, faucibus est. Proin tempus nisi eu arcu facilisis, eget venenatis eros consequat.</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>Justified text.
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Justified text.
 {: .text-justify}
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <hr />
 
 <p class="text-nowrap">No wrap text. <code class="highlighter-rouge">.text-nowrap</code></p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>No wrap text.
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>No wrap text.
 {: .text-nowrap}
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="image-alignment">Image Alignment</h2>
 
@@ -236,17 +264,15 @@
 
 <p>The image above happens to be <strong>centered</strong>.</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="p">![</span><span class="nv">image-center</span><span class="p">](</span><span class="sx">/assets/images/filename.jpg</span><span class="p">)</span>{: .align-center}
-</code></pre>
-</div>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">image-center</span><span class="p">](</span><span class="sx">/assets/images/filename.jpg</span><span class="p">)</span>{: .align-center}
+</code></pre></div></div>
 
 <hr />
 
 <p><img src="https://blog.bladefirelight.com/assets/images/image-alignment-150x150.jpg" alt="image-left" class="align-left" /> The rest of this paragraph is filler for the sake of seeing the text wrap around the 150×150 image, which is <strong>left aligned</strong>. There should be plenty of room above, below, and to the right of the image. Just look at him there — Hey guy! Way to rock that left side. I don’t care what the right aligned image says, you look great. Don’t let anyone else tell you differently.</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="p">![</span><span class="nv">image-left</span><span class="p">](</span><span class="sx">/assets/images/filename.jpg</span><span class="p">)</span>{: .align-left}
-</code></pre>
-</div>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">image-left</span><span class="p">](</span><span class="sx">/assets/images/filename.jpg</span><span class="p">)</span>{: .align-left}
+</code></pre></div></div>
 
 <hr />
 
@@ -254,9 +280,8 @@
 
 <p>And now we’re going to shift things to the <strong>right align</strong>. Again, there should be plenty of room above, below, and to the left of the image. Just look at him there — Hey guy! Way to rock that right side. I don’t care what the left aligned image says, you look great. Don’t let anyone else tell you differently.</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="p">![</span><span class="nv">image-right</span><span class="p">](</span><span class="sx">/assets/images/filename.jpg</span><span class="p">)</span>{: .align-right}
-</code></pre>
-</div>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">image-right</span><span class="p">](</span><span class="sx">/assets/images/filename.jpg</span><span class="p">)</span>{: .align-right}
+</code></pre></div></div>
 
 <hr />
 
@@ -264,18 +289,16 @@
 
 <p>The image above should extend outside of the parent container on right.</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="p">![</span><span class="nv">full</span><span class="p">](</span><span class="sx">/assets/images/filename.jpg</span><span class="p">)</span>
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">![</span><span class="nv">full</span><span class="p">](</span><span class="sx">/assets/images/filename.jpg</span><span class="p">)</span>
 {: .full}
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="buttons">Buttons</h2>
 
 <p>Make any link standout more when applying the <code class="highlighter-rouge">.btn</code> class.</p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn"</span><span class="nt">&gt;</span>Link Text<span class="nt">&lt;/a&gt;</span>
-</code></pre>
-</div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn"</span><span class="nt">&gt;</span>Link Text<span class="nt">&lt;/a&gt;</span>
+</code></pre></div></div>
 
 <table>
   <thead>
@@ -408,17 +431,17 @@
   </tbody>
 </table>
 
-<p class="notice"><strong>Watch out!</strong> This paragraph of text has been emphasized with the <code class="highlighter-rouge"><span class="p">{</span><span class="err">:</span><span class="w"> </span><span class="err">.notice</span><span class="p">}</span></code> class.</p>
+<p class="notice"><strong>Watch out!</strong> This paragraph of text has been emphasized with the <code class="highlighter-rouge">{: .notice}</code> class.</p>
 
-<p class="notice--primary"><strong>Watch out!</strong> This paragraph of text has been emphasized with the <code class="highlighter-rouge"><span class="p">{</span><span class="err">:</span><span class="w"> </span><span class="err">.notice--primary</span><span class="p">}</span></code> class.</p>
+<p class="notice--primary"><strong>Watch out!</strong> This paragraph of text has been emphasized with the <code class="highlighter-rouge">{: .notice--primary}</code> class.</p>
 
-<p class="notice--info"><strong>Watch out!</strong> This paragraph of text has been emphasized with the <code class="highlighter-rouge"><span class="p">{</span><span class="err">:</span><span class="w"> </span><span class="err">.notice--info</span><span class="p">}</span></code> class.</p>
+<p class="notice--info"><strong>Watch out!</strong> This paragraph of text has been emphasized with the <code class="highlighter-rouge">{: .notice--info}</code> class.</p>
 
-<p class="notice--warning"><strong>Watch out!</strong> This paragraph of text has been emphasized with the <code class="highlighter-rouge"><span class="p">{</span><span class="err">:</span><span class="w"> </span><span class="err">.notice--warning</span><span class="p">}</span></code> class.</p>
+<p class="notice--warning"><strong>Watch out!</strong> This paragraph of text has been emphasized with the <code class="highlighter-rouge">{: .notice--warning}</code> class.</p>
 
-<p class="notice--success"><strong>Watch out!</strong> This paragraph of text has been emphasized with the <code class="highlighter-rouge"><span class="p">{</span><span class="err">:</span><span class="w"> </span><span class="err">.notice--success</span><span class="p">}</span></code> class.</p>
+<p class="notice--success"><strong>Watch out!</strong> This paragraph of text has been emphasized with the <code class="highlighter-rouge">{: .notice--success}</code> class.</p>
 
-<p class="notice--danger"><strong>Watch out!</strong> This paragraph of text has been emphasized with the <code class="highlighter-rouge"><span class="p">{</span><span class="err">:</span><span class="w"> </span><span class="err">.notice--danger</span><span class="p">}</span></code> class.</p>
+<p class="notice--danger"><strong>Watch out!</strong> This paragraph of text has been emphasized with the <code class="highlighter-rouge">{: .notice--danger}</code> class.</p>
 
 <div class="notice--info">
   <h4>Notice Headline:</h4>
@@ -434,6 +457,14 @@
 
   </div>
 </div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+    <div class="search-hits"></div></div>
+      </div>
+    
 
     <div class="page__footer">
       <footer>
@@ -446,31 +477,82 @@
       <li><strong>Follow:</strong></li>
     
     
-      <li><a href="https://twitter.com/BladeFireLight"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+      <li><a href="https://twitter.com/BladeFireLight"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
     
     
     
-    
-    
-      <li><a href="https://github.com/BladeFireLight"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+      <li><a href="https://github.com/BladeFireLight"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
     
     
     
-    <li><a href="https://blog.bladefirelight.com/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2017 David Jones. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2018 David Jones. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
       </footer>
     </div>
 
-    <script src="https://blog.bladefirelight.com/assets/js/main.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="https://blog.bladefirelight.com/assets/js/staticman.js" type="text/javascript" charset="utf-8"></script>
-
-<!-- If viewing the search page, include Lunr scripts -->
-
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"></script>
 
 
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'H9ZC0SHNUQ',
+  apiKey: 'b4603a9d806ac4befb326ce1731d101e',
+  indexName: 'Blog',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate
+    }
+  })
+);
+
+// Starting the search
+search.start();
+</script>
 
 
 
@@ -478,4 +560,3 @@
 
   </body>
 </html>
-

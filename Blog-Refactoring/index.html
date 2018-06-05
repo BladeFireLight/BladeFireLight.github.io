@@ -1,45 +1,35 @@
 <!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.11.2 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
 <html lang="en" class="no-js">
   <head>
     <meta charset="utf-8">
 
-<!-- begin SEO -->
+<!-- begin _includes/seo.html --><title>Re-factoring the Blog - PowerShell Journey</title>
+<meta name="description" content="Sometimes rebooting fixes everythingAfter spending month after month on WidnowsImageTools and little else in my free time. My blog has been looking like abandonware. I had always planed to comeback, but there was always this nagging issue. WordPress. is a hosted service and cost money if you want more then the vanilla. And I had no interest in hosting WordPress elseware. It also was missing a plug-in that allowed you to to reference GitHub files directly. Copying code from a GitHub project into Gist seems like a major waste of time.Enter JekyllA few months ago I listened to a podcast where they briefly mentioned github pages. This perked my interest. Partially because if was free, and partly because if was GitHub. (I also like the idea of bloging like a hacker).I figured if it was hosted on GitHub, surely they would have a easy way to reference a GitHub Repo. No such luck. The default plugins were somewhat limited. If I wanted unsupported plugins I had to compile the site locally. So I looked at all the plugins for Jekyll in Ruby Gems, I came across one that worked. However it only wanted to work in Jekyll version 1. I looked at the code on it’s GitHub repo and it looked to be an arbitrary requirement. So I set out the setup Jekyll using Bash on Windows 10.I plan to write a full blog on the experience. There were many bumps and gatcha’s getting here, but I now can reference sections of GitHub Repos files in my posts, so it was worth it.">
 
 
 
-
-
-
-
-
-
-<title>Re-factoring the Blog - PowerShell Journey</title>
-
-
-
-
-<meta name="description" content="Sometimes rebooting fixes everything">
-
-
-
-
+<meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="PowerShell Journey">
 <meta property="og:title" content="Re-factoring the Blog">
+<meta property="og:url" content="https://blog.bladefirelight.com/Blog-Refactoring/">
 
 
-  <link rel="canonical" href="https://blog.bladefirelight.com/Blog-Refactoring/">
-  <meta property="og:url" content="https://blog.bladefirelight.com/Blog-Refactoring/">
+  <meta property="og:description" content="Sometimes rebooting fixes everythingAfter spending month after month on WidnowsImageTools and little else in my free time. My blog has been looking like abandonware. I had always planed to comeback, but there was always this nagging issue. WordPress. is a hosted service and cost money if you want more then the vanilla. And I had no interest in hosting WordPress elseware. It also was missing a plug-in that allowed you to to reference GitHub files directly. Copying code from a GitHub project into Gist seems like a major waste of time.Enter JekyllA few months ago I listened to a podcast where they briefly mentioned github pages. This perked my interest. Partially because if was free, and partly because if was GitHub. (I also like the idea of bloging like a hacker).I figured if it was hosted on GitHub, surely they would have a easy way to reference a GitHub Repo. No such luck. The default plugins were somewhat limited. If I wanted unsupported plugins I had to compile the site locally. So I looked at all the plugins for Jekyll in Ruby Gems, I came across one that worked. However it only wanted to work in Jekyll version 1. I looked at the code on it’s GitHub repo and it looked to be an arbitrary requirement. So I set out the setup Jekyll using Bash on Windows 10.I plan to write a full blog on the experience. There were many bumps and gatcha’s getting here, but I now can reference sections of GitHub Repos files in my posts, so it was worth it.">
 
 
-
-  <meta property="og:description" content="Sometimes rebooting fixes everything">
 
 
 
   <meta name="twitter:site" content="@BladeFireLight">
   <meta name="twitter:title" content="Re-factoring the Blog">
-  <meta name="twitter:description" content="Sometimes rebooting fixes everything">
+  <meta name="twitter:description" content="Sometimes rebooting fixes everythingAfter spending month after month on WidnowsImageTools and little else in my free time. My blog has been looking like abandonware. I had always planed to comeback, but there was always this nagging issue. WordPress. is a hosted service and cost money if you want more then the vanilla. And I had no interest in hosting WordPress elseware. It also was missing a plug-in that allowed you to to reference GitHub files directly. Copying code from a GitHub project into Gist seems like a major waste of time.Enter JekyllA few months ago I listened to a podcast where they briefly mentioned github pages. This perked my interest. Partially because if was free, and partly because if was GitHub. (I also like the idea of bloging like a hacker).I figured if it was hosted on GitHub, surely they would have a easy way to reference a GitHub Repo. No such luck. The default plugins were somewhat limited. If I wanted unsupported plugins I had to compile the site locally. So I looked at all the plugins for Jekyll in Ruby Gems, I came across one that worked. However it only wanted to work in Jekyll version 1. I looked at the code on it’s GitHub repo and it looked to be an arbitrary requirement. So I set out the setup Jekyll using Bash on Windows 10.I plan to write a full blog on the experience. There were many bumps and gatcha’s getting here, but I now can reference sections of GitHub Repos files in my posts, so it was worth it.">
   <meta name="twitter:url" content="https://blog.bladefirelight.com/Blog-Refactoring/">
 
   
@@ -51,17 +41,18 @@
 
 
 
-  
-
-  
-
-
-
-
-
-  <meta property="og:type" content="article">
   <meta property="article:published_time" content="2016-09-01T00:00:00-05:00">
 
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://blog.bladefirelight.com/Blog-Refactoring/">
 
 
 
@@ -71,11 +62,11 @@
 
   <script type="application/ld+json">
     {
-      "@context" : "http://schema.org",
-      "@type" : "Person",
-      "name" : "David Jones",
-      "url" : "https://blog.bladefirelight.com",
-      "sameAs" : null
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "David Jones",
+      "url": "https://blog.bladefirelight.com",
+      "sameAs": null
     }
   </script>
 
@@ -84,10 +75,11 @@
 
 
 
-<!-- end SEO -->
+
+<!-- end _includes/seo.html -->
 
 
-<link href="https://blog.bladefirelight.com/feed.xml" type="application/atom+xml" rel="alternate" title="PowerShell Journey Feed">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="PowerShell Journey Feed">
 
 <!-- http://t.co/dKP3o1e -->
 <meta name="HandheldFriendly" content="True">
@@ -99,56 +91,95 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="https://blog.bladefirelight.com/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/main.css">
 
-<meta http-equiv="cleartype" content="on">
+<!--[if lte IE 11]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
     <!-- start custom head snippets -->
 
-<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
 
 <!-- end custom head snippets -->
+
   </head>
 
-  <body class="layout--single">
+  <body class="layout--single wide">
 
     <!--[if lt IE 11]>
-<div class="notice__danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
 
     <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <button><div class="navicon"></div></button>
+        <a class="site-title" href="/">PowerShell Journey</a>
         <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg"><a href="https://blog.bladefirelight.com/">PowerShell Journey</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/about/">About</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/about/" >About</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/nuggets/">Nuggets</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/nuggets/" >Nuggets</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/windowsimagetools/">Windows Image Tools</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/windowsimagetools/" >Windows Image Tools</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/year-archive/">Archive by Date</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/year-archive/" >Archive by Date</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/categories/">By Category</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/categories/" >By Category</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/tags/">By Tag</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/tags/" >By Tag</a>
+            </li>
           
         </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
         <ul class="hidden-links hidden"></ul>
       </nav>
     </div>
   </div>
 </div>
 
-    
+    <div class="initial-content">
+      
 
 
   
@@ -174,6 +205,7 @@
     
   </ol>
 </nav>
+
   
 
 
@@ -182,21 +214,26 @@
   <div class="sidebar sticky">
   
 
+
 <div itemscope itemtype="http://schema.org/Person">
 
   
     <div class="author__avatar">
       
-        <img src="https://blog.bladefirelight.com/assets/images/avatar1.jpg" class="author__avatar" alt="David Jones" itemprop="image">
+
+      
+        <img src="/assets/images/avatar1.jpg" alt="David Jones" itemprop="image">
       
     </div>
   
 
   <div class="author__content">
-    <h3 class="author__name" itemprop="name">David Jones</h3>
+    
+      <h3 class="author__name" itemprop="name">David Jones</h3>
+    
     
       <p class="author__bio" itemprop="description">
-        20 years IT Pro. life long student of tech
+        20 years IT Pro. Life long student of tech
       </p>
     
   </div>
@@ -206,7 +243,7 @@
     <ul class="author__urls social-icons">
       
         <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
-          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Gretna, NE</span>
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Gretna, NE</span>
         </li>
       
 
@@ -216,7 +253,7 @@
         <li>
           <a href="mailto:BladeFireLight@outlook.com">
             <meta itemprop="email" content="BladeFireLight@outlook.com" />
-            <i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email
           </a>
         </li>
       
@@ -226,7 +263,7 @@
       
         <li>
           <a href="https://twitter.com/BladeFireLight" itemprop="sameAs">
-            <i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
           </a>
         </li>
       
@@ -248,9 +285,11 @@
       
         <li>
           <a href="https://github.com/BladeFireLight" itemprop="sameAs">
-            <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
           </a>
         </li>
+      
+
       
 
       
@@ -280,7 +319,7 @@
       <!--
   <li>
     <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
-      <i class="fa fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
     </a>
   </li>
 -->
@@ -294,17 +333,17 @@
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     <meta itemprop="headline" content="Re-factoring the Blog">
-    <meta itemprop="description" content="Sometimes rebooting fixes everything">
+    <meta itemprop="description" content="Sometimes rebooting fixes everythingAfter spending month after month on WidnowsImageTools and little else in my free time. My blog has been looking like abandonware. I had always planed to comeback, but there was always this nagging issue. WordPress. is a hosted service and cost money if you want more then the vanilla. And I had no interest in hosting WordPress elseware. It also was missing a plug-in that allowed you to to reference GitHub files directly. Copying code from a GitHub project into Gist seems like a major waste of time.Enter JekyllA few months ago I listened to a podcast where they briefly mentioned github pages. This perked my interest. Partially because if was free, and partly because if was GitHub. (I also like the idea of bloging like a hacker).I figured if it was hosted on GitHub, surely they would have a easy way to reference a GitHub Repo. No such luck. The default plugins were somewhat limited. If I wanted unsupported plugins I had to compile the site locally. So I looked at all the plugins for Jekyll in Ruby Gems, I came across one that worked. However it only wanted to work in Jekyll version 1. I looked at the code on it’s GitHub repo and it looked to be an arbitrary requirement. So I set out the setup Jekyll using Bash on Windows 10.I plan to write a full blog on the experience. There were many bumps and gatcha’s getting here, but I now can reference sections of GitHub Repos files in my posts, so it was worth it.">
     <meta itemprop="datePublished" content="September 01, 2016">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Re-factoring the Blog
+          <h1 id="page-title" class="page__title" itemprop="headline">Re-factoring the Blog
 </h1>
           
-            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
 
@@ -316,6 +355,17 @@
       
 
       <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#sometimes-rebooting-fixes-everything">Sometimes rebooting fixes everything</a></li>
+  <li><a href="#enter-jekyll">Enter Jekyll</a></li>
+</ul>
+            </nav>
+          </aside>
+        
         <h2 id="sometimes-rebooting-fixes-everything">Sometimes rebooting fixes everything</h2>
 
 <p>After spending month after month on WidnowsImageTools and little else in my free time. My blog has been looking like abandonware. I had always planed to comeback, but there was always this nagging issue. WordPress. is a hosted service and cost money if you want more then the vanilla. And I had no interest in hosting WordPress elseware. It also was missing a plug-in that allowed you to to reference GitHub files directly. Copying code from a GitHub project into Gist seems like a major waste of time.</p>
@@ -343,16 +393,16 @@
   
 
   <p class="page__taxonomy">
-    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
     
       
       
-      <a href="https://blog.bladefirelight.com/tags/blog" class="page__taxonomy-item" rel="tag">Blog</a><span class="sep">, </span>
+      <a href="/tags/blog" class="page__taxonomy-item" rel="tag">Blog</a><span class="sep">, </span>
     
       
       
-      <a href="https://blog.bladefirelight.com/tags/jekyll" class="page__taxonomy-item" rel="tag">Jekyll</a>
+      <a href="/tags/jekyll" class="page__taxonomy-item" rel="tag">Jekyll</a>
     
     </span>
   </p>
@@ -361,7 +411,7 @@
 
 
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-09-01T00:00:00-05:00">September 01, 2016</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-09-01T00:00:00-05:00">September 01, 2016</time></p>
         
       </footer>
 
@@ -370,24 +420,24 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=BladeFireLight&text=Re-factoring the Blog https://blog.bladefirelight.com/Blog-Refactoring/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=BladeFireLight&text=Re-factoring+the+Blog%20https%3A%2F%2Fblog.bladefirelight.com%2FBlog-Refactoring%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https://blog.bladefirelight.com/Blog-Refactoring/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.bladefirelight.com%2FBlog-Refactoring%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=https://blog.bladefirelight.com/Blog-Refactoring/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fblog.bladefirelight.com%2FBlog-Refactoring%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://blog.bladefirelight.com/Blog-Refactoring/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fblog.bladefirelight.com%2FBlog-Refactoring%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="https://blog.bladefirelight.com/windowsimagetools/Modifying-Fresh-VHDX/" class="pagination--pager" title="Windows Image Tools | Modify VHDX
+      <a href="/windowsimagetools/Modifying-Fresh-VHDX/" class="pagination--pager" title="Windows Image Tools | Modify VHDX
 ">Previous</a>
     
     
-      <a href="https://blog.bladefirelight.com/windowsimagetools/Creating-an-Updateed-Image-Part1-Base-VHDX/" class="pagination--pager" title="Windows Image Tools | Creating an Updated Image Part 1
+      <a href="/windowsimagetools/Creating-an-Updateed-Image-Part1-Base-VHDX/" class="pagination--pager" title="Windows Image Tools | Creating an Updated Image Part 1
 ">Next</a>
     
   </nav>
@@ -395,84 +445,163 @@
     </div>
 
     
-      <div class="page__comments">
-  
-  
-
-    <section id="static-comments">
-      
-      
-
-
-        
-
-
-
-        <!-- Start new comment form -->
-        <div id="respond">
-        <h2 class="page__comments-title">
-          Leave a Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://blog.bladefirelight.com/Blog-Refactoring/#respond" style="display:none;">Cancel reply</a></small>
-        </h2>
-
-        <p class="small">Your email address will not be published. Required fields are marked <span class="required">*</span></p>
-
-        <form id="new_comment" class="page__comments-form js-form form" method="post" action="https://api.staticman.net/v2/entry/BladeFireLight/blog_source/master/comments">
-
-          <div class="form__spinner">
-            <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-            <span class="sr-only">Loading...</span>
-          </div>
-
-          <fieldset>
-            <label for="comment-form-message">Comment <small class="required">*</small></label>
-            <textarea type="text" rows="3" id="comment-form-message" name="fields[message]" tabindex="1"></textarea>
-            <div class="small help-block"><a href="https://daringfireball.net/projects/markdown/">Markdown is supported.</a></div>
-          </fieldset>
-          <fieldset>
-            <label for="comment-form-name">Name <small class="required">*</small></label>
-            <input type="text" id="comment-form-name" name="fields[name]" tabindex="2" />
-          </fieldset>
-          <fieldset>
-            <label for="comment-form-email">Email address <small class="required">*</small></label>
-            <input type="email" id="comment-form-email" name="fields[email]" tabindex="3" />
-          </fieldset>
-<!--          <fieldset>
-            <label for="comment-form-url">Website (optional)</label>
-            <input type="url" id="comment-form-url" name="fields[url]" tabindex="4"/>
-          </fieldset> -->
-          <fieldset class="hidden" style="display: none;">
-            <input type="hidden" name="options[origin]" value="https://blog.bladefirelight.com/Blog-Refactoring/">
-            <input type="hidden" id="comment-parent" name="options[parent]" value="">
-            <input type="hidden" id="comment-post-id" name="options[slug]" value="Blog-Refactoring">
-            <label for="comment-form-location">Not used. Leave blank if you are a human.</label>
-            <input type="text" id="comment-form-location" name="fields[hidden]" autocomplete="off"/>
-          </fieldset>
-          <!-- Start comment form alert messaging -->
-          <p class="hidden js-notice">
-            <strong class="js-notice-text"></strong>
-          </p>
-          <!-- End comment form alert messaging -->
-          <fieldset>
-            <label for="comment-form-reply"><input type="checkbox" id="comment-form-reply" name="options[subscribe]" value="email">&nbsp;Notify me of new comments by email.</label>
-            <button type="submit" id="comment-form-submit" tabindex="5" class="btn btn--large">Submit Comment</button>
-          </fieldset>
-
-        </form>
-      </div>
-      <!-- End new comment form -->
-      
-    
-  </section>
-  
-</div>
-
-    
   </article>
 
   
   
-</div>
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
 
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/nuggets/collecting-ca-certificates-for-dsc-configuration/" rel="permalink">Collecting CA Certificates for DSC Configuration
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Best practice is to use individual certificates for each Node for DSC. While you can use auto enrollment, getting the certificates to where the MOF are build...</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use ...</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/windowsimagetools/Creating-an-Updateed-Image-Part2-WMF5/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use ...</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/windowsimagetools/Creating-an-Updateed-Image-Part1-Base-VHDX/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use ...</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+    <div class="search-hits"></div></div>
+      </div>
+    
 
     <div class="page__footer">
       <footer>
@@ -485,36 +614,88 @@
       <li><strong>Follow:</strong></li>
     
     
-      <li><a href="https://twitter.com/BladeFireLight"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+      <li><a href="https://twitter.com/BladeFireLight"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
     
     
     
-    
-    
-      <li><a href="https://github.com/BladeFireLight"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+      <li><a href="https://github.com/BladeFireLight"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
     
     
     
-    <li><a href="https://blog.bladefirelight.com/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2017 David Jones. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2018 David Jones. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
       </footer>
     </div>
 
-    <script src="https://blog.bladefirelight.com/assets/js/main.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="https://blog.bladefirelight.com/assets/js/staticman.js" type="text/javascript" charset="utf-8"></script>
-
-<!-- If viewing the search page, include Lunr scripts -->
-
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"></script>
 
 
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'H9ZC0SHNUQ',
+  apiKey: 'b4603a9d806ac4befb326ce1731d101e',
+  indexName: 'Blog',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate
+    }
+  })
+);
+
+// Starting the search
+search.start();
+</script>
 
 
 
 
-  
+
+    
   <script>
     (function ($) {
     var $comments = $('.js-comments');
@@ -523,7 +704,7 @@
       var form = this;
 
       $(form).addClass('disabled');
-      $('#comment-form-submit').html('<i class="fa fa-spinner fa-spin fa-fw"></i> Loading...');
+      $('#comment-form-submit').html('<i class="fas fa-spinner fa-spin fa-fw"></i> Loading...');
 
       $.ajax({
         type: $(this).attr('method'),
@@ -554,112 +735,10 @@
       $('.page__comments-form .js-notice-text').html(message);
     }
   })(jQuery);
+  </script>
 
-  var addComment = {
-  moveForm: function( commId, parentId, respondId, postId ) {
-    var div, element, style, cssHidden,
-      t           = this,
-      comm        = t.I( commId ),
-      respond     = t.I( respondId ),
-      cancel      = t.I( 'cancel-comment-reply-link' ),
-      parent      = t.I( 'comment-parent' ),
-      post        = t.I( 'comment-post-slug' ),
-      commentForm = respond.getElementsByTagName( 'form' )[0];
-
-    if ( ! comm || ! respond || ! cancel || ! parent || ! commentForm ) {
-      return;
-    }
-
-    t.respondId = respondId;
-    postId = postId || false;
-
-    if ( ! t.I( 'sm-temp-form-div' ) ) {
-      div = document.createElement( 'div' );
-      div.id = 'sm-temp-form-div';
-      div.style.display = 'none';
-      respond.parentNode.insertBefore( div, respond );
-    }
-
-    comm.parentNode.insertBefore( respond, comm.nextSibling );
-    if ( post && postId ) {
-      post.value = postId;
-    }
-    parent.value = parentId;
-    cancel.style.display = '';
-
-    cancel.onclick = function() {
-      var t       = addComment,
-        temp    = t.I( 'sm-temp-form-div' ),
-        respond = t.I( t.respondId );
-
-      if ( ! temp || ! respond ) {
-        return;
-      }
-
-      t.I( 'comment-parent' ).value = '0';
-      temp.parentNode.insertBefore( respond, temp );
-      temp.parentNode.removeChild( temp );
-      this.style.display = 'none';
-      this.onclick = null;
-      return false;
-    };
-
-    /*
-     * Set initial focus to the first form focusable element.
-     * Try/catch used just to avoid errors in IE 7- which return visibility
-     * 'inherit' when the visibility value is inherited from an ancestor.
-     */
-    try {
-      for ( var i = 0; i < commentForm.elements.length; i++ ) {
-        element = commentForm.elements[i];
-        cssHidden = false;
-
-        // Modern browsers.
-        if ( 'getComputedStyle' in window ) {
-          style = window.getComputedStyle( element );
-        // IE 8.
-        } else if ( document.documentElement.currentStyle ) {
-          style = element.currentStyle;
-        }
-
-        /*
-         * For display none, do the same thing jQuery does. For visibility,
-         * check the element computed style since browsers are already doing
-         * the job for us. In fact, the visibility computed style is the actual
-         * computed value and already takes into account the element ancestors.
-         */
-        if ( ( element.offsetWidth <= 0 && element.offsetHeight <= 0 ) || style.visibility === 'hidden' ) {
-          cssHidden = true;
-        }
-
-        // Skip form elements that are hidden or disabled.
-        if ( 'hidden' === element.type || element.disabled || cssHidden ) {
-          continue;
-        }
-
-        element.focus();
-        // Stop after the first focusable element.
-        break;
-      }
-
-    } catch( er ) {}
-
-    return false;
-  },
-
-  I: function( id ) {
-    return document.getElementById( id );
-  }
-};
-</script>
-
-
-
-
-
-
+  
 
 
   </body>
 </html>
-

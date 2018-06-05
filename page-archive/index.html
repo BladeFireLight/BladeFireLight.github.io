@@ -1,35 +1,25 @@
 <!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.11.2 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
 <html lang="en" class="no-js">
   <head>
     <meta charset="utf-8">
 
-<!-- begin SEO -->
+<!-- begin _includes/seo.html --><title>Page Archive - PowerShell Journey</title>
+<meta name="description" content="Random musings of a IT Pro">
 
 
 
-
-
-
-
-
-
-<title>Page Archive - PowerShell Journey</title>
-
-
-
-
-<meta name="description" content="Randome musings of a IT Pro">
-
-
-
-
+<meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="PowerShell Journey">
 <meta property="og:title" content="Page Archive">
+<meta property="og:url" content="https://blog.bladefirelight.com/page-archive/">
 
-
-  <link rel="canonical" href="https://blog.bladefirelight.com/page-archive/">
-  <meta property="og:url" content="https://blog.bladefirelight.com/page-archive/">
 
 
 
@@ -37,7 +27,7 @@
 
   <meta name="twitter:site" content="@BladeFireLight">
   <meta name="twitter:title" content="Page Archive">
-  <meta name="twitter:description" content="Randome musings of a IT Pro">
+  <meta name="twitter:description" content="Random musings of a IT Pro">
   <meta name="twitter:url" content="https://blog.bladefirelight.com/page-archive/">
 
   
@@ -49,14 +39,16 @@
 
 
 
+
+
+
+
   
 
   
 
 
-
-
-
+<link rel="canonical" href="https://blog.bladefirelight.com/page-archive/">
 
 
 
@@ -66,11 +58,11 @@
 
   <script type="application/ld+json">
     {
-      "@context" : "http://schema.org",
-      "@type" : "Person",
-      "name" : "David Jones",
-      "url" : "https://blog.bladefirelight.com",
-      "sameAs" : null
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "David Jones",
+      "url": "https://blog.bladefirelight.com",
+      "sameAs": null
     }
   </script>
 
@@ -79,10 +71,11 @@
 
 
 
-<!-- end SEO -->
+
+<!-- end _includes/seo.html -->
 
 
-<link href="https://blog.bladefirelight.com/feed.xml" type="application/atom+xml" rel="alternate" title="PowerShell Journey Feed">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="PowerShell Journey Feed">
 
 <!-- http://t.co/dKP3o1e -->
 <meta name="HandheldFriendly" content="True">
@@ -94,56 +87,95 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="https://blog.bladefirelight.com/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/main.css">
 
-<meta http-equiv="cleartype" content="on">
+<!--[if lte IE 11]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
     <!-- start custom head snippets -->
 
-<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
 
 <!-- end custom head snippets -->
+
   </head>
 
   <body class="layout--archive">
 
     <!--[if lt IE 11]>
-<div class="notice__danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
 
     <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <button><div class="navicon"></div></button>
+        <a class="site-title" href="/">PowerShell Journey</a>
         <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg"><a href="https://blog.bladefirelight.com/">PowerShell Journey</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/about/">About</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/about/" >About</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/nuggets/">Nuggets</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/nuggets/" >Nuggets</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/windowsimagetools/">Windows Image Tools</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/windowsimagetools/" >Windows Image Tools</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/year-archive/">Archive by Date</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/year-archive/" >Archive by Date</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/categories/">By Category</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/categories/" >By Category</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/tags/">By Tag</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/tags/" >By Tag</a>
+            </li>
           
         </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
         <ul class="hidden-links hidden"></ul>
       </nav>
     </div>
   </div>
 </div>
 
-    
+    <div class="initial-content">
+      
 
 
   
@@ -169,6 +201,7 @@
     
   </ol>
 </nav>
+
   
 
 
@@ -177,7 +210,7 @@
 
   <div class="archive">
     
-      <h1 class="page__title">Page Archive</h1>
+      <h1 id="page-title" class="page__title">Page Archive</h1>
     
     
   
@@ -189,7 +222,7 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/404.html" rel="permalink">Page Not Found</a>
+        <a href="/404.html" rel="permalink">Page Not Found</a>
       
     </h2>
     
@@ -198,7 +231,6 @@
   </article>
 </div>
 
-
   
 
 
@@ -208,7 +240,7 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/about/" rel="permalink">About myself</a>
+        <a href="/about/" rel="permalink">About myself</a>
       
     </h2>
     
@@ -217,7 +249,6 @@
   </article>
 </div>
 
-
   
 
 
@@ -227,32 +258,7 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/bio/" rel="permalink">Bio</a>
-      
-    </h2>
-    
-      <p class="page__meta">
-      
-        <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated: <time datetime="2015-03-31">March 31, 2015</time>
-      
-      
-      </p>
-    
-    
-  </article>
-</div>
-
-
-  
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="https://blog.bladefirelight.com/categories/" rel="permalink">Posts by Category</a>
+        <a href="/categories/" rel="permalink">Posts by Category</a>
       
     </h2>
     
@@ -260,7 +266,6 @@
   </article>
 </div>
 
-
   
 
 
@@ -270,7 +275,7 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/categories/" rel="permalink">Posts by Category</a>
+        <a href="/categories/" rel="permalink">Posts by Category</a>
       
     </h2>
     
@@ -278,7 +283,6 @@
   </article>
 </div>
 
-
   
 
 
@@ -288,7 +292,7 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/collection-archive/" rel="permalink">Posts by Collection</a>
+        <a href="/collection-archive/" rel="permalink">Posts by Collection</a>
       
     </h2>
     
@@ -296,7 +300,6 @@
   </article>
 </div>
 
-
   
 
 
@@ -306,7 +309,7 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/humans.txt" rel="permalink"></a>
+        <a href="/humans.txt" rel="permalink"></a>
       
     </h2>
     
@@ -314,7 +317,6 @@
   </article>
 </div>
 
-
   
 
 
@@ -324,7 +326,7 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/" rel="permalink"></a>
+        <a href="/" rel="permalink"></a>
       
     </h2>
     
@@ -332,7 +334,6 @@
   </article>
 </div>
 
-
   
 
 
@@ -342,7 +343,7 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/assets/css/main.css" rel="permalink"></a>
+        <a href="/assets/js/lunr/lunr-en.js" rel="permalink"></a>
       
     </h2>
     
@@ -350,6 +351,22 @@
   </article>
 </div>
 
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/assets/js/lunr/lunr-gr.js" rel="permalink"></a>
+      
+    </h2>
+    
+    
+  </article>
+</div>
 
   
 
@@ -360,7 +377,41 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/nuggets/" rel="permalink">PowerShell Nuggets</a>
+        <a href="/assets/js/lunr/lunr-store.js" rel="permalink"></a>
+      
+    </h2>
+    
+    
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/assets/css/main.css" rel="permalink"></a>
+      
+    </h2>
+    
+    
+  </article>
+</div>
+
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/nuggets/" rel="permalink">PowerShell Nuggets</a>
       
     </h2>
     
@@ -369,7 +420,6 @@
   </article>
 </div>
 
-
   
 
 
@@ -379,7 +429,7 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/page-archive/" rel="permalink">Page Archive</a>
+        <a href="/page-archive/" rel="permalink">Page Archive</a>
       
     </h2>
     
@@ -387,7 +437,6 @@
   </article>
 </div>
 
-
   
 
 
@@ -397,32 +446,7 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/resume/" rel="permalink">Resume</a>
-      
-    </h2>
-    
-      <p class="page__meta">
-      
-        <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated: <time datetime="2015-04-13">April 13, 2015</time>
-      
-      
-      </p>
-    
-    
-  </article>
-</div>
-
-
-  
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="https://blog.bladefirelight.com/search/" rel="permalink">Search Posts</a>
+        <a href="/search/" rel="permalink">Search Posts</a>
       
     </h2>
     
@@ -430,7 +454,6 @@
   </article>
 </div>
 
-
   
 
 
@@ -440,7 +463,7 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/sitemap/" rel="permalink">Sitemap</a>
+        <a href="/sitemap/" rel="permalink">Sitemap</a>
       
     </h2>
     
@@ -448,7 +471,6 @@
   </article>
 </div>
 
-
   
 
 
@@ -458,33 +480,7 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/splash-page/" rel="permalink">Splash Page</a>
-      
-    </h2>
-    
-      <p class="page__meta">
-      
-        <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated: <time datetime="2016-03-23T10:48:41-05:00">March 23, 2016</time>
-      
-      
-      </p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Bacon ipsum dolor sit amet salami ham hock ham, hamburger corned beef short ribs kielbasa biltong t-bone drumstick tri-tip tail sirloin pork chop.
-</p>
-  </article>
-</div>
-
-
-  
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="https://blog.bladefirelight.com/style-guide/" rel="permalink">Style Guide</a>
+        <a href="/style-guide/" rel="permalink">Style Guide</a>
       
     </h2>
     
@@ -493,7 +489,6 @@
   </article>
 </div>
 
-
   
 
 
@@ -503,7 +498,7 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/tags/" rel="permalink">Posts by Tags</a>
+        <a href="/tags/" rel="permalink">Posts by Tags</a>
       
     </h2>
     
@@ -511,7 +506,6 @@
   </article>
 </div>
 
-
   
 
 
@@ -521,32 +515,7 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/terms/" rel="permalink">Terms and Privacy Policy</a>
-      
-    </h2>
-    
-      <p class="page__meta">
-      
-        <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated: <time datetime="2016-11-03">November 03, 2016</time>
-      
-      
-      </p>
-    
-    
-  </article>
-</div>
-
-
-  
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="https://blog.bladefirelight.com/test.html" rel="permalink">Test Page</a>
+        <a href="/test.html" rel="permalink">Test Page</a>
       
     </h2>
     
@@ -555,6 +524,22 @@
   </article>
 </div>
 
+  
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/windowsimagetools/" rel="permalink">Windows Image Tools</a>
+      
+    </h2>
+    
+    
+  </article>
+</div>
 
   
 
@@ -565,14 +550,13 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/windowsimagetools/" rel="permalink">Windows Image Tools</a>
+        <a href="/year-archive/" rel="permalink">Posts by Year</a>
       
     </h2>
     
     
   </article>
 </div>
-
 
   
 
@@ -583,14 +567,13 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/year-archive/" rel="permalink">Posts by Year</a>
+        <a href="/tags/testlab/" rel="permalink">TestLab</a>
       
     </h2>
     
     
   </article>
 </div>
-
 
   
 
@@ -601,14 +584,13 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/tags/testlab/" rel="permalink">TestLab</a>
+        <a href="/tags/rant/" rel="permalink">Rant</a>
       
     </h2>
     
     
   </article>
 </div>
-
 
   
 
@@ -619,14 +601,13 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/tags/rant/" rel="permalink">Rant</a>
+        <a href="/tags/vhdx/" rel="permalink">VHDX</a>
       
     </h2>
     
     
   </article>
 </div>
-
 
   
 
@@ -637,14 +618,13 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/tags/vhdx/" rel="permalink">VHDX</a>
+        <a href="/tags/windowsupdate/" rel="permalink">WindowsUpdate</a>
       
     </h2>
     
     
   </article>
 </div>
-
 
   
 
@@ -655,14 +635,13 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/tags/windowsupdate/" rel="permalink">WindowsUpdate</a>
+        <a href="/tags/windowsupdatetools/" rel="permalink">WindowsUpdateTools</a>
       
     </h2>
     
     
   </article>
 </div>
-
 
   
 
@@ -673,14 +652,13 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/tags/windowsupdatetools/" rel="permalink">WindowsUpdateTools</a>
+        <a href="/tags/module/" rel="permalink">Module</a>
       
     </h2>
     
     
   </article>
 </div>
-
 
   
 
@@ -691,14 +669,13 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/tags/module/" rel="permalink">Module</a>
+        <a href="/tags/blog/" rel="permalink">Blog</a>
       
     </h2>
     
     
   </article>
 </div>
-
 
   
 
@@ -709,14 +686,13 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/tags/blog/" rel="permalink">Blog</a>
+        <a href="/tags/jekyll/" rel="permalink">Jekyll</a>
       
     </h2>
     
     
   </article>
 </div>
-
 
   
 
@@ -727,14 +703,13 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/tags/jekyll/" rel="permalink">Jekyll</a>
+        <a href="/tags/dsc/" rel="permalink">DSC</a>
       
     </h2>
     
     
   </article>
 </div>
-
 
   
 
@@ -745,14 +720,13 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/tags/dsc/" rel="permalink">DSC</a>
+        <a href="/tags/pki/" rel="permalink">PKI</a>
       
     </h2>
     
     
   </article>
 </div>
-
 
   
 
@@ -763,14 +737,13 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/tags/pki/" rel="permalink">PKI</a>
+        <a href="/categories/windowsimagetools/" rel="permalink">WindowsImageTools</a>
       
     </h2>
     
     
   </article>
 </div>
-
 
   
 
@@ -781,14 +754,13 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/categories/windowsimagetools/" rel="permalink">WindowsImageTools</a>
+        <a href="/categories/nuggets/" rel="permalink">Nuggets</a>
       
     </h2>
     
     
   </article>
 </div>
-
 
   
 
@@ -799,14 +771,13 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/categories/nuggets/" rel="permalink">Nuggets</a>
+        <a href="/page2/" rel="permalink"></a>
       
     </h2>
     
     
   </article>
 </div>
-
 
   
 
@@ -817,14 +788,13 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/page2/" rel="permalink"></a>
+        <a href="/page3/" rel="permalink"></a>
       
     </h2>
     
     
   </article>
 </div>
-
 
   
 
@@ -835,14 +805,13 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/page3/" rel="permalink"></a>
+        <a href="/sitemap.xml" rel="permalink"></a>
       
     </h2>
     
     
   </article>
 </div>
-
 
   
 
@@ -853,14 +822,13 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/sitemap.xml" rel="permalink"></a>
+        <a href="/robots.txt" rel="permalink"></a>
       
     </h2>
     
     
   </article>
 </div>
-
 
   
 
@@ -871,53 +839,24 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/robots.txt" rel="permalink"></a>
+        <a href="/feed.xml" rel="permalink"></a>
       
     </h2>
     
     
   </article>
 </div>
-
-
-  
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="https://blog.bladefirelight.com/feed.xml" rel="permalink"></a>
-      
-    </h2>
-    
-    
-  </article>
-</div>
-
-
-  
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="https://blog.bladefirelight.com/feed.xslt.xml" rel="permalink"></a>
-      
-    </h2>
-    
-    
-  </article>
-</div>
-
 
   </div>
 </div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+    <div class="search-hits"></div></div>
+      </div>
+    
 
     <div class="page__footer">
       <footer>
@@ -930,31 +869,82 @@
       <li><strong>Follow:</strong></li>
     
     
-      <li><a href="https://twitter.com/BladeFireLight"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+      <li><a href="https://twitter.com/BladeFireLight"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
     
     
     
-    
-    
-      <li><a href="https://github.com/BladeFireLight"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+      <li><a href="https://github.com/BladeFireLight"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
     
     
     
-    <li><a href="https://blog.bladefirelight.com/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2017 David Jones. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2018 David Jones. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
       </footer>
     </div>
 
-    <script src="https://blog.bladefirelight.com/assets/js/main.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="https://blog.bladefirelight.com/assets/js/staticman.js" type="text/javascript" charset="utf-8"></script>
-
-<!-- If viewing the search page, include Lunr scripts -->
-
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"></script>
 
 
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'H9ZC0SHNUQ',
+  apiKey: 'b4603a9d806ac4befb326ce1731d101e',
+  indexName: 'Blog',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate
+    }
+  })
+);
+
+// Starting the search
+search.start();
+</script>
 
 
 
@@ -962,4 +952,3 @@
 
   </body>
 </html>
-

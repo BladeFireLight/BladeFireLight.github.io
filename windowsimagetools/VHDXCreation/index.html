@@ -1,39 +1,29 @@
 <!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.11.2 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
 <html lang="en" class="no-js">
   <head>
     <meta charset="utf-8">
 
-<!-- begin SEO -->
-
-
-
-
-
-
-
-
-
-<title>Windows Image Tools | VHDX Creation - PowerShell Journey</title>
-
-
-
-
+<!-- begin _includes/seo.html --><title>Windows Image Tools | VHDX Creation - PowerShell Journey</title>
 <meta name="description" content="One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).">
 
 
 
-
+<meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="PowerShell Journey">
 <meta property="og:title" content="Windows Image Tools | VHDX Creation">
-
-
-  <link rel="canonical" href="https://blog.bladefirelight.com/windowsimagetools/VHDXCreation/">
-  <meta property="og:url" content="https://blog.bladefirelight.com/windowsimagetools/VHDXCreation/">
-
+<meta property="og:url" content="https://blog.bladefirelight.com/windowsimagetools/VHDXCreation/">
 
 
   <meta property="og:description" content="One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK  and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time.  (IIS, SQL, Exchange, etc…).">
+
+
 
 
 
@@ -51,17 +41,18 @@
 
 
 
-  
-
-  
-
-
-
-
-
-  <meta property="og:type" content="article">
   <meta property="article:published_time" content="2016-08-21T16:48:59-05:00">
 
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://blog.bladefirelight.com/windowsimagetools/VHDXCreation/">
 
 
 
@@ -71,11 +62,11 @@
 
   <script type="application/ld+json">
     {
-      "@context" : "http://schema.org",
-      "@type" : "Person",
-      "name" : "David Jones",
-      "url" : "https://blog.bladefirelight.com",
-      "sameAs" : null
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "David Jones",
+      "url": "https://blog.bladefirelight.com",
+      "sameAs": null
     }
   </script>
 
@@ -84,10 +75,11 @@
 
 
 
-<!-- end SEO -->
+
+<!-- end _includes/seo.html -->
 
 
-<link href="https://blog.bladefirelight.com/feed.xml" type="application/atom+xml" rel="alternate" title="PowerShell Journey Feed">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="PowerShell Journey Feed">
 
 <!-- http://t.co/dKP3o1e -->
 <meta name="HandheldFriendly" content="True">
@@ -99,56 +91,95 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="https://blog.bladefirelight.com/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/main.css">
 
-<meta http-equiv="cleartype" content="on">
+<!--[if lte IE 11]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
     <!-- start custom head snippets -->
 
-<!-- insert favicons. use http://realfavicongenerator.net/ -->
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
 
 <!-- end custom head snippets -->
+
   </head>
 
-  <body class="layout--single">
+  <body class="layout--single wide">
 
     <!--[if lt IE 11]>
-<div class="notice__danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
 <![endif]-->
 
     <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
-        <button><div class="navicon"></div></button>
+        <a class="site-title" href="/">PowerShell Journey</a>
         <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg"><a href="https://blog.bladefirelight.com/">PowerShell Journey</a></li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/about/">About</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/about/" >About</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/nuggets/">Nuggets</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/nuggets/" >Nuggets</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/windowsimagetools/">Windows Image Tools</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/windowsimagetools/" >Windows Image Tools</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/year-archive/">Archive by Date</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/year-archive/" >Archive by Date</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/categories/">By Category</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/categories/" >By Category</a>
+            </li>
           
             
-            <li class="masthead__menu-item"><a href="https://blog.bladefirelight.com/tags/">By Tag</a></li>
+            <li class="masthead__menu-item">
+              <a href="https://blog.bladefirelight.com/tags/" >By Tag</a>
+            </li>
           
         </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
         <ul class="hidden-links hidden"></ul>
       </nav>
     </div>
   </div>
 </div>
 
-    
+    <div class="initial-content">
+      
 
 
   
@@ -171,7 +202,7 @@
       
         
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-          <a href="https://blog.bladefirelight.com/windowsimagetools" itemprop="item"><span itemprop="name">Windowsimagetools</span></a>
+          <a href="/categories/windowsimagetools" itemprop="item"><span itemprop="name">Windowsimagetools</span></a>
           <meta itemprop="position" content="2" />
         </li>
         <span class="sep">/</span>
@@ -179,11 +210,12 @@
     
       
       
-        <li class="current">Windows Image Tools | VHDX Creation</li>
+        <li class="current">Windows Image Tools \| VHDX Creation</li>
       
     
   </ol>
 </nav>
+
   
 
 
@@ -192,21 +224,26 @@
   <div class="sidebar sticky">
   
 
+
 <div itemscope itemtype="http://schema.org/Person">
 
   
     <div class="author__avatar">
       
-        <img src="https://blog.bladefirelight.com/assets/images/avatar1.jpg" class="author__avatar" alt="David Jones" itemprop="image">
+
+      
+        <img src="/assets/images/avatar1.jpg" alt="David Jones" itemprop="image">
       
     </div>
   
 
   <div class="author__content">
-    <h3 class="author__name" itemprop="name">David Jones</h3>
+    
+      <h3 class="author__name" itemprop="name">David Jones</h3>
+    
     
       <p class="author__bio" itemprop="description">
-        20 years IT Pro. life long student of tech
+        20 years IT Pro. Life long student of tech
       </p>
     
   </div>
@@ -216,7 +253,7 @@
     <ul class="author__urls social-icons">
       
         <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
-          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Gretna, NE</span>
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Gretna, NE</span>
         </li>
       
 
@@ -226,7 +263,7 @@
         <li>
           <a href="mailto:BladeFireLight@outlook.com">
             <meta itemprop="email" content="BladeFireLight@outlook.com" />
-            <i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email
           </a>
         </li>
       
@@ -236,7 +273,7 @@
       
         <li>
           <a href="https://twitter.com/BladeFireLight" itemprop="sameAs">
-            <i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
           </a>
         </li>
       
@@ -258,9 +295,11 @@
       
         <li>
           <a href="https://github.com/BladeFireLight" itemprop="sameAs">
-            <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
           </a>
         </li>
+      
+
       
 
       
@@ -290,7 +329,7 @@
       <!--
   <li>
     <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
-      <i class="fa fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
     </a>
   </li>
 -->
@@ -311,10 +350,10 @@
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Windows Image Tools | VHDX Creation
+          <h1 id="page-title" class="page__title" itemprop="headline">Windows Image Tools | VHDX Creation
 </h1>
           
-            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
 
@@ -326,17 +365,17 @@
       
 
       <section class="page__content" itemprop="text">
-        <aside class="sidebar__right">
-<nav class="toc">
-    <header><h4 class="nav__title"><i class="fa fa-file-text"></i> On This Page</h4></header>
-<ul class="toc__menu" id="markdown-toc">
-  <li><a href="#server-with-a-gui-and-net-35" id="markdown-toc-server-with-a-gui-and-net-35">Server with a GUI and .net 3.5</a></li>
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#server-with-a-gui-and-net-35">Server with a GUI and .net 3.5</a></li>
 </ul>
-
-  </nav>
-</aside>
-
-<p>## Getting started</p>
+            </nav>
+          </aside>
+        
+        <p>## Getting started</p>
 
 <p>To automate the creation of clean VM’s we need a clean diskimage. for that we will use Convert-Wim2VHD from WindowsImageTools</p>
 
@@ -346,11 +385,12 @@
 
 <p>I’m going to use a evaluation of 2012r2. I have it downloaded and saved to G:\ISO\Srv2012r2Eval.iso and i’m going to create a new vhdx in G:\vhd</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell">Convert-Wim2VHD -Path G:<span class="se">\v</span>hd<span class="se">\2</span>012r2_eval_Core.vhdx -Size 60gb -Dynamic -DiskLayout UEFI -SourcePath G:<span class="se">\i</span>so<span class="se">\S</span>rv2012r2Eval.ISO -Index 1 -Verbose</code></pre></figure>
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Convert-Wim2VHD -Path G:\vhd\2012r2_eval_Core.vhdx -Size 60gb -Dynamic -DiskLayout UEFI -SourcePath G:\iso\Srv2012r2Eval.ISO -Index 1 -Verbose
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>VERBOSE: [Convert-Wim2VHD] : Overwrite partitions inside [G:\vhd\2012r2_eval_Core.vhdx] 
-with content of [G:\iso\Srv2012r2Eval.ISO]
-VERBOSE: [Convert-Wim2VHD] : InitializeVHDPartitionParam
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VERBOSE: <span class="o">[</span>Convert-Wim2VHD] : Overwrite partitions inside <span class="o">[</span>G:\vhd\2012r2_eval_Core.vhdx] 
+with content of <span class="o">[</span>G:\iso\Srv2012r2Eval.ISO]
+VERBOSE: <span class="o">[</span>Convert-Wim2VHD] : InitializeVHDPartitionParam
 VERBOSE:
 Name                           Value
 ----                           -----
@@ -360,7 +400,7 @@ DiskLayout                     UEFI
 force                          True
 Size                           64424509440
 
-VERBOSE: [Convert-Wim2VHD] : SetVHDPartitionParam
+VERBOSE: <span class="o">[</span>Convert-Wim2VHD] : SetVHDPartitionParam
 VERBOSE:
 Name                           Value
 ----                           -----
@@ -371,16 +411,16 @@ Index                          1
 Force                          True
 Confirm                        False
 
-VERBOSE: [Convert-Wim2VHD] : ParametersToPass
+VERBOSE: <span class="o">[</span>Convert-Wim2VHD] : ParametersToPass
 VERBOSE:
 Name                           Value
 ----                           -----
 Verbose                        True
 
-VERBOSE: [Initialize-VHDPartition] Create partition structure for Bootable vhd(x) on 
-[G:\vhd\2012r2_eval_Core.vhdx]
-VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : Creating
-VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : @vhdParms
+VERBOSE: <span class="o">[</span>Initialize-VHDPartition] Create partition structure <span class="k">for </span>Bootable vhd<span class="o">(</span>x<span class="o">)</span> on 
+<span class="o">[</span>G:\vhd\2012r2_eval_Core.vhdx]
+VERBOSE: <span class="o">[</span>Initialize-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] : Creating
+VERBOSE: <span class="o">[</span>Initialize-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] : @vhdParms
 VERBOSE:
 Name                           Value
 ----                           -----
@@ -390,55 +430,55 @@ Dynamic                        True
 ErrorAction                    Stop
 BlockSizeBytes                 1048576
 
-VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : Mounting disk image
-VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : Initializing disk [5] as 
+VERBOSE: <span class="o">[</span>Initialize-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] : Mounting disk image
+VERBOSE: <span class="o">[</span>Initialize-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] : Initializing disk <span class="o">[</span>5] as 
 GPT
-VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : Clearing disk partitions to 
-start all over
-VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : EFI system : Creating 
-partition of [209715200] bytes
-VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : EFI system : Formatting 
+VERBOSE: <span class="o">[</span>Initialize-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] : Clearing disk partitions to 
+<span class="nb">start </span>all over
+VERBOSE: <span class="o">[</span>Initialize-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] : EFI system : Creating 
+partition of <span class="o">[</span>209715200] bytes
+VERBOSE: <span class="o">[</span>Initialize-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] : EFI system : Formatting 
 FAT32
-VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : EFI system : Setting system 
+VERBOSE: <span class="o">[</span>Initialize-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] : EFI system : Setting system 
 partition as ESP
-VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : MSR : Creating partition of 
-[134217728] bytes
-VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : Windows : Creating partition 
-of [64078479360] bytes
-VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : Windows : Formatting volume 
+VERBOSE: <span class="o">[</span>Initialize-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] : MSR : Creating partition of 
+<span class="o">[</span>134217728] bytes
+VERBOSE: <span class="o">[</span>Initialize-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] : Windows : Creating partition 
+of <span class="o">[</span>64078479360] bytes
+VERBOSE: <span class="o">[</span>Initialize-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] : Windows : Formatting volume 
 NTFS
-VERBOSE: [Initialize-VHDPartition] [2012r2_eval_Core.vhdx] : Dismounting disk image
-VERBOSE: [Set-VHDPartition] : Overwrite partitions inside [G:\vhd\2012r2_eval_Core.vhdx] 
+VERBOSE: <span class="o">[</span>Initialize-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] : Dismounting disk image
+VERBOSE: <span class="o">[</span><span class="nb">Set</span>-VHDPartition] : Overwrite partitions inside <span class="o">[</span>G:\vhd\2012r2_eval_Core.vhdx] 
 with content of
-[G:\iso\Srv2012r2Eval.ISO]
-VERBOSE: [Set-VHDPartition] : Opening ISO [Srv2012r2Eval.ISO]
-VERBOSE: [Set-VHDPartition] : Looking for I:\sources\install.wim
-VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Mounting disk image 
-[G:\vhd\2012r2_eval_Core.vhdx]
-VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Munted as disknumber [5]
-VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Partition Table
+<span class="o">[</span>G:\iso\Srv2012r2Eval.ISO]
+VERBOSE: <span class="o">[</span><span class="nb">Set</span>-VHDPartition] : Opening ISO <span class="o">[</span>Srv2012r2Eval.ISO]
+VERBOSE: <span class="o">[</span><span class="nb">Set</span>-VHDPartition] : Looking <span class="k">for </span>I:\sources\install.wim
+VERBOSE: <span class="o">[</span><span class="nb">Set</span>-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] : Mounting disk image 
+<span class="o">[</span>G:\vhd\2012r2_eval_Core.vhdx]
+VERBOSE: <span class="o">[</span><span class="nb">Set</span>-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] : Munted as disknumber <span class="o">[</span>5]
+VERBOSE: <span class="o">[</span><span class="nb">Set</span>-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] : Partition Table
 VERBOSE:
-PartitionNumber DriveLetter        Size Type
+PartitionNumber DriveLetter        Size <span class="nb">Type</span>
 --------------- -----------        ---- ----
               1           J   209715200 System
               2               134217728 Reserved
               3           K 64078479360 Basic
 
-VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] Windows Partition [3] : Applying 
-image from
-[I:\sources\install.wim] to [K:\] using Index [1]
-VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Disk Layout [UEFI]
-VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] System Partition [1] : Running 
-[K:\Windows\System32\bcdboot.exe] -&gt;
+VERBOSE: <span class="o">[</span><span class="nb">Set</span>-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] Windows Partition <span class="o">[</span>3] : Applying 
+image <span class="k">from</span>
+<span class="o">[</span>I:\sources\install.wim] to <span class="o">[</span>K:\] <span class="k">using </span>Index <span class="o">[</span>1]
+VERBOSE: <span class="o">[</span><span class="nb">Set</span>-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] : Disk Layout <span class="o">[</span>UEFI]
+VERBOSE: <span class="o">[</span><span class="nb">Set</span>-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] System Partition <span class="o">[</span>1] : Running 
+<span class="o">[</span>K:\Windows\System32\bcdboot.exe] -&gt;
  K:\Windows /s J: /v /f UEFI
-VERBOSE: [Run-Executable] : Running [K:\Windows\System32\bcdboot.exe] 
-[K:\Windows /s J: /v /f UEFI]
+VERBOSE: <span class="o">[</span>Run-Executable] : Running <span class="o">[</span>K:\Windows\System32\bcdboot.exe] 
+<span class="o">[</span>K:\Windows /s J: /v /f UEFI]
 VERBOSE:
 Name                           Value
 ----                           -----
 PassThru                       True
 FilePath                       K:\Windows\System32\bcdboot.exe
-ArgumentList                   {K:\Windows, /s J:, /v, /f UEFI}
+ArgumentList                   <span class="o">{</span>K:\Windows, /s J:, /v, /f UEFI<span class="o">}</span>
 RedirectStandardError          C:\Users\BLADE_~1\AppData\Local\Temp\bcdboot.exe-Standard
 Error.txt
 NoNewWindow                    True
@@ -446,18 +486,18 @@ Wait                           True
 
 RedirectStandardOutput         C:\Users\BLADE_~1\AppData\Local\Temp\bcdboot.exe-Standard
 Output.txt
-VERBOSE: [Run-Executable] : Return code was [0]
-VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Removing Drive letters
-VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Dismounting
-VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Finished
-</code></pre>
-</div>
+VERBOSE: <span class="o">[</span>Run-Executable] : <span class="k">Return </span>code was <span class="o">[</span>0]
+VERBOSE: <span class="o">[</span><span class="nb">Set</span>-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] : Removing Drive letters
+VERBOSE: <span class="o">[</span><span class="nb">Set</span>-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] : Dismounting
+VERBOSE: <span class="o">[</span><span class="nb">Set</span>-VHDPartition] <span class="o">[</span>2012r2_eval_Core.vhdx] : Finished
+</code></pre></div></div>
 
 <h2 id="server-with-a-gui-and-net-35">Server with a GUI and .net 3.5</h2>
 
 <p>Lets say we need a VM with the Desktop and .Net 3.5 to run a legacy vendor app.</p>
 
-<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell">Convert-Wim2VHD -Path G:<span class="se">\v</span>hd<span class="se">\2</span>012r2_eval_gui.vhdx -Size 60gb -Dynamic -DiskLayout UEFI -SourcePath G:<span class="se">\i</span>so<span class="se">\S</span>rv2012r2Eval.ISO -Index 2 -Feature NetFx3</code></pre></figure>
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Convert-Wim2VHD -Path G:\vhd\2012r2_eval_gui.vhdx -Size 60gb -Dynamic -DiskLayout UEFI -SourcePath G:\iso\Srv2012r2Eval.ISO -Index 2 -Feature NetFx3
+</code></pre></div></div>
 
 <p>The -Feature command takes the feature names that would be understood by DISM, or Install-WindowsOptionalFeature</p>
 
@@ -477,24 +517,24 @@ VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Finished
   
 
   <p class="page__taxonomy">
-    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
     <span itemprop="keywords">
     
       
       
-      <a href="https://blog.bladefirelight.com/tags/module" class="page__taxonomy-item" rel="tag">Module</a><span class="sep">, </span>
+      <a href="/tags/module" class="page__taxonomy-item" rel="tag">Module</a><span class="sep">, </span>
     
       
       
-      <a href="https://blog.bladefirelight.com/tags/vhdx" class="page__taxonomy-item" rel="tag">VHDX</a><span class="sep">, </span>
+      <a href="/tags/vhdx" class="page__taxonomy-item" rel="tag">VHDX</a><span class="sep">, </span>
     
       
       
-      <a href="https://blog.bladefirelight.com/tags/windowsupdate" class="page__taxonomy-item" rel="tag">WindowsUpdate</a><span class="sep">, </span>
+      <a href="/tags/windowsupdate" class="page__taxonomy-item" rel="tag">WindowsUpdate</a><span class="sep">, </span>
     
       
       
-      <a href="https://blog.bladefirelight.com/tags/windowsupdatetools" class="page__taxonomy-item" rel="tag">WindowsUpdateTools</a>
+      <a href="/tags/windowsupdatetools" class="page__taxonomy-item" rel="tag">WindowsUpdateTools</a>
     
     </span>
   </p>
@@ -510,19 +550,19 @@ VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Finished
   
 
   <p class="page__taxonomy">
-    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
     <span itemprop="keywords">
     
       
       
-      <a href="https://blog.bladefirelight.com/windowsimagetools" class="page__taxonomy-item" rel="tag">WindowsImageTools</a>
+      <a href="/categories/windowsimagetools" class="page__taxonomy-item" rel="tag">WindowsImageTools</a>
     
     </span>
   </p>
 
 
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-08-21T16:48:59-05:00">August 21, 2016</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-08-21T16:48:59-05:00">August 21, 2016</time></p>
         
       </footer>
 
@@ -531,24 +571,24 @@ VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Finished
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=BladeFireLight&text=Windows Image Tools \| VHDX Creation https://blog.bladefirelight.com/windowsimagetools/VHDXCreation/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=BladeFireLight&text=Windows+Image+Tools+%5C%7C+VHDX+Creation%20https%3A%2F%2Fblog.bladefirelight.com%2Fwindowsimagetools%2FVHDXCreation%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https://blog.bladefirelight.com/windowsimagetools/VHDXCreation/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.bladefirelight.com%2Fwindowsimagetools%2FVHDXCreation%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=https://blog.bladefirelight.com/windowsimagetools/VHDXCreation/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fblog.bladefirelight.com%2Fwindowsimagetools%2FVHDXCreation%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://blog.bladefirelight.com/windowsimagetools/VHDXCreation/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fblog.bladefirelight.com%2Fwindowsimagetools%2FVHDXCreation%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="https://blog.bladefirelight.com/windowsimagetools/windows-image-tools-overview/" class="pagination--pager" title="Windows Image Tools | Overview
+      <a href="/windowsimagetools/windows-image-tools-overview/" class="pagination--pager" title="Windows Image Tools | Overview
 ">Previous</a>
     
     
-      <a href="https://blog.bladefirelight.com/windowsimagetools/Unattend/" class="pagination--pager" title="Windows Image Tools | Unattend.xml
+      <a href="/windowsimagetools/Unattend/" class="pagination--pager" title="Windows Image Tools | Unattend.xml
 ">Next</a>
     
   </nav>
@@ -556,86 +596,12 @@ VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Finished
     </div>
 
     
-      <div class="page__comments">
-  
-  
-
-    <section id="static-comments">
-      
-      
-
-
-        
-
-
-
-        <!-- Start new comment form -->
-        <div id="respond">
-        <h2 class="page__comments-title">
-          Leave a Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://blog.bladefirelight.com/windowsimagetools/VHDXCreation/#respond" style="display:none;">Cancel reply</a></small>
-        </h2>
-
-        <p class="small">Your email address will not be published. Required fields are marked <span class="required">*</span></p>
-
-        <form id="new_comment" class="page__comments-form js-form form" method="post" action="https://api.staticman.net/v2/entry/BladeFireLight/blog_source/master/comments">
-
-          <div class="form__spinner">
-            <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-            <span class="sr-only">Loading...</span>
-          </div>
-
-          <fieldset>
-            <label for="comment-form-message">Comment <small class="required">*</small></label>
-            <textarea type="text" rows="3" id="comment-form-message" name="fields[message]" tabindex="1"></textarea>
-            <div class="small help-block"><a href="https://daringfireball.net/projects/markdown/">Markdown is supported.</a></div>
-          </fieldset>
-          <fieldset>
-            <label for="comment-form-name">Name <small class="required">*</small></label>
-            <input type="text" id="comment-form-name" name="fields[name]" tabindex="2" />
-          </fieldset>
-          <fieldset>
-            <label for="comment-form-email">Email address <small class="required">*</small></label>
-            <input type="email" id="comment-form-email" name="fields[email]" tabindex="3" />
-          </fieldset>
-<!--          <fieldset>
-            <label for="comment-form-url">Website (optional)</label>
-            <input type="url" id="comment-form-url" name="fields[url]" tabindex="4"/>
-          </fieldset> -->
-          <fieldset class="hidden" style="display: none;">
-            <input type="hidden" name="options[origin]" value="https://blog.bladefirelight.com/windowsimagetools/VHDXCreation/">
-            <input type="hidden" id="comment-parent" name="options[parent]" value="">
-            <input type="hidden" id="comment-post-id" name="options[slug]" value="VHDXCreation">
-            <label for="comment-form-location">Not used. Leave blank if you are a human.</label>
-            <input type="text" id="comment-form-location" name="fields[hidden]" autocomplete="off"/>
-          </fieldset>
-          <!-- Start comment form alert messaging -->
-          <p class="hidden js-notice">
-            <strong class="js-notice-text"></strong>
-          </p>
-          <!-- End comment form alert messaging -->
-          <fieldset>
-            <label for="comment-form-reply"><input type="checkbox" id="comment-form-reply" name="options[subscribe]" value="email">&nbsp;Notify me of new comments by email.</label>
-            <button type="submit" id="comment-form-submit" tabindex="5" class="btn btn--large">Submit Comment</button>
-          </fieldset>
-
-        </form>
-      </div>
-      <!-- End new comment form -->
-      
-    
-  </section>
-  
-</div>
-
-    
   </article>
 
   
   
     <div class="page__related">
-      
-        <h4 class="page__related-title">You May Also Enjoy</h4>
-      
+      <h4 class="page__related-title">You May Also Enjoy</h4>
       <div class="grid__wrapper">
         
           
@@ -648,38 +614,29 @@ VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Finished
       <div class="archive__item-teaser">
         <img src=
           
-            "https://blog.bladefirelight.com/assets/images/default-teaser.png"
+            "/assets/images/default-teaser.png"
           
           alt="">
       </div>
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/nuggets/collecting-ca-certificates-for-dsc-configuration/" rel="permalink">Collecting CA Certificates for DSC Configuration
+        <a href="/nuggets/collecting-ca-certificates-for-dsc-configuration/" rel="permalink">Collecting CA Certificates for DSC Configuration
 </a>
       
     </h2>
     
-      <p class="page__meta">
-      
-        <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated: <time datetime="2017-04-21T00:00:00-05:00">April 21, 2017</time>
-      
-      
-       - 
-       <i class="fa fa-clock-o" aria-hidden="true"></i> 
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
 
 
   4 minute read
-
-      
-      </p>
+</p>
     
     <p class="archive__item-excerpt" itemprop="description">Best practice is to use individual certificates for each Node for DSC. While you can use auto enrollment, getting the certificates to where the MOF are build...</p>
   </article>
 </div>
-
         
           
 
@@ -691,38 +648,29 @@ VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Finished
       <div class="archive__item-teaser">
         <img src=
           
-            "https://blog.bladefirelight.com/assets/images/default-teaser.png"
+            "/assets/images/default-teaser.png"
           
           alt="">
       </div>
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 3
+        <a href="/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 3
 </a>
       
     </h2>
     
-      <p class="page__meta">
-      
-        <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated: <time datetime="2016-10-12T16:48:59-05:00">October 12, 2016</time>
-      
-      
-       - 
-       <i class="fa fa-clock-o" aria-hidden="true"></i> 
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
 
 
-  less than 1 minute read
-
-      
-      </p>
+  5 minute read
+</p>
     
     <p class="archive__item-excerpt" itemprop="description">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use ...</p>
   </article>
 </div>
-
         
           
 
@@ -734,38 +682,29 @@ VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Finished
       <div class="archive__item-teaser">
         <img src=
           
-            "https://blog.bladefirelight.com/assets/images/default-teaser.png"
+            "/assets/images/default-teaser.png"
           
           alt="">
       </div>
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/windowsimagetools/Creating-an-Updateed-Image-Part2-WMF5/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 2
+        <a href="/windowsimagetools/Creating-an-Updateed-Image-Part2-WMF5/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 2
 </a>
       
     </h2>
     
-      <p class="page__meta">
-      
-        <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated: <time datetime="2016-09-01T16:48:59-05:00">September 01, 2016</time>
-      
-      
-       - 
-       <i class="fa fa-clock-o" aria-hidden="true"></i> 
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
 
 
-  4 minute read
-
-      
-      </p>
+  6 minute read
+</p>
     
     <p class="archive__item-excerpt" itemprop="description">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use ...</p>
   </article>
 </div>
-
         
           
 
@@ -777,44 +716,43 @@ VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Finished
       <div class="archive__item-teaser">
         <img src=
           
-            "https://blog.bladefirelight.com/assets/images/default-teaser.png"
+            "/assets/images/default-teaser.png"
           
           alt="">
       </div>
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="https://blog.bladefirelight.com/windowsimagetools/Creating-an-Updateed-Image-Part1-Base-VHDX/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 1
+        <a href="/windowsimagetools/Creating-an-Updateed-Image-Part1-Base-VHDX/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 1
 </a>
       
     </h2>
     
-      <p class="page__meta">
-      
-        <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated: <time datetime="2016-09-01T16:48:59-05:00">September 01, 2016</time>
-      
-      
-       - 
-       <i class="fa fa-clock-o" aria-hidden="true"></i> 
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
 
 
 
-  3 minute read
-
-      
-      </p>
+  2 minute read
+</p>
     
     <p class="archive__item-excerpt" itemprop="description">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use ...</p>
   </article>
 </div>
-
         
       </div>
     </div>
   
+  
 </div>
+    </div>
 
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+    <div class="search-hits"></div></div>
+      </div>
+    
 
     <div class="page__footer">
       <footer>
@@ -827,36 +765,88 @@ VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Finished
       <li><strong>Follow:</strong></li>
     
     
-      <li><a href="https://twitter.com/BladeFireLight"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+      <li><a href="https://twitter.com/BladeFireLight"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
     
     
     
-    
-    
-      <li><a href="https://github.com/BladeFireLight"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+      <li><a href="https://github.com/BladeFireLight"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
     
     
     
-    <li><a href="https://blog.bladefirelight.com/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2017 David Jones. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2018 David Jones. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
       </footer>
     </div>
 
-    <script src="https://blog.bladefirelight.com/assets/js/main.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="https://blog.bladefirelight.com/assets/js/staticman.js" type="text/javascript" charset="utf-8"></script>
-
-<!-- If viewing the search page, include Lunr scripts -->
-
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"></script>
 
 
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'H9ZC0SHNUQ',
+  apiKey: 'b4603a9d806ac4befb326ce1731d101e',
+  indexName: 'Blog',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate
+    }
+  })
+);
+
+// Starting the search
+search.start();
+</script>
 
 
 
 
-  
+
+    
   <script>
     (function ($) {
     var $comments = $('.js-comments');
@@ -865,7 +855,7 @@ VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Finished
       var form = this;
 
       $(form).addClass('disabled');
-      $('#comment-form-submit').html('<i class="fa fa-spinner fa-spin fa-fw"></i> Loading...');
+      $('#comment-form-submit').html('<i class="fas fa-spinner fa-spin fa-fw"></i> Loading...');
 
       $.ajax({
         type: $(this).attr('method'),
@@ -896,112 +886,10 @@ VERBOSE: [Set-VHDPartition] [2012r2_eval_Core.vhdx] : Finished
       $('.page__comments-form .js-notice-text').html(message);
     }
   })(jQuery);
+  </script>
 
-  var addComment = {
-  moveForm: function( commId, parentId, respondId, postId ) {
-    var div, element, style, cssHidden,
-      t           = this,
-      comm        = t.I( commId ),
-      respond     = t.I( respondId ),
-      cancel      = t.I( 'cancel-comment-reply-link' ),
-      parent      = t.I( 'comment-parent' ),
-      post        = t.I( 'comment-post-slug' ),
-      commentForm = respond.getElementsByTagName( 'form' )[0];
-
-    if ( ! comm || ! respond || ! cancel || ! parent || ! commentForm ) {
-      return;
-    }
-
-    t.respondId = respondId;
-    postId = postId || false;
-
-    if ( ! t.I( 'sm-temp-form-div' ) ) {
-      div = document.createElement( 'div' );
-      div.id = 'sm-temp-form-div';
-      div.style.display = 'none';
-      respond.parentNode.insertBefore( div, respond );
-    }
-
-    comm.parentNode.insertBefore( respond, comm.nextSibling );
-    if ( post && postId ) {
-      post.value = postId;
-    }
-    parent.value = parentId;
-    cancel.style.display = '';
-
-    cancel.onclick = function() {
-      var t       = addComment,
-        temp    = t.I( 'sm-temp-form-div' ),
-        respond = t.I( t.respondId );
-
-      if ( ! temp || ! respond ) {
-        return;
-      }
-
-      t.I( 'comment-parent' ).value = '0';
-      temp.parentNode.insertBefore( respond, temp );
-      temp.parentNode.removeChild( temp );
-      this.style.display = 'none';
-      this.onclick = null;
-      return false;
-    };
-
-    /*
-     * Set initial focus to the first form focusable element.
-     * Try/catch used just to avoid errors in IE 7- which return visibility
-     * 'inherit' when the visibility value is inherited from an ancestor.
-     */
-    try {
-      for ( var i = 0; i < commentForm.elements.length; i++ ) {
-        element = commentForm.elements[i];
-        cssHidden = false;
-
-        // Modern browsers.
-        if ( 'getComputedStyle' in window ) {
-          style = window.getComputedStyle( element );
-        // IE 8.
-        } else if ( document.documentElement.currentStyle ) {
-          style = element.currentStyle;
-        }
-
-        /*
-         * For display none, do the same thing jQuery does. For visibility,
-         * check the element computed style since browsers are already doing
-         * the job for us. In fact, the visibility computed style is the actual
-         * computed value and already takes into account the element ancestors.
-         */
-        if ( ( element.offsetWidth <= 0 && element.offsetHeight <= 0 ) || style.visibility === 'hidden' ) {
-          cssHidden = true;
-        }
-
-        // Skip form elements that are hidden or disabled.
-        if ( 'hidden' === element.type || element.disabled || cssHidden ) {
-          continue;
-        }
-
-        element.focus();
-        // Stop after the first focusable element.
-        break;
-      }
-
-    } catch( er ) {}
-
-    return false;
-  },
-
-  I: function( id ) {
-    return document.getElementById( id );
-  }
-};
-</script>
-
-
-
-
-
-
+  
 
 
   </body>
 </html>
-
