@@ -9,7 +9,7 @@
   Location:             Buffalo, New York USA
 
 /* About Site */
-  Last updated:         2018-06-04 19:23:19 -0500
+  Last updated:         2018-06-04 22:31:53 -0500
   Language:             English
   Built with:           Jekyll 3.8.2 <http://jekyllrb.com>
                         Notepad++ <https://notepad-plus-plus.org/>
