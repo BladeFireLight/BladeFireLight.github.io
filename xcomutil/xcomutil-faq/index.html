@@ -9,28 +9,28 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Test-HomeLab -InputObject “The Plan” - PowerShell Journey</title>
-<meta name="description" content="My Plan for a home test lab">
+<!-- begin _includes/seo.html --><title>XcomUtil FAQ - PowerShell Journey</title>
+<meta name="description" content="Will XcomUtil work with 64 bit windows?">
 
 
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="PowerShell Journey">
-<meta property="og:title" content="Test-HomeLab -InputObject “The Plan”">
-<meta property="og:url" content="https://blog.bladefirelight.com/test-homelab-inputobject-the-plan/">
+<meta property="og:title" content="XcomUtil FAQ">
+<meta property="og:url" content="https://blog.bladefirelight.com/xcomutil/xcomutil-faq/">
 
 
-  <meta property="og:description" content="My Plan for a home test lab">
+  <meta property="og:description" content="Will XcomUtil work with 64 bit windows?">
 
 
 
 
 
   <meta name="twitter:site" content="@BladeFireLight">
-  <meta name="twitter:title" content="Test-HomeLab -InputObject “The Plan”">
-  <meta name="twitter:description" content="My Plan for a home test lab">
-  <meta name="twitter:url" content="https://blog.bladefirelight.com/test-homelab-inputobject-the-plan/">
+  <meta name="twitter:title" content="XcomUtil FAQ">
+  <meta name="twitter:description" content="Will XcomUtil work with 64 bit windows?">
+  <meta name="twitter:url" content="https://blog.bladefirelight.com/xcomutil/xcomutil-faq/">
 
   
     <meta name="twitter:card" content="summary">
@@ -41,7 +41,7 @@
 
 
 
-  <meta property="article:published_time" content="2015-04-27T00:00:00-05:00">
+  <meta property="article:published_time" content="2012-04-08T16:06:00-05:00">
 
 
 
@@ -52,7 +52,7 @@
   
 
 
-<link rel="canonical" href="https://blog.bladefirelight.com/test-homelab-inputobject-the-plan/">
+<link rel="canonical" href="https://blog.bladefirelight.com/xcomutil/xcomutil-faq/">
 
 
 
@@ -200,7 +200,17 @@
         <span class="sep">/</span>
       
       
-        <li class="current">Test-HomeLab -InputObject "The Plan"</li>
+        
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="/categories/xcomutil" itemprop="item"><span itemprop="name">Xcomutil</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">XcomUtil FAQ</li>
       
     
   </ol>
@@ -332,15 +342,15 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Test-HomeLab -InputObject “The Plan”">
-    <meta itemprop="description" content="My Plan for a home test lab">
-    <meta itemprop="datePublished" content="April 27, 2015">
+    <meta itemprop="headline" content="XcomUtil FAQ">
+    <meta itemprop="description" content="Will XcomUtil work with 64 bit windows?">
+    <meta itemprop="datePublished" content="April 08, 2012">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Test-HomeLab -InputObject “The Plan”
+          <h1 id="page-title" class="page__title" itemprop="headline">XcomUtil FAQ
 </h1>
           
             <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
@@ -348,7 +358,7 @@
 
 
 
-  1 minute read
+  2 minute read
 </p>
           
         </header>
@@ -360,40 +370,46 @@
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
               <ul class="toc__menu">
-  <li><a href="#posts-in-this-series">Posts in This series</a></li>
+  <li><a href="#will-xcomutil-work-with-64-bit-windows">Will XcomUtil work with 64 bit windows?</a></li>
+  <li><a href="#does-xcomutil-work-on-vista-or-windows-7">Does XcomUtil work on Vista or Windows 7?</a></li>
+  <li><a href="#will-you-release-the-source-code">Will you release the source code?</a></li>
+  <li><a href="#what-is-xcomutil">What is XcomUtil?</a></li>
 </ul>
             </nav>
           </aside>
         
-        <h3 id="posts-in-this-series">Posts in This series</h3>
+        <h2 id="will-xcomutil-work-with-64-bit-windows">Will XcomUtil work with 64 bit windows?</h2>
 
-<ol>
-  <li>Test-HomeLab -InputObject “The Plan” (This Post)</li>
-  <li><a href="/Get-Posh-Git-Test-Lab/">Get-Posh-Git | Test-Lab</a></li>
-  <li><a href="/get-dscframework-test-lab/">Get-DSCFramework | Test-Lab</a></li>
-  <li><a href="/invoke-dscbuild-test-lab/">Invoke-DscBuild | Test-Lab</a></li>
-  <li><a href="/test-lab-update-github/">Test-Lab | Update-GitHub</a></li>
-</ol>
+<p>Version 9.6 and earlier will not. 
+While it works in Dosbox on x64 windows. 
+the setup file does not run in DosBox.<br />
+9.7 Has been compiled with both 16bit (for dosbox) and 32bit executable.</p>
 
-<h2 id="the-plan">The Plan</h2>
+<h2 id="does-xcomutil-work-on-vista-or-windows-7">Does XcomUtil work on Vista or Windows 7?</h2>
 
-<p>What I intend to do is to create and in home test lab that I can use to test and develop DSC.  I’m basing my lab from <a href="http://powershell.org/wp/2015/03/25/home-labs-for-the-it-pro/">Greg Altman excellent post</a> over on <a href="http://powershell.org/">PowerShell.org</a></p>
+<p>The DOS versions of UFO and TFTD work with XcomUtil using DOSBox. However the xcusetup.bat does not currently work in DosBox. You have to run the setup in windows and then run the games from DOSBox.</p>
 
-<p>The only exception I to this is that I have 2 machines to use a Hyper-V hosts. Now the second one I plan on installing Nano if/when it got into preview. Baring that I will use Hyper-V server 2012 R2.</p>
+<p>XCOM CE runs in Vista and Windows 7 if you install a Application Compatibility Toolkit Shim that disables Direct Draw Acceleration. I have created a installer to set this up.  The installer is included with XcomUtil 9.7 and later.</p>
 
-<p>Now to keep the lab services into the virtual realm as Greg mentioned, <em>and</em> use two hosts. I have spend the weekend trying to create a vyos VPN tunnel between two isolated networks.</p>
+<h2 id="will-you-release-the-source-code">Will you release the source code?</h2>
+<p>I wish I could.  Scott has been verry clear on this point. The situation under what he created XcomUtil does not allow him to allow it into the public domain.</p>
 
-<p>Needless to say not everything go according to plan. the Tunnel reports the link is up, but their is no traffic between network.</p>
+<h2 id="what-is-xcomutil">What is XcomUtil?</h2>
+<p>XcomUtil is a game enhancer. It is not really an editor and it is certainly not a cheat program. The original purpose of XcomUtil was to make the game more difficult, because there was a bug in the original game that forced all games to the Beginner difficulty level, regardless of what level you chose.</p>
 
-<p>I have already wasted most of the weekend on this, so I’m going to move forward for now with with out the VPN.  It’s not like I need it yet.</p>
+<p>Today, XcomUtil not only fixes the Difficulty Bug and several others, but it enables you to use all five ships to carry troops, it can randomly redesign the alien ships before each battle, and it can allow you to pick your terrain and the type of alien ship before each battle. The image below is an OS/2 screen capture of the new XCOM Interceptor. It holds up to 6 soldiers, with the possibility of one tank.</p>
 
-<p>So, onward.</p>
+<p>The latest version allows you to merge the terrains from both XCOM and TFTD so that the terrains from either game are available in both games.</p>
 
-<p>I’m going to first build a windows 8.1 dev PC by hand, and load the PowerShell.org DSC tooling on it. From there I can build configs for building a as much of the rest of the environment as possible.</p>
+<p>The original XcomUtil was a command line utility with a confusing set of options. Today, the XCUSETUP batch file prompts you for the most popular features and provides defaults for everything. The average user can just keep pressing enter and probably get what he or she wants. You can safely run XCUSETUP again and again to change the features whenever you like. The RUNXCOM batch file is used in both games to control the many runtime features of XcomUtil, such as new human ships, random terrains, and random ship generation.</p>
 
-<p>I hope to have a Pull Server, DC, PKI CA, up first, then move on to other servers that I can use to build resources for.</p>
+<p>XcomUtil supports all known versions of X-COM:UFO Defense and X-COM:Terror from the Deep (sometimes called TFTD or XCOM2) by MicroProse. It also supports all foreign versions of these games, including UFO:Enemy Unknown, the original European version of XCOM.</p>
 
-<p>I have been running DSC in production for the last year, and I hope I can share may experience via a how to for a test environment and how it relates back to problems in the enterprise.</p>
+<p>XcomUtil always allows you to view and modify your enemies and their equipment, dynamically change your money, score, or level of difficulty, and even switch sides with the enemy to allow two-player battles.</p>
+
+<p>Use these programs at your own risk, only after making backups of the directories containing the files they modify. I am not liable for any damages they may cause. You may freely distribute these ZIP files only if they are not modified and no money is charged for their distribution. However, to allow me to easily update XcomUtil, you should link to this page rather than allow downloading of the files from your own pages.</p>
+
+<p>XcomUtil has always been a DOS program because XCOM has always been a DOS program and XcomUtil must be able to run everywhere that XCOM runs. Therefore, XcomUtil run equally well under true DOS or in a DOS window.</p>
 
         
       </section>
@@ -401,6 +417,8 @@
       <footer class="page__meta">
         
         
+
+
   
 
 
@@ -409,21 +427,19 @@
   
 
   <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
     <span itemprop="keywords">
     
       
       
-      <a href="/tags/testlab" class="page__taxonomy-item" rel="tag">TestLab</a>
+      <a href="/categories/xcomutil" class="page__taxonomy-item" rel="tag">XcomUtil</a>
     
     </span>
   </p>
 
 
-
-
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-04-27T00:00:00-05:00">April 27, 2015</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2012-04-08T16:06:00-05:00">April 08, 2012</time></p>
         
       </footer>
 
@@ -432,24 +448,24 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=BladeFireLight&text=Test-HomeLab+-InputObject+%22The+Plan%22%20https%3A%2F%2Fblog.bladefirelight.com%2Ftest-homelab-inputobject-the-plan%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=BladeFireLight&text=XcomUtil+FAQ%20https%3A%2F%2Fblog.bladefirelight.com%2Fxcomutil%2Fxcomutil-faq%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.bladefirelight.com%2Ftest-homelab-inputobject-the-plan%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.bladefirelight.com%2Fxcomutil%2Fxcomutil-faq%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=https%3A%2F%2Fblog.bladefirelight.com%2Ftest-homelab-inputobject-the-plan%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fblog.bladefirelight.com%2Fxcomutil%2Fxcomutil-faq%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fblog.bladefirelight.com%2Ftest-homelab-inputobject-the-plan%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fblog.bladefirelight.com%2Fxcomutil%2Fxcomutil-faq%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/xcomutil/xcomutil-faq/" class="pagination--pager" title="XcomUtil FAQ
+      <a href="/xcomutil/xcomutil-downlaod/" class="pagination--pager" title="XcomUtil Downlaod
 ">Previous</a>
     
     
-      <a href="/Get-Posh-Git-Test-Lab/" class="pagination--pager" title="Get-Posh-Git | Test-Lab
+      <a href="/test-homelab-inputobject-the-plan/" class="pagination--pager" title="Test-HomeLab -InputObject “The Plan”
 ">Next</a>
     
   </nav>
@@ -496,7 +512,7 @@
                 <input type="url" id="comment-form-url" name="fields[url]" tabindex="4"/>
               </div>
               <div class="form-group hidden" style="display: none;">
-                <input type="hidden" name="options[slug]" value="test-homelab-inputobject-the-plan">
+                <input type="hidden" name="options[slug]" value="xcomutil-faq">
                 <label for="comment-form-location">Not used. Leave blank if you are a human.</label>
                 <input type="text" id="comment-form-location" name="fields[hidden]" autocomplete="off"/>
                 
