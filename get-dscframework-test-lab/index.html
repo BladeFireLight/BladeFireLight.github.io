@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="PowerShell Journey">
 <meta property="og:title" content="Get-DSCFramework | Test-Lab">
-<meta property="og:url" content="https://blog.bladefirelight.com/get-dscframework-test-lab/">
+<meta property="og:url" content="https://www.bladefirelight.com/get-dscframework-test-lab/">
 
 
   <meta property="og:description" content="Posts in This series  Test-HomeLab -InputObject “The Plan”  Get-Posh-Git | Test-Lab  Get-DSCFramework | Test-Lab (This Post)  Invoke-DscBuild | Test-Lab  Test-Lab | Update-GitHubIn the last post we got the posh-git installed, Now we are going to fork the Powershell.org DSC tools development branch and clone that locally.I already have an account with GitHub, You will need one to be able to contribute.I had over the the repository and click the fork buttonwith that done next is to get a copy of the clone URL.I create a folder to store the repository inC:\&gt; mkdir github    Directory: C:\Mode                LastWriteTime     Length Name----                -------------     ------ ----d----          5/1/2015   5:25 PM            githubC:\&gt; cd githubC:\github&gt;now I have everything I need to make a clone.C:\github&gt; git clone https://github.com/BladeFireLight/DSC.git PshOrgDSC --branch developmentgit : Cloning into &#39;PshOrgDSC&#39;...At line:1 char:1+ git clone https://github.com/BladeFireLight/DSC.git PshOrgDSC --branch developme ...+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    + CategoryInfo          : NotSpecified: (Cloning into &#39;PshOrgDSC&#39;...:String) [], RemoteException    + FullyQualifiedErrorId : NativeCommandErrorC:\github&gt; cd .\PshOrgDSCC:\github\PshOrgDSC [development]&gt; dir    Directory: C:\github\PshOrgDSCMode                LastWriteTime     Length Name----                -------------     ------ ----d----          5/1/2015   5:38 PM            Tooling-a---          5/1/2015   5:38 PM        605 .gitattributes-a---          5/1/2015   5:38 PM        366 .gitignore-a---          5/1/2015   5:38 PM       1099 LICENSE.txt-a---          5/1/2015   5:38 PM       1231 README.md-a---          5/1/2015   5:38 PM       7305 README.old.mdC:\github\PshOrgDSC [development]&gt;I’m not sure why PowerShell thought it was an error but the clone worked.Next up will be getting the example config to build.C:\github\PshOrgDSC [development]&gt; cd .\Tooling\ExamplesC:\github\PshOrgDSC\Tooling\Examples [development]&gt; dir    Directory: C:\github\PshOrgDSC\Tooling\ExamplesMode                LastWriteTime     Length Name----                -------------     ------ ----d----          5/1/2015   5:38 PM            DSC_Configurationd----          5/1/2015   5:38 PM            SampleConfiguration-a---          5/1/2015   5:38 PM       1770 README.md-a---          5/1/2015   5:38 PM       1203 SampleBuild.ps1">
@@ -30,7 +30,7 @@
   <meta name="twitter:site" content="@BladeFireLight">
   <meta name="twitter:title" content="Get-DSCFramework | Test-Lab">
   <meta name="twitter:description" content="Posts in This series  Test-HomeLab -InputObject “The Plan”  Get-Posh-Git | Test-Lab  Get-DSCFramework | Test-Lab (This Post)  Invoke-DscBuild | Test-Lab  Test-Lab | Update-GitHubIn the last post we got the posh-git installed, Now we are going to fork the Powershell.org DSC tools development branch and clone that locally.I already have an account with GitHub, You will need one to be able to contribute.I had over the the repository and click the fork buttonwith that done next is to get a copy of the clone URL.I create a folder to store the repository inC:\&gt; mkdir github    Directory: C:\Mode                LastWriteTime     Length Name----                -------------     ------ ----d----          5/1/2015   5:25 PM            githubC:\&gt; cd githubC:\github&gt;now I have everything I need to make a clone.C:\github&gt; git clone https://github.com/BladeFireLight/DSC.git PshOrgDSC --branch developmentgit : Cloning into &#39;PshOrgDSC&#39;...At line:1 char:1+ git clone https://github.com/BladeFireLight/DSC.git PshOrgDSC --branch developme ...+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    + CategoryInfo          : NotSpecified: (Cloning into &#39;PshOrgDSC&#39;...:String) [], RemoteException    + FullyQualifiedErrorId : NativeCommandErrorC:\github&gt; cd .\PshOrgDSCC:\github\PshOrgDSC [development]&gt; dir    Directory: C:\github\PshOrgDSCMode                LastWriteTime     Length Name----                -------------     ------ ----d----          5/1/2015   5:38 PM            Tooling-a---          5/1/2015   5:38 PM        605 .gitattributes-a---          5/1/2015   5:38 PM        366 .gitignore-a---          5/1/2015   5:38 PM       1099 LICENSE.txt-a---          5/1/2015   5:38 PM       1231 README.md-a---          5/1/2015   5:38 PM       7305 README.old.mdC:\github\PshOrgDSC [development]&gt;I’m not sure why PowerShell thought it was an error but the clone worked.Next up will be getting the example config to build.C:\github\PshOrgDSC [development]&gt; cd .\Tooling\ExamplesC:\github\PshOrgDSC\Tooling\Examples [development]&gt; dir    Directory: C:\github\PshOrgDSC\Tooling\ExamplesMode                LastWriteTime     Length Name----                -------------     ------ ----d----          5/1/2015   5:38 PM            DSC_Configurationd----          5/1/2015   5:38 PM            SampleConfiguration-a---          5/1/2015   5:38 PM       1770 README.md-a---          5/1/2015   5:38 PM       1203 SampleBuild.ps1">
-  <meta name="twitter:url" content="https://blog.bladefirelight.com/get-dscframework-test-lab/">
+  <meta name="twitter:url" content="https://www.bladefirelight.com/get-dscframework-test-lab/">
 
   
     <meta name="twitter:card" content="summary">
@@ -52,7 +52,7 @@
   
 
 
-<link rel="canonical" href="https://blog.bladefirelight.com/get-dscframework-test-lab/">
+<link rel="canonical" href="https://www.bladefirelight.com/get-dscframework-test-lab/">
 
 
 
@@ -65,7 +65,7 @@
       "@context": "http://schema.org",
       "@type": "Person",
       "name": "David Jones",
-      "url": "https://blog.bladefirelight.com",
+      "url": "https://www.bladefirelight.com",
       "sameAs": null
     }
   </script>
@@ -136,32 +136,32 @@
           
             
             <li class="masthead__menu-item">
-              <a href="https://blog.bladefirelight.com/nuggets/" >Nuggets</a>
+              <a href="https://www.bladefirelight.com/nuggets/" >Nuggets</a>
             </li>
           
             
             <li class="masthead__menu-item">
-              <a href="https://blog.bladefirelight.com/windowsimagetools/" >Windows Image Tools</a>
+              <a href="https://www.bladefirelight.com/windowsimagetools/" >Windows Image Tools</a>
             </li>
           
             
             <li class="masthead__menu-item">
-              <a href="https://blog.bladefirelight.com/XcomUtil/" >XcomUtil</a>
+              <a href="https://www.bladefirelight.com/XcomUtil/" >XcomUtil</a>
             </li>
           
             
             <li class="masthead__menu-item">
-              <a href="https://blog.bladefirelight.com/year-archive/" >Archive by Date</a>
+              <a href="https://www.bladefirelight.com/year-archive/" >Archive by Date</a>
             </li>
           
             
             <li class="masthead__menu-item">
-              <a href="https://blog.bladefirelight.com/categories/" >By Category</a>
+              <a href="https://www.bladefirelight.com/categories/" >By Category</a>
             </li>
           
             
             <li class="masthead__menu-item">
-              <a href="https://blog.bladefirelight.com/tags/" >By Tag</a>
+              <a href="https://www.bladefirelight.com/tags/" >By Tag</a>
             </li>
           
         </ul>
@@ -198,7 +198,7 @@
     
       
         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-          <a href="https://blog.bladefirelight.com/" itemprop="item"><span itemprop="name">Home</span></a>
+          <a href="https://www.bladefirelight.com/" itemprop="item"><span itemprop="name">Home</span></a>
           <meta itemprop="position" content="1" />
         </li>
         <span class="sep">/</span>
@@ -385,11 +385,11 @@
 
 <p>I had over the the repository and click the fork button</p>
 
-<p><img src="https://blog.bladefirelight.com/assets/images/fork.png" alt="fork" /></p>
+<p><img src="https://www.bladefirelight.com/assets/images/fork.png" alt="fork" /></p>
 
 <p>with that done next is to get a copy of the clone URL.</p>
 
-<p><img src="https://blog.bladefirelight.com/assets/images/cloneurl.png" alt="cloneurl" /></p>
+<p><img src="https://www.bladefirelight.com/assets/images/cloneurl.png" alt="cloneurl" /></p>
 
 <p>I create a folder to store the repository in</p>
 
@@ -487,13 +487,13 @@ d----          5/1/2015   5:38 PM            SampleConfiguration
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?via=BladeFireLight&text=Get-DSCFramework+%5C%7C+Test-Lab%20https%3A%2F%2Fblog.bladefirelight.com%2Fget-dscframework-test-lab%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?via=BladeFireLight&text=Get-DSCFramework+%5C%7C+Test-Lab%20https%3A%2F%2Fwww.bladefirelight.com%2Fget-dscframework-test-lab%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.bladefirelight.com%2Fget-dscframework-test-lab%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.bladefirelight.com%2Fget-dscframework-test-lab%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=https%3A%2F%2Fblog.bladefirelight.com%2Fget-dscframework-test-lab%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fwww.bladefirelight.com%2Fget-dscframework-test-lab%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fblog.bladefirelight.com%2Fget-dscframework-test-lab%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.bladefirelight.com%2Fget-dscframework-test-lab%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
