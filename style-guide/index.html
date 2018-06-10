@@ -459,6 +459,36 @@
 
 </div>
 
+<h2 id="code-blocks">Code blocks</h2>
+
+<figure class="highlight"><pre><code class="language-powershell" data-lang="powershell"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="cm">&lt;#  highlitable code with line numbers useing liquid (not ability to wrap) #&gt;</span>
+get-help
+get-command
+this is the line that never ends. it goes on on on my freind, you would not belive it but it started verry small,b ut soon is was not so small at all. thisis the line that never ends...</pre></td></tr></tbody></table></code></pre></figure>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{% highlight powershell linenos=table %}
+get-help
+get-command
+{% endhighlight %}
+</code></pre></div></div>
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Basic code block (vs Code and comment friendly)</span>
+get-help
+get-command
+</code></pre></div></div>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>~~~ powershell
+get-help
+get-command
+~~~
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>test 3
+</code></pre></div></div>
+
   </div>
 </div>
     </div>

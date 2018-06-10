@@ -1,0 +1,1029 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.11.2 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Azure Automation to Migrate Mailboxes to Office 365 - PowerShell Journey</title>
+<meta name="description" content="Note Some code blocks on this page have word wrap turned on.The problem">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="PowerShell Journey">
+<meta property="og:title" content="Azure Automation to Migrate Mailboxes to Office 365">
+<meta property="og:url" content="https://www.bladefirelight.com/nuggets/azure-automation-to-migrate-mailboxes-to-office-365/">
+
+
+  <meta property="og:description" content="Note Some code blocks on this page have word wrap turned on.The problem">
+
+
+
+
+
+  <meta name="twitter:site" content="@BladeFireLight">
+  <meta name="twitter:title" content="Azure Automation to Migrate Mailboxes to Office 365">
+  <meta name="twitter:description" content="Note Some code blocks on this page have word wrap turned on.The problem">
+  <meta name="twitter:url" content="https://www.bladefirelight.com/nuggets/azure-automation-to-migrate-mailboxes-to-office-365/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2018-06-07T21:18:00-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://www.bladefirelight.com/nuggets/azure-automation-to-migrate-mailboxes-to-office-365/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "David Jones",
+      "url": "https://www.bladefirelight.com",
+      "sameAs": null
+    }
+  </script>
+
+
+
+  <meta name="google-site-verification" content="google6494e52e0a9f7679" />
+
+
+  <meta name="msvalidate.01" content="FF7ECBA8DC3257F544706CFDE304E3B9">
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="PowerShell Journey Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">PowerShell Journey</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://www.bladefirelight.com/nuggets/" >Nuggets</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://www.bladefirelight.com/windowsimagetools/" >Windows Image Tools</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://www.bladefirelight.com/XcomUtil/" >XcomUtil</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://www.bladefirelight.com/year-archive/" >Archive by Date</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://www.bladefirelight.com/categories/" >By Category</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://www.bladefirelight.com/tags/" >By Tag</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="https://www.bladefirelight.com/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+          <a href="/categories/nuggets" itemprop="item"><span itemprop="name">Nuggets</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Azure Automation to Migrate Mailboxes to Office 365</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/avatar1.jpg" alt="David Jones" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">David Jones</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        20 years IT Pro. Life long student of tech
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Gretna, NE</span>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:BladeFireLight@outlook.com">
+            <meta itemprop="email" content="BladeFireLight@outlook.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="https://twitter.com/BladeFireLight" itemprop="sameAs">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/BladeFireLight" itemprop="sameAs">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Azure Automation to Migrate Mailboxes to Office 365">
+    <meta itemprop="description" content="Note Some code blocks on this page have word wrap turned on.The problem">
+    <meta itemprop="datePublished" content="June 07, 2018">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Azure Automation to Migrate Mailboxes to Office 365
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#the-problem">The problem</a></li>
+  <li><a href="#the-goal">The goal</a></li>
+  <li><a href="#show-me-some-code">Show me some code</a>
+    <ul>
+      <li><a href="#param-and-connecting-to-azure">Param and connecting to Azure</a></li>
+      <li><a href="#retriveing-credentials">Retriveing credentials</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p class="notice--info"><strong>Note</strong> Some code blocks on this page have word wrap turned on.</p>
+<h2 id="the-problem">The problem</h2>
+
+<p>While azure automation is a powerfull platform. 
+It has some limitations in PowerShell that makes working with Exchange online dificult.
+The main issue is the inability to use <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-pssession?view=powershell-6">Import-PsSession</a>.
+This can be gotten arround with some creative use of variables.</p>
+
+<h2 id="the-goal">The goal</h2>
+
+<p>I recently had to setup a way to the helpdesk to be able to migrate users to the cloud without giving them rights in exchange or a complicated interface.
+The moves would need to be both directions and they needed a way to check on the status of the move. 
+Azure automation seemed like a good fit.</p>
+
+<h2 id="show-me-some-code">Show me some code</h2>
+
+<p>Now I started with some colecting the paramerters, connecting to Azure so I can retrive the credentials from the azure credential store.
+This part was fairly strait forward.</p>
+
+<p class="notice--warning"><strong>Note</strong> that I did not make the Identity paramater as an array like you would normaly do in an advanced function.
+This is because I wanted to use Flow on the front end and it’s Email selction returns a string of ; seporated email addresses.</p>
+
+<h3 id="param-and-connecting-to-azure">Param and connecting to Azure</h3>
+<div class="language-powershell pre-wrap highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span><span class="na">CmdletBinding</span><span class="o">(</span> 
+    <span class="na">SupportsShouldProcess</span> <span class="o">=</span> <span class="nv">$true</span>, 
+    <span class="na">PositionalBinding</span> <span class="o">=</span> <span class="nv">$true</span>,
+    <span class="na">ConfirmImpact</span> <span class="o">=</span> <span class="s1">'Medium'</span><span class="o">)]</span>
+  
+<span class="k">Param</span>
+<span class="o">(</span>
+    <span class="c1"># UPN or Email address</span>
+    <span class="o">[</span>Parameter<span class="o">(</span>
+        Mandatory <span class="o">=</span> <span class="nv">$true</span>, 
+        ValueFromPipeline <span class="o">=</span> <span class="nv">$true</span>,
+        ValueFromPipelineByPropertyName <span class="o">=</span> <span class="nv">$true</span>, 
+        Position <span class="o">=</span> 0,
+        HelpMessage <span class="o">=</span> <span class="s2">"UPN or Email address"</span>
+    <span class="o">)]</span>
+    <span class="o">[</span><span class="kt">string</span><span class="o">]</span>
+    <span class="nv">$Identity</span>,
+
+    <span class="o">[</span>Parameter<span class="o">(</span>
+        Position <span class="o">=</span> 1,
+        HelpMessage <span class="o">=</span> <span class="s2">"Migration Direction : ToCloud or ToExchange"</span>
+    <span class="o">)]</span>
+    <span class="o">[</span>ValidateSet<span class="o">(</span><span class="s2">"ToCloud"</span>, <span class="s2">"ToExchange"</span><span class="o">)]</span> 
+    <span class="o">[</span><span class="kt">string</span><span class="o">]</span>
+    <span class="nv">$Direction</span> <span class="o">=</span> <span class="s1">'ToCloud'</span>
+<span class="o">)</span>
+
+
+<span class="nv">$CredName</span> <span class="o">=</span> <span class="s1">'365MigrationCredName'</span>
+<span class="nv">$connectionName</span> <span class="o">=</span> <span class="s2">"AzureRunAsConnection"</span>
+
+<span class="nv">$IdentityList</span> <span class="o">=</span> @<span class="o">()</span>
+<span class="nv">$IdentityList</span> <span class="o">=</span> <span class="nv">$Identity</span> -split <span class="s1">';'</span>
+
+<span class="k">try</span> <span class="o">{</span>
+    <span class="nv">$servicePrincipalConnection</span> <span class="o">=</span> Get-AutomationConnection -Name <span class="nv">$connectionName</span>         
+
+    <span class="nb">Write-verbose</span> <span class="s2">"Logging in to Azure..."</span> -Verbose
+    <span class="nv">$AzureRmAccountParam</span> <span class="o">=</span> @<span class="o">{</span>
+        ServicePrincipal <span class="o">=</span> <span class="nv">$true</span>
+        TenantId <span class="o">=</span> <span class="nv">$servicePrincipalConnection</span>.TenantId
+        ApplicationId <span class="o">=</span> <span class="nv">$servicePrincipalConnection</span>.ApplicationId
+        CertificateThumbprint <span class="o">=</span> <span class="nv">$servicePrincipalConnection</span>.CertificateThumbprint
+    <span class="o">}</span>
+    <span class="nv">$null</span> <span class="o">=</span> Add-AzureRmAccount @AzureRmAccountParam
+<span class="o">}</span>
+<span class="k">catch</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="nv">$servicePrincipalConnection</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nv">$ErrorMessage</span> <span class="o">=</span> <span class="s2">"Connection </span><span class="nv">$connectionName</span><span class="s2"> not found."</span>
+        <span class="k">throw</span> <span class="nv">$ErrorMessage</span>
+    <span class="o">}</span>
+    <span class="k">else</span> <span class="o">{</span>
+        <span class="nb">Write-Error</span> -Message <span class="nv">$_</span>.Exception
+        <span class="k">throw</span> <span class="nv">$_</span>.Exception
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>When working with mailbox migrations in PowerShell you have to use two diferent credentials. 
+One for office 365 in the user@domain format and one for Exchange using the domain/username format. 
+In my case this was the same user syncronized between on-premises AD and Azure AD. 
+For this reason I only need one credential and only the basic username needs to be stored.
+I will create the two credentials from it.</p>
+
+<h3 id="retriveing-credentials">Retriveing credentials</h3>
+<div class="language-powershell pre-wrap highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Write-verbose</span> <span class="s2">"Getting Credentials ..."</span> -Verbose
+<span class="nv">$Credential</span> <span class="o">=</span> Get-AutomationPSCredential -Name <span class="nv">$CredName</span>
+<span class="nb">Write-verbose</span>  <span class="s2">"Credential Loaded : </span><span class="k">$(</span><span class="nv">$Credential</span>.UserName<span class="k">)</span><span class="s2">"</span> -Verbose
+<span class="k">if</span> <span class="o">((</span><span class="nv">$Credential</span>.UserName -like <span class="s2">"*@*"</span><span class="o">)</span> -or <span class="o">(</span><span class="nv">$Credential</span>.UserName -like <span class="s2">"*\*"</span><span class="o">))</span> <span class="o">{</span>
+    <span class="k">Throw</span> <span class="s2">"Credential username must be the username only!. do not include the domain"</span>
+<span class="o">}</span>
+
+<span class="nv">$o365Cred</span> <span class="o">=</span> <span class="nb">New-Object </span>System.Management.Automation.PSCredential <span class="o">(</span><span class="s2">"</span><span class="k">$(</span><span class="nv">$Credential</span>.UserName<span class="k">)</span><span class="s2">@mydomain.com"</span>, <span class="nv">$Credential</span>.Password<span class="o">)</span>
+<span class="nv">$exchCred</span> <span class="o">=</span> <span class="nb">New-Object </span>System.Management.Automation.PSCredential <span class="o">(</span><span class="s2">"mydomain\</span><span class="k">$(</span><span class="nv">$Credential</span>.UserName<span class="k">)</span><span class="s2">"</span>, <span class="nv">$Credential</span>.Password<span class="o">)</span>
+<span class="nb">Write-verbose</span>  <span class="s2">"Credential Loaded : </span><span class="k">$(</span><span class="nv">$o365Cred</span>.UserName<span class="k">)</span><span class="s2">"</span> -Verbose
+<span class="nb">Write-verbose</span>  <span class="s2">"Credential Loaded : </span><span class="k">$(</span><span class="nv">$exchCred</span>.UserName<span class="k">)</span><span class="s2">"</span> -Verbose
+</code></pre></div></div>
+
+<p>Now I’m going to connect to office 365.</p>
+
+<div class="language-powershell pre-wrap highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Write-verbose</span> <span class="s1">'Connecting to office365 ...'</span> -Verbose
+<span class="nv">$OnlineSession</span> <span class="o">=</span> New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri <span class="s1">'https://outlook.office365.com/powershell-liveid/'</span> -Authentication Basic -Credential <span class="nv">$o365Cred</span> -ErrorAction Stop
+<span class="nb">Write-verbose</span> <span class="s1">'Importing PowerShell Commands ...'</span> -Verbose
+<span class="c1">#Import-PSSession -Prefix "Online" $OnlineSession</span>
+</code></pre></div></div>
+<p>Notice that the import sesion is commented out.
+That is becuase implicit remoteing is disable or not functional in Azure Automation at the time of this writing. 
+Please <a href="https://feedback.azure.com/forums/246290-automation/suggestions/13797918-enable-implicit-remoting">up vote the issue</a></p>
+
+<p>I will loop through the identity list</p>
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Foreach</span> <span class="o">(</span><span class="nv">$user</span> <span class="k">in</span> <span class="nv">$IdentityList</span><span class="o">)</span> <span class="o">{</span>
+</code></pre></div></div>
+
+<p>With Import-PSSession out, and <a href="https://docs.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Core/Import-Module?view=powershell-6">Import-Module</a>(Import-PSSession …) being flaky at best.
+I have to fall back to <a href="https://docs.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Core/Invoke-Command?view=powershell-6">Invoke-Command</a>
+I’m going to start with checking if the mailbox exists in the cloud with <a href="https://docs.microsoft.com/en-us/powershell/module/exchange/mailboxes/get-mailbox?view=exchange-ps">Get-Mailbox</a>.</p>
+
+<div class="language-powershell pre-wrap highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$Mailbox</span> <span class="o">=</span> Invoke-Command -Session <span class="nv">$OnlineSession</span> -ScriptBlock <span class="o">{</span> <span class="k">param</span><span class="o">(</span><span class="nv">$user</span><span class="o">)</span> Get-Mailbox -Identity <span class="nv">$user</span> -ErrorAction SilentlyContinue <span class="o">}</span>-ArgumentList <span class="nv">$user</span>
+</code></pre></div></div>
+
+<p>Now check the direction and start the mailbox move if it’s not allready there.</p>
+<div class="language-powershell pre-wrap highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">(</span>-not <span class="o">(</span><span class="nv">$MailBox</span><span class="o">)</span> -and <span class="o">(</span><span class="nv">$Direction</span> -eq <span class="s1">'ToCloud'</span><span class="o">))</span> <span class="o">{</span> 
+    <span class="s2">"Migrating To Cloud : </span><span class="nv">$user</span><span class="s2">"</span>
+    <span class="c1">## Migration to cloud command ##</span>
+    <span class="o">}</span>
+<span class="k">elseif</span> <span class="o">((</span><span class="nv">$MailBox</span><span class="o">)</span> -and <span class="o">(</span><span class="nv">$Direction</span> -eq <span class="s1">'ToExchange'</span><span class="o">))</span> <span class="o">{</span>
+    <span class="s2">"Migrating To Exchange : </span><span class="nv">$user</span><span class="s2"> to </span><span class="nv">$database</span><span class="s2">"</span>
+    <span class="c1">## Migration to Exchange comamnd ##</span>
+    <span class="o">}</span>
+<span class="k">else</span> <span class="o">{</span>
+    <span class="nb">Write-Warning</span> <span class="s2">"Mailbox for </span><span class="nv">$User</span><span class="s2"> already exists Destination : Skiping"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Migrateing to the cloud the comamnd is fairly strait forward. 
+I need to pass values to <a href="https://docs.microsoft.com/en-us/powershell/module/exchange/move-and-migration/new-moverequest?view=exchange-ps">New-MoveRequest</a> so I have to Paramaterize the script block and use -ArgumentList.
+Format-List is to reduce the amount of data outlput. 
+I dont need all of it.</p>
+
+<div class="language-powershell pre-wrap highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ScriptBlock</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="k">param</span><span class="o">([</span>PSCredential]<span class="nv">$exchCred</span>, <span class="nv">$user</span><span class="o">)</span>
+    <span class="nv">$MoveRequestParam</span> <span class="o">=</span> @<span class="o">{</span>
+        Remote <span class="o">=</span> <span class="nv">$true</span>
+        RemoteHostName <span class="o">=</span> <span class="s1">'mail.mydomain.com'</span> <span class="c1"># your exchange servers external URL for EWS</span>
+        RemoteCredential <span class="o">=</span> <span class="nv">$exchCred</span>
+        TargetDeliveryDomain <span class="o">=</span> <span class="s1">'mydomain.mail.onmicrosoft.com'</span> <span class="c1"># Your *.mail.onmicrosoft.com domain</span>
+        Identity <span class="o">=</span> <span class="nv">$user</span>
+    <span class="o">}</span>  
+    New-MoveRequest @MoveRequestParm
+<span class="o">}</span>
+Invoke-Command -Session <span class="nv">$OnlineSession</span> -ScriptBlock <span class="nv">$ScriptBlock</span> -ArgumentList <span class="nv">$exchCred</span>, <span class="nv">$user</span> | <span class="nb">Format-List </span>DisplayName, QueuedTimestamp
+</code></pre></div></div>
+
+<p>Migrateing back to exchange is a little more involved but not by much</p>
+
+<p class="notice--info">If your wondering why I would want to migrate back to exchange. Mistakes do happen, a users that is not ready for migraiton might accendently get moved</p>
+
+<div class="language-powershell pre-wrap highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$databaseBaseName</span> <span class="o">=</span> <span class="s1">'db'</span>
+<span class="nv">$databaseMaxNumber</span> <span class="o">=</span> 24
+<span class="c1">#randomly pick a target DB</span>
+<span class="nv">$database</span> <span class="o">=</span> <span class="s2">"</span><span class="nv">$databaseBaseName</span><span class="k">$((</span><span class="nb">get-random</span> <span class="o">-</span>Minimum <span class="m">1</span> <span class="o">-</span>Maximum <span class="nv">$databaseMaxNumber</span><span class="o">)</span>.ToString<span class="o">(</span><span class="s2">"00"</span><span class="k">))</span><span class="s2">"</span>
+<span class="s2">"Migrating To Exchange : </span><span class="nv">$user</span><span class="s2"> to </span><span class="nv">$database</span><span class="s2">"</span>
+<span class="nv">$scriptBlock</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="k">param</span><span class="o">([</span>PSCredential]<span class="nv">$exchCred</span>, <span class="nv">$user</span>, <span class="nv">$database</span><span class="o">)</span>  
+    <span class="nv">$MoveRequesParm</span> <span class="o">=</span> @<span class="o">{</span>
+        Outbound <span class="o">=</span> <span class="nv">$true</span>
+        RemoteHostName <span class="o">=</span> <span class="s1">'mail.mydomain.com'</span> <span class="c1"># your exchange servers external URL for EWS</span>
+        RemoteCredential <span class="o">=</span> <span class="nv">$exchCred</span>
+        TargetDeliveryDomain <span class="o">=</span> <span class="s1">'mydomain.com'</span> <span class="c1"># your onprem email domain</span>
+        Identity <span class="o">=</span> <span class="nv">$user</span>
+        RemoteTargetDatabase <span class="o">=</span> <span class="nv">$database</span>
+    <span class="o">}</span>
+    New-MoveRequest @MoveRequesParm
+<span class="o">}</span>
+Invoke-Command -Session <span class="nv">$OnlineSession</span> -ScriptBlock <span class="nv">$scriptblock</span>  -ArgumentList <span class="nv">$exchCred</span>, <span class="nv">$user</span>, <span class="nv">$database</span> | <span class="nb">Format-List </span>DisplayName, QueuedTimestamp
+</code></pre></div></div>
+
+<p>And there you have the basic’s of the migration. Next up is checking the status.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/azure" class="page__taxonomy-item" rel="tag">Azure</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/office-365" class="page__taxonomy-item" rel="tag">Office 365</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/nuggets" class="page__taxonomy-item" rel="tag">Nuggets</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-06-07T21:18:00-05:00">June 07, 2018</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=BladeFireLight&text=Azure+Automation+to+Migrate+Mailboxes+to+Office+365%20https%3A%2F%2Fwww.bladefirelight.com%2Fnuggets%2Fazure-automation-to-migrate-mailboxes-to-office-365%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.bladefirelight.com%2Fnuggets%2Fazure-automation-to-migrate-mailboxes-to-office-365%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=https%3A%2F%2Fwww.bladefirelight.com%2Fnuggets%2Fazure-automation-to-migrate-mailboxes-to-office-365%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.bladefirelight.com%2Fnuggets%2Fazure-automation-to-migrate-mailboxes-to-office-365%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/nuggets/collecting-ca-certificates-for-dsc-configuration/" class="pagination--pager" title="Collecting CA Certificates for DSC Configuration
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <section id="static-comments">
+        
+          <!-- Start static comments -->
+          <div class="js-comments">
+            
+          </div>
+          <!-- End static comments -->
+
+          <!-- Start new comment form -->
+          <div class="page__comments-form">
+            <h4 class="page__comments-title">Leave a Comment</h4>
+            <p class="small">Your email address will not be published. Required fields are marked <span class="required">*</span></p>
+            <form id="new_comment" class="page__comments-form js-form form" method="post" action="https://api.staticman.net/v2/entry/bladefirelight/blog_source/master/comments">
+              <div class="form__spinner">
+                <i class="fas fa-spinner fa-spin fa-3x fa-fw"></i>
+                <span class="sr-only">Loading...</span>
+              </div>
+
+              <div class="form-group">
+                <label for="comment-form-message">Comment <small class="required">*</small></label>
+                <textarea type="text" rows="3" id="comment-form-message" name="fields[message]" tabindex="1"></textarea>
+                <div class="small help-block"><a href="https://daringfireball.net/projects/markdown/">Markdown is supported.</a></div>
+              </div>
+              <div class="form-group">
+                <label for="comment-form-name">Name <small class="required">*</small></label>
+                <input type="text" id="comment-form-name" name="fields[name]" tabindex="2" />
+              </div>
+              <div class="form-group">
+                <label for="comment-form-email">Email address <small class="required">*</small></label>
+                <input type="email" id="comment-form-email" name="fields[email]" tabindex="3" />
+              </div>
+              <div class="form-group">
+                <label for="comment-form-url">Website (optional)</label>
+                <input type="url" id="comment-form-url" name="fields[url]" tabindex="4"/>
+              </div>
+              <div class="form-group hidden" style="display: none;">
+                <input type="hidden" name="options[slug]" value="azure-automation-to-migrate-mailboxes-to-office-365">
+                <label for="comment-form-location">Not used. Leave blank if you are a human.</label>
+                <input type="text" id="comment-form-location" name="fields[hidden]" autocomplete="off"/>
+                
+                
+              </div>
+              <!-- Start comment form alert messaging -->
+              <p class="hidden js-notice">
+                <strong class="js-notice-text"></strong>
+              </p>
+              <!-- End comment form alert messaging -->
+              
+              <div class="form-group">
+                <button type="submit" id="comment-form-submit" tabindex="5" class="btn btn--primary btn--large">Submit Comment</button>
+              </div>
+            </form>
+          </div>
+          <!-- End new comment form -->
+          
+        
+      </section>
+    
+</div>
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/nuggets/collecting-ca-certificates-for-dsc-configuration/" rel="permalink">Collecting CA Certificates for DSC Configuration
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Best practice is to use individual certificates for each Node for DSC. While you can use auto enrollment, getting the certificates to where the MOF are build...</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/windowsimagetools/Creating-an-Updateed-Image-Part3-Updates/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 3
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use ...</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/windowsimagetools/Creating-an-Updateed-Image-Part2-WMF5/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 2
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use ...</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/default-teaser.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/windowsimagetools/Creating-an-Updateed-Image-Part1-Base-VHDX/" rel="permalink">Windows Image Tools | Creating an Updated Image Part 1
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use ...</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+    <div class="search-hits"></div></div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/BladeFireLight"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="https://github.com/BladeFireLight"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 David Jones. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'H9ZC0SHNUQ',
+  apiKey: 'b4603a9d806ac4befb326ce1731d101e',
+  indexName: 'Blog',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate
+    }
+  })
+);
+
+// Starting the search
+search.start();
+</script>
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120545364-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120545364-1', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    (function ($) {
+    var $comments = $('.js-comments');
+
+    $('#new_comment').submit(function () {
+      var form = this;
+
+      $(form).addClass('disabled');
+      $('#comment-form-submit').html('<i class="fas fa-spinner fa-spin fa-fw"></i> Loading...');
+
+      $.ajax({
+        type: $(this).attr('method'),
+        url: $(this).attr('action'),
+        data: $(this).serialize(),
+        contentType: 'application/x-www-form-urlencoded',
+        success: function (data) {
+          $('#comment-form-submit').html('Submitted');
+          $('.page__comments-form .js-notice').removeClass('notice--danger');
+          $('.page__comments-form .js-notice').addClass('notice--success');
+          showAlert('Thanks for your comment! It will show on the site once it has been approved.');
+        },
+        error: function (err) {
+          console.log(err);
+          $('#comment-form-submit').html('Submit Comment');
+          $('.page__comments-form .js-notice').removeClass('notice--success');
+          $('.page__comments-form .js-notice').addClass('notice--danger');
+          showAlert('Sorry, there was an error with your submission. Please make sure all required fields have been completed and try again.');
+          $(form).removeClass('disabled');
+        }
+      });
+
+      return false;
+    });
+
+    function showAlert(message) {
+      $('.page__comments-form .js-notice').removeClass('hidden');
+      $('.page__comments-form .js-notice-text').html(message);
+    }
+  })(jQuery);
+  </script>
+
+  
+
+
+  </body>
+</html>

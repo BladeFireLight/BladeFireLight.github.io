@@ -1,4 +1,184 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.2">Jekyll</generator><link href="https://www.bladefirelight.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.bladefirelight.com/" rel="alternate" type="text/html" /><updated>2018-06-07T20:42:26-05:00</updated><id>https://www.bladefirelight.com/</id><title type="html">PowerShell Journey</title><subtitle>Random musings of a IT Pro</subtitle><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><entry><title type="html">Collecting CA Certificates for DSC Configuration</title><link href="https://www.bladefirelight.com/nuggets/collecting-ca-certificates-for-dsc-configuration/" rel="alternate" type="text/html" title="Collecting CA Certificates for DSC Configuration" /><published>2017-04-21T00:00:00-05:00</published><updated>2017-04-21T00:00:00-05:00</updated><id>https://www.bladefirelight.com/nuggets/collecting-ca-certificates-for-dsc-configuration</id><content type="html" xml:base="https://www.bladefirelight.com/nuggets/collecting-ca-certificates-for-dsc-configuration/">&lt;h2 id=&quot;the-goal&quot;&gt;The Goal&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.2">Jekyll</generator><link href="https://www.bladefirelight.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.bladefirelight.com/" rel="alternate" type="text/html" /><updated>2018-06-10T09:07:38-05:00</updated><id>https://www.bladefirelight.com/</id><title type="html">PowerShell Journey</title><subtitle>Random musings of a IT Pro</subtitle><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><entry><title type="html">Azure Automation to Migrate Mailboxes to Office 365</title><link href="https://www.bladefirelight.com/nuggets/azure-automation-to-migrate-mailboxes-to-office-365/" rel="alternate" type="text/html" title="Azure Automation to Migrate Mailboxes to Office 365" /><published>2018-06-07T21:18:00-05:00</published><updated>2018-06-07T21:18:00-05:00</updated><id>https://www.bladefirelight.com/nuggets/azure-automation-to-migrate-mailboxes-to-office-365</id><content type="html" xml:base="https://www.bladefirelight.com/nuggets/azure-automation-to-migrate-mailboxes-to-office-365/">&lt;p class=&quot;notice--info&quot;&gt;&lt;strong&gt;Note&lt;/strong&gt; Some code blocks on this page have word wrap turned on.&lt;/p&gt;
+&lt;h2 id=&quot;the-problem&quot;&gt;The problem&lt;/h2&gt;
+
+&lt;p&gt;While azure automation is a powerfull platform. 
+It has some limitations in PowerShell that makes working with Exchange online dificult.
+The main issue is the inability to use &lt;a href=&quot;https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/import-pssession?view=powershell-6&quot;&gt;Import-PsSession&lt;/a&gt;.
+This can be gotten arround with some creative use of variables.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-goal&quot;&gt;The goal&lt;/h2&gt;
+
+&lt;p&gt;I recently had to setup a way to the helpdesk to be able to migrate users to the cloud without giving them rights in exchange or a complicated interface.
+The moves would need to be both directions and they needed a way to check on the status of the move. 
+Azure automation seemed like a good fit.&lt;/p&gt;
+
+&lt;h2 id=&quot;show-me-some-code&quot;&gt;Show me some code&lt;/h2&gt;
+
+&lt;p&gt;Now I started with some colecting the paramerters, connecting to Azure so I can retrive the credentials from the azure credential store.
+This part was fairly strait forward.&lt;/p&gt;
+
+&lt;p class=&quot;notice--warning&quot;&gt;&lt;strong&gt;Note&lt;/strong&gt; that I did not make the Identity paramater as an array like you would normaly do in an advanced function.
+This is because I wanted to use Flow on the front end and it’s Email selction returns a string of ; seporated email addresses.&lt;/p&gt;
+
+&lt;h3 id=&quot;param-and-connecting-to-azure&quot;&gt;Param and connecting to Azure&lt;/h3&gt;
+&lt;div class=&quot;language-powershell pre-wrap highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CmdletBinding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;SupportsShouldProcess&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$true&lt;/span&gt;, 
+    &lt;span class=&quot;na&quot;&gt;PositionalBinding&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$true&lt;/span&gt;,
+    &lt;span class=&quot;na&quot;&gt;ConfirmImpact&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Medium'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)]&lt;/span&gt;
+  
+&lt;span class=&quot;k&quot;&gt;Param&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# UPN or Email address&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Parameter&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+        Mandatory &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$true&lt;/span&gt;, 
+        ValueFromPipeline &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$true&lt;/span&gt;,
+        ValueFromPipelineByPropertyName &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$true&lt;/span&gt;, 
+        Position &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 0,
+        HelpMessage &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;UPN or Email address&quot;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;)]&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$Identity&lt;/span&gt;,
+
+    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Parameter&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+        Position &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 1,
+        HelpMessage &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Migration Direction : ToCloud or ToExchange&quot;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;)]&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ValidateSet&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ToCloud&quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&quot;ToExchange&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)]&lt;/span&gt; 
+    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$Direction&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'ToCloud'&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+
+&lt;span class=&quot;nv&quot;&gt;$CredName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'365MigrationCredName'&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$connectionName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;AzureRunAsConnection&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$IdentityList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; @&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$IdentityList&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$Identity&lt;/span&gt; -split &lt;span class=&quot;s1&quot;&gt;';'&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$servicePrincipalConnection&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Get-AutomationConnection -Name &lt;span class=&quot;nv&quot;&gt;$connectionName&lt;/span&gt;         
+
+    &lt;span class=&quot;nb&quot;&gt;Write-verbose&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Logging in to Azure...&quot;&lt;/span&gt; -Verbose
+    &lt;span class=&quot;nv&quot;&gt;$AzureRmAccountParam&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; @&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        ServicePrincipal &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$true&lt;/span&gt;
+        TenantId &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$servicePrincipalConnection&lt;/span&gt;.TenantId
+        ApplicationId &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$servicePrincipalConnection&lt;/span&gt;.ApplicationId
+        CertificateThumbprint &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$servicePrincipalConnection&lt;/span&gt;.CertificateThumbprint
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$null&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Add-AzureRmAccount @AzureRmAccountParam
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$servicePrincipalConnection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;$ErrorMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Connection &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$connectionName&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; not found.&quot;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ErrorMessage&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;Write-Error&lt;/span&gt; -Message &lt;span class=&quot;nv&quot;&gt;$_&lt;/span&gt;.Exception
+        &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$_&lt;/span&gt;.Exception
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;When working with mailbox migrations in PowerShell you have to use two diferent credentials. 
+One for office 365 in the user@domain format and one for Exchange using the domain/username format. 
+In my case this was the same user syncronized between on-premises AD and Azure AD. 
+For this reason I only need one credential and only the basic username needs to be stored.
+I will create the two credentials from it.&lt;/p&gt;
+
+&lt;h3 id=&quot;retriveing-credentials&quot;&gt;Retriveing credentials&lt;/h3&gt;
+&lt;div class=&quot;language-powershell pre-wrap highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;Write-verbose&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Getting Credentials ...&quot;&lt;/span&gt; -Verbose
+&lt;span class=&quot;nv&quot;&gt;$Credential&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Get-AutomationPSCredential -Name &lt;span class=&quot;nv&quot;&gt;$CredName&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;Write-verbose&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;Credential Loaded : &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$Credential&lt;/span&gt;.UserName&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; -Verbose
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$Credential&lt;/span&gt;.UserName -like &lt;span class=&quot;s2&quot;&gt;&quot;*@*&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; -or &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$Credential&lt;/span&gt;.UserName -like &lt;span class=&quot;s2&quot;&gt;&quot;*\*&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;Throw&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Credential username must be the username only!. do not include the domain&quot;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$o365Cred&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;New-Object &lt;/span&gt;System.Management.Automation.PSCredential &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$Credential&lt;/span&gt;.UserName&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;@mydomain.com&quot;&lt;/span&gt;, &lt;span class=&quot;nv&quot;&gt;$Credential&lt;/span&gt;.Password&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$exchCred&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;New-Object &lt;/span&gt;System.Management.Automation.PSCredential &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;mydomain\&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$Credential&lt;/span&gt;.UserName&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;, &lt;span class=&quot;nv&quot;&gt;$Credential&lt;/span&gt;.Password&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;Write-verbose&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;Credential Loaded : &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$o365Cred&lt;/span&gt;.UserName&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; -Verbose
+&lt;span class=&quot;nb&quot;&gt;Write-verbose&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;Credential Loaded : &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$exchCred&lt;/span&gt;.UserName&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; -Verbose
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now I’m going to connect to office 365.&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell pre-wrap highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;Write-verbose&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Connecting to office365 ...'&lt;/span&gt; -Verbose
+&lt;span class=&quot;nv&quot;&gt;$OnlineSession&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri &lt;span class=&quot;s1&quot;&gt;'https://outlook.office365.com/powershell-liveid/'&lt;/span&gt; -Authentication Basic -Credential &lt;span class=&quot;nv&quot;&gt;$o365Cred&lt;/span&gt; -ErrorAction Stop
+&lt;span class=&quot;nb&quot;&gt;Write-verbose&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Importing PowerShell Commands ...'&lt;/span&gt; -Verbose
+&lt;span class=&quot;c1&quot;&gt;#Import-PSSession -Prefix &quot;Online&quot; $OnlineSession&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Notice that the import sesion is commented out.
+That is becuase implicit remoteing is disable or not functional in Azure Automation at the time of this writing. 
+Please &lt;a href=&quot;https://feedback.azure.com/forums/246290-automation/suggestions/13797918-enable-implicit-remoting&quot;&gt;up vote the issue&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I will loop through the identity list&lt;/p&gt;
+&lt;div class=&quot;language-powershell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;Foreach&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$IdentityList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With Import-PSSession out, and &lt;a href=&quot;https://docs.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Core/Import-Module?view=powershell-6&quot;&gt;Import-Module&lt;/a&gt;(Import-PSSession …) being flaky at best.
+I have to fall back to &lt;a href=&quot;https://docs.microsoft.com/en-us/powershell/module/Microsoft.PowerShell.Core/Invoke-Command?view=powershell-6&quot;&gt;Invoke-Command&lt;/a&gt;
+I’m going to start with checking if the mailbox exists in the cloud with &lt;a href=&quot;https://docs.microsoft.com/en-us/powershell/module/exchange/mailboxes/get-mailbox?view=exchange-ps&quot;&gt;Get-Mailbox&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell pre-wrap highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$Mailbox&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Invoke-Command -Session &lt;span class=&quot;nv&quot;&gt;$OnlineSession&lt;/span&gt; -ScriptBlock &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Get-Mailbox -Identity &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt; -ErrorAction SilentlyContinue &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;-ArgumentList &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now check the direction and start the mailbox move if it’s not allready there.&lt;/p&gt;
+&lt;div class=&quot;language-powershell pre-wrap highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;-not &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$MailBox&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; -and &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$Direction&lt;/span&gt; -eq &lt;span class=&quot;s1&quot;&gt;'ToCloud'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; 
+    &lt;span class=&quot;s2&quot;&gt;&quot;Migrating To Cloud : &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;## Migration to cloud command ##&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;elseif&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$MailBox&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; -and &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$Direction&lt;/span&gt; -eq &lt;span class=&quot;s1&quot;&gt;'ToExchange'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;Migrating To Exchange : &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; to &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$database&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;## Migration to Exchange comamnd ##&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;Write-Warning&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Mailbox for &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$User&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; already exists Destination : Skiping&quot;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Migrateing to the cloud the comamnd is fairly strait forward. 
+I need to pass values to &lt;a href=&quot;https://docs.microsoft.com/en-us/powershell/module/exchange/move-and-migration/new-moverequest?view=exchange-ps&quot;&gt;New-MoveRequest&lt;/a&gt; so I have to Paramaterize the script block and use -ArgumentList.
+Format-List is to reduce the amount of data outlput. 
+I dont need all of it.&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell pre-wrap highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ScriptBlock&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;([&lt;/span&gt;PSCredential]&lt;span class=&quot;nv&quot;&gt;$exchCred&lt;/span&gt;, &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$MoveRequestParam&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; @&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        Remote &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$true&lt;/span&gt;
+        RemoteHostName &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'mail.mydomain.com'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# your exchange servers external URL for EWS&lt;/span&gt;
+        RemoteCredential &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$exchCred&lt;/span&gt;
+        TargetDeliveryDomain &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'mydomain.mail.onmicrosoft.com'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Your *.mail.onmicrosoft.com domain&lt;/span&gt;
+        Identity &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;  
+    New-MoveRequest @MoveRequestParm
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+Invoke-Command -Session &lt;span class=&quot;nv&quot;&gt;$OnlineSession&lt;/span&gt; -ScriptBlock &lt;span class=&quot;nv&quot;&gt;$ScriptBlock&lt;/span&gt; -ArgumentList &lt;span class=&quot;nv&quot;&gt;$exchCred&lt;/span&gt;, &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;Format-List &lt;/span&gt;DisplayName, QueuedTimestamp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Migrateing back to exchange is a little more involved but not by much&lt;/p&gt;
+
+&lt;p class=&quot;notice--info&quot;&gt;If your wondering why I would want to migrate back to exchange. Mistakes do happen, a users that is not ready for migraiton might accendently get moved&lt;/p&gt;
+
+&lt;div class=&quot;language-powershell pre-wrap highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$databaseBaseName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'db'&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$databaseMaxNumber&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 24
+&lt;span class=&quot;c1&quot;&gt;#randomly pick a target DB&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$database&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$databaseBaseName&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$((&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;get-random&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;Minimum &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;Maximum &lt;span class=&quot;nv&quot;&gt;$databaseMaxNumber&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.ToString&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;00&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;s2&quot;&gt;&quot;Migrating To Exchange : &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; to &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$database&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$scriptBlock&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;([&lt;/span&gt;PSCredential]&lt;span class=&quot;nv&quot;&gt;$exchCred&lt;/span&gt;, &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;, &lt;span class=&quot;nv&quot;&gt;$database&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  
+    &lt;span class=&quot;nv&quot;&gt;$MoveRequesParm&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; @&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        Outbound &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$true&lt;/span&gt;
+        RemoteHostName &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'mail.mydomain.com'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# your exchange servers external URL for EWS&lt;/span&gt;
+        RemoteCredential &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$exchCred&lt;/span&gt;
+        TargetDeliveryDomain &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'mydomain.com'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# your onprem email domain&lt;/span&gt;
+        Identity &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;
+        RemoteTargetDatabase &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$database&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    New-MoveRequest @MoveRequesParm
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+Invoke-Command -Session &lt;span class=&quot;nv&quot;&gt;$OnlineSession&lt;/span&gt; -ScriptBlock &lt;span class=&quot;nv&quot;&gt;$scriptblock&lt;/span&gt;  -ArgumentList &lt;span class=&quot;nv&quot;&gt;$exchCred&lt;/span&gt;, &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;, &lt;span class=&quot;nv&quot;&gt;$database&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;Format-List &lt;/span&gt;DisplayName, QueuedTimestamp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And there you have the basic’s of the migration. Next up is checking the status.&lt;/p&gt;</content><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><category term="Azure" /><category term="Office 365" /><summary type="html">Note Some code blocks on this page have word wrap turned on. The problem</summary></entry><entry><title type="html">Collecting CA Certificates for DSC Configuration</title><link href="https://www.bladefirelight.com/nuggets/collecting-ca-certificates-for-dsc-configuration/" rel="alternate" type="text/html" title="Collecting CA Certificates for DSC Configuration" /><published>2017-04-21T00:00:00-05:00</published><updated>2017-04-21T00:00:00-05:00</updated><id>https://www.bladefirelight.com/nuggets/collecting-ca-certificates-for-dsc-configuration</id><content type="html" xml:base="https://www.bladefirelight.com/nuggets/collecting-ca-certificates-for-dsc-configuration/">&lt;h2 id=&quot;the-goal&quot;&gt;The Goal&lt;/h2&gt;
 
 &lt;p&gt;Microsoft PFE Ashely McGlone &lt;a href=&quot;https://blogs.msdn.microsoft.com/powershell/2015/10/01/powershell-dsc-faq-sorting-out-certificates/&quot;&gt;recommends&lt;/a&gt; that each node managed by DSC (Desired State Configuration) have unique certificate for protecting credentials.&lt;/p&gt;
 
@@ -1422,68 +1602,4 @@ VERBOSE: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&q
       &lt;p&gt;Master Boot Record. Used for Generation 1 and legacy BIOS. Will use one Primary partition &lt;a href=&quot;#fnref:MBR&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><category term="VHDX" /><category term="WindowsUpdate" /><category term="WindowsUpdateTools" /><category term="Module" /><summary type="html">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time. (IIS, SQL, Exchange, etc…).</summary></entry><entry><title type="html">Shaving the Yak, Leads Me to Create New Module WindowsImageTools</title><link href="https://www.bladefirelight.com/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/" rel="alternate" type="text/html" title="Shaving the Yak, Leads Me to Create New Module WindowsImageTools" /><published>2015-09-29T00:00:00-05:00</published><updated>2015-09-29T00:00:00-05:00</updated><id>https://www.bladefirelight.com/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools</id><content type="html" xml:base="https://www.bladefirelight.com/shaving-the-yak-leads-me-to-create-new-module-windowsimagetools/">&lt;h2 id=&quot;my-yak-needs-shaving&quot;&gt;My Yak needs shaving.&lt;/h2&gt;
-
-&lt;p&gt;If your not familiar with the term.&lt;/p&gt;
-
-&lt;p&gt;http://www.hanselman.com/blog/YakShavingDefinedIllGetThatDoneAsSoonAsIShaveThisYak.aspx&lt;/p&gt;
-
-&lt;p&gt;It’s been quite a journey since my last post.&lt;/p&gt;
-
-&lt;p&gt;Windows 10 came out, and Convert-WindowsImage.ps1 was upgraded (braking my scripts I blogged about this summer) and Server 2016 Preview 3 was released.&lt;/p&gt;
-
-&lt;p&gt;Looking at the Nano folder on Preview 3 they are using a WIM and Convert-WindowsImage.ps1to create a VHDX. Good move Microsoft.&lt;/p&gt;
-
-&lt;p&gt;Now for the bad part.&lt;/p&gt;
-
-&lt;p&gt;Convert-WindowImage.ps1 is buggy, and not a module. But Microsoft is working hart to fix this. Not being one to wait. I decided to take the functionality I need and re-work the whole process as a module. (and found some underlying bugs in PowerShell in the process )  The results of my effort is documented below.&lt;/p&gt;
-
-&lt;p&gt;As for Windows 10.&lt;/p&gt;
-
-&lt;p&gt;There are a number of changes to DSC that have broken all my production configuration scripts. And Configurations created on Windows10 or WMF 5 preview have bugs when using depends on, that cause the LCM on 2012R2 to hang.&lt;/p&gt;
-
-&lt;p&gt;For Production this is a show stopper, but I’m already working to separate out the configuration’s based on target OS.&lt;/p&gt;
-
-&lt;h2 id=&quot;windowsimagetools&quot;&gt;WindowsImageTools&lt;/h2&gt;
-
-&lt;p&gt;Microsoft recently moved Convert-WindowsImage over to GitHub and added some nice features, but it’s still a script, not a module. They also nicely added an MIT licence to that repo. So taking advantage of that I started my own project based on that code. I’m calling it WindowsImageTools&lt;/p&gt;
-
-&lt;p&gt;So far there are four exported functions.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Initialize-VHDPartition
-    &lt;ol&gt;
-      &lt;li&gt;Create a VHD with correct partition for BIOS or UEFI with or without Recovery tools/image&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Set-VHDPartition
-    &lt;ol&gt;
-      &lt;li&gt;take an ISO or WIM and populate the VHD. This detects the layout and acts accordingly.&lt;/li&gt;
-      &lt;li&gt;It also can add drivers, enable features, inject unattend.xml and inject additional files or folders&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Convert-Wim2VHD
-    &lt;ol&gt;
-      &lt;li&gt;This is a wrapper functions around the first two&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;New-UnattendXml
-    &lt;ol&gt;
-      &lt;li&gt;Create an Unattend.xml that works with both 32 and 64 bit in a single file&lt;/li&gt;
-      &lt;li&gt;Sets the admin password and autologin count&lt;/li&gt;
-      &lt;li&gt;Creates then deletes a second user (for Windows7)&lt;/li&gt;
-      &lt;li&gt;Sets TimeZone&lt;/li&gt;
-      &lt;li&gt;Starts a PowerShell script to bootstrap the system configuration&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;That last one took quite some work to figure out. It only fully works with Volume media because it does not set the license key.&lt;/p&gt;
-
-&lt;p&gt;I also discovered that 64bit windows will run both the 32bit sections for adding users and running scripts, but not the part for skipping licensing and autologin. This is true from win7 forward. If your not familiar with Unattend.xml those parts are all under the same section in the xml.&lt;/p&gt;
-
-&lt;p&gt;If you want to give it a spin it’s &lt;a href=&quot;https://www.powershellgallery.com/packages/WindowsImageTools/&quot;&gt;available at the PowerShell Gallery&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;onward&quot;&gt;Onward&lt;/h2&gt;
-
-&lt;p&gt;So equipped with these tools i’m now going to reword my auto patching and WIM creation script. and add that into the module.&lt;/p&gt;</content><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><category term="Rant" /><summary type="html">My Yak needs shaving. If your not familiar with the term. http://www.hanselman.com/blog/YakShavingDefinedIllGetThatDoneAsSoonAsIShaveThisYak.aspx It’s been quite a journey since my last post. Windows 10 came out, and Convert-WindowsImage.ps1 was upgraded (braking my scripts I blogged about this summer) and Server 2016 Preview 3 was released. Looking at the Nano folder on Preview 3 they are using a WIM and Convert-WindowsImage.ps1to create a VHDX. Good move Microsoft. Now for the bad part. Convert-WindowImage.ps1 is buggy, and not a module. But Microsoft is working hart to fix this. Not being one to wait. I decided to take the functionality I need and re-work the whole process as a module. (and found some underlying bugs in PowerShell in the process ) The results of my effort is documented below. As for Windows 10. There are a number of changes to DSC that have broken all my production configuration scripts. And Configurations created on Windows10 or WMF 5 preview have bugs when using depends on, that cause the LCM on 2012R2 to hang. For Production this is a show stopper, but I’m already working to separate out the configuration’s based on target OS. WindowsImageTools Microsoft recently moved Convert-WindowsImage over to GitHub and added some nice features, but it’s still a script, not a module. They also nicely added an MIT licence to that repo. So taking advantage of that I started my own project based on that code. I’m calling it WindowsImageTools So far there are four exported functions. Initialize-VHDPartition Create a VHD with correct partition for BIOS or UEFI with or without Recovery tools/image Set-VHDPartition take an ISO or WIM and populate the VHD. This detects the layout and acts accordingly. It also can add drivers, enable features, inject unattend.xml and inject additional files or folders Convert-Wim2VHD This is a wrapper functions around the first two New-UnattendXml Create an Unattend.xml that works with both 32 and 64 bit in a single file Sets the admin password and autologin count Creates then deletes a second user (for Windows7) Sets TimeZone Starts a PowerShell script to bootstrap the system configuration That last one took quite some work to figure out. It only fully works with Volume media because it does not set the license key. I also discovered that 64bit windows will run both the 32bit sections for adding users and running scripts, but not the part for skipping licensing and autologin. This is true from win7 forward. If your not familiar with Unattend.xml those parts are all under the same section in the xml. If you want to give it a spin it’s available at the PowerShell Gallery Onward So equipped with these tools i’m now going to reword my auto patching and WIM creation script. and add that into the module.</summary></entry></feed>
+&lt;/div&gt;</content><author><name>David Jones</name><email>BladeFireLight@outlook.com</email></author><category term="VHDX" /><category term="WindowsUpdate" /><category term="WindowsUpdateTools" /><category term="Module" /><summary type="html">One of the time consuming steps to deploying new VMs is the time spend managing Images and and applying patches. I’m not big on Golden images. I tend to use a fully patched VHDX or VMDK and let DSC handle the configuration and software. This is not the fastest, and at scale you need to create more then one image based on what saves the most time. (IIS, SQL, Exchange, etc…).</summary></entry></feed>
